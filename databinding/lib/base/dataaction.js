@@ -37,9 +37,6 @@ apf.DataAction = function(){
      * @see  element.smartbinding
      */
     this.getActionTracker = function(ignoreMe){
-        if (!apf.AmlNode)
-            return apf.window.$at;
-
         var pNode = this, tracker = ignoreMe ? null : this.$at;
         if (!tracker && this.dataParent)
             tracker = this.dataParent.parent.$at; //@todo apf3.0 change this to be recursive??
@@ -47,7 +44,7 @@ apf.DataAction = function(){
         while (!tracker) {
             if (!pNode.parentNode && !pNode.$parentNode) {
                 var model;
-                return (model = this.getModel && this.getModel(true)) && model.$at || apf.window.$at;
+                return (model = this.getModel && this.getModel(true)) && model.$at;
             }
 
             tracker = (pNode = pNode.parentNode || pNode.$parentNode).$at;

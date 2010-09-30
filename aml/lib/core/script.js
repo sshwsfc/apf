@@ -55,12 +55,12 @@ apf.script = function(){
         if (!this.type || this.type == "text/javascript") {
             if (apf.isOpera) {
                 $setTimeout(function(){
-                    apf.window.loadCodeFile(apf.hostPath
+                    apf.include(apf.hostPath
                         + value);
                 }, 1000);
             }
             else {
-                apf.window.loadCodeFile(apf.getAbsolutePath(apf.hostPath,
+                apf.include(apf.getAbsolutePath(apf.hostPath,
                     value));
             }
         }

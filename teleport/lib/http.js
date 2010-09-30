@@ -21,6 +21,8 @@
 
 // #ifdef __TP_HTTP
 
+//@todo dep on config
+
 /**
  * This object does what is commonly known as Ajax, it <strong>A</strong>synchronously 
  * communicates using <strong>J</strong>avascript <strong>A</strong>nd in most 
@@ -906,8 +908,14 @@ apf.http = function(){
         clearInterval(this.queue[id].timer);
         //#endif
 
-        if (apf.releaseHTTP && !apf.isGecko)
-            apf.releaseHTTP(this.queue[id].http);
+        if (apf.releaseHTTP && !apf.isGecko) {
+            if (!apf.brokenHttpAbort && !(self.XMLHttpRequestUnSafe && http.constructor == XMLHttpRequestUnSafe)) {
+                var http = this.queue[id].http;
+                http.onreadystatechange = function(){};
+                http.abort();
+                (config.$httpStorage || (config.$httpStorage = [])).push(http);
+            }
+        }
 
         this.queue[id] = null;
         delete this.queue[id];

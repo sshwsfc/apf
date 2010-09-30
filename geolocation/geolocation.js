@@ -239,3 +239,14 @@ apf.geolocation = (function() {
     return pub;
 })();
 //#endif
+
+/*
+
+    hasGeoLocation: function() {
+        //#ifdef __WITH_GEOLOCATION
+        return typeof apf.geolocation != "undefined" && apf.geolocation.init();
+        /*#else
+        return false;
+        #endif*/
+    }
+*/

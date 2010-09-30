@@ -21,6 +21,24 @@
 
 //#ifdef __WITH_DEBUG_WIN
 
+apf.getShortestPath = function(p1, p2) {
+    if (p1.charAt(0) == "/")
+        return p1;
+    
+    var s = p1.split("/");
+    var l = p2.split("/"); l.pop();
+    
+    for (var i = 0; i < s.length; i++) {
+        if (s[0] == "..") {
+            l.pop();
+            s.shift();
+        }
+        else break;
+    }
+    
+    return l.join("/") + "/" + s.join("/");
+}
+
 function prettySize(size) {
     if (size < 1024)
         return size + " Bytes";

@@ -82,72 +82,7 @@ apf.window = function(){
         apf.window.destroy();
     });*/
     
-    apf.document = {};
-    this.init = function(strAml){
-        //#ifdef __WITH_ACTIONTRACKER
-        if (apf.actiontracker) {
-            this.$at      = new apf.actiontracker();
-            this.$at.name = "default";
-            //#ifdef __WITH_NAMESERVER
-            apf.nameserver.register("actiontracker", "default", this.$at);
-            //#endif
-        }
-        //#endif
 
-         // #ifdef __DEBUG
-        apf.console.info("Start parsing main application");
-        // #endif
-        // #ifdef __DEBUG
-        //apf.Latometer.start();
-        // #endif
-        
-        //Put this in callback in between the two phases
-        //#ifdef __WITH_SKIN_AUTOLOAD
-        /*XForms and lazy devs support
-        if (!nodes.length && !apf.skins.skins["default"] && apf.autoLoadSkin) {
-            apf.console.warn("No skin file found, attempting to autoload the \
-                              default skin file: skins.xml");
-            apf.loadAmlInclude(null, doSync, "skins.xml", true);
-        }*/
-        //#endif 
-
-        this.$domParser = new apf.DOMParser();
-        this.document = apf.document = this.$domParser.parseFromString(strAml, 
-          "text/xml", {
-            timeout   : apf.config.initdelay,
-            callback  : function(doc){
-                //@todo apf3.0
-
-                //Call the onload event (prevent recursion)
-                if (apf.parsed != 2) {
-                    //@todo apf3.0 onload is being called too often
-                    var inital = apf.parsed;
-                    apf.parsed = 2;
-                    apf.dispatchEvent("parse", { //@todo apf3.0 document
-                        initial : inital
-                    });
-                    apf.parsed = true;
-                }
-        
-                if (!apf.loaded) {
-                    apf.loaded = true;
-                    apf.dispatchEvent("load");
-                }
-        
-                //END OF ENTIRE APPLICATION STARTUP
-        
-                //#ifdef __DEBUG
-                //apf.console.info("Initialization finished");
-                //#endif
-                
-                // #ifdef __DEBUG
-                //apf.Latometer.end();
-                //apf.Latometer.addPoint("Total load time");
-                //apf.Latometer.start(true);
-                // #endif
-          }
-        }); //async
-    };
 
     /**
      * @private

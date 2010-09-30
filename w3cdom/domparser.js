@@ -19,6 +19,14 @@
  *
  */
 
+/*
+    namespaces : {},
+    setNamespace : function(namespaceURI, oNamespace){
+        this.namespaces[namespaceURI] = oNamespace;
+        oNamespace.namespaceURI = namespaceURI;
+    },
+*/
+
 // #ifdef __DOMPARSER
 /**
  * The parser of the Ajax.org Markup Language. Besides aml this parser takes care

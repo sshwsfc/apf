@@ -19,6 +19,13 @@
  *
  */
 
+//IE fix
+try {
+    if (apf.isIE)
+        document.execCommand("BackgroundImageCache", false, true);
+}
+catch(e) {}
+
 // #ifdef __SUPPORT_IE
 /**
  * Compatibility layer for Internet Explorer browsers.
