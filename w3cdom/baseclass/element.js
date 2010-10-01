@@ -19,8 +19,13 @@
  *
  */
 
-// #ifdef __WITH_AMLELEMENT
-apf.AmlElement = function(struct, tagName){
+require.def([
+    "w3cdom/node",
+    "lib-oop"], 
+    function(AmlNode, oop){
+
+var AmlElement = function(struct, tagName){
+    //@todo
     var $init = this.$init;
     this.$init = function(tagName, nodeFunc, struct){
         this.$supportedProperties = this.$supportedProperties.slice();
@@ -111,7 +116,26 @@ apf.AmlElement = function(struct, tagName){
     
     if (tagName) //of typeof is not function and not true
         $init.call(this, tagName, apf.NODE_HIDDEN, struct);
+        AmlNode.apply(this, arguments);
+    
+    if (struct && (struct.htmlNode || this.nodeFunc == apf.NODE_HIDDEN)) {
+        this.$pHtmlNode = struct.htmlNode;
+        
+        /*#ifdef __SUPPORT_GWT
+            var domParser = this.ownerDocument.$domParser;
+            this.ownerDocument.documentElement.appendChild(this);
+        #else*/
+            this.ownerDocument.$domParser.$continueParsing(this);
+            
+            // #ifdef __WITH_QUEUE
+            apf.queue.empty();
+            // #endif
+        // #endif
+    }
 };
+
+//Inherit
+oop.inherits(AmlElement, AmlNode);
 
 (function(){
     /**
@@ -551,7 +575,7 @@ apf.AmlElement = function(struct, tagName){
         }
     });
     
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         if (value && this.$booleanProperties[prop])
             value = apf.isTrue(value);
 
@@ -624,5 +648,9 @@ apf.AmlElement = function(struct, tagName){
 
         this.$amlLoaded = true;
     }, true);
-}).call(apf.AmlElement.prototype = new apf.AmlNode());
-// #endif
+}).call(AmlElement.prototype);
+
+return AmlElement;
+
+    }
+);

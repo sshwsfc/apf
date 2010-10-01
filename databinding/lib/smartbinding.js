@@ -660,7 +660,7 @@ apf.smartbinding = function(struct, tagName){
 
 (function(){
     this.$supportedProperties = ["bindings", "actions", "model"];
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         switch(prop) {
             //@todo apf3 change this to use apf.setModel();
             case "model":

@@ -27,11 +27,11 @@ apf.XhtmlInputElement = function(struct, tagName){
 (function(){
     this.$xae = apf.XhtmlElement.prototype.$xae;
     this.$xre = apf.XhtmlElement.prototype.$xre;
-    this.$handlePropSet = function(name, value, force){
+    this.$propertyHandler = function(name, value, force){
         if (name == "type")
             return;
 
-        return apf.XhtmlElement.prototype.$handlePropSet.call(this, name, value, force);
+        return apf.XhtmlElement.prototype.$propertyHandler.call(this, name, value, force);
     };
 
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){

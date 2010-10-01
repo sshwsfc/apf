@@ -19,9 +19,12 @@
  *
  */
 
-apf.__AMLNODE__ = 1 << 14;
+require.def([
+    "lib-oop/class",
+    "lib-oop"], 
+    function(Class, oop){
 
-// #ifdef __WITH_AMLNODE
+var uniqueList = [];
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have Document Object Model (DOM) support. The DOM
@@ -87,17 +90,21 @@ apf.__AMLNODE__ = 1 << 14;
  * @version     %I%, %G%
  * @since       0.5
  */
-apf.AmlNode = function(){
-    this.$init(function(){
-        /**
-         * Nodelist containing all the child nodes of this element.
-         */
-        this.childNodes = []; //@todo AmlNodeList
-    });
+var AmlNode = function(){
+    Class.apply(this, arguments);
+    
+    /**
+     * Nodelist containing all the child nodes of this element.
+     */
+    this.childNodes = []; //@todo AmlNodeList
+    
+    this.$uniqueId = uniqueList.push(this) - 1;
 };
 
-(function() {
+//Inherit
+oop.inherits(AmlNode, Class);
 
+(function() {
     //#ifdef __USE_TOSTRING
     /**
      * Returns a string representation of this object.
@@ -112,11 +119,6 @@ apf.AmlNode = function(){
             + " /> : " + (this.name || this.$uniqueId || "") + "]";
     };
     //#endif
-    
-    /**
-     * Number specifying the type of node within the document.
-     */
-    this.$regbase = this.$regbase | apf.__AMLNODE__;
     
     /**
      * Constant for a dom element node.
@@ -577,6 +579,192 @@ apf.AmlNode = function(){
     
     this.normalize = function(){};
     
+    /**
+     * Destructor of a Class.
+     * Calls all destructor functions and removes all mem leaking references.
+     * This function is called when exiting the application or closing the window.
+     * @param {Boolean} deep whether the children of this element should be destroyed.
+     * @method
+     */
+    this.destroy = function(deep, clean){
+        //Remove from apf.all
+        if (typeof this.$uniqueId == "undefined" && this.nodeType != 2)
+            return;
+        
+        this.$amlLoaded    = false;
+        this.$amlDestroyed = true;
+        
+        if (this.$destroy)
+            this.$destroy();
+
+        this.dispatchEvent("DOMNodeRemoved", {
+            relatedNode  : this.parentNode,
+            bubbles      : !apf.isDestroying
+        });
+        this.dispatchEvent("DOMNodeRemovedFromDocument");
+
+        apf.all[this.$uniqueId] = undefined;
+
+        // != 2 && this.nodeType != 3
+        if (!this.nodeFunc && !this.nodeType) { //If this is not a AmlNode, we're done.
+            //Remove id from global js space
+            try {
+                if (this.id || this.name)
+                    self[this.id || this.name] = null;
+            }
+            catch (ex) {}
+            return;
+        }
+
+        if (this.$ext && !this.$ext.isNative) { // && this.$ext.nodeType == 1
+            if (this.nodeType == 1 && this.localName != "a")
+                this.$ext.oncontextmenu = this.$ext.host = null;
+            if (clean) {
+                if (this.localName != "collection")
+                    this.$ext.parentNode.removeChild(this.$ext);
+            }
+        }
+        if (this.$int && !this.$int.isNative && this.$int.nodeType == 1 && this.localName != "a")
+            this.$int.host = null;
+
+        //if (this.$aml && this.$aml.parentNode)
+            //this.$aml.parentNode.removeChild(this.$aml);
+        this.$aml = null;
+
+        //Clear all children too
+        if (deep && this.childNodes) {
+            var nodes = this.childNodes;
+            for (i = nodes.length - 1; i >= 0; i--) {
+                if (nodes[i].destroy)
+                    nodes[i].destroy(true, clean && this.localName == "collection");
+            }
+            this.childNodes = null;
+        }
+
+        //Remove from DOM tree if we are still connected
+        if (this.parentNode && this.removeNode)
+            this.removeNode();
+        else if (this.ownerElement && !this.ownerElement.$amlDestroyed)
+            this.ownerElement.removeAttributeNode(this);
+
+        //Remove from focus list - Should be in AmlNode
+        //#ifdef __WITH_FOCUS
+        if (this.$focussable && this.focussable)
+            apf.window.$removeFocus(this);
+        //#endif
+        
+        //#ifdef __WITH_PROPERTY_BINDING
+        //Remove dynamic properties
+        /*var f, i, l, h;
+        for (prop in this.$funcHandlers) {
+            h = this.$funcHandlers[prop];
+            
+            //Remove any bounds if relevant
+            if (h && typeof h != "function") {
+                for (i = 0, l = h.length; i < l; i++) {
+                    (f = h[i]).amlNode.removeEventListener("prop." + f.prop, f.handler);
+                }
+            }
+        }*/
+        //#endif
+        
+        if (this.attributes) {
+            var attr = this.attributes;
+            for (var i = attr.length - 1; i >= 0; i--) {
+                //#ifdef __WITH_PROPERTY_BINDING
+                this.$clearDynamicProperty(attr[i].nodeName);
+                //#endif
+                attr[i].destroy();
+            }
+        }
+
+        //#ifdef __DEBUG
+        if (deep !== false && this.childNodes && this.childNodes.length) {
+            apf.console.warn("You have destroyed an Aml Node without destroying "
+                           + "it's children. Please be aware that if you don't "
+                           + "maintain a reference, memory might leak");
+        }
+        //#endif
+        
+        //Remove id from global js space
+        try {
+            if (this.id || this.name)
+                self[this.id || this.name] = null;
+        }
+        catch (ex) {}
+        
+        //#ifdef __WITH_NAMESERVER
+        apf.nameserver.remove(this.localName, this);
+        //#endif
+    };
+    
+    /**** Attribute Inheritance ****/
+    
+    var aci, setProp = this.$_setProperty;
+    this.$_setProperty = function(prop, value, forceOnMe, setAttr, inherited, isChanged){
+        if (isChanged && setAttr)
+            this.setAttribute(prop, value, true);
+
+        setProp.apply(this, arguments);
+        
+        //#ifdef __WITH_PROPERTY_INHERITANCE
+        /*
+            States:
+                    -1 Set
+             undefined Pass through
+                     2 Inherited
+                     3 Semi-inherited
+                    10 Dynamic property
+        */
+        //@todo this whole section should be about attribute inheritance and moved
+        //      to AmlElement
+        if ((aci || (aci = apf.config.$inheritProperties))[prop]) {
+            //@todo this is actually wrong. It should be about removing attributes.
+            var resetting = value === "" || typeof value == "undefined";
+            if (inherited != 10 && !value) {
+                delete this.$inheritProperties[prop];
+                if (this.$setInheritedAttribute(prop))
+                    return;
+            }
+            else if (inherited != 10) { //Keep the current setting (for dynamic properties)
+                this.$inheritProperties[prop] = inherited || -1;
+            }
+
+            //cancelable, needed for transactions
+            //@todo the check on $amlLoaded is not as optimized as can be because $loadAml is not called yet
+            if (this.$amlLoaded && (!e || e.returnValue !== false) && this.childNodes) {
+                var inheritType = aci[prop];
+
+                (function recur(nodes) {
+                    var i, l, node, n;
+                    for (i = 0, l = nodes.length; i < l; i++) {
+                        node = nodes[i];
+                        if (node.nodeType != 1 && node.nodeType != 7)
+                            continue;
+
+                        //Pass through
+                        n = node.$inheritProperties[prop];
+                        if (inheritType == 1 && !n)
+                            recur(node.childNodes);
+                        
+                        //Set inherited property
+                        //@todo why are dynamic properties overwritten??
+                        else if(!(n < 0)) {//Will also pass through undefined - but why??? @todo seems inefficient
+                            if (n == 3 || inherited == 3) { //Because when parent sets semi-inh. prop the value can be the same
+                                var sameValue = node[prop];
+                                node[prop] = null;
+                            }
+                            node.setProperty(prop, n != 3
+                                ? value
+                                : sameValue, false, false, n || 2); //This is recursive already
+                        }
+                    }
+                })(this.childNodes);
+            }
+        }
+        //#endif
+    }
+    
     /**** Xpath support ****/
 
     /**
@@ -612,9 +800,9 @@ apf.AmlNode = function(){
         return apf.XPath.selectNodes(sExpr,
             contextNode || (this.nodeType == 9 ? this.documentElement : this))[0];
     };
-    
-    /*this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
-        
-    }, true);*/
-}).call(apf.AmlNode.prototype = new apf.Class());
-// #endif
+}).call(AmlNode.prototype);
+
+return AmlNode;
+
+    }
+);

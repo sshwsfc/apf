@@ -1740,3 +1740,16 @@ TEMPORARILY DISABLED
     }
 }
 //#endif
+
+
+    var setProp = this.$_setProperty;
+    Class.prototype.$_setProperty = function(prop, value, forceOnMe, setAttr, inherited, isChanged){
+        if (isChanged && apf.uirecorder && apf.uirecorder.captureDetails) {
+            if (apf.uirecorder.isRecording || apf.uirecorder.isTesting) {// only capture events when recording  apf.uirecorder.isLoaded
+                if (this.ownerDocument && this.$aml)
+                    apf.uirecorder.capture.capturePropertyChange(this, prop, value); 
+            }
+        }
+        
+        setProp.apply(this, arguments);
+    };

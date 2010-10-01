@@ -133,7 +133,7 @@ apf.actiontracker = function(struct, tagName){
     this.$booleanProperties = {};
     this.$booleanProperties["realtime"] = true;
     this.$supportedProperties = ["realtime", "undolength", "redolength", "alias", "length", "position"];
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         if (this.$booleanProperties[prop])
             value = apf.isTrue(value);
 
@@ -993,3 +993,44 @@ apf.actiontracker = function(){
     this.reset = function(){}
 }
 #endif */
+
+GuiElement.propHandlers = {
+    //#ifdef __WITH_DATABINDING
+    /**
+     * @attribute {String} actiontracker the name of the actiontracker that
+     * is used for this element and it's children. If the actiontracker doesn't
+     * exist yet it is created.
+     * Example:
+     * In this example the list uses a different actiontracker than the two
+     * textboxes which determine their actiontracker based on the one that
+     * is defined on the bar.
+     * <code>
+     *  <a:list actiontracker="newAT" />
+     *
+     *  <a:bar actiontracker="someAT">
+     *      <a:textbox />
+     *      <a:textbox />
+     *  </a:bar>
+     * </code>
+     */
+    "actiontracker": function(value){
+        if (!value) {
+            this.$at = null;
+        }
+        else if (value.localName == "actiontracker") {
+            this.$at = value;
+        }
+        else {
+            //#ifdef __WITH_NAMESERVER
+            this.$at = typeof value == "string" && self[value]
+              ? apf.nameserver.get("actiontracker", value) || self[value].getActionTracker()
+              : apf.setReference(value,
+                  apf.nameserver.register("actiontracker",
+                      value, new apf.actiontracker()));
+
+            if (!this.$at.name)
+                this.$at.name = value;
+            //#endif
+        }
+    },
+    //#endif

@@ -146,7 +146,7 @@ apf.appsettings = function(struct, tagName){
             $setProperty.apply(this, arguments);
     }
     
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         if (this.$booleanProperties[prop])
             value = apf.isTrue(value);
 

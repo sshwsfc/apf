@@ -33,7 +33,7 @@ apf.AmlText = function(isPrototype){
     };
     
     //#ifdef __ENABLE_LIVETEXT
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         this[prop] = value;
         if (prop == "data") {
             this.$clearDynamicProperty("calcdata");

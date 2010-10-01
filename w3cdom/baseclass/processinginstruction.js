@@ -42,7 +42,7 @@ apf.AmlProcessingInstruction = function(isPrototype){
     };
     
     this.reload = function(){
-        this.$handlePropSet("data", this.data);
+        this.$propertyHandler("data", this.data);
     };
     
     //1 = force no bind rule, 2 = force bind rule
@@ -65,7 +65,7 @@ apf.AmlProcessingInstruction = function(isPrototype){
         this.setProperty("data", value);
     };
     
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         this[prop] = value;
         if (prop == "data") {
             this.$clearDynamicProperty("calcdata");

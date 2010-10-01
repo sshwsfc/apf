@@ -363,9 +363,9 @@ apf.menu = function(struct, tagName){
                 continue;
 
             if (nodes[i].value == value || !nodes[i].value && nodes[i].caption == value)
-                nodes[i].$handlePropSet("selected", true);
+                nodes[i].$propertyHandler("selected", true);
             else if (nodes[i].selected)
-                nodes[i].$handlePropSet("selected", false);
+                nodes[i].$propertyHandler("selected", false);
         }
     };
 

@@ -554,7 +554,7 @@ apf.editor = function(struct, tagName){
         this.$container = this.$getLayoutNode("main", "container", this.$ext);
 
         if (apf.isOnlyChild(this.firstChild, [3,4]))
-            this.$handlePropSet("value", this.firstChild.nodeValue.trim());
+            this.$propertyHandler("value", this.firstChild.nodeValue.trim());
 
         //if (typeof this.realtime == "undefined")
             //this.$propHandlers["realtime"].call(this);

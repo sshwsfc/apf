@@ -54,7 +54,7 @@ apf.stateGroup = function(){
 apf.aml.setElement("state-group", apf.stateGroup);
 
 (function(){
-    this.$handlePropSet = function(prop, value, force){
+    this.$propertyHandler = function(prop, value, force){
         if (prop == "id")
             return;
         

@@ -120,7 +120,7 @@ apf.AmlAttr = function(ownerElement, name, value){
         {
             host.setProperty(name, value); //@todo apf3.0 is this a lot slower?
         }
-        //host.$handlePropSet(name, value);
+        //host.$propertyHandler(name, value);
 
         if (this.specified) {
             //@todo apf3.0 domattr - slow?

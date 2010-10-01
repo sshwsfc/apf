@@ -230,3 +230,24 @@ apf.offline.state = {
     }
 };
 // #endif
+
+    
+var setProp = this.$_setProperty;
+Class.prototype.$_setProperty = function(){
+    this.$_setProperty = function(prop, value, forceOnMe, setAttr, inherited, isChanged){
+        if (isChanged && !forceOnMe) {
+            if (typeof apf.offline != "undefined") {
+                if (apf.loaded && apf.offline.state.enabled) {
+                    apf.offline.state.set(this, prop, typeof value == "object"
+                        ? value.name
+                        : value);
+                }
+                else if (apf.offline.enabled) {
+
+                }
+            }
+        }
+        
+        setProp.apply(this, arguments);
+    }
+};

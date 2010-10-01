@@ -260,7 +260,7 @@ apf.BindingColumnRule = function(struct, tagName){
         while (pNode.$bindingRule)
             pNode = pNode.parentNode;
         
-        if (!pNode.hasFeature(apf.__PRESENTATION__))
+        if (!pNode.hasFeature(apf.__SKIN__))
             return;
             
         if (width) 

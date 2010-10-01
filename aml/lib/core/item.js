@@ -355,7 +355,7 @@ apf.item  = function(struct, tagName){
 
         else if (this.type == "check") {
             this.setProperty("checked", !this.checked);
-            //this.$handlePropSet("checked", !this.checked);
+            //this.$propertyHandler("checked", !this.checked);
         }
 
         if (this.submenu) {
@@ -630,15 +630,15 @@ apf.item  = function(struct, tagName){
         var isSkinSwitch = this.$ext ? true : false;
         if (isSkinSwitch) {
             if (typeof this.checked !== "undefined")
-                this.$handlePropSet("checked", this.checked);
+                this.$propertyHandler("checked", this.checked);
             else if (typeof this.selected !== "undefined")
-                this.$handlePropSet("selected", this.selected);
+                this.$propertyHandler("selected", this.selected);
 
             if (this.disabled)
-                this.$handlePropSet("disabled", this.disabled);
+                this.$propertyHandler("disabled", this.disabled);
 
             if (this.caption)
-                this.$handlePropSet("caption", this.caption);
+                this.$propertyHandler("caption", this.caption);
         }
     });
 }).call(apf.item.prototype = new apf.Presentation());

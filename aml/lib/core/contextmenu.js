@@ -71,3 +71,122 @@ apf.contextmenu = function(){
 apf.aml.setElement("contextmenu", apf.contextmenu);
 
 // #endif
+
+
+
+    //#ifdef __AMLCONTEXTMENU
+    this.addEventListener("contextmenu", function(e){
+        // #ifdef __WITH_CONTENTEDITABLE
+        if (this.editable) { //@todo when the event system is done proper this should be handled in ce2.js
+            e.returnValue  = false;
+            e.cancelBubble = true;
+            return false;
+        }
+        // #endif
+        
+        if (!this.contextmenus) return;
+        
+        if (this.hasFeature(apf.__DATABINDING__)) {
+            var contextmenu;
+            var xmlNode = this.hasFeature(apf.__MULTISELECT__)
+                ? this.selected
+                : this.xmlRoot;
+
+            var i, l, m, isRef, sel, menuId, cm, result;
+            for (i = 0, l = this.contextmenus.length; i < l; i++) {
+                isRef  = (typeof (cm = this.contextmenus[i]) == "string");
+                result = null;
+                if (!isRef && cm.match && xmlNode) {//@todo apf3.0 cache this statement
+                    result = (cm.cmatch || (cm.cmatch = apf.lm.compile(cm.match, {
+                        xpathmode  : 3,
+                        injectself : true
+                    })))(xmlNode)
+                }
+
+                if (isRef || xmlNode && result || !cm.match) { //!xmlNode && 
+                    menuId = isRef
+                        ? cm
+                        : cm.menu
+
+                    if (!self[menuId]) {
+                        // #ifdef __DEBUG
+                        throw new Error(apf.formatErrorString(0, this,
+                            "Showing contextmenu",
+                            "Could not find contextmenu by name: '" + menuId + "'"),
+                            this.$aml);
+                        // #endif
+                        
+                        return;
+                    }
+
+                    self[menuId].display(e.x, e.y, null, this, xmlNode);
+
+                    e.returnValue  = false;//htmlEvent.
+                    e.cancelBubble = true;
+                    break;
+                }
+            }
+
+            //IE6 compatiblity
+            /*
+            @todo please test that disabling this is OK
+            if (!apf.config.disableRightClick) {
+                document.oncontextmenu = function(){
+                    document.oncontextmenu = null;
+                    e.cancelBubble = true;
+                    return false;
+                }
+            }*/
+        }
+        else {
+            menuId = typeof this.contextmenus[0] == "string"
+                ? this.contextmenus[0]
+                : this.contextmenus[0].getAttribute("menu")
+
+            if (!self[menuId]) {
+                // #ifdef __DEBUG
+                throw new Error(apf.formatErrorString(0, this,
+                    "Showing contextmenu",
+                    "Could not find contextmenu by name: '" + menuId + "'",
+                    this.$aml));
+                // #endif
+                
+                return;
+            }
+
+            self[menuId].display(e.x, e.y, null, this);
+
+            e.returnValue = false;//htmlEvent.
+            e.cancelBubble = true;
+        }
+    });
+    //#endif
+    
+    
+GuiElement.propHandlers = {
+    //#ifdef __AMLCONTEXTMENU
+    /**
+     * @attribute {String} contextmenu the name of the menu element that will
+     * be shown when the user right clicks or uses the context menu keyboard
+     * shortcut.
+     * Example:
+     * <code>
+     *  <a:menu id="mnuExample">
+     *      <a:item>test</a:item>
+     *      <a:item>test2</a:item>
+     *  </a:menu>
+     *   
+     *  <a:list 
+     *    contextmenu = "mnuExample" 
+     *    width       = "200" 
+     *    height      = "150" />
+     *  <a:bar 
+     *    contextmenu = "mnuExample" 
+     *    width       = "200" 
+     *    height      = "150" />
+     * </code>
+     */
+    "contextmenu": function(value){
+        this.contextmenus = [value];
+    },
+    //#endif

@@ -251,7 +251,7 @@ apf.offline = {
     inProcess : 0,
 
     $supportedProperties : ["syncing", "position", "length", "progress", "onLine"],
-    handlePropSet : function(prop, value, force){
+    propertyHandler : function(prop, value, force){
         this[prop] = value;
         //All read-only properties
     },

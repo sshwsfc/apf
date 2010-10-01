@@ -72,7 +72,7 @@ apf.XhtmlElement = function(struct, tagName){
             apf.removeListener(this.$ext, type, this.$de);
     }
     
-    this.$handlePropSet = function(name, value, force, inherit){
+    this.$propertyHandler = function(name, value, force, inherit){
         if (this.$booleanProperties[name])
             value = apf.isTrue(value);
 

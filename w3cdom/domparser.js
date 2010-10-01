@@ -427,25 +427,4 @@ apf.DOMParser.prototype = new (function(){
     };
 })();
 
-/**
- *
- * @author      Ruben Daniels (ruben AT ajax DOT org)
- * @version     %I%, %G%
- * @since       0.8
- */
-apf.AmlNamespace = function(){
-    this.elements = {};
-    this.processingInstructions = {};
-};
-
-apf.AmlNamespace.prototype = {
-    setElement : function(tagName, fConstr){
-        return this.elements[tagName] = fConstr;
-    },
-    
-    setProcessingInstruction : function(target, fConstr){
-        this.processingInstructions[target] = fConstr;
-    }
-};
-
 //#endif
