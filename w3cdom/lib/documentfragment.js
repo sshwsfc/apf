@@ -20,12 +20,12 @@
  */
 
 // #ifdef __WITH_AMLDOCUMENTFRAGMENT
-apf.AmlDocumentFragment = function(isPrototype){
+apf.DOMDocumentFragment = function(isPrototype){
     this.$init(isPrototype);
 };
 
-apf.AmlDocumentFragment.prototype = new apf.AmlNode();
-apf.AmlDocumentFragment.prototype.nodeName = "#document-fragment";
-apf.AmlDocumentFragment.prototype.nodeType = 
-    apf.AmlDocumentFragment.prototype.NODE_DOCUMENT_FRAGMENT;
+apf.DOMDocumentFragment.prototype = new apf.DOMNode();
+apf.DOMDocumentFragment.prototype.nodeName = "#document-fragment";
+apf.DOMDocumentFragment.prototype.nodeType = 
+    apf.DOMDocumentFragment.prototype.NODE_DOCUMENT_FRAGMENT;
 // #endif

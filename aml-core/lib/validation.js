@@ -614,7 +614,7 @@ apf.ValidationGroup = function(name){
     /**
      * Retrieves {@link element.errorbox} used for a specified element.
      *
-     * @param  {AmlNode}  o  required  AmlNode specifying the element for which the Errorbox should be found. If none is found, an Errorbox is created. Use the {@link object.validationgroup.property.allowMultipleErrors} to influence when Errorboxes are created.
+     * @param  {DOMNode}  o  required  DOMNode specifying the element for which the Errorbox should be found. If none is found, an Errorbox is created. Use the {@link object.validationgroup.property.allowMultipleErrors} to influence when Errorboxes are created.
      * @param  {Boolean}  no_create    Boolean that specifies whether new Errorbox may be created when it doesn't exist already
      * @return  {Errorbox}  the found or created Errorbox;
      */

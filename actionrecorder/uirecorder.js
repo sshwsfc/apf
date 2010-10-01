@@ -188,7 +188,7 @@ apf.uirecorder.capture = {
     },
 
     // get all neccessary information about amlNode
-    $getAmlNodeData : function(amlNode, htmlElement, eventName, value) {
+    $getDOMNodeData : function(amlNode, htmlElement, eventName, value) {
         if (amlNode.tagName == "html" || amlNode.tagName == "body") return;
         var data = {};
 
@@ -312,7 +312,7 @@ apf.uirecorder.capture = {
 
 //        if (eventName != "mousemove") { //this.$mousedownMode
             if (amlNode && amlNode.prefix == "a") {
-                var amlNodeData = this.$getAmlNodeData(amlNode, htmlElement, eventName, value);
+                var amlNodeData = this.$getDOMNodeData(amlNode, htmlElement, eventName, value);
             }
             else if (htmlElement && htmlElement.tagName) {
                 var htmlElementData = this.$getHtmlElementData(htmlElement);
@@ -343,8 +343,8 @@ apf.uirecorder.capture = {
                 this.$keyActions[this.$keyActions.length-1].events = this.$capturedEvents;
                 
                 if (this.$keyActions[this.$keyActions.length-1].events["dragdrop"]) {
-                    this.$keyActions[this.$keyActions.length-1].dropTarget    = this.$getAmlNodeData(this.$keyActions[this.$keyActions.length-1].events["dragdrop"].dropTarget);
-                    this.$keyActions[this.$keyActions.length-1].amlNode       = this.$getAmlNodeData(this.$keyActions[this.$keyActions.length-1].events["dragdrop"].amlNode);
+                    this.$keyActions[this.$keyActions.length-1].dropTarget    = this.$getDOMNodeData(this.$keyActions[this.$keyActions.length-1].events["dragdrop"].dropTarget);
+                    this.$keyActions[this.$keyActions.length-1].amlNode       = this.$getDOMNodeData(this.$keyActions[this.$keyActions.length-1].events["dragdrop"].amlNode);
                 }
                     
                 this.$capturedEvents = {};
@@ -1436,7 +1436,7 @@ TEMPORARILY DISABLED
     },
 
     // get amlNode based on saved xml node
-    $getAmlNode : function(amlNodeXml) {
+    $getDOMNode : function(amlNodeXml) {
         //amlNode with id
         var amlNode;
         if (amlNodeXml.getAttribute("id")) {
@@ -1486,7 +1486,7 @@ TEMPORARILY DISABLED
                     height  : parseInt(amlNodeXml.getAttribute("height"))
                 };
 
-                var amlNode = this.$getAmlNode(amlNodeXml);
+                var amlNode = this.$getDOMNode(amlNodeXml);
                 if (!amlNode) {
                     // no amlNode found!
                     this.$testError("amlNode " + (amlNodeXml.getAttribute("id") || ((amlNodeXml.getAttribute("caption") ? amlNodeXml.getAttribute("tagName") + " " + amlNodeXml.getAttribute("caption") : amlNodeXml.getAttribute("xpath")))) + " not found");
@@ -1585,7 +1585,7 @@ TEMPORARILY DISABLED
                             height  : parseInt(dropXml.getAttribute("height"))
                         };
 
-                        var amlNode = this.$getAmlNode(dropXml);
+                        var amlNode = this.$getDOMNode(dropXml);
                         targetNode = amlNode.$ext;
                     }
                 }

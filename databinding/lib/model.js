@@ -229,7 +229,7 @@ apf.model = function(struct, tagName){
                 amlNode.clear("loading");//@todo apf3.0
         }
         else if (this.data) {
-            this.$loadInAmlNode(item);
+            this.$loadInDOMNode(item);
             //this.$loadInAmlProp(amlNode);
         }
         else { //@experimental
@@ -281,7 +281,7 @@ apf.model = function(struct, tagName){
     /**
      * @private
      */
-    this.getXpathByAmlNode = function(amlNode){
+    this.getXpathByDOMNode = function(amlNode){
         var n = this.$amlNodes[amlNode.$uniqueId];
         if (!n)
             return false;
@@ -292,7 +292,7 @@ apf.model = function(struct, tagName){
     /**
      * @private
      */
-    this.$loadInAmlNode = function(item){
+    this.$loadInDOMNode = function(item){
         var xmlNode;
         var xpath   = item.xpath;
         var amlNode = item.amlNode;
@@ -601,7 +601,7 @@ apf.model = function(struct, tagName){
     /**
      * @private
      */
-    this.reloadAmlNode = function(uniqueId){
+    this.reloadDOMNode = function(uniqueId){
         if (!this.data)
             return;
 
@@ -898,7 +898,7 @@ apf.model = function(struct, tagName){
         this.dispatchEvent("update", {xmlNode: xmlNode});
         
         for (var id in this.$amlNodes)
-            this.$loadInAmlNode(this.$amlNodes[id]);
+            this.$loadInDOMNode(this.$amlNodes[id]);
 
         for (id in this.$propBinds)
             this.$loadInAmlProp(id, xmlNode);

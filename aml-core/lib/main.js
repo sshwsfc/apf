@@ -21,7 +21,7 @@ require.def(["debug/console"], function(console){
     };
     
     
-        /**
+    /**
      * Starts the application.
      * @private
      */
@@ -148,11 +148,6 @@ require.def(["debug/console"], function(console){
 
         //this.dispatchEvent("DOMNodeRemovedFromDocument", {});//@todo apf3.0
         
-        for (i = 0, l = this.availHTTP.length; i < l; i++)
-            this.availHTTP[i] = null;
-        
-        this.availHTTP.length = 0;
-
         //#ifdef __WITH_XMLDATABASE
         if (apf.xmldb)
             apf.xmldb.unbind(apf.window);

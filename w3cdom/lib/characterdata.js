@@ -57,5 +57,5 @@ apf.AmlCharacterData = function(){
     
     this.substringData = function(nOffset, nCount){};
 }
-apf.AmlCharacterData.prototype = new apf.AmlNode();
+apf.AmlCharacterData.prototype = new apf.DOMNode();
 // #endif

@@ -48,7 +48,7 @@ apf.StateServer = {
                 id : name,
             });
             pState.parentNode = pNode;
-            //pState.implement(apf.AmlNode);
+            //pState.implement(apf.DOMNode);
             //pState.name   = name;
             pState.toggle = function(){
                 for (var next = 0, i = 0; i < apf.StateServer.groups[name].length; i++) {

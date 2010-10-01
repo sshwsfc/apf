@@ -373,7 +373,7 @@ apf.LiveEdit.plugin("tablewizard", function() {
 
     this.createContextMenu = function(){
         var idMenu = "editor_" + this.$uniqueId + "_menu";
-        this.appendAmlNode('\
+        this.appendDOMNode('\
             <a:menu xmlns:a="' + apf.ns.aml + '" id="' + idMenu + '">\
                 <a:item value="rowbefore">Insert row before</a:item>\
                 <a:item value="rowbefore">Insert row after</a:item>\

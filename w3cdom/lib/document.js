@@ -19,14 +19,20 @@
  *
  */
 
-// #ifdef __WITH_AMLDOCUMENT
+require.def([
+    "w3cdom/node", 
+    "w3cdom/configuration", 
+    "optional!lib-parsers/xpath", 
+    "optional!envdetect", 
+    "lib-oop"], 
+    function(DOMNode, DOMConfig, xpath, env, oop){
 
 /**
  * The aml document, this is the root of the DOM Tree and has a nodeType with 
  * value 9 (this.DOCUMENT). 
  *
  * @constructor
- * @inherits apf.AmlNode
+ * @inherits apf.DOMNode
  * @inherits apf.Class
  * @default_private 
  * @see baseclass.amldom
@@ -35,13 +41,16 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.AmlDocument = function(){
+apf.DOMDocument = function(){
+    DOMNode.apply(this, arguments);
+    
     this.$prefixes      = {};
     this.$namespaceURIs = {};
-    this.domConfig      = new apf.AmlConfiguration();
-    
-    this.$init();
+    this.domConfig      = new DOMConfig();
 };
+
+//Inherit
+oop.inherits(DOMDocument, DOMNode);
 
 (function() {
     /**
@@ -58,7 +67,7 @@ apf.AmlDocument = function(){
     this.doctype         = null;
     this.domConfig       = null;
     this.implementation  = null;
-    this.characterSet    = apf.characterSet;
+    this.characterSet    = env && env.characterSet;
     
     /**
      * The root element node of the aml application. This is an element with
@@ -174,7 +183,7 @@ apf.AmlDocument = function(){
      * See W3C evaluate
      */
     this.evaluate = function(sExpr, contextNode, nsResolver, type, x){
-        var result = apf.XPath.selectNodes(sExpr,
+        var result = xpath.selectNodes(sExpr,
             contextNode || this.documentElement);
 
         /**
@@ -199,96 +208,9 @@ apf.AmlDocument = function(){
     this.hasFocus = function(){
         
     }
+}).call(apf.DOMDocument.prototype);
 
-    //#ifdef __WITH_CONTENTEDITABLE
-    //designMode property
-    
-    var selection;
-    this.getSelection = function(){
-        if (!selection)
-            selection = new apf.AmlSelection(this);
-        return selection;
+return DOMDocument;
+
     }
-    
-    var selectrect;
-    this.$getSelectRect = function(){
-        if (!selectrect)
-            selectrect = new apf.selectrect();
-        return selectrect;
-    }
-    
-    var visualselect;
-    this.$getVisualSelect = function(){
-        if (!visualselect)
-            visualselect = new apf.visualSelect(this.getSelection());
-        return visualselect;
-    }
-    
-    var visualconnect;
-    this.$getVisualConnect = function(){
-        if (!visualconnect)
-            visualconnect = new apf.visualConnect(this.getSelection());
-        return visualconnect;
-    }
-    
-    this.createRange = function(){
-        return new apf.AmlRange(this);
-    }
-    
-    this.queryCommandState = function(commandId){
-        return (this.$commands[commandId.toLowerCase()] || apf.K)
-            .call(this, null, null, null, 1) || false;
-    };
-
-    this.queryCommandValue = function(commandId){
-        return (this.$commands[commandId.toLowerCase()] || apf.K)
-            .call(this, null, null, null, 2) || false;
-    };
-    
-    this.queryCommandEnabled = function(commandId){
-        return (this.$commands[commandId.toLowerCase()] || apf.K)
-            .call(this, this.getSelection().$getNodeList(), false, arguments[2], 3) || false;
-    };
-    
-    this.queryCommandIndeterm = function(commandId){
-        return (this.$commands[commandId.toLowerCase()] || apf.K)
-            .call(this, null, null, null, 4) || false;
-    };
-    
-    this.queryCommandSupported = function(commandId){
-        return this.$commands[commandId.toLowerCase()] ? true : false;
-    };
-
-    var special = {"commit":1,"rollback":1,"begin":1,"undo":1,"redo":1,"contextmenu":2,"mode":2,"pause":1};
-    this.execCommand = function(commandId, showUI, value, query){
-        var f;
-
-        //if command is not enabled, do nothing
-        if (!(f = this.$commands[commandId.toLowerCase()]))
-            return false;
-        
-        if (special[commandId] == 1)
-            return f.call(this, null, null, value);
-
-        //Get Selection
-        //var nodes = this.getSelection().$getNodeList();
-        var nodes = this.$getVisualSelect().getLastSelection()
-            || this.getSelection().$getNodeList();
-        
-        //Execute Action
-        if (special[commandId] == 2)
-            f.call(this, nodes, showUI, value, query);
-        else {
-            this.$commands.begin.call(this);
-            if (f.call(this, nodes, showUI, value, query) === false)
-                this.$commands.rollback.call(this);
-            else
-                this.$commands.commit.call(this); //Will only record if there are any changes
-        }
-    };
-    
-    this.$commands = {};
-    //#endif
-}).call(apf.AmlDocument.prototype = new apf.AmlNode());
-
-//#endif
+);

@@ -89,7 +89,7 @@ apf.LiveEdit.plugin("image", function(){
             </div>\
             <div id="' + idBtns + '" class="editor_panelrow editor_panelrowbtns"></div>';
         this.oUrl = document.getElementById(idUrl);
-        this.appendAmlNode(
+        this.appendDOMNode(
             '<a:toolbar xmlns:a="' + apf.ns.aml + '"><a:bar>\
              <a:button caption="Insert"\
                onclick="apf.lookup(' + this.$uniqueId + ').submit(event)" />\

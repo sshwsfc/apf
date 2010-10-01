@@ -515,7 +515,7 @@ apf.DataAction = function(){
                     if (!model.data)
                         model.load("<data />");
     
-                    xpath   = (model.getXpathByAmlNode(this) || ".")
+                    xpath   = (model.getXpathByDOMNode(this) || ".")
                         + (xpath && xpath != "." ? "/" + xpath : "");
                     xmlNode = model.data;
                 }

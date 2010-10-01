@@ -100,7 +100,7 @@
     }
 
     //@todo these functions should be improved to work on a map of the objects, so that it doesnt depend on hovering
-    var lastAmlNode;
+    var lastDOMNode;
     var showDrag = {
         vbox : function(l, t, htmlNode, e){
             if (e) {
@@ -252,22 +252,22 @@
             if (!amlNode.editable)
                 return;
             
-            if (lastAmlNode && lastAmlNode[0] == amlNode 
-              && Math.abs(e.clientX - lastAmlNode[2]) < 2
-              && Math.abs(e.clientY - lastAmlNode[3]) < 2) {
+            if (lastDOMNode && lastDOMNode[0] == amlNode 
+              && Math.abs(e.clientX - lastDOMNode[2]) < 2
+              && Math.abs(e.clientY - lastDOMNode[3]) < 2) {
                 //do Nothing
     
             }
             else {
-                if (lastAmlNode)
-                    clearTimeout(lastAmlNode[4]);
+                if (lastDOMNode)
+                    clearTimeout(lastDOMNode[4]);
 
                 if (el && amlNode != el && amlNode.$int 
                   && htmlNode.parentNode != amlNode.$int 
                   && (htmlNode.parentNode != apf.plane.plane || amlNode.$int != document.body)
                   && !apf.isChildOf(el.$ext, amlNode.$int, true)) {
                     var ev = {clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey}
-                    lastAmlNode = [amlNode, new Date().getTime(), e.clientX, e.clientY,
+                    lastDOMNode = [amlNode, new Date().getTime(), e.clientX, e.clientY,
                         setTimeout(function(){
                             doReparentDrag(el, amlNode, ev);
                         }, 300)];
@@ -276,7 +276,7 @@
                         //doReparentDrag(el, amlNode, e);
                 }
                 else
-                    lastAmlNode = [];
+                    lastDOMNode = [];
             }
         },
         
@@ -971,9 +971,9 @@
     }
 
     function afterdrag(e){
-        if (lastAmlNode) {
-            clearTimeout(lastAmlNode[4]);
-            lastAmlNode = null;
+        if (lastDOMNode) {
+            clearTimeout(lastDOMNode[4]);
+            lastDOMNode = null;
         }
         lastReparent = null;
     

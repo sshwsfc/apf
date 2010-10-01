@@ -59,7 +59,7 @@ apf.XformsSubmissionElement = function(struct, tagName){
 
         //this.implement(apf.XForms); /** @inherits apf.XForms */
         //#ifdef __WITH_AMLNODE
-        this.implement(apf.AmlNode); /** @inherits apf.AmlNode */
+        this.implement(apf.DOMNode); /** @inherits apf.DOMNode */
         //#endif
     }
     // #endif

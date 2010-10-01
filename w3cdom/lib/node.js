@@ -88,17 +88,17 @@ require.def([
  * @version     %I%, %G%
  * @since       0.5
  */
-var AmlNode = function(){
+var DOMNode = function(){
     Class.apply(this, arguments);
     
     /**
      * Nodelist containing all the child nodes of this element.
      */
-    this.childNodes = []; //@todo AmlNodeList
+    this.childNodes = []; //@todo DOMNodeList
 };
 
 //Inherit
-oop.inherits(AmlNode, Class);
+oop.inherits(DOMNode, Class);
 
 (function() {
     //#ifdef __USE_TOSTRING
@@ -255,8 +255,8 @@ oop.inherits(AmlNode, Class);
      * If the element was already a child of another element it is removed from
      * that parent before adding it this element.
      *
-     * @param  {AmlNode}  amlNode  the element to insert as child of this element.
-     * @return  {AmlNode}  the appended node
+     * @param  {DOMNode}  amlNode  the element to insert as child of this element.
+     * @return  {DOMNode}  the appended node
      * @method
      */
     this.appendChild =
@@ -266,9 +266,9 @@ oop.inherits(AmlNode, Class);
      * element. * If the element was already a child of another element it is
      * removed from that parent before adding it this element.
      *
-     * @param  {AmlNode}  amlNode     the element to insert as child of this element.
-     * @param  {AmlNode}  beforeNode  the element which determines the insertion position of the element.
-     * @return  {AmlNode}  the inserted node
+     * @param  {DOMNode}  amlNode     the element to insert as child of this element.
+     * @param  {DOMNode}  beforeNode  the element which determines the insertion position of the element.
+     * @return  {DOMNode}  the inserted node
      */
     this.insertBefore = function(amlNode, beforeNode, noHtmlDomEdit){
         //#ifdef __DEBUG
@@ -511,7 +511,7 @@ oop.inherits(AmlNode, Class);
      * Clones this element, creating an exact copy of it but does not insert
      * it in the document hierarchy.
      * @param {Boolean} deep whether the element's are cloned recursively.
-     * @return {AmlNode} the cloned element.
+     * @return {DOMNode} the cloned element.
      */
     this.cloneNode = function(deep){
         if (deep && this.nodeType == 1) {
@@ -613,7 +613,7 @@ oop.inherits(AmlNode, Class);
         apf.all[this.$uniqueId] = undefined;
 
         // != 2 && this.nodeType != 3
-        if (!this.nodeFunc && !this.nodeType) { //If this is not a AmlNode, we're done.
+        if (!this.nodeFunc && !this.nodeType) { //If this is not a DOMNode, we're done.
             //Remove id from global js space
             try {
                 if (this.id || this.name)
@@ -654,7 +654,7 @@ oop.inherits(AmlNode, Class);
         else if (this.ownerElement && !this.ownerElement.$amlDestroyed)
             this.ownerElement.removeAttributeNode(this);
 
-        //Remove from focus list - Should be in AmlNode
+        //Remove from focus list - Should be in DOMNode
         //#ifdef __WITH_FOCUS
         if (this.$focussable && this.focussable)
             apf.window.$removeFocus(this);
@@ -705,73 +705,6 @@ oop.inherits(AmlNode, Class);
         //#endif
     };
     
-    /**** Attribute Inheritance ****/
-    
-    var aci, setProp = this.$_setProperty;
-    this.$_setProperty = function(prop, value, forceOnMe, setAttr, inherited, isChanged){
-        if (isChanged && setAttr)
-            this.setAttribute(prop, value, true);
-
-        setProp.apply(this, arguments);
-        
-        //#ifdef __WITH_PROPERTY_INHERITANCE
-        /*
-            States:
-                    -1 Set
-             undefined Pass through
-                     2 Inherited
-                     3 Semi-inherited
-                    10 Dynamic property
-        */
-        //@todo this whole section should be about attribute inheritance and moved
-        //      to AmlElement
-        if ((aci || (aci = apf.config.$inheritProperties))[prop]) {
-            //@todo this is actually wrong. It should be about removing attributes.
-            var resetting = value === "" || typeof value == "undefined";
-            if (inherited != 10 && !value) {
-                delete this.$inheritProperties[prop];
-                if (this.$setInheritedAttribute(prop))
-                    return;
-            }
-            else if (inherited != 10) { //Keep the current setting (for dynamic properties)
-                this.$inheritProperties[prop] = inherited || -1;
-            }
-
-            //cancelable, needed for transactions
-            //@todo the check on $amlLoaded is not as optimized as can be because $loadAml is not called yet
-            if (this.$amlLoaded && (!e || e.returnValue !== false) && this.childNodes) {
-                var inheritType = aci[prop];
-
-                (function recur(nodes) {
-                    var i, l, node, n;
-                    for (i = 0, l = nodes.length; i < l; i++) {
-                        node = nodes[i];
-                        if (node.nodeType != 1 && node.nodeType != 7)
-                            continue;
-
-                        //Pass through
-                        n = node.$inheritProperties[prop];
-                        if (inheritType == 1 && !n)
-                            recur(node.childNodes);
-                        
-                        //Set inherited property
-                        //@todo why are dynamic properties overwritten??
-                        else if(!(n < 0)) {//Will also pass through undefined - but why??? @todo seems inefficient
-                            if (n == 3 || inherited == 3) { //Because when parent sets semi-inh. prop the value can be the same
-                                var sameValue = node[prop];
-                                node[prop] = null;
-                            }
-                            node.setProperty(prop, n != 3
-                                ? value
-                                : sameValue, false, false, n || 2); //This is recursive already
-                        }
-                    }
-                })(this.childNodes);
-            }
-        }
-        //#endif
-    }
-    
     /**** Xpath support ****/
 
     /**
@@ -779,7 +712,7 @@ oop.inherits(AmlNode, Class);
      * list. This is not an official API call but can be useful in certain cases.
      * see {@link core.documentimplementation.method.evaluate evaluate on the apf.document}
      * @param {String}  sExpr          the xpath expression to query the aml DOM tree with.
-     * @param {AmlNode} [contextNode]  the element that serves as the starting point of the search. Defaults to this element.
+     * @param {DOMNode} [contextNode]  the element that serves as the starting point of the search. Defaults to this element.
      * @returns {NodeList} list of found nodes.
      */
     this.selectNodes = function(sExpr, contextNode){
@@ -796,8 +729,8 @@ oop.inherits(AmlNode, Class);
      * node. This is not an official API call but can be useful in certain cases.
      * see {@link core.documentimplementation.method.evaluate evaluate on the apf.document}
      * @param {String}  sExpr          the xpath expression to query the aml DOM tree with.
-     * @param {AmlNode} [contextNode]  the element that serves as the starting point of the search. Defaults to this element.
-     * @returns {AmlNode} the first node that matches the query.
+     * @param {DOMNode} [contextNode]  the element that serves as the starting point of the search. Defaults to this element.
+     * @returns {DOMNode} the first node that matches the query.
      */
     this.selectSingleNode  = function(sExpr, contextNode){
         if (!apf) return;
@@ -807,9 +740,9 @@ oop.inherits(AmlNode, Class);
         return apf.XPath.selectNodes(sExpr,
             contextNode || (this.nodeType == 9 ? this.documentElement : this))[0];
     };
-}).call(AmlNode.prototype);
+}).call(DOMNode.prototype);
 
-return AmlNode;
+return DOMNode;
 
     }
 );

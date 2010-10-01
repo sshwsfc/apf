@@ -2,7 +2,7 @@ require.modify(
     "w3cdom/node",
     "w3cdom/domevents",
     ["w3cdom/node"], 
-    function(AmlNode){
+    function(DOMNode){
 
 //@todo implement spec correctly, refactor elements to not abuse capturing phase
 (function(){
@@ -197,7 +197,7 @@ require.modify(
     this.hasEventListener = function(eventName){
         return (this.$eventsStack[eventName] && this.$eventsStack[eventName].length > 0);
     };
-}).call(AmlNode);
+}).call(DOMNode);
 
     }
 );

@@ -878,8 +878,8 @@ apf.ContentEditable.commands = (function(){
         apf.window.undoManager.pause(this.documentElement, bContinue);
     };
 
-    apf.AmlDocument.prototype.$commands = apf.extend(
-        apf.AmlDocument.prototype.$commands,
+    apf.DOMDocument.prototype.$commands = apf.extend(
+        apf.DOMDocument.prototype.$commands,
         commands
     );
 })();

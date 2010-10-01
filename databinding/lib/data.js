@@ -320,7 +320,7 @@ apf.getData = function(instruction, options){
  * Creates a model object based on a {@link term.datainstruction data instruction}.
  *
  * @param {String} instruction  the {@link term.datainstruction data instruction} to be used to retrieve the data for the model.
- * @param {AmlNode} amlNode     the element the model is added to.
+ * @param {DOMNode} amlNode     the element the model is added to.
  */
 apf.setModel = function(instruction, amlNode){
     if (!instruction) return;

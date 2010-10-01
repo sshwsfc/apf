@@ -122,5 +122,5 @@ apf.AmlProcessingInstruction = function(isPrototype){
         this.$clearDynamicProperty("calcdata");
         this.$propHandlers["calcdata"].call(this, "");
     };
-}).call(apf.AmlProcessingInstruction.prototype = new apf.AmlNode());
+}).call(apf.AmlProcessingInstruction.prototype = new apf.DOMNode());
 // #endif

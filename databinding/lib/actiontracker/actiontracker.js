@@ -53,7 +53,7 @@
  *   {Array}   args             the arguments for the action
  *   {XmlNode} [xmlActionNode]  the rules to synchronize the changes to the server
  *                              for both execution and undo. (See action rules)
- *   {AmlNode} [amlNode]        the GUI element that triggered the action
+ *   {DOMNode} [amlNode]        the GUI element that triggered the action
  *   {XmlNode} [selNode]        the relevant {@link term.datanode data node} to
  *                              which the action node works on
  *   {Number}  [timestamp]      the start of the action that is now executed.
@@ -261,7 +261,7 @@ apf.actiontracker = function(struct, tagName){
      *   {Array}   args             the arguments for the action
      *   {XmlNode} [xmlActionNode]  the rules to synchronize the changes to the
      *                              server for both execution and undo. (See action rules)
-     *   {AmlNode} [amlNode]        the GUI element that triggered the action
+     *   {DOMNode} [amlNode]        the GUI element that triggered the action
      *   {XmlNode} [selNode]        the relevant {@link term.datanode data node}
      *                              to which the action node works on
      *   {Number}  [timestamp]      the start of the action that is now executed.

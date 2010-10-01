@@ -19,9 +19,11 @@
  *
  */
 
-// #ifdef __WITH_AMLATTR
-apf.AmlAttr = function(ownerElement, name, value){
-    this.$init();
+require.def(["w3cdom/node", "lib-oop"], 
+    function(DOMNode, oop){
+
+var AmlAttr = function(ownerElement, name, value){
+    DOMNode.apply(this.arguments);
     
     if (ownerElement) {
         this.ownerElement  = ownerElement;
@@ -31,6 +33,9 @@ apf.AmlAttr = function(ownerElement, name, value){
     this.nodeName  = this.name  = name;
     this.nodeValue = this.value = value;
 };
+
+//Inherit
+oop.inherits(AmlAttr, DOMNode);
 
 (function(){
     this.nodeType  = this.NODE_ATTRIBUTE;
@@ -140,5 +145,9 @@ apf.AmlAttr = function(ownerElement, name, value){
     
     //@todo apf3.0 domattr
     this.addEventListener("DOMNodeInsertedIntoDocument", this.$triggerUpdate);
-}).call(apf.AmlAttr.prototype = new apf.AmlNode());
-// #endif
+}).call(apf.AmlAttr.prototype);
+
+return AmlAttr;
+
+    }
+);

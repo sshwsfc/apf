@@ -115,12 +115,12 @@ apf.$debugwin = {
                 ? null
                 : apf.xmldb.findXmlNode(oHtml);
             
-            _self.apf.$debugwin.highlightAmlNode(xmlNode, !xmlNode);
+            _self.apf.$debugwin.highlightDOMNode(xmlNode, !xmlNode);
             //e.cancelBubble = true;
         }
         
         this.$mmouseout = function(e){
-            _self.apf.$debugwin.highlightAmlNode(null, true);
+            _self.apf.$debugwin.highlightDOMNode(null, true);
             //(e || event).cancelBubble = true;
         }
         
@@ -176,7 +176,7 @@ apf.$debugwin = {
                         mrkAml.remove(this.$lastObj);
                         break;
                     case "aml":
-                        apf.$debugwin.showAmlNode(this.$lastObj);
+                        apf.$debugwin.showDOMNode(this.$lastObj);
                         break;
                     case "data":
                         apf.$debugwin.showXmlNode(this.$lastObj);
@@ -199,30 +199,30 @@ apf.$debugwin = {
             
             switch(e.value){
                 case "doc":
-                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showAmlNode/, "showDocs"));
+                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showDOMNode/, "showDocs"));
                     break;
                 case "remove":
-                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showAmlNode/, "$removeNode"));
+                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showDOMNode/, "$removeNode"));
                     break;
                 case "aml":
-                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showAmlNode/, "showAmlNode"));
+                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showDOMNode/, "showDOMNode"));
                     break;
                 case "data":
-                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showAmlNode/, "showXmlNode"));
+                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showDOMNode/, "showXmlNode"));
                     break;
                 case "obj":
-                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showAmlNode/, "showObject"));    
+                    eval(mnuData.$lastCl.replace(/showObject|showXmlNode|showDOMNode/, "showObject"));    
                     break;
                 case "model-data":
-                    var hasData = eval(mnuData.$lastCl.replace(/showAmlNode/, "$hasAmlData"));
+                    var hasData = eval(mnuData.$lastCl.replace(/showDOMNode/, "$hasAmlData"));
                     apf.$debugwin.showXmlNode(hasData[3]);
                     break;
                 case "root-data":
-                    var hasData = eval(mnuData.$lastCl.replace(/showAmlNode/, "$hasAmlData"));
+                    var hasData = eval(mnuData.$lastCl.replace(/showDOMNode/, "$hasAmlData"));
                     apf.$debugwin.showXmlNode(hasData[0]);
                     break;
                 case "sel-data":
-                    var hasData = eval(mnuData.$lastCl.replace(/showAmlNode/, "$hasAmlData"));
+                    var hasData = eval(mnuData.$lastCl.replace(/showDOMNode/, "$hasAmlData"));
                     apf.$debugwin.showXmlNode(hasData[1]);
                     break;
             }
@@ -287,13 +287,13 @@ apf.$debugwin = {
         //node.$regbase
     },
     
-    showAmlNode : function(node){
+    showDOMNode : function(node){
         tabDebug.set(1);
         pgBrowse.set(0);
         
         if (!mrkAml.xmlRoot) {
             mrkAml.addEventListener("afterload", function(){
-                apf.$debugwin.showAmlNode(node);
+                apf.$debugwin.showDOMNode(node);
                 mrkAml.removeEventListener("afterload", arguments.callee);
             });
         }
@@ -313,7 +313,7 @@ apf.$debugwin = {
             return;
         }
         
-        var lastAmlNode;
+        var lastDOMNode;
         document.onmousemove = function(e){
             if (apf.$debugwin.$hdiv)
                 apf.$debugwin.$hdiv.style.top = "10000px";
@@ -323,28 +323,28 @@ apf.$debugwin = {
             var htmlNode = document.elementFromPoint(x, y);
 
             var amlNode  = apf.findHost(htmlNode);
-            if (lastAmlNode != amlNode)
-                apf.$debugwin.highlightAmlNode(null, true);
+            if (lastDOMNode != amlNode)
+                apf.$debugwin.highlightDOMNode(null, true);
             
-            if (lastAmlNode = amlNode)
-                apf.$debugwin.highlightAmlNode(amlNode, false, true);
+            if (lastDOMNode = amlNode)
+                apf.$debugwin.highlightDOMNode(amlNode, false, true);
         }
         
         document.onmousedown = function(e){
-            var amlNode = lastAmlNode || apf.findHost((e || (e = event)).srcElement || e.target);
+            var amlNode = lastDOMNode || apf.findHost((e || (e = event)).srcElement || e.target);
             if (amlNode) {
                 if (options.value == "markup")
-                    debugwin.showAmlNode(amlNode);
+                    debugwin.showDOMNode(amlNode);
                 else if (options.value == "data") {
                     if (amlNode.xmlRoot)
                         debugwin.showXmlNode(amlNode.xmlRoot);
                     else
-                        debugwin.showAmlNode(amlNode);
+                        debugwin.showDOMNode(amlNode);
                 }
                 else if (options.value == "prop")
                     debugwin.showObject(amlNode);
 
-                apf.$debugwin.highlightAmlNode(null, true);
+                apf.$debugwin.highlightDOMNode(null, true);
                 btn.setValue(false);
                 
                 document.onmousemove = 
@@ -353,7 +353,7 @@ apf.$debugwin = {
         }
     },
     
-    highlightAmlNode : function(node, remove, border) {
+    highlightDOMNode : function(node, remove, border) {
         if (remove) {
             if (this.$hdiv)
                 this.$hdiv.style.display = "none";
@@ -700,7 +700,7 @@ apf.$debugwin = {
     
     $handleDataContext : function(ev, obj){
         if (obj) {
-            this.apf.$debugwin.highlightAmlNode(null, true);
+            this.apf.$debugwin.highlightDOMNode(null, true);
             
             if (obj.$regbase) {
                 itInspAml.hide();
@@ -761,13 +761,13 @@ apf.$debugwin = {
                 itInspSel.hide();
                 div2.hide();
             }
-            else if (cl.indexOf("showAmlNode") > -1) {
+            else if (cl.indexOf("showDOMNode") > -1) {
                 itInspAml.show();
                 itInspData.hide();
                 itInspObj.show();
                 itRemove.show();
                 
-                var hasData = eval(cl.replace(/showAmlNode/, "$hasAmlData"));
+                var hasData = eval(cl.replace(/showDOMNode/, "$hasAmlData"));
                 itInspRoot.setProperty("visible", hasData[0] ? 1 : 0);
                 itInspSel.setProperty("visible", hasData[1] ? 1 : 0);
                 div2.setProperty("visible", hasData[0] || hasData[1] || hasData[2] ? 1 : 0);
@@ -869,9 +869,9 @@ apf.$debugwin = {
                 if (x.nodeType == 1 || x.nodeType == 7) {
                     if (x.serialize) //aml
                         str = "<a class='xmlhl' href='javascript:void(0)' \
-                          onmouseout='if (cbHighlightHover.checked) apf.$debugwin.apf.$debugwin.highlightAmlNode(null, true)' \
-                          onmouseover='if(!mnuData.visible &amp;&amp; cbHighlightHover.checked) apf.$debugwin.apf.$debugwin.highlightAmlNode(apf.$debugwin.apf.all[" 
-                            + x.$uniqueId + "])' onclick='apf.$debugwin.showAmlNode(apf.$debugwin.apf.all[" 
+                          onmouseout='if (cbHighlightHover.checked) apf.$debugwin.apf.$debugwin.highlightDOMNode(null, true)' \
+                          onmouseover='if(!mnuData.visible &amp;&amp; cbHighlightHover.checked) apf.$debugwin.apf.$debugwin.highlightDOMNode(apf.$debugwin.apf.all[" 
+                            + x.$uniqueId + "])' onclick='apf.$debugwin.showDOMNode(apf.$debugwin.apf.all[" 
                             + x.$uniqueId + "])'>" + apf.highlightXml(x.serialize().split(">")[0] + ">").replace(/<\/?a(?:>| [^>]*>)/g, "")  + "</a>";
                     //else if (x.style) //html
                         //str = x.outerHTML.replace(/</g, "&lt;").replace(/\n/g, "\n<br />")

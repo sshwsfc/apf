@@ -1438,10 +1438,10 @@ apf.LiveEdit.plugin = function(sName, fExec) {
          * contents of sNode and appended to oParent.
          *
          * @param {String}  sNode
-         * @param {AmlNode} oParent
-         * @type  {AmlNode}
+         * @param {DOMNode} oParent
+         * @type  {DOMNode}
          */
-        this.appendAmlNode = function(sNode, oParent) {
+        this.appendDOMNode = function(sNode, oParent) {
             if (!sNode) return null;
             var domParser = new apf.DOMParser(),
                 oFrag     = this.editor.ownerDocument.createDocumentFragment();

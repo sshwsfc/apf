@@ -1,4 +1,4 @@
-// #ifdef __TP_HTTP
+require.def(["teleport"], function(teleport){
     /**
      * Sends and retrieves data from remote locations over http.
      * Example:
@@ -34,19 +34,19 @@
      *                            request completes succesfully or with an error,
      *                            or when the request times out.
      */
-    ajax : (function(){
-        var f = function(){
-            return this.oHttp.get.apply(this.oHttp, arguments);
-        };
-        
-        f.exec = function(method, args, callback, options){
-            if (method == "ajax" && args[0]) {
-                var opt = args[1] || {};
-                return this.oHttp.exec(opt.method || "GET", [args[0]], 
-                    opt.callback, apf.extend(options || {}, opt));
-            }
-        };
 
-        return f;
-    })(),
-    // #endif
+    var http = new teleport();
+    var f    = function(){
+        return http.get.apply(http, arguments);
+    };
+    
+    f.exec = function(method, args, callback, options){
+        if (method == "ajax" && args[0]) {
+            var opt = args[1] || {};
+            return http.exec(opt.method || "GET", [args[0]], 
+                opt.callback, apf.extend(options || {}, opt));
+        }
+    };
+
+    return f;
+});

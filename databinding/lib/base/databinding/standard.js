@@ -94,7 +94,7 @@ apf.StandardBinding = function(){
         if (action == "redo-remove") {
             var retreatToListenMode = false, model = this.getModel(true);
             if (model) {
-                var xpath = model.getXpathByAmlNode(this);
+                var xpath = model.getXpathByDOMNode(this);
                 if (xpath) {
                     xmlNode = model.data.selectSingleNode(xpath);
                     if (xmlNode != this.xmlRoot)

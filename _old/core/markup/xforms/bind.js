@@ -85,7 +85,7 @@ apf.XformsBindElement = function(struct, tagName){
         //apf.makeClass(this);
 
         //#ifdef __WITH_AMLNODE
-        this.implement(apf.AmlNode); /** @inherits apf.AmlNode */
+        this.implement(apf.DOMNode); /** @inherits apf.DOMNode */
         //#endif
     }
     //#endif

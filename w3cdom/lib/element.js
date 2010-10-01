@@ -22,9 +22,9 @@
 require.def([
     "w3cdom/node",
     "lib-oop"], 
-    function(AmlNode, oop){
+    function(DOMNode, oop){
 
-var AmlElement = function(struct, tagName){
+var DOMElement = function(struct, tagName){
     //@todo
     var $init = this.$init;
     this.$init = function(tagName, nodeFunc, struct){
@@ -116,7 +116,7 @@ var AmlElement = function(struct, tagName){
     
     if (tagName) //of typeof is not function and not true
         $init.call(this, tagName, this.NODE_HIDDEN, struct);
-        AmlNode.apply(this, arguments);
+        DOMNode.apply(this, arguments);
     
     if (struct && (struct.htmlNode || this.nodeFunc == this.NODE_HIDDEN)) {
         this.$pHtmlNode = struct.htmlNode;
@@ -135,7 +135,7 @@ var AmlElement = function(struct, tagName){
 };
 
 //Inherit
-oop.inherits(AmlElement, AmlNode);
+oop.inherits(DOMElement, DOMNode);
 
 (function(){
     /**
@@ -352,7 +352,7 @@ oop.inherits(AmlElement, AmlNode);
     /**
      * Retrieves the attribute node for a given name
      * @param {String} name the name of the attribute to find.
-     * @return {AmlNode} the attribute node or null if none was found with the name specified.
+     * @return {DOMNode} the attribute node or null if none was found with the name specified.
      */
     this.getAttributeNode = function(name){
         return this.attributes.getNamedItem(name);
@@ -483,6 +483,74 @@ oop.inherits(AmlElement, AmlNode);
                 + ":" + this.localName : this.localName) + ">";
         }
     };
+    
+    /**** Attribute Inheritance ****/
+    //@todo this should be added via a require.modify
+    
+    var aci, setProp = this.$_setProperty;
+    this.$_setProperty = function(prop, value, forceOnMe, setAttr, inherited, isChanged){
+        if (isChanged && setAttr)
+            this.setAttribute(prop, value, true);
+
+        setProp.apply(this, arguments);
+        
+        //#ifdef __WITH_PROPERTY_INHERITANCE
+        /*
+            States:
+                    -1 Set
+             undefined Pass through
+                     2 Inherited
+                     3 Semi-inherited
+                    10 Dynamic property
+        */
+        //@todo this whole section should be about attribute inheritance and moved
+        //      to DOMElement
+        if ((aci || (aci = apf.config.$inheritProperties))[prop]) {
+            //@todo this is actually wrong. It should be about removing attributes.
+            var resetting = value === "" || typeof value == "undefined";
+            if (inherited != 10 && !value) {
+                delete this.$inheritProperties[prop];
+                if (this.$setInheritedAttribute(prop))
+                    return;
+            }
+            else if (inherited != 10) { //Keep the current setting (for dynamic properties)
+                this.$inheritProperties[prop] = inherited || -1;
+            }
+
+            //cancelable, needed for transactions
+            //@todo the check on $amlLoaded is not as optimized as can be because $loadAml is not called yet
+            if (this.$amlLoaded && (!e || e.returnValue !== false) && this.childNodes) {
+                var inheritType = aci[prop];
+
+                (function recur(nodes) {
+                    var i, l, node, n;
+                    for (i = 0, l = nodes.length; i < l; i++) {
+                        node = nodes[i];
+                        if (node.nodeType != 1 && node.nodeType != 7)
+                            continue;
+
+                        //Pass through
+                        n = node.$inheritProperties[prop];
+                        if (inheritType == 1 && !n)
+                            recur(node.childNodes);
+                        
+                        //Set inherited property
+                        //@todo why are dynamic properties overwritten??
+                        else if(!(n < 0)) {//Will also pass through undefined - but why??? @todo seems inefficient
+                            if (n == 3 || inherited == 3) { //Because when parent sets semi-inh. prop the value can be the same
+                                var sameValue = node[prop];
+                                node[prop] = null;
+                            }
+                            node.setProperty(prop, n != 3
+                                ? value
+                                : sameValue, false, false, n || 2); //This is recursive already
+                        }
+                    }
+                })(this.childNodes);
+            }
+        }
+        //#endif
+    }
     
     this.$setInheritedAttribute = function(prop){
         var value, node = this, isInherit = false;
@@ -648,9 +716,9 @@ oop.inherits(AmlElement, AmlNode);
 
         this.$amlLoaded = true;
     }, true);
-}).call(AmlElement.prototype);
+}).call(DOMElement.prototype);
 
-return AmlElement;
+return DOMElement;
 
     }
 );

@@ -23,18 +23,18 @@ require.def([
     "w3cdom/node",
     "w3cdom/element",
     "w3cdom/attr",
-    "w3cdom/text",
+    /*"w3cdom/text",
     "w3cdom/cdatasection",
     "w3cdom/processinginstruction",
-    "w3cdom/comment",
+    "w3cdom/comment",*/
     "w3cdom/document",
-    "w3cdom/documentfragment",
+    //"w3cdom/documentfragment",
     "lib-xml",
     "optional!lib-oop/queue",
     "optional!envdetect"], 
-    function(AmlNode, AmlElement, AmlAttr, AmlText, AmlCDATASection, 
-             AmlProcessingInstruction, AmlComment, AmlDocument, 
-             AmlDocumentFragment, xml, queue, env){
+    function(DOMNode, DOMElement, DOMAttr, DOMText, DOMCDATASection, 
+             DOMProcessingInstruction, DOMComment, DOMDocument, 
+             DOMDocumentFragment, xml, queue, env){
 
 /**
  * W3CDOM Parser written in javascript.
@@ -129,7 +129,7 @@ DOMParser.prototype = new (function(){
                 docFrag = options.docFrag || doc.createDocumentFragment();
             }
             else {
-                doc            = new AmlDocument();
+                doc            = new DOMDocument();
                 doc.$aml       = xmlNode;
                 doc.$domParser = this;
             }
@@ -137,7 +137,7 @@ DOMParser.prototype = new (function(){
                 doc.$parentNode = options.host; //This is for sub docs that need to access the outside tree
             
             // #ifdef __DEBUG
-            //Check for children in Aml node
+            //Check for children in DOM node
             /*if (!xmlNode.childNodes.length) {
                 apf.console.warn("DOMParser got markup without any children");
                 return (docFrag || doc);
@@ -367,7 +367,7 @@ DOMParser.prototype = new (function(){
                     //attributes
                     var attr = xmlNode.attributes, n;
                     for (var a, i = 0, l = attr.length; i < l; i++) {
-                        o.attributes.push(new AmlAttr(o, 
+                        o.attributes.push(new DOMAttr(o, 
                             (n = (a = attr[i]).nodeName), a.nodeValue));
                         //#ifdef __WITH_DELAYEDRENDER
                         if (n == "render")
@@ -378,7 +378,7 @@ DOMParser.prototype = new (function(){
                 
                 break;
             case 2:
-                o = new AmlAttr();
+                o = new DOMAttr();
                 o.name  = o.nodeName = nodeName;
                 if (nodeValue || (nodeValue = xmlNode && xmlNode.nodeValue))
                     o.value = o.nodeValue = nodeValue;
@@ -398,7 +398,7 @@ DOMParser.prototype = new (function(){
                 if (!this.preserveWhiteSpace && !(nodeValue || "").trim())
                     return;
 
-                o = new AmlText();
+                o = new DOMText();
                 o.nodeValue = nodeValue || xmlNode && xmlNode.nodeValue;
                 break;
             case 7:
@@ -415,31 +415,31 @@ DOMParser.prototype = new (function(){
                 o.data   = o.nodeValue = nodeValue || xmlNode && xmlNode.nodeValue;
                 break;
             case 4:
-                o = new AmlCDATASection();
+                o = new DOMCDATASection();
                 o.nodeValue = nodeValue || xmlNode && xmlNode.nodeValue;
                 break;
             case 5: //unsupported
-                o = new AmlNode();
+                o = new DOMNode();
                 o.nodeType = nodeType;
                 break;
             case 6: //unsupported
-                o = new AmlNode();
+                o = new DOMNode();
                 o.nodeType = nodeType;
                 break;
             case 8:
-                o = new AmlComment();
+                o = new DOMComment();
                 o.nodeValue = nodeValue || xmlNode && xmlNode.nodeValue;
                 break;
             case 9:
-                o = new AmlDocument();
+                o = new DOMDocument();
                 o.$domParser = this;
                 break;
             case 10: //unsupported
-                o = new AmlNode();
+                o = new DOMNode();
                 o.nodeType = nodeType;
                 break;
             case 11:
-                o = new AmlDocumentFragment();
+                o = new DOMDocumentFragment();
                 break;
         }
         
