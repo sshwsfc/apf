@@ -37,7 +37,7 @@
  * @inherits apf.DataAction
  */
 apf.vectorflow = function(struct, tagName){
-    this.$init(tagName || "vectorflow", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "vectorflow", this.NODE_VISIBLE, struct);
 };
 
 (function(){

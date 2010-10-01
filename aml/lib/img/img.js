@@ -81,11 +81,11 @@
  * </code>
  */
 apf.img = function(struct, tagName){
-    this.$init(tagName || "img", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "img", this.NODE_VISIBLE, struct);
 };
 
 apf.preview = function(struct, tagName){
-    this.$init(tagName || "preview", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "preview", this.NODE_VISIBLE, struct);
 };
 
 (function(){

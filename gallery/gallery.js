@@ -35,7 +35,7 @@
  */
 
 apf.gallery = function(struct, tagName){
-    this.$init(tagName || "gallery", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "gallery", this.NODE_VISIBLE, struct);
     
     this.imageheight   = "auto";
     

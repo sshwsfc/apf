@@ -91,7 +91,7 @@
  * @todo describe defaults
  */
 apf.appsettings = function(struct, tagName){
-    this.$init(tagName || "appsettings", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "appsettings", this.NODE_HIDDEN, struct);
 };
 
 (function(){

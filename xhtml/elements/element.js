@@ -22,7 +22,7 @@
 //#ifdef __PARSER_XHTML
 
 apf.XhtmlElement = function(struct, tagName){
-    this.$init(tagName || true, apf.NODE_VISIBLE, struct);
+    this.$init(tagName || true, this.NODE_VISIBLE, struct);
     
     this.$xoe                = this.addEventListener;
     this.addEventListener    = this.$xae;

@@ -21,7 +21,7 @@
 
 //#ifdef __PARSER_XHTML
 apf.XhtmlSkipChildrenElement = function(struct, tagName){
-    this.$init(tagName, apf.NODE_VISIBLE, struct);
+    this.$init(tagName, this.NODE_VISIBLE, struct);
 };
 
 (function(){

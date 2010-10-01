@@ -40,7 +40,7 @@
  * @since       0.4
  */
 apf.XformsBindElement = function(struct, tagName){
-    this.$init(tagName || "Bindn", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "Bindn", this.NODE_VISIBLE, struct);
     
     /* *********** PARSE ***********/
 

@@ -30,7 +30,7 @@
  * @since       0.4
  */
 apf.XformsInstanceElement = function(struct, tagName){
-    this.$init(tagName || "Instance", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "Instance", this.NODE_VISIBLE, struct);
 };
 
 (function(){

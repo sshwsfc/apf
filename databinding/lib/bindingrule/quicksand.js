@@ -25,7 +25,7 @@
  * @todo docs
  */
 apf.BindingQuicksandRule = function(struct, tagName){
-    this.$init(tagName, apf.NODE_HIDDEN, struct);
+    this.$init(tagName, this.NODE_HIDDEN, struct);
 };
 
 (function(){

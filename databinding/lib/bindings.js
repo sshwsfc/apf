@@ -56,7 +56,7 @@
  * @default_private
  */
 apf.bindings = function(struct, tagName){
-    this.$init(tagName || "bindings", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "bindings", this.NODE_HIDDEN, struct);
     
     this.$bindings = new apf.ruleList();
     this.$amlNodes = {};

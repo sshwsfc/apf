@@ -143,7 +143,7 @@
  * @since       2.2
  */
 apf.accordion = function(struct, tagName){
-    this.$init(tagName || "accordion", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "accordion", this.NODE_VISIBLE, struct);
     
     this.$animtype1      = apf.tween.NORMAL;
     this.$animtype2      = apf.tween.NORMAL;

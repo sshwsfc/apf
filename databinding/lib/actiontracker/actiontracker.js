@@ -97,7 +97,7 @@
  * @since       0.8
  */
 apf.actiontracker = function(struct, tagName){
-    this.$init(tagName || "actiontracker", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "actiontracker", this.NODE_HIDDEN, struct);
 
     this.$undostack = [];
     this.$redostack = [];

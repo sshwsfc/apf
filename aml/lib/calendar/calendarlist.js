@@ -31,7 +31,7 @@
  */
 
 apf.calendarlist      = function(struct, tagName){
-    this.$init(tagName || "calendarlist", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "calendarlist", this.NODE_VISIBLE, struct);
     
     this.date       = new Date();
     this.strDate    = "";

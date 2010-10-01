@@ -48,7 +48,7 @@
  *   {AMLElement} opener the element that was clicked upon when showing the context menu.
  */
 apf.item  = function(struct, tagName){
-    this.$init(tagName || "item", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "item", this.NODE_VISIBLE, struct);
 };
 
 (function(){

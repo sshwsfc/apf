@@ -79,7 +79,7 @@
  * @since       1.0
  */
 apf.table = function(struct, tagName){
-    this.$init(tagName || "table", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "table", this.NODE_VISIBLE, struct);
 };
 
 (function(){

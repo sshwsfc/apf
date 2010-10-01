@@ -101,7 +101,7 @@
  * @allowchild event
  */
 apf.notifier = function(struct, tagName){
-    this.$init(tagName || "notifier", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "notifier", this.NODE_VISIBLE, struct);
 };
 
 (function() {

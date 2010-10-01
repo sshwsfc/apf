@@ -41,7 +41,7 @@
   </xs:simpleType>
 */
 apf.XsdUnion = function(struct, tagName){
-    this.$init(tagName || "union", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "union", this.NODE_HIDDEN, struct);
 };
 
 (function(){

@@ -59,7 +59,7 @@
  * @binding description Determines the text that is displayed under the expanded row.
  */
 apf.datagrid = function(struct, tagName){
-    this.$init(tagName || "datagrid", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "datagrid", this.NODE_VISIBLE, struct);
     
     this.$headings       = [],
     this.$cssRules       = []; //@todo Needs to be reset;

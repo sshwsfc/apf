@@ -32,7 +32,7 @@
  * @since       0.4
  */
 apf.junction = function(){
-    this.$init("junction", apf.NODE_HIDDEN);
+    this.$init("junction", this.NODE_HIDDEN);
 };
 
 (function(){

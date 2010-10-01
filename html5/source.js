@@ -34,7 +34,7 @@
  * @since       3.0
  */
 apf.source = function(struct, tagName){
-    this.$init(tagName || "source", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "source", this.NODE_HIDDEN, struct);
 };
 
 (function(){

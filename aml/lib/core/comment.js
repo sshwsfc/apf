@@ -29,7 +29,7 @@
  * @since       0.4
  */
 apf.comment = function(){
-    this.$init("comment", apf.NODE_HIDDEN);
+    this.$init("comment", this.NODE_HIDDEN);
 };
 
 apf.comment.prototype = new apf.AmlComment();

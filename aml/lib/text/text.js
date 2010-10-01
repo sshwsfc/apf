@@ -38,7 +38,7 @@
  * @todo Please refactor this object
  */
 apf.text = function(struct, tagName){
-    this.$init(tagName || "text", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "text", this.NODE_VISIBLE, struct);
     
     this.$nodes = [];
 };

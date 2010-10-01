@@ -24,7 +24,7 @@
  * Defines the exact sequence of characters that are acceptable
  */
 apf.XsdPattern = function(struct, tagName){
-    this.$init(tagName || "pattern", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "pattern", this.NODE_HIDDEN, struct);
 };
 
 (function(){

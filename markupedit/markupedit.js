@@ -50,7 +50,7 @@ var HAS_CHILD = 1 << 1,
  * @binding empty    Determines the empty message of a node.
  */
 apf.markupedit = function(struct, tagName){
-    this.$init(tagName || "markupedit", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "markupedit", this.NODE_VISIBLE, struct);
 };
 
 (function(){

@@ -49,7 +49,7 @@
  * @default_private
  */
 apf.actions = function(struct, tagName){
-    this.$init(tagName || "actions", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "actions", this.NODE_HIDDEN, struct);
     
     this.$actions      = new apf.ruleList();
     this.$amlNodes     = {};

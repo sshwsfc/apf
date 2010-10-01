@@ -154,7 +154,7 @@
  */
 
 apf.auth = function(struct, tagName){
-    this.$init(tagName || "auth", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "auth", this.NODE_HIDDEN, struct);
 
     this.$services    = {};
     this.$cache       = {};

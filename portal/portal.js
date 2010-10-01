@@ -94,7 +94,7 @@
  * @binding caption   Determines the caption of the docklet.
  */
 apf.portal = function(struct, tagName){
-    this.$init(tagName || "portal", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "portal", this.NODE_VISIBLE, struct);
     
     this.$columns   = [];
 };

@@ -26,7 +26,7 @@
  * @private
  */
 apf.splitter = function(struct, tagName){
-    this.$init(tagName || "splitter", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "splitter", this.NODE_VISIBLE, struct);
 };
 
 (function() {
@@ -138,12 +138,12 @@ apf.splitter = function(struct, tagName){
         this.$previous = this.previousSibling;
         while(this.$previous && (this.$previous.nodeType != 1 
           || this.$previous.visible === false 
-          || this.$previous.nodeFunc != apf.NODE_VISIBLE))
+          || this.$previous.nodeFunc != this.NODE_VISIBLE))
             this.$previous = this.$previous.previousSibling;
         this.$next     = this.nextSibling;
         while(this.$next && (this.$next.nodeType != 1 
           || this.$next.visible === false 
-          || this.$next.nodeFunc != apf.NODE_VISIBLE))
+          || this.$next.nodeFunc != this.NODE_VISIBLE))
             this.$next = this.$next.nextSibling;
     }
     
@@ -209,7 +209,7 @@ apf.splitter = function(struct, tagName){
                     var set = [], nodes = _self.parentNode.childNodes, padding = 0;
                     for (var node, i = 0, l = nodes.length; i < l; i++) {
                         if ((node = nodes[i]).visible === false 
-                          || node.nodeFunc != apf.NODE_VISIBLE || node.$splitter)
+                          || node.nodeFunc != this.NODE_VISIBLE || node.$splitter)
                             continue;
                         
                         if (node.flex)

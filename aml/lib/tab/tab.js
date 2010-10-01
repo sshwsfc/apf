@@ -59,19 +59,19 @@
 
 apf["switch"] = function(struct, tagName){
     this.$hasButtons = false;
-    this.$init(tagName || "switch", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "switch", this.NODE_VISIBLE, struct);
 };
 
 apf.pages     = function(struct, tagName){
     this.$hasButtons = false;
-    this.$init(tagName || "pages", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "pages", this.NODE_VISIBLE, struct);
     
     this.$focussable = false;
 };
 
 apf.tab       = function(struct, tagName){
     this.$hasButtons = true;
-    this.$init(tagName || "tab", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "tab", this.NODE_VISIBLE, struct);
 };
 
 (function(){

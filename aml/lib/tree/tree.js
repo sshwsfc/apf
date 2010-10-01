@@ -118,7 +118,7 @@
  * </code>
  */
 apf.tree = function(struct, tagName){
-    this.$init(tagName || "tree", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "tree", this.NODE_VISIBLE, struct);
 };
 
 (function(){

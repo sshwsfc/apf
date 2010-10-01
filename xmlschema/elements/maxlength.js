@@ -24,7 +24,7 @@
  * Specifies the maximum number of characters or list items allowed. Must be equal to or greater than zero
  */
 apf.XsdMaxLength = function(struct, tagName){
-    this.$init(tagName || "maxlength", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "maxlength", this.NODE_HIDDEN, struct);
 };
 
 (function(){

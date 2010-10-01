@@ -29,7 +29,7 @@
  * @private
  */
 apf.scrollbar = function(struct, tagName){
-    this.$init(tagName || "scrollbar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "scrollbar", this.NODE_VISIBLE, struct);
 };
 
 (function(){

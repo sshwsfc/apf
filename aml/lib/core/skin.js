@@ -41,7 +41,7 @@
  * @since       0.4
  */
 apf.skin = function(struct, tagName){
-    this.$init(tagName || "skin", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "skin", this.NODE_HIDDEN, struct);
 };
 apf.aml.setElement("skin", apf.skin);
 

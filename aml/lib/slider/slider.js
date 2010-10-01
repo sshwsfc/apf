@@ -108,11 +108,11 @@
  * </code>
  */
 apf.range  = function(struct, tagName){
-    this.$init(tagName || "range", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "range", this.NODE_VISIBLE, struct);
 };
 
 apf.slider = function(struct, tagName){
-    this.$init(tagName || "slider", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "slider", this.NODE_VISIBLE, struct);
 };
 
 (function(){

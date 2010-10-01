@@ -24,7 +24,7 @@
  * Specifies the maximum number of decimal places allowed. Must be equal to or greater than zero
  */
 apf.XsdFractionDigits = function(struct, tagName){
-    this.$init(tagName || "maxinclusive", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "maxinclusive", this.NODE_HIDDEN, struct);
 };
 
 (function(){

@@ -28,7 +28,7 @@
  * @since       0.4
  */
 apf.XformsModelElement = function(struct, tagName){
-    this.$init(tagName || "model", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "model", this.NODE_VISIBLE, struct);
     
     this.$bindValidation = [];
     this.$submissions    = {};

@@ -653,7 +653,7 @@
  * @default_private
  */
 apf.smartbinding = function(struct, tagName){
-    this.$init(tagName || "smartbinding", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "smartbinding", this.NODE_HIDDEN, struct);
 
     this.$bindNodes = {};
 };

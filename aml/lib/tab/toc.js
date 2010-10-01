@@ -41,7 +41,7 @@
  * @since       0.8
  */
 apf.toc = function(struct, tagName){
-    this.$init(tagName || "toc", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "toc", this.NODE_VISIBLE, struct);
 };
 
 (function(){

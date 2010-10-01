@@ -101,7 +101,7 @@
  */
 
 apf.xmpp = function(struct, tagName){
-    this.$init(tagName || "xmpp", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "xmpp", this.NODE_HIDDEN, struct);
 
     this.$serverVars = {};
     this.$reqCount   = 0;

@@ -102,7 +102,7 @@
  * @since       0.8
  */
 apf.model = function(struct, tagName){
-    this.$init(tagName || "model", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "model", this.NODE_HIDDEN, struct);
     
     this.$amlNodes = {};
     this.$propBinds = {};

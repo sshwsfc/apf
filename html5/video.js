@@ -66,7 +66,7 @@
  */
 
 apf.video = function(struct, tagName){
-    this.$init(tagName || "video", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "video", this.NODE_VISIBLE, struct);
 };
 
 (function(){

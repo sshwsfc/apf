@@ -22,7 +22,7 @@
 //#ifdef __PARSER_XHTML
 
 apf.XhtmlOptionElement = function(struct, tagName){
-    this.$init(tagName || "option", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "option", this.NODE_VISIBLE, struct);
 };
 
 (function(){

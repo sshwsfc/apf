@@ -24,7 +24,7 @@
  * Specifies the exact number of digits allowed. Must be greater than zero
  */
 apf.XsdTotalDigits = function(struct, tagName){
-    this.$init(tagName || "totaldigits", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "totaldigits", this.NODE_HIDDEN, struct);
 };
 
 (function(){

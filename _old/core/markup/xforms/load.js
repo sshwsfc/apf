@@ -31,7 +31,7 @@
  * @since       0.4
  */
 apf.XformsLoadElement = function(struct, tagName){
-    this.$init(tagName || "Load", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "Load", this.NODE_VISIBLE, struct);
 };
 
 (function(){

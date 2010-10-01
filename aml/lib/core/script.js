@@ -44,7 +44,7 @@
  * @since       0.4
  */
 apf.script = function(){
-    this.$init("script", apf.NODE_HIDDEN);
+    this.$init("script", this.NODE_HIDDEN);
 };
 
 (function(){

@@ -50,10 +50,10 @@
  * @since       0.9
  */
 apf.hbox = function(struct, tagName){
-    this.$init(tagName || "hbox", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "hbox", this.NODE_VISIBLE, struct);
 };
 apf.vbox = function(struct, tagName){
-    this.$init(tagName || "vbox", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "vbox", this.NODE_VISIBLE, struct);
 };
 
 (function(){
@@ -94,7 +94,7 @@ apf.vbox = function(struct, tagName){
         
         var node, nodes = this.childNodes, elms = [];
         for (var i = 0, l = nodes.length; i < l; i++) {
-            if ((node = nodes[i]).nodeFunc == apf.NODE_VISIBLE && node.$amlLoaded && node.visible !== false)
+            if ((node = nodes[i]).nodeFunc == this.NODE_VISIBLE && node.$amlLoaded && node.visible !== false)
                 elms.push(node);
         }
         
@@ -149,7 +149,7 @@ apf.vbox = function(struct, tagName){
                 
                 var nodes = this.childNodes;
                 for (var i = 0, l = nodes.length; i < l; i++) {
-                    if ((node = nodes[i]).nodeFunc != apf.NODE_VISIBLE || !node.$amlLoaded) //|| node.visible === false 
+                    if ((node = nodes[i]).nodeFunc != this.NODE_VISIBLE || !node.$amlLoaded) //|| node.visible === false 
                         continue;
 
                     node.$ext.style.textAlign = apf.getStyle(node.$ext, "textAlign") || "left";
@@ -190,7 +190,7 @@ apf.vbox = function(struct, tagName){
             if (!this.$vbox) {
                 var nodes = this.childNodes;
                 for (var i = 0, l = nodes.length; i < l; i++) {
-                    if ((node = nodes[i]).nodeFunc != apf.NODE_VISIBLE || !node.$amlLoaded) //|| node.visible === false 
+                    if ((node = nodes[i]).nodeFunc != this.NODE_VISIBLE || !node.$amlLoaded) //|| node.visible === false 
                         continue;
                     
                     node.$ext.style.verticalAlign = value == "center" ? "middle" : (value == "end" ? "bottom" : "top");
@@ -202,7 +202,7 @@ apf.vbox = function(struct, tagName){
                 
                 var nodes = this.childNodes;
                 for (var i = 0, l = nodes.length; i < l; i++) {
-                    if ((node = nodes[i]).nodeFunc != apf.NODE_VISIBLE || !node.$amlLoaded) //|| node.visible === false 
+                    if ((node = nodes[i]).nodeFunc != this.NODE_VISIBLE || !node.$amlLoaded) //|| node.visible === false 
                         continue;
 
                     if (node.visible !== false) {
@@ -386,7 +386,7 @@ apf.vbox = function(struct, tagName){
     
     function isLastVisibleChild(amlNode){
         var lastChild = amlNode.parentNode.lastChild;
-        while(lastChild && (lastChild.nodeFunc != apf.NODE_VISIBLE 
+        while(lastChild && (lastChild.nodeFunc != this.NODE_VISIBLE 
           || lastChild.visible === false)) {
             lastChild = lastChild.previousSibling;
         }
@@ -409,7 +409,7 @@ apf.vbox = function(struct, tagName){
             amlNode.$propHandlers[prop] = propHandlers[prop];
         }
 
-        if (amlNode.nodeFunc == apf.NODE_VISIBLE) {
+        if (amlNode.nodeFunc == this.NODE_VISIBLE) {
             if (apf.hasFlexibleBox) {
                 //if (apf.isGecko && apf.getStyle(amlNode.$ext, "display") == "block")
                     //amlNode.$ext.style.display = MOZSTACK; //@todo visible toggle
@@ -524,7 +524,7 @@ apf.vbox = function(struct, tagName){
         }
         
         //Clear css properties and set layout
-        if (amlNode.nodeFunc == apf.NODE_VISIBLE) {
+        if (amlNode.nodeFunc == this.NODE_VISIBLE) {
             if (amlNode.flex)
                 propHandlers.flex.call(amlNode, 0);
             
@@ -729,7 +729,7 @@ apf.vbox = function(struct, tagName){
 
         var nodes = this.childNodes, hNodes = [], fW = 0;
         for (var node, i = 0; i < nodes.length; i++) {
-            if ((node = nodes[i]).nodeFunc != apf.NODE_VISIBLE || node.visible === false || !node.$amlLoaded)
+            if ((node = nodes[i]).nodeFunc != this.NODE_VISIBLE || node.visible === false || !node.$amlLoaded)
                 continue;
 
             hNodes.push(node);

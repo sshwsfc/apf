@@ -5,7 +5,7 @@ if (apf.hasRequireJS) require.def("apf/elements/debughost",
     function(ChromeDebugHost, V8DebugHost, V8WebSocketDebugHost) {
     
 apf.debughost = function(struct, tagName){
-    this.$init(tagName || "debughost", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "debughost", this.NODE_HIDDEN, struct);
 };
 
 (function(){

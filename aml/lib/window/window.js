@@ -140,15 +140,15 @@ apf.WinServer = {
  *   {Boolean} closed     whether the window is closed.
  */
 apf.toolwindow  = function(struct, tagName){
-    this.$init(tagName || "toolwindow", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "toolwindow", this.NODE_VISIBLE, struct);
 };
 
 apf.modalwindow = function(struct, tagName){
-    this.$init(tagName || "modalwindow", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "modalwindow", this.NODE_VISIBLE, struct);
 };
 
 apf.AmlWindow = function(struct, tagName){
-    this.$init(tagName || "window", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "window", this.NODE_VISIBLE, struct);
 };
 
 (function(){

@@ -21,6 +21,8 @@
 
 require.def(["lib-oop/class"], function(Class){
 
+var classCount = 0;
+
 /**
  * All elements that implemented this {@link term.baseclass baseclass} have
  * {@link term.propertybinding property binding},
@@ -46,6 +48,8 @@ var Class = function(){
     this.$captureStack = {};
     this.$eventsStack  = {};
     this.$funcHandlers = {};
+    
+    this.$uniqueId = ++classCount;
 };
 
 Class.prototype  = new (function(){

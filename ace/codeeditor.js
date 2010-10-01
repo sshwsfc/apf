@@ -44,7 +44,7 @@ else
         function(Editor, VirtualRenderer, Document, UndoManager, Range) {
 
 apf.codeeditor = function(struct, tagName) {
-    this.$init(tagName || "codeeditor", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "codeeditor", this.NODE_VISIBLE, struct);
 
     this.documents = [];
     this.$cache    = {};

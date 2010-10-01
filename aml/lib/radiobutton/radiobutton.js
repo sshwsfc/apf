@@ -80,11 +80,11 @@
  * @see baseclass.amlnode.event.afterchange
  */
 apf.radiobutton = function(struct, tagName){
-    this.$init(tagName || "radiobutton", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "radiobutton", this.NODE_VISIBLE, struct);
     
     /*this.$constructor = apf.radiobutton;
     var fEl = apf.aml.setElement("radiobutton", function(){
-        this.$init(tagName || "radiobutton", apf.NODE_VISIBLE, struct);
+        this.$init(tagName || "radiobutton", this.NODE_VISIBLE, struct);
     });
     fEl.prototype = apf.radiobutton.prototype;
     apf.radiobutton = fEl;*/
@@ -478,7 +478,7 @@ apf.radiobutton = function(struct, tagName){
 apf.aml.setElement("radiobutton", apf.radiobutton);
 
 apf.$group = function(struct, tagName){
-    this.$init(tagName || "radiogroup", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "radiogroup", this.NODE_VISIBLE, struct);
     
     this.implement(
         apf.StandardBinding,

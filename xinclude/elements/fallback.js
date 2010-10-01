@@ -24,7 +24,7 @@
  * Defines a list of acceptable values
  */
 apf.XiFallback = function(struct, tagName){
-    this.$init(tagName || "fallback", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "fallback", this.NODE_HIDDEN, struct);
 };
 
 apf.XiFallback.prototype = new apf.AmlElement();

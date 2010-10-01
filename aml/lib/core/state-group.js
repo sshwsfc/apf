@@ -49,7 +49,7 @@
  * @since       0.4
  */
 apf.stateGroup = function(){
-    this.$init("state-group", apf.NODE_HIDDEN);
+    this.$init("state-group", this.NODE_HIDDEN);
 };
 apf.aml.setElement("state-group", apf.stateGroup);
 

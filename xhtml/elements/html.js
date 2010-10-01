@@ -29,7 +29,7 @@
  * @since       0.4
  */
 apf.XhtmlHtmlElement = function(struct, tagName){
-    this.$init(tagName || "html", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "html", this.NODE_VISIBLE, struct);
     
     //#ifdef __WITH_CONTENTEDITABLE
     this.$coreHtml   = true;

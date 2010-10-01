@@ -46,15 +46,15 @@
  * @inherits apf.Presentation
  */
 apf.panel    = function(struct, tagName){
-    this.$init(tagName || "panel", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "panel", this.NODE_VISIBLE, struct);
 };
 
 apf.fieldset = function(struct, tagName){
-    this.$init(tagName || "fieldset", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "fieldset", this.NODE_VISIBLE, struct);
 };
 
 apf.frame    = function(struct, tagName){
-    this.$init(tagName || "submit", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "submit", this.NODE_VISIBLE, struct);
 };
 
 (function(){

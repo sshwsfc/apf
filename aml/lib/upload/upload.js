@@ -167,7 +167,7 @@
  * @todo get server side information to update the progressbar.
  */
 apf.upload = function(struct, tagName){
-    this.$init(tagName || "upload", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "upload", this.NODE_HIDDEN, struct);
 
     var o,
         i = 0,

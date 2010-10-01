@@ -61,7 +61,7 @@
  * </code>
  */
 apf.label = function(struct, tagName){
-    this.$init(tagName || "label", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "label", this.NODE_VISIBLE, struct);
 };
 
 (function(){

@@ -58,7 +58,7 @@
  * @allowchild variable
  */
 apf.method = function(struct, tagName){
-    this.$init(tagName || "method", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "method", this.NODE_HIDDEN, struct);
 
     this.async             = true;
     this.caching           = false;

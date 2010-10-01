@@ -170,7 +170,7 @@ apf.StateServer = {
  * @since       0.9
  */
 apf.state = function(struct, tagName){
-    this.$init(tagName || "state", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "state", this.NODE_HIDDEN, struct);
     
     this.$signalElements = [];
     this.$groupAdded     = {};

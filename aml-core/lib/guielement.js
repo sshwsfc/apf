@@ -375,7 +375,7 @@ GuiElement.propHandlers = {
 
     /**
      * @attribute {Boolean} disabled whether this element's functions are active.
-     * For elements that can contain other apf.NODE_VISIBLE elements this
+     * For elements that can contain other this.NODE_VISIBLE elements this
      * attribute applies to all it's children.
      */
     "disabled": function(value){
@@ -401,7 +401,7 @@ GuiElement.propHandlers = {
             var nodes = this.childNodes;
             for (var node, i = 0, l = nodes.length; i < l; i++) {
                 node = nodes[i];
-                if (node.nodeFunc == apf.NODE_VISIBLE) {
+                if (node.nodeFunc == this.NODE_VISIBLE) {
                     if (value && node.disabled != -1)
                         node.$disabled = node.disabled || false;
                     node.setProperty("disabled", value ? -1 : false);
@@ -473,7 +473,7 @@ GuiElement.propHandlers = {
 
     /**
      * @attribute {Boolean} enables whether this element's functions are active.
-     * For elements that can contain other apf.NODE_VISIBLE elements this
+     * For elements that can contain other this.NODE_VISIBLE elements this
      * attribute applies to all it's children.
      */
     "enabled" : function(value){

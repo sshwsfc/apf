@@ -45,7 +45,7 @@
  * 
  */
 apf.pagenav = function(struct, tagName){
-    this.$init(tagName || "pagenav", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "pagenav", this.NODE_VISIBLE, struct);
 };
 
 (function() {

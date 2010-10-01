@@ -104,7 +104,7 @@
  */
 
 apf.webdav = function(struct, tagName){
-    this.$init(tagName || "webdav", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "webdav", this.NODE_HIDDEN, struct);
 
     this.$locks       = {};
     this.$lockedStack = [];

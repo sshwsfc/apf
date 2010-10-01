@@ -84,7 +84,7 @@
  * @since       0.4
  */
 apf.errorbox = function(struct, tagName){
-    this.$init(tagName || "errorbox", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "errorbox", this.NODE_VISIBLE, struct);
 };
 
 (function(){

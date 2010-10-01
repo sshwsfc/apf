@@ -24,7 +24,7 @@
  * Specifies the lower bounds for numeric values (the value must be greater than this value)
  */
 apf.XsdMinExclusive = function(struct, tagName){
-    this.$init(tagName || "minexclusive", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "minexclusive", this.NODE_HIDDEN, struct);
 };
 
 (function(){

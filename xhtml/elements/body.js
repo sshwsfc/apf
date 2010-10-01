@@ -21,7 +21,7 @@
 
 //#ifdef __PARSER_XHTML
 apf.XhtmlBodyElement = function(struct, tagName){
-    this.$init(tagName || "body", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "body", this.NODE_VISIBLE, struct);
 };
 
 (function(){

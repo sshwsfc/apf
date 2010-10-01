@@ -26,7 +26,7 @@
  */
 apf.printer = {
     tagName     : "printer",
-    nodeFunc    : apf.NODE_HIDDEN,
+    nodeFunc    : this.NODE_HIDDEN,
     lastContent : "",
     inited      : false,
     panel       : null,

@@ -28,7 +28,7 @@
  * @since       0.4
  */
 apf.services = function(struct, tagName){
-    this.$init(tagName || "services", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "services", this.NODE_VISIBLE, struct);
     
     this.addEventListener("DOMNodeInsertedIntoDocument", function(aml){
         var pNode = this.parentNode;

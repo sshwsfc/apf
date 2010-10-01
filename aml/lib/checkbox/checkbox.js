@@ -63,7 +63,7 @@
  * </code>
  */
 apf.checkbox = function(struct, tagName){
-    this.$init(tagName || "checkbox", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "checkbox", this.NODE_VISIBLE, struct);
 };
 
 (function() {

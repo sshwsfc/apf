@@ -29,7 +29,7 @@
  * @since       0.4
  */
 apf.loader = function(){
-    this.$init("loader", apf.NODE_HIDDEN);
+    this.$init("loader", this.NODE_HIDDEN);
     
     this.show = function(){
         this.$ext.style.display = "block";

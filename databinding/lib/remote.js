@@ -142,7 +142,7 @@
  * @todo Make RDB support different encoding protocols (think REX)
  */
 apf.remote = function(struct, tagName){
-    this.$init(tagName || "remote", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "remote", this.NODE_HIDDEN, struct);
 
 //    this.lookup              = {};
 //    this.select              = [];

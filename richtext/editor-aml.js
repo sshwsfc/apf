@@ -64,7 +64,7 @@
  * </code>
  */
 apf.editor = function(struct, tagName){
-    this.$init(tagName || "editor", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "editor", this.NODE_VISIBLE, struct);
 };
 
 (function() {

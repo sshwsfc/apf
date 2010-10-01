@@ -70,7 +70,7 @@
  */
 
 apf.persist = function(struct, tagName){
-    this.$init(tagName || "persist", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "persist", this.NODE_HIDDEN, struct);
     
     var _self = this;
     apf.addEventListener("exit", function(e){

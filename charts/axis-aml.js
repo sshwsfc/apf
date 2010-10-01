@@ -37,7 +37,7 @@
  */
 
  apf.Axis     = function(struct, tagName){
-    this.$init(tagName || "axis", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "axis", this.NODE_VISIBLE, struct);
     this.$subpos = {left:0,right:0,width:1,height:1};
 };
 

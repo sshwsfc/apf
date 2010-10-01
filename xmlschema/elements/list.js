@@ -21,7 +21,7 @@
 
 //#ifdef __WITH_XSDLIST
 apf.XsdList = function(struct, tagName){
-    this.$init(tagName || "list", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "list", this.NODE_HIDDEN, struct);
 };
 
 (function(){

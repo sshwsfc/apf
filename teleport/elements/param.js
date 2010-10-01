@@ -30,7 +30,7 @@
  *                                       is called, the default value is used.
  */
 apf.param = function(struct, tagName){
-    this.$init(tagName || "param", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "param", this.NODE_HIDDEN, struct);
 };
 
 apf.param.prototype = new apf.AmlElement();

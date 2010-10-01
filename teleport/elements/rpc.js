@@ -239,7 +239,7 @@
  * @default_private
  */
 apf.rpc = function(struct, tagName){
-    this.$init(tagName || "rpc", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "rpc", this.NODE_HIDDEN, struct);
 
     if (!this.supportMulticall)
         this.multicall = false;

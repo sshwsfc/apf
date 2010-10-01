@@ -58,7 +58,7 @@
  * @since       0.4
  */
 apf.iconmap = function(){
-    this.$init("iconmap", apf.NODE_HIDDEN);
+    this.$init("iconmap", this.NODE_HIDDEN);
 };
 
 (function(){

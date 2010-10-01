@@ -24,7 +24,7 @@
  * Defines a list of acceptable values
  */
 apf.XiInclude = function(struct, tagName){
-    this.$init(tagName || "include", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "include", this.NODE_HIDDEN, struct);
 };
 
 apf.xinclude.setElement("include", apf.XiInclude);

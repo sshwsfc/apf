@@ -34,7 +34,7 @@
  * @since       0.8
  */
 apf.page = function(struct, tagName){
-    this.$init(tagName || "page", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "page", this.NODE_VISIBLE, struct);
 };
 
 (function(){

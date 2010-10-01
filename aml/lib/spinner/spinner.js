@@ -77,7 +77,7 @@
  * from the bound data.
  */
 apf.spinner = function(struct, tagName){
-    this.$init(tagName || "spinner", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "spinner", this.NODE_VISIBLE, struct);
     
     this.max     = 64000;
     this.min     = -64000;

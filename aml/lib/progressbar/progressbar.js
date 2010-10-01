@@ -66,10 +66,10 @@
  * </code>
  */
 apf.progress    = function(struct, tagName){
-    this.$init(tagName || "progress", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "progress", this.NODE_VISIBLE, struct);
 };
 apf.progressbar = function(struct, tagName){
-    this.$init(tagName || "progressbar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "progressbar", this.NODE_VISIBLE, struct);
 };
 
 (function(){

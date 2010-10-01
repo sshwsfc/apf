@@ -541,7 +541,7 @@ apf.Media = function(){
 #endif*/
 
 apf.nomedia = function(struct, tagName) {
-    this.$init(tagName || "nomedia", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "nomedia", this.NODE_HIDDEN, struct);
 };
 
 (function() {

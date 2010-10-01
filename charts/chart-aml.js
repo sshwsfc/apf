@@ -37,7 +37,7 @@
  */
 
 apf.Chart     = function(struct, tagName){
-    this.$init(tagName || "chart", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "chart", this.NODE_VISIBLE, struct);
 };
 
 apf.aml.setElement("chart", apf.Chart);

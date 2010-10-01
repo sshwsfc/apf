@@ -73,30 +73,30 @@
  * @event clear     Fires when the content of this element is cleared. 
  */
 apf.input    = function(struct, tagName){
-    this.$init(tagName || "input", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "input", this.NODE_VISIBLE, struct);
 };
 
 apf.secret   = function(struct, tagName){
-    this.$init(tagName || "secret", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "secret", this.NODE_VISIBLE, struct);
 };
 
 apf.password = function(struct, tagName){
-    this.$init(tagName || "password", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "password", this.NODE_VISIBLE, struct);
 };
 
 apf.textarea = function(struct, tagName){
-    this.$init(tagName || "textarea", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "textarea", this.NODE_VISIBLE, struct);
     
     this.multiline = true;
 };
 
 // HTML5 email element
 apf.email    = function(struct, tagName){
-    this.$init(tagName || "email", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "email", this.NODE_VISIBLE, struct);
 };
 
 apf.textbox  = function(struct, tagName){
-    this.$init(tagName || "textbox", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "textbox", this.NODE_VISIBLE, struct);
 };
 
 (function(){

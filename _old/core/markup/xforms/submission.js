@@ -40,7 +40,7 @@
  * @since       0.4
  */
 apf.XformsSubmissionElement = function(struct, tagName){
-    this.$init(tagName || "Submission", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "Submission", this.NODE_VISIBLE, struct);
     
     /* *********** PARSE ***********/
     //#ifdef __WITH_XFORMS

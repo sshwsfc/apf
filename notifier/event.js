@@ -30,7 +30,7 @@
  * @event click Fires when the user clicks on the representation of this event.
  */
 apf.event = function(struct, tagName){
-    this.$init(tagName || "event", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "event", this.NODE_HIDDEN, struct);
 };
 
 (function() {

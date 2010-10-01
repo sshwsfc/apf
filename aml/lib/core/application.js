@@ -29,7 +29,7 @@
  * @since       0.4
  */
 apf.application = function(){
-    this.$init("application", apf.NODE_HIDDEN);
+    this.$init("application", this.NODE_HIDDEN);
     
     if (!apf.isO3) {    
         this.$int        = document.body;

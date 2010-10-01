@@ -125,7 +125,7 @@
  *   lower-first    Lower case characters are higher.
  */
 apf.BindingEachRule = function(struct, tagName){
-    this.$init(tagName, apf.NODE_HIDDEN, struct);
+    this.$init(tagName, this.NODE_HIDDEN, struct);
     
     var _self = this;
     this.$noderegister = function(e){

@@ -21,7 +21,7 @@
 
 //#ifdef __WITH_XSDRESTRICTION
 apf.XsdRestriction = function(struct, tagName){
-    this.$init(tagName || "restriction", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "restriction", this.NODE_HIDDEN, struct);
 };
 
 (function(){

@@ -94,7 +94,7 @@
  * @since       0.4
  */
 apf.dropdown = function(struct, tagName){
-    this.$init(tagName || "dropdown", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "dropdown", this.NODE_VISIBLE, struct);
 };
 
 (function(){

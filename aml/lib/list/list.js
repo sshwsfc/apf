@@ -78,7 +78,7 @@
  * @since       0.4
  */
 apf.list      = function(struct, tagName){
-    this.$init(tagName || "list", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "list", this.NODE_VISIBLE, struct);
 };
 
 /**
@@ -120,15 +120,15 @@ apf.list      = function(struct, tagName){
  * </code>
  */
 apf.thumbnail = function(struct, tagName){
-    this.$init(tagName || "thumbnail", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "thumbnail", this.NODE_VISIBLE, struct);
 };
 
 apf.select    = function(struct, tagName){
-    this.$init(tagName || "select", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "select", this.NODE_VISIBLE, struct);
 };
 
 apf.select1   = function(struct, tagName){
-    this.$init(tagName || "selectl", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "selectl", this.NODE_VISIBLE, struct);
 };
 
 (function(){

@@ -68,7 +68,7 @@
  *
  */
 apf.calendar = function(struct, tagName){
-    this.$init(tagName || "calendar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "calendar", this.NODE_VISIBLE, struct);
     
     /**** Properties and Attributes ****/
     this.$calVars = {

@@ -21,7 +21,7 @@
 
 //#ifdef __WITH_XSDMINSCALE
 apf.XsdMinScale = function(struct, tagName){
-    this.$init(tagName || "minscale", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "minscale", this.NODE_HIDDEN, struct);
 };
 
 (function(){

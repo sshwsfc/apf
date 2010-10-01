@@ -23,6 +23,11 @@ apf.__ANCHORING__ = 1 << 13;
 
 // #ifdef __WITH_ANCHORING
 
+//#ifdef __WITH_ANCHORING
+this.percentageMatch = new RegExp();
+this.percentageMatch.compile("([\\-\\d\\.]+)\\%", "g");
+//#endif
+
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have anchoring features. Each side of the
  * element can be attached at a certain distance to it's parent's rectangle.

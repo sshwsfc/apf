@@ -165,7 +165,7 @@
  * @version     %I%, %G%
  */
 apf.flowchart = function(struct, tagName){
-    this.$init(tagName || "flowchart", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "flowchart", this.NODE_VISIBLE, struct);
 };
 
 (function() {

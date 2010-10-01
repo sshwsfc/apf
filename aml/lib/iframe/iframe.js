@@ -66,7 +66,7 @@
  * </code>
  */
 apf.iframe = function(struct, tagName){
-    this.$init(tagName || "iframe", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "iframe", this.NODE_VISIBLE, struct);
 };
 (function(){
     this.implement(

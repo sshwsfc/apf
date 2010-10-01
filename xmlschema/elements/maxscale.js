@@ -21,7 +21,7 @@
 
 //#ifdef __WITH_XSDMAXSCALE
 apf.XsdMaxScale = function(struct, tagName){
-    this.$init(tagName || "maxscale", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "maxscale", this.NODE_HIDDEN, struct);
 };
 
 (function(){

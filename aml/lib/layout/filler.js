@@ -21,7 +21,7 @@
 // #ifdef __AMLFILLER || __INC_ALL
 
 apf.filler = function(struct, tagName){
-    this.$init(tagName || "filler", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "filler", this.NODE_VISIBLE, struct);
 };
 
 (function() {

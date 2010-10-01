@@ -70,7 +70,7 @@
  * @event loaded Fires after the the javascript libraries from Google have been loaded and the map is drawn
  */
 apf.map = function(struct, tagName){
-    this.$init(tagName || "map", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "map", this.NODE_VISIBLE, struct);
 };
 
 (function(){

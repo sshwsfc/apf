@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["aml", "aml-core/base/basebutton", "lib-oop"], 
+require.def(["aml-core/base/basebutton", "optional!aml", "lib-oop"], 
     function(aml, BaseButton, oop){
 
 /**
@@ -36,12 +36,12 @@ require.def(["aml", "aml-core/base/basebutton", "lib-oop"],
  *
  * @inherits apf.BaseButton
  */
-function button(struct, tagName){
-    BaseButton.call(this, struct, tagName || "button", apf.NODE_VISIBLE);
+function Button(struct, tagName){
+    BaseButton.call(this, struct, tagName || "button", this.NODE_VISIBLE);
 };
 
 //Inherit
-oop.inherits(button, BaseButton);
+oop.inherits(Button, BaseButton);
 
 (function() {
     this.$useExtraDiv;
@@ -93,7 +93,7 @@ oop.inherits(button, BaseButton);
             e.defaultButtonSet = true;
     
             if (this.$useExtraDiv)
-                _self.$ext.appendChild(apf.button.$extradiv);
+                _self.$ext.appendChild(Button.$extradiv);
     
             _self.$setStyleClass(_self.$ext, _self.$baseCSSname + "Default");
     
@@ -103,8 +103,8 @@ oop.inherits(button, BaseButton);
         }
     
         function removeDefault(e){
-            if (this.$useExtraDiv && apf.button.$extradiv.parentNode == _self.$ext)
-                _self.$ext.removeChild(apf.button.$extradiv);
+            if (this.$useExtraDiv && Button.$extradiv.parentNode == _self.$ext)
+                _self.$ext.removeChild(Button.$extradiv);
     
             _self.$setStyleClass(_self.$ext, "", [_self.$baseCSSname + "Default"]);
     
@@ -538,8 +538,8 @@ oop.inherits(button, BaseButton);
         this.oCaption = this.$getLayoutNode("main", "caption", this.$ext);
 
         this.$useExtraDiv = apf.isTrue(this.$getOption("main", "extradiv"));
-        if (!apf.button.$extradiv && this.$useExtraDiv) {
-            (apf.button.$extradiv = document.createElement("div"))
+        if (!Button.$extradiv && this.$useExtraDiv) {
+            (Button.$extradiv = document.createElement("div"))
                 .className = "extradiv"
         }
 
@@ -579,13 +579,15 @@ oop.inherits(button, BaseButton);
 
         var _self = this;
         $setTimeout(function(){
-            (apf.button.actions[action] || apf.K).call(_self);
+            (Button.actions[action] || apf.K).call(_self);
         });
     });
     //#endif
-}).call(button.prototype);
+}).call(Button.prototype);
 
-return aml.setElement("button",  button);
+aml && aml.setElement("button",  Button);
+
+return Button;
 
     }
 );

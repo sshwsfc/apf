@@ -33,7 +33,7 @@
  * @attribute {Boolean} tree
  */
 apf.BindingColumnRule = function(struct, tagName){
-    this.$init(tagName, apf.NODE_HIDDEN, struct);
+    this.$init(tagName, this.NODE_HIDDEN, struct);
     
     this.$className = "col" + this.$uniqueId;
 };

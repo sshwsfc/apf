@@ -62,7 +62,7 @@
  * @since       0.9
  */
 apf.repeat = function(struct, tagName){
-    this.$init(tagName || "repeat", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "repeat", this.NODE_VISIBLE, struct);
 };
 
 (function(){

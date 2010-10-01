@@ -19,8 +19,8 @@
  *
  */
 
-require.def(["aml", "aml/button/button"], 
-    function(aml, button){
+require.def(["optional!aml", "aml/button/button"], 
+    function(aml, Button){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -36,11 +36,13 @@ require.def(["aml", "aml/button/button"],
  *
  * @inherits apf.BaseButton
  */
-function submit(struct, tagName){
-    button.call(this, struct, tagName || "submit");
+function Submit(struct, tagName){
+    Button.call(this, struct, tagName || "submit");
 };
-submit.prototype = button.prototype;
-return aml.setElement("submit",  submit);
+Submit.prototype = Button.prototype;
+aml && aml.setElement("submit",  Submit);
+
+return Submit;
 
     }
 );

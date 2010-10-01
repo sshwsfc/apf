@@ -31,12 +31,12 @@
 
 // #ifdef __AMLPORTAL
 apf.body = function(){
-    this.$init("body", apf.NODE_VISIBLE);
+    this.$init("body", this.NODE_VISIBLE);
 };
 // #endif
 
 apf.AmlConfig = function(){
-    this.$init("config", apf.NODE_VISIBLE);
+    this.$init("config", this.NODE_VISIBLE);
 };
 
 (function(){

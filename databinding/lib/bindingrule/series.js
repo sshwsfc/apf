@@ -29,7 +29,7 @@
  * @attribute {String} css
  */
 apf.BindingSeriesRule = function(struct, tagName){
-    this.$init(tagName || "series", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "series", this.NODE_HIDDEN, struct);
 };
 
 (function(){

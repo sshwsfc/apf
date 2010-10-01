@@ -285,7 +285,7 @@ return {
     changeSkinset : function(value){
         var node = apf.document.documentElement;
         while (node) {
-            if (node && node.nodeFunc == apf.NODE_VISIBLE
+            if (node && node.nodeFunc == this.NODE_VISIBLE
               && node.hasFeature(apf.__SKIN__) && !node.skinset) {
                 node.$propHandlers["skinset"].call(node, value);//$forceSkinChange
                 node.skinset = null;

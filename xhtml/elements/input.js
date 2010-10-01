@@ -21,7 +21,7 @@
 
 //#ifdef __PARSER_XHTML
 apf.XhtmlInputElement = function(struct, tagName){
-    this.$init(tagName || "input", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "input", this.NODE_VISIBLE, struct);
 };
 
 (function(){

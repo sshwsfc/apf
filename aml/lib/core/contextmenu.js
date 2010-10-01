@@ -42,7 +42,7 @@
  * @since       0.4
  */
 apf.contextmenu = function(){
-    this.$init("contextmenu", apf.NODE_HIDDEN);
+    this.$init("contextmenu", this.NODE_HIDDEN);
 };
 
 (function(){

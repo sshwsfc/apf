@@ -34,7 +34,7 @@
  * @attribute {Boolean} parent
  */
 apf.ActionRule = function(struct, tagName){
-    this.$init(tagName || true, apf.NODE_HIDDEN, struct);
+    this.$init(tagName || true, this.NODE_HIDDEN, struct);
 };
 
 (function(){

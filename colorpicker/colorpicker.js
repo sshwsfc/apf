@@ -61,7 +61,7 @@
  * </code>
  */
 apf.colorpicker = function(struct, tagName){
-    this.$init(tagName || "colorpicker", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "colorpicker", this.NODE_VISIBLE, struct);
 };
 
 (function(){

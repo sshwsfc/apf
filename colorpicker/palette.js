@@ -57,7 +57,7 @@
  * </code>
  */
 apf.palette = function(struct, tagName){
-    this.$init(tagName || "palette", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "palette", this.NODE_VISIBLE, struct);
 };
 
 (function(){

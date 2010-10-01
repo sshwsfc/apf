@@ -24,7 +24,7 @@
  * Defines a list of acceptable values
  */
 apf.XsdEnumeration = function(struct, tagName){
-    this.$init(tagName || "enumeration", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "enumeration", this.NODE_HIDDEN, struct);
 };
 
 (function(){

@@ -81,7 +81,7 @@
  * @inherits apf.Presentation
  */
 apf.menu = function(struct, tagName){
-    this.$init(tagName || "menu", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "menu", this.NODE_VISIBLE, struct);
     
     this.animate = apf.enableAnim;
 };

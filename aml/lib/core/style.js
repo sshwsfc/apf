@@ -29,7 +29,7 @@
  * @since       0.4
  */
 apf.style = function(struct, tagName){
-    this.$init(tagName || "style", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "style", this.NODE_HIDDEN, struct);
 };
 
 (function(){

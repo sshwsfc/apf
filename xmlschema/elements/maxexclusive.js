@@ -24,7 +24,7 @@
  * Specifies the upper bounds for numeric values (the value must be less than this value)
  */
 apf.XsdMaxExclusive = function(struct, tagName){
-    this.$init(tagName || "maxexclusive", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "maxexclusive", this.NODE_HIDDEN, struct);
 };
 
 (function(){

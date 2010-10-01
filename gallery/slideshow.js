@@ -105,7 +105,7 @@
  * @binding thumb    Determines the url to thumbnail file.
  */
 apf.slideshow = function(struct, tagName){
-    this.$init(tagName || "slideshow", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "slideshow", this.NODE_VISIBLE, struct);
     
     this.title            = "number";
     this.thumbheight      = 50;

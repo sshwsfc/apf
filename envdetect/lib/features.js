@@ -132,14 +132,14 @@ require.def(["envdetect"], function(env){
         this.CSSPREFIX2  = env.isGecko ? "-moz" : (env.isWebkit ? "-webkit" : "");
         this.INLINE      = env.isIE && env.isIE < 8 ? "inline" : "inline-block";
 
+        var bodyMarginTop = parseFloat(env.isIE 
+            ? document.body.currentStyle["marginTop"] 
+            : (window.getComputedStyle(document.body, "") || {})["marginTop"] || "");
+        apf.doesNotIncludeMarginInBodyOffset = (document.body.offsetTop !== bodyMarginTop);
+
         //Other settings
         this.maxHttpRetries = env.isOpera ? 0 : 3;
 
-        //#ifdef __WITH_ANCHORING
-        this.percentageMatch = new RegExp();
-        this.percentageMatch.compile("([\\-\\d\\.]+)\\%", "g");
-        //#endif
-        
         this.reMatchXpath = new RegExp();
         this.reMatchXpath.compile("(^|\\|)(?!\\@|[\\w-]+::)", "g");
 

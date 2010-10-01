@@ -48,15 +48,15 @@
  * @since       0.4
  */
 apf.section = function(struct, tagName){
-    this.$init(tagName || "section", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "section", this.NODE_VISIBLE, struct);
 };
 
 apf.menubar = function(struct, tagName){
-    this.$init(tagName || "menubar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "menubar", this.NODE_VISIBLE, struct);
 };
 
 apf.bar     = function(struct, tagName){
-    this.$init(tagName || "bar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "bar", this.NODE_VISIBLE, struct);
 };
 
 /**
@@ -106,7 +106,7 @@ apf.bar     = function(struct, tagName){
  * @inherits apf.Presentation
  */
 apf.toolbar = function(struct, tagName){
-    this.$init(tagName || "toolbar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "toolbar", this.NODE_VISIBLE, struct);
 };
 
 /**
@@ -136,7 +136,7 @@ apf.toolbar = function(struct, tagName){
  * @since       0.9
  */
 apf.statusbar = function(struct, tagName){
-    this.$init(tagName || "statusbar", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "statusbar", this.NODE_VISIBLE, struct);
 };
 
 /**
@@ -145,7 +145,7 @@ apf.statusbar = function(struct, tagName){
  * @constructor
  */
 apf.divider = function(struct, tagName){
-    this.$init(tagName || "divider", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "divider", this.NODE_VISIBLE, struct);
 };
 
 (function(){

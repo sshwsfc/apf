@@ -38,7 +38,7 @@
  * @inherits apf.DataBinding
  */
 apf.propgrid    = function(struct, tagName){
-    this.$init(tagName || "propgrid", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "propgrid", this.NODE_VISIBLE, struct);
     
     //this.$headings       = [],
     //this.$cssRules       = []; //@todo Needs to be reset;

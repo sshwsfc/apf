@@ -50,7 +50,7 @@
  *
  */
 apf.loadindicator = function(struct, tagName){
-    this.$init(tagName || "loadindicator", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "loadindicator", this.NODE_VISIBLE, struct);
 };
 
 (function() {

@@ -28,7 +28,7 @@
  * @since       0.4
  */
 apf.defaults = function(struct, tagName){
-    this.$init(tagName || "services", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "services", this.NODE_HIDDEN, struct);
 };
 
 (function(){

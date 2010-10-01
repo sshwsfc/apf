@@ -47,7 +47,7 @@
  * @since       1.0
  */
 apf.audio = function(struct, tagName){
-    this.$init(tagName || "audio", apf.NODE_VISIBLE, struct);
+    this.$init(tagName || "audio", this.NODE_VISIBLE, struct);
 };
 
 (function() {

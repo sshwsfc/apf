@@ -36,11 +36,11 @@
  * @since       0.4
  */
 apf.collection = function(struct, tagName){
-    this.$init(tagName || "collection", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "collection", this.NODE_HIDDEN, struct);
 };
 
 apf.docklet = function(struct, tagName){
-    this.$init(tagName || "docklet", apf.NODE_HIDDEN, struct);
+    this.$init(tagName || "docklet", this.NODE_HIDDEN, struct);
 };
 
 (function(){
