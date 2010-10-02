@@ -1753,3 +1753,19 @@ TEMPORARILY DISABLED
         
         setProp.apply(this, arguments);
     };
+    
+    //#ifdef __WITH_UIRECORDER
+    /**** Event.cancelBubble ****/
+    if (!apf.isOpera) {  // @todo, add solution for Opera
+        if (MouseEvent.prototype.__defineSetter__) {
+            //Event.cancelBubble
+            MouseEvent.prototype.__defineSetter__("cancelBubble", function(b){
+                if (apf.uirecorder.isRecording || apf.uirecorder.isTesting) {
+                    // ignore click event
+                    if (this.type != "click")
+                        apf.uirecorder.capture[this.type](this);
+                }
+            });
+        }
+    }
+    //#endif
