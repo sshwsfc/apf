@@ -1,3 +1,5 @@
+require.def(["lib-xml"], function(getXmlDom){
+
 /**
  * Integrates nodes as children of a parent. Optionally attributes are
  * copied as well.
@@ -14,7 +16,7 @@
  *   {XMLElement} [marker]      This feature is used for the virtual viewport. More information will follow.
  * @return  {XMLNode}  the created xml node
  */
-apf.mergeXml = function(XMLRoot, parentNode, options){
+return function(XMLRoot, parentNode, options){
     if (typeof parentNode != "object")
         parentNode = getElementById(parentNode);
 
@@ -114,3 +116,6 @@ apf.mergeXml = function(XMLRoot, parentNode, options){
 
     return parentNode;
 };
+
+    }
+);

@@ -1,12 +1,12 @@
-require.def(["lib-xml"]
-    function(libXml){
+require.def(["node-xml-dom"]
+    function(DOMParser){
         
-XMLDocument = o3.xml.parseFromString("<root />", "text/xml");
+XMLDocument = DOMParser.parseFromString("<root />", "text/xml");
 Element = XMLDocument.documentElement;
 Node = Element;
 
 var getXmlDom = function(message, noError){
-    var xmlParser = o3.xml; //@todo require??
+    var xmlParser = DOMParser; //@todo require??
     xmlParser     = xmlParser.parseFromString(message, "text/xml");
 
     if (!noError)
@@ -15,7 +15,7 @@ var getXmlDom = function(message, noError){
     return xmlParser;
 };
 
-libXml.xmlParseError = function(xml, message){
+getXmlDom.xmlParseError = function(xml, message){
     if (!xml)
         apf.console.error("no xml document was passed to the xml parse error function");
 

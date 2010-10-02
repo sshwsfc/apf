@@ -1,5 +1,4 @@
-require.def(["lib-xml"]
-    function(libXml){
+require.def(function(){
 
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xmlParser;
@@ -20,7 +19,7 @@ var getXmlDom = function(message, noError, preserveWhiteSpaces){
     return xmlParser;
 };
 
-libXml.xmlParseError = function(xml){
+getXmlDom.xmlParseError = function(xml){
     //if (xml.documentElement.tagName == "parsererror") {
     if (xml.getElementsByTagName("parsererror").length) { 
         var str     = xml.documentElement.firstChild.nodeValue.split("\n"),

@@ -1,0 +1,13 @@
+{
+    "lib-xml" : {
+        "ios" : "env/w3c",
+        "gecko" : "env/w3c",
+        "webkit" : "env/w3c",
+        "android/webkit" : "env/w3c",
+        "android/chrome" : "env/w3c",
+        "ie"  : ["env/ie", "env/iefallback"],
+    },
+    "lib-xml/xslt" : {
+        "ie"  : "env/iexslt"
+    }
+}

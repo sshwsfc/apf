@@ -80,3 +80,56 @@ apf.setNodeValue = function(xmlNode, nodeValue, applyChanges, options){
     }
     // #endif
 };
+
+/**
+     * Returns a string version of the {@link term.datanode data node}.
+     *
+     * @param {XMLElement} xmlNode the {@link term.datanode data node} to serialize.
+     * @return {String} the serilized version of the {@link term.datanode data node}.
+     */
+    getXmlString : function(xmlNode){
+        var xml = apf.xmldb.cleanNode(xmlNode.cloneNode(true));
+        return xml.xml || xml.serialize();
+    };
+    
+    
+    REPLACE THESE FUNCTIONS 
+    
+    
+    /**
+ * Sets a value of an XMLNode based on an xpath statement executed on a reference XMLNode.
+ *
+ * @param  {XMLNode}  xmlNode  the reference xml node.
+ * @param  {String}  xpath  the xpath used to select a XMLNode.
+ * @param  {String}  value  the value to set.
+ * @param  {Boolean}  local  whether the call updates databound UI.
+ * @return  {XMLNode}  the changed XMLNode
+ */
+apf.setQueryValue = function(xmlNode, xpath, value, local){
+    var node = xmlXpathUtil.createNodeFromXpath(xmlNode, xpath);
+    if (!node)
+        return null;
+
+    apf.setNodeValue(node, value, !local);
+    return node;
+};
+
+/**
+ * Removed an XMLNode based on an xpath statement executed on a reference XMLNode.
+ *
+ * @param  {XMLNode}  xmlNode  the reference xml node.
+ * @param  {String}  xpath  the xpath used to select a XMLNode.
+ * @return  {XMLNode}  the changed XMLNode
+ */
+apf.removeQueryNode = function(xmlNode, xpath, local){
+    var node = apf.queryNode(xmlNode, xpath);
+    if (!node)
+        return false;
+
+    if (local)
+        node.parentNode.removeChild(node);
+    else
+        apf.xmldb.removeNode(node);
+    
+    return node;
+};

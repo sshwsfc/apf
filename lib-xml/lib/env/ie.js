@@ -1,8 +1,7 @@
 /**
  * Compatibility layer for Internet Explorer.
  */
-require.def(["lib-xml"]
-    function(libXml){
+require.def(function(){
         
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xmlParser = new ActiveXObject("microsoft.XMLDOM");
@@ -21,7 +20,7 @@ var getXmlDom = function(message, noError, preserveWhiteSpaces){
     return xmlParser;
 };
 
-libXml.xmlParseError = function(xml){
+getXmlDom.xmlParseError = function(xml){
     var xmlParseError = xml.parseError;
     if (xmlParseError != 0) {
         /*
