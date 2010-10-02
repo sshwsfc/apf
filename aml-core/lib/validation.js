@@ -355,13 +355,6 @@ apf.Validation = function(){
      * </pre>
      */
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
-        //this.addEventListener(this.hasFeature(apf.__MULTISELECT__) ? "onafterselect" : "onafterchange", onafterchange);
-        /* Temp disabled, because I don't understand it (RLD)
-        this.addEventListener("beforechange", function(){
-            if (this.xmlRoot && apf.getBoundValue(this) === this.getValue())
-                return false;
-        });*/
-        
         // validgroup
         if (!this.validgroup)
             this.$setInheritedAttribute("validgroup");

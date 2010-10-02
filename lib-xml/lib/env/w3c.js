@@ -60,17 +60,6 @@ if (XMLDocument.prototype.__defineGetter__) {
     });
 }
 
-HTMLElement.prototype.replaceNode = 
-Element.prototype.replaceNode     = function(xmlNode){
-    if (!this.parentNode) return;
-
-    this.parentNode.insertBefore(xmlNode, this);
-    this.parentNode.removeChild(this);
-};
-
-HTMLDocument.prototype.setProperty = 
-XMLDocument.prototype.setProperty  = function(x,y){};
-
 return getXmlDom;
 
     }

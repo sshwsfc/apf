@@ -914,7 +914,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         }
         inputVal.onmouseout = function(e) {
             if (this.hasFocus) return;
-            $this.inputVal.replaceNode(lblVal, inputVal);
+            $this.inputVal.replaceNode(lblVal, inputVal); //@todo wrong! use replaceChild
         }
         
         return inputVal;

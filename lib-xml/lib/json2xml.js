@@ -1,9 +1,8 @@
-//Wrap xmlParseError function with try/catch in catch put following
+//This is somewhat of a hack and should probably be moved to elsewhere in the future
 require.modify(
     "lib-xml", 
-    "lib-xml/json2", 
     "lib-xml/json2xml", 
-    ["lib-ecmaext/json2xml", "lib-xml"]
+    ["lib-ecmaext/json2", "lib-ecmaext/json2xml", "lib-xml"]
     function(json, json2Xml, libXml){
 
 var parseError = libXml.xmlParseError;

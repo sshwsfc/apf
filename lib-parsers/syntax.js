@@ -251,4 +251,33 @@ apf.formatJS = function(strJs){
         .replace(/###q(\d+)###/g,function(a,b,c){ return "'"+str[b]+"'"; } );
 };
 
+/**
+ * Formats an xml string with good indentation. Also known as pretty printing.
+ * @param {String} strXml the xml to format.
+ * @return {String} the formatted string.
+ */
+apf.formatXml = function(strXml){
+    strXml = strXml.trim();
+
+    var lines = strXml.split("\n"),
+        depth = 0,
+        i     = 0,
+        l     = lines.length;
+    for (; i < l; ++i)
+        lines[i] = lines[i].trim();
+    lines = lines.join("\n").replace(/\>\n/g, ">").replace(/\>/g, ">\n")
+        .replace(/\n\</g, "<").replace(/\</g, "\n<").split("\n");
+    lines.removeIndex(0);//test if this is actually always fine
+    lines.removeIndex(lines.length);
+
+    for (i = 0, l = lines.length; i < l; i++)
+        lines[i] = "    ".repeat((lines[i].match(/^\s*\<\//)
+            ? (depth==0)?0:--depth
+            : (lines[i].match(/^\s*\<[^\?][^>]+[^\/]\>/) ? depth++ : depth))) + lines[i];
+    if (!strXml)
+        return "";
+
+    return lines.join("\n");
+};
+
 //#endif
