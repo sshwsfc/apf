@@ -1,5 +1,5 @@
 (function(){
-    var deps = [];
+    var xhr, deps = [];
     
     //Feature Detection
     var useActiveX = typeof ActiveXObject != "undefined" 
@@ -20,11 +20,15 @@
         }
         catch (e) {
             try {
-                require("url") //Node
-                deps.push("lib-xmlhttp/node");
+                xhr = require("./node/XMLHttpRequest").XMLHttpRequest; //O3 Sync
             }
             catch (e) {
-                deps.push("lib-xmlhttp/iframe");
+                try {
+                    xhr = require("lib-xmlhttp/node").XMLHttpRequest; //Node Sync
+                }
+                catch (e) {
+                    deps.push("lib-xmlhttp/iframe");
+                }
             }
         }
     }
@@ -33,7 +37,7 @@
         return function(){
             return (useActiveX 
                 ? new ActiveXObject("microsoft.XMLHTTP") 
-                : new (OtherXhr || XMLHttpRequest)());
+                : new (xhr || OtherXhr || XMLHttpRequest)());
         };
     })
 })();

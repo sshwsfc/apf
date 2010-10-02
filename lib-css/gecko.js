@@ -33,56 +33,6 @@ apf.runGecko = function(){
      ****************************************************************************/
     //#ifdef __PARSER_XPATH
     
-    //XMLDocument.selectNodes
-    HTMLDocument.prototype.selectNodes = XMLDocument.prototype.selectNodes = function(sExpr, contextNode){
-        try {
-            var oResult = this.evaluate(sExpr, (contextNode || this),
-                this.createNSResolver(this.documentElement),
-                7, null); //XpathResult.ORDERED_NODE_ITERATOR_TYPE
-        }
-        catch(ex) {
-            var msg = ex.message;
-            if (ex.code == ex.INVALID_EXPRESSION_ERR)
-                msg = msg.replace(/the expression/i, "'" + sExpr + "'");
-            throw new Error(ex.lineNumber, "XPath error: " + msg);
-        }
-
-        var nodeList = new Array(oResult.snapshotLength);
-        nodeList.expr = sExpr;
-        for (var i = nodeList.length - 1; i >= 0; i--) 
-            nodeList[i] = oResult.snapshotItem(i);
-        return nodeList;
-    };
-    
-    //Element.selectNodes
-    Text.prototype.selectNodes =
-    Element.prototype.selectNodes = function(sExpr){
-       return this.ownerDocument.selectNodes(sExpr, this);
-    };
-    
-    //XMLDocument.selectSingleNode
-    HTMLDocument.prototype.selectSingleNode = XMLDocument.prototype.selectSingleNode = function(sExpr, contextNode){
-        try {
-            var oResult = this.evaluate(sExpr, (contextNode || this),
-                this.createNSResolver(this.documentElement),
-                9, null); //XpathResult.FIRST_ORDERED_NODE_TYPE
-        }
-        catch(ex) {
-            var msg = ex.message;
-            if (ex.code == ex.INVALID_EXPRESSION_ERR)
-                msg = msg.replace(/the expression/i, "'" + sExpr + "'");
-            throw new Error(ex.lineNumber, "XPath error: " + msg);
-        }
-        
-        return oResult.singleNodeValue;
-    };
-    
-    //Element.selectSingleNode
-    Text.prototype.selectSingleNode =
-    Element.prototype.selectSingleNode = function(sExpr){
-        return this.ownerDocument.selectSingleNode(sExpr, this);
-    };
-    
     // #endif
     
     var serializer = new XMLSerializer();

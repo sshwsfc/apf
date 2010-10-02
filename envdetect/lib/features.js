@@ -25,7 +25,6 @@ require.def(["envdetect"], function(env){
         this.hasStyleFilters           = env.isIE;
         this.supportOpacity            = !env.isIE;
         this.supportPng24              = !env.isIE6 && !env.isIE5;
-        this.cantParseXmlDefinition    = env.isIE50;
         this.hasDynamicItemList        = !env.isIE || env.isIE >= 7;
         this.canImportNode             = env.isIE;
         this.hasSingleRszEvent         = !env.isIE;
