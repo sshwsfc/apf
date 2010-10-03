@@ -6,15 +6,15 @@ require([
 
     var deps = [];
     if (env.isIE)
-        deps.push("./env/ie");
+        deps.push("lib-css/env/ie");
     else {
-        deps.push("./env/non_ie.js");
+        deps.push("lib-css/env/non_ie.js");
         if (env.isGecko)
-            deps.push("./env/gecko");
+            deps.push("lib-css/env/gecko");
         else if (env.isWebkit)
-            deps.push("./env/webkit");
+            deps.push("lib-css/env/webkit");
         else if (env.isOpera)
-            deps.push("./env/opera");
+            deps.push("lib-css/env/opera");
     }
 
     require.def("lib-css", deps, function(){

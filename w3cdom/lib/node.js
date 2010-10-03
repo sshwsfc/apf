@@ -454,7 +454,7 @@ oop.inherits(DOMNode, Class);
         this.parentNode.childNodes.remove(this);
 
         //If we're not loaded yet, just remove us from the aml to be parsed
-        if (this.$amlLoaded && !apf.isDestroying) {
+        if (this.$amlLoaded && !DOMNode.isDestroying) {
             //this.parentNode.$aml.removeChild(this.$aml);
 
             this.dispatchEvent("DOMNodeRemoved", {
@@ -606,7 +606,7 @@ oop.inherits(DOMNode, Class);
 
         this.dispatchEvent("DOMNodeRemoved", {
             relatedNode  : this.parentNode,
-            bubbles      : !apf.isDestroying
+            bubbles      : !DOMNode.isDestroying
         });
         this.dispatchEvent("DOMNodeRemovedFromDocument");
 

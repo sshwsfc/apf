@@ -21,6 +21,10 @@
 
 //#ifdef __WITH_POPUP
 
+apf.addListener(window, "unload", function(){
+    apf.popup.destroy();
+});
+
 /**
  * @private
  */

@@ -21,6 +21,13 @@
 
 //#ifdef __WITH_XMLDATABASE
 
+apf.addListener(window, "unload", function(){
+    //#ifdef __WITH_XMLDATABASE
+    if (apf.xmldb)
+        apf.xmldb.unbind(apf.window);
+    //#endif
+});
+
 /**
  * The xml database object provides local storage for xml data. This object
  * routes all changes to the xml data to the data bound objects. It further

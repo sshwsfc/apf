@@ -93,7 +93,7 @@ require.modify(
         
         if (--apf.$eventDepth == 0 && this.ownerDocument 
           && !this.ownerDocument.$domParser.$parseContext
-          && !apf.isDestroying && apf.loaded
+          && !DOMNode.isDestroying && apf.loaded
           //#ifdef __DEBUG
           && eventName != "debug"
           //#endif
@@ -140,11 +140,14 @@ require.modify(
      *                              a function.
      * @param  {function} callback  the code to be called when event is dispatched.
      */
-    this.addEventListener = function(a, b, c){
-        this.$bufferEvents.push([a,b,c]);
-    };
-    
-    var realAddEventListener = function(eventName, callback, useCapture){
+    this.addEventListener = function(eventName, callback, useCapture){
+        if (!this.$eventsStack) {
+            //Pre constructor event setting. We'll buffer
+            (this.$bufferEvents || (this.$bufferEvents = []))
+                .push([eventName, callback, useCapture]);
+            return;
+        }
+        
         //#ifdef __PROFILER
         if (apf.profiler)
             apf.profiler.wrapFunction(Profiler_functionTemplate());

@@ -19,7 +19,9 @@
  *
  */
 
-require.def(function(env){
+require.def(function(){
+
+var ecma = {};
 
 Array.prototype.dataType    = ecma.ARRAY    = 4;
 Number.prototype.dataType   = ecma.NUMBER   = 1;
@@ -28,5 +30,7 @@ Boolean.prototype.dataType  = ecma.BOOLEAN  = 2;
 String.prototype.dataType   = ecma.STRING   = 3;
 RegExp.prototype.dataType   = ecma.REGEXP   = 6;
 Function.prototype.dataType = ecma.FUNCTION = 7;
+
+return ecma;
 
 });

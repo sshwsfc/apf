@@ -49,8 +49,19 @@ var Class = function(){
     this.$eventsStack  = {};
     this.$funcHandlers = {};
     
-    this.$uniqueId = ++classCount;
+    //Temporary hack until refactor
+    this.$uniqueId = Class.all.push(this) - 1;//++classCount;
+    
+    if (this.$bufferEvents) {
+        for (var i = 0, l = this.$bufferEvents.length; i < l; i++) {
+            this.addEventListener.apply(this, this.$bufferEvents[i]);
+        }
+        delete this.$bufferEvents;
+    }
 };
+
+Class.lookup = function(id){return this.all[id]}; //Temporary hack until refactor
+Class.all = []; //Temporary hack until refactor
 
 Class.prototype  = new (function(){
     this.$regbase = 0;
@@ -65,8 +76,6 @@ Class.prototype  = new (function(){
     
     /**** Events ****/
     
-    this.$captureStack = {};
-    
     /**
      * Calls all functions that are registered as listeners for an event.
      *
@@ -75,8 +84,9 @@ Class.prototype  = new (function(){
      * @return {mixed} return value of the event
      */
     this.dispatchEvent = function(eventName, e) {
-        this.$eventsStack = this.$eventsStack || {};
-
+        if (!this.$eventsStack)
+            return;
+        
         var listeners = this.$eventsStack[eventName];
         if (!listeners || !listeners.length) 
             return;
@@ -95,7 +105,12 @@ Class.prototype  = new (function(){
      * @param  {function} callback  the code to be called when event is dispatched.
      */
     this.addEventListener = function(eventName, callback, useCapture) {
-        this.$eventsStack = this.$eventsStack || {};
+        if (!this.$eventsStack) {
+            //Pre constructor event setting. We'll buffer
+            (this.$bufferEvents || (this.$bufferEvents = []))
+                .push([eventName, callback, useCapture]);
+            return;
+        }
 
         var listeners = this.$eventsStack[eventName] 
             || (this.$eventsStack[eventName] = []);
@@ -112,7 +127,8 @@ Class.prototype  = new (function(){
      * @param  {function} callback  the function to be removed from the event stack.
      */
     this.removeEventListener = function(eventName, callback, useCapture) {
-        this.$eventsStack = this.$eventsStack || {};
+        if (!this.$eventsStack)
+            return;
 
         var listeners = this.$eventsStack[eventName];
         if (!listeners)
