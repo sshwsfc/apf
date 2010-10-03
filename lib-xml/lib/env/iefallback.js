@@ -1,5 +1,4 @@
-require.def(["lib-xml"]
-    function(libXml){
+require.def(function(){
         
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xml = document.body.appendChild(document.createElement("xml"));
@@ -10,7 +9,7 @@ var getXmlDom = function(message, noError, preserveWhiteSpaces){
     if (message) 
         xmlParser.loadXML(message);
     if (!no_error) 
-        libXml.xmlParseError(xmlParser, message);
+        getXmlDom.xmlParseError(xmlParser, message);
     
     return xmlParser;
 };

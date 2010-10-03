@@ -10,7 +10,7 @@ var getXmlDom = function(message, noError){
     xmlParser     = xmlParser.parseFromString(message, "text/xml");
 
     if (!noError)
-        libXml.xmlParseError(xmlParser);
+        getXmlDom.xmlParseError(xmlParser);
     
     return xmlParser;
 };

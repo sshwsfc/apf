@@ -19,27 +19,12 @@
  *
  */
 
-//#ifdef __WITH_JSON_API
-/**
- * Reliably determines whether a variable is a string of JSON.
- * @see http://json.org/
- *
- * @param {mixed}   value The variable to check
- * @type  {Boolean}
- */
-apf.isJson = (function() {
-    var escapes  = /\\["\\\/bfnrtu@]/g,
-        values   = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-        brackets = /(?:^|:|,)(?:\s*\[)+/g,
-        invalid  = /^[\],:{}\s]*$/;
+require.def(function(){
 
-    return function(value) {
-        if (!value) return false;
-        return invalid.test(
-            value.replace(escapes, '@').replace(values, ']').replace(brackets, '')
-        );
-    }
-})();
+var escapes  = /\\["\\\/bfnrtu@]/g,
+    values   = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+    brackets = /(?:^|:|,)(?:\s*\[)+/g,
+    invalid  = /^[\],:{}\s]*$/;
 
 if (!self["JSON"]) {
     self["JSON"] = (function() {
@@ -84,64 +69,64 @@ if (!self["JSON"]) {
             s = p + s;
             return s.substring(s.length - p.length);
         },
-        jsonSerialize   = {
-            //Object
-            0: function(o){
-                //XML support - NOTICE: Ajax.org Platform specific
-                if (o.nodeType && o.ownerDocument && o.cloneNode(true)) // was o.nodeType && o.cloneNode
-                    return "apf.xmldb.getXml("
-                        + JSON.stringify(apf.getXmlString(o)) + ")"; // was this.string()
-
-                //Normal JS object support
-                var str = [];
-                for (var prop in o) {
-                    str.push('"' + prop.replace(/(["\\])/g, '\\$1') + '": '
-                        + JSON.stringify(o[prop]));
-                }
-
-                return "{" + str.join(", ") + "}";
-            },
+        jsonSerialize   = {};
             
-            //String
-            5: function(s){
-                s = '"' + s.replace(/(["\\])/g, '\\$1') + '"';
-                return s.replace(/(\n)/g, "\\n").replace(/\r/g, "");
-            },
+        //Object
+        jsonSerialize[0] = function(o){
+            //XML support - NOTICE: Ajax.org Platform specific
+            if (o.nodeType && o.ownerDocument && o.cloneNode(true)) // was o.nodeType && o.cloneNode
+                return "apf.xmldb.getXml("
+                    + JSON.stringify(apf.getXmlString(o)) + ")"; // was this.string()
 
-            //Number
-            2: function(i){
-                return i.toString();
-            },
-
-            //Boolean
-            4: function(b){
-                return b.toString();
-            },
-
-            //Date
-            3: function(d){
-                return '{"jsonclass":["sys.ISODate", ["'
-                    + padd(d.getUTCFullYear(), "0000")
-                    + padd(d.getUTCMonth() + 1, "00") 
-                    + padd(d.getUTCDate(), "00") + "T" 
-                    + padd(d.getUTCHours(), "00") + ":" 
-                    + padd(d.getUTCMinutes(), "00") + ":" 
-                    + padd(d.getUTCSeconds(), "00")
-                    + '"]]}';
-            },
-
-            //Array
-            1: function(a){
-                for (var q = [], i = 0; i < a.length; i++)
-                    q.push(JSON.stringify(a[i]));
-
-                return "[" + q.join(", ") + "]";
-            },
-            
-            // Method
-            7: function(f){
-                return;
+            //Normal JS object support
+            var str = [];
+            for (var prop in o) {
+                str.push('"' + prop.replace(/(["\\])/g, '\\$1') + '": '
+                    + JSON.stringify(o[prop]));
             }
+
+            return "{" + str.join(", ") + "}";
+        };
+        
+        //String
+        jsonSerialize[apf.STRING] = function(s){
+            s = '"' + s.replace(/(["\\])/g, '\\$1') + '"';
+            return s.replace(/(\n)/g, "\\n").replace(/\r/g, "");
+        };
+
+        //Number
+        jsonSerialize[apf.NUMBER] = function(i){
+            return i.toString();
+        };
+
+        //Boolean
+        jsonSerialize[apf.BOOLEAN] = function(b){
+            return b.toString();
+        },
+
+        //Date
+        jsonSerialize[apf.DATE] = function(d){
+            return '{"jsonclass":["sys.ISODate", ["'
+                + padd(d.getUTCFullYear(), "0000")
+                + padd(d.getUTCMonth() + 1, "00") 
+                + padd(d.getUTCDate(), "00") + "T" 
+                + padd(d.getUTCHours(), "00") + ":" 
+                + padd(d.getUTCMinutes(), "00") + ":" 
+                + padd(d.getUTCSeconds(), "00")
+                + '"]]}';
+        };
+
+        //Array
+        jsonSerialize[apf.ARRAY] = function(a){
+            for (var q = [], i = 0; i < a.length; i++)
+                q.push(JSON.stringify(a[i]));
+
+            return "[" + q.join(", ") + "]";
+        };
+        
+        // Method
+        jsonSerialize[apf.FUNCTION] = function(f){
+            return;
         };
 
 
@@ -278,27 +263,43 @@ if (!self["JSON"]) {
     })();
 }
 
-/**
- * Creates a json string from a javascript object.
- * @param  {mixed}  o the javascript object to serialize.
- * @return {String} the json string representation of the object.
- * @todo allow for XML serialization
- */
-apf.serialize = function(o){
-    return self.JSON.stringify(o);
-};
+return {    
+    /**
+     * Reliably determines whether a variable is a string of JSON.
+     * @see http://json.org/
+     *
+     * @param {mixed}   value The variable to check
+     * @type  {Boolean}
+     */
+    isJson : function(value) {
+        if (!value) return false;
+        return invalid.test(
+            value.replace(escapes, '@').replace(values, ']').replace(brackets, '')
+        );
+    },
+    
+    /**
+     * Creates a json string from a javascript object.
+     * @param  {mixed}  o the javascript object to serialize.
+     * @return {String} the json string representation of the object.
+     * @todo allow for XML serialization
+     */
+    serialize : function(o){
+        return self.JSON.stringify(o);
+    },
+    
+    /**
+     * Evaluate a serialized object back to JS with eval(). When the 'secure' flag
+     * is set to 'TRUE', the provided string will be validated for being valid
+     * JSON.
+     *
+     * @param  {String} str the json string to create an object from.
+     * @return {Object} the object created from the json string.
+     */
+    unserialize : function(str){
+        if (!str) return str;
+        return self.JSON.parse(str);
+    }
+}
 
-/**
- * Evaluate a serialized object back to JS with eval(). When the 'secure' flag
- * is set to 'TRUE', the provided string will be validated for being valid
- * JSON.
- *
- * @param  {String} str the json string to create an object from.
- * @return {Object} the object created from the json string.
- */
-apf.unserialize = function(str){
-    if (!str) return str;
-    return self.JSON.parse(str);
-};
-
-// #endif
+});

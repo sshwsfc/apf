@@ -1,6 +1,6 @@
 require.modify(
-    "lib-xml"
-    "lib-xml/xpath"
+    "lib-xml",
+    "lib-xml/xpath",
     function(){
 
 //XMLDocument.selectNodes

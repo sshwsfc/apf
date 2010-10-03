@@ -1,58 +1,9 @@
-/*
- * See the NOTICE file distributed with this work for additional
- * information regarding copyright ownership.
- *
- * This is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 2.1 of
- * the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this software; if not, write to the Free
- * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
- * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- *
- */
+require.modify(
+    "ecmaext",
+    "ecmaext/date",
+    function(){
 
-/**
- * @term dateformat Format a date based on small strings of characters representing
- * a variable.
- * Syntax:
- * <code>
- * d      day of the month as digits, no leading zero for single-digit days
- * dd     day of the month as digits, leading zero for single-digit days
- * ddd    day of the week as a three-letter abbreviation
- * dddd   day of the week as its full name
- * m      month as digits, no leading zero for single-digit months
- * mm     month as digits, leading zero for single-digit months
- * mmm    month as a three-letter abbreviation
- * mmmm   month as its full name
- * yy     year as last two digits, leading zero for years less than 2010
- * yyyy   year represented by four digits
- * h      hours, no leading zero for single-digit hours (12-hour clock)
- * hh     hours, leading zero for single-digit hours (12-hour clock)
- * H      hours, no leading zero for single-digit hours (24-hour clock)
- * HH     hours, leading zero for single-digit hours (24-hour clock)
- * M      minutes, no leading zero for single-digit minutes
- * MM     minutes, leading zero for single-digit minutes
- * s      seconds, no leading zero for single-digit seconds
- * ss     seconds, leading zero for single-digit seconds
- * </code>
- */
-
-// #ifdef __WITH_DATE
-// Some common format strings
-/**
- * @private
- */
-apf.date = (function() {
-
-return {
+var libDate = {
     masks : {
         "default":      "ddd mmm dd yyyy HH:MM:ss",
         shortDate:      "m/d/yy",
@@ -98,9 +49,7 @@ return {
             "Jan" : 0, "Feb" : 1, "Mar" : 2, "Apr" : 3, "May" : 4, "Jun" : 5,
             "Jul" : 6, "Aug" : 7, "Sep" : 8, "Oct" : 9, "Nov" : 10, "Dec" : 11
         }
-    }
-    // #ifdef __WITH_DATE_EXT
-    ,
+    },
 
     span: function(seconds) {
         if (seconds < 0) return;
@@ -403,218 +352,8 @@ return {
 
         return year_array;
     }
-    // #endif
 };
 
-})();
-
-apf.date.dateFormat = (function () {
-    var	token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
-        timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
-        timezoneClip = /[^-+\dA-Z]/g,
-        pad = function (val, len) {
-            val = String(val);
-            len = len || 2;
-            while (val.length < len) val = "0" + val;
-            return val;
-        };
-
-    // Regexes and supporting functions are cached through closure
-    return function (date, mask, utc) {
-        var dF = apf.date;
-
-        // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
-        if (arguments.length == 1 && (typeof date == "string"
-            || date instanceof String) && !/\d/.test(date)) {
-            mask = date;
-            date = undefined;
-        }
-
-        // Passing date through Date applies apf.date.getDateTime, if necessary
-        date = date ? new Date(date) : new Date();
-
-        if (isNaN(date)) return "NaN";//throw new SyntaxError("invalid date");
-
-        mask = String(dF.masks[mask] || mask || dF.masks["default"]);
-
-        // Allow setting the utc argument via the mask
-        if (mask.slice(0, 4) == "UTC:") {
-            mask = mask.slice(4);
-            utc = true;
-        }
-
-        var	_ = utc ? "getUTC" : "get",
-            d = date[_ + "Date"](),
-            D = date[_ + "Day"](),
-            m = date[_ + "Month"](),
-            y = date[_ + "FullYear"](),
-            H = date[_ + "Hours"](),
-            M = date[_ + "Minutes"](),
-            s = date[_ + "Seconds"](),
-            L = date[_ + "Milliseconds"](),
-            o = utc ? 0 : date.getTimezoneOffset(),
-            flags = {
-                d   : d,
-                dd  : pad(d),
-                ddd : dF.i18n.dayNames[D],
-                dddd: dF.i18n.dayNames[D + 7],
-                m   : m + 1,
-                mm  : pad(m + 1),
-                mmm : dF.i18n.monthNames[m],
-                mmmm: dF.i18n.monthNames[m + 12],
-                yy  : String(y).slice(2),
-                yyyy: y,
-                h   : H % 12 || 12,
-                hh  : pad(H % 12 || 12),
-                H   : H,
-                HH  : pad(H),
-                M   : M,
-                MM  : pad(M),
-                s   : s,
-                ss  : pad(s),
-                l   : pad(L, 3),
-                L   : pad(L > 99 ? Math.round(L / 10) : L),
-                t   : H < 12 ? "a"  : "p",
-                tt  : H < 12 ? "am" : "pm",
-                T   : H < 12 ? "A"  : "P",
-                TT  : H < 12 ? "AM" : "PM",
-                Z   : utc
-                          ? "UTC"
-                          : (String(date).match(timezone) 
-                              || [""]).pop().replace(timezoneClip, ""),
-                o   : (o > 0 ? "-" : "+") 
-                         + pad(Math.floor(Math.abs(o) / 60) * 100
-                         + Math.abs(o) % 60, 4),
-                S   : ["th", "st", "nd", "rd"]
-                      [d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
-            };
-
-        return mask.replace(token, function ($0) {
-            return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
-        });
-    };
-})();
-
-
-/**
- * Create a object representation of date from datetime string parsing it with
- * datetime format string
- * 
- * @param {String}   datetime   the date and time wrote in allowed format
- * @param {String}   format     style of displaying date, created using various
- *                              masks
- *     Possible masks:
- *     d      day of the month as digits, no leading zero for single-digit days
- *     dd     day of the month as digits, leading zero for single-digit days
- *     ddd    day of the week as a three-letter abbreviation
- *     dddd   day of the week as its full name
- *     m      month as digits, no leading zero for single-digit months
- *     mm     month as digits, leading zero for single-digit months
- *     mmm    month as a three-letter abbreviation
- *     mmmm   month as its full name
- *     yy     year as last two digits, leading zero for years less than 2010
- *     yyyy   year represented by four digits
- *     h      hours, no leading zero for single-digit hours (12-hour clock)
- *     hh     hours, leading zero for single-digit hours (12-hour clock)
- *     H      hours, no leading zero for single-digit hours (24-hour clock)
- *     HH     hours, leading zero for single-digit hours (24-hour clock)
- *     M      minutes, no leading zero for single-digit minutes
- *     MM     minutes, leading zero for single-digit minutes
- *     s      seconds, no leading zero for single-digit seconds
- *     ss     seconds, leading zero for single-digit seconds
- */
-apf.date.getDateTime = function(datetime, format) {
-    var token    = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
-        timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC:)(?:[-+]\d{4})?)\b/g,
-        alter    = 0,
-        y        = new Date().getFullYear(),
-        m        = 1,
-        d        = 1,
-        h        = 12,
-        M        = 0,
-        s        = 0,
-        i18n     = apf.date.i18n;
-
-    if (!format) {
-        throw new Error(apf.formatErrorString(0, null,
-            "date-format", "Date format is null"));
-    }
-
-    format = format.replace(timezone, "");
-
-    var str = format.replace(token, function(str, offset, p) {
-        var part = datetime.substring(p + alter, p + alter + str.length);
-
-        switch (str) {
-            case "d":
-            case "m":
-            case "h":
-            case "H":
-            case "M":
-            case "s":
-                if (!/[\/, :\-](d|m|h|H|M|s)$|^(d|m|h|H|M|s)[\/, :\-]|[\/, :\-](d|m|h|H|M|s)[\/, :\-]/.test(format)) {
-                    throw new Error(apf.formatErrorString(0, null,
-                        "date-format", "Dates without leading zero needs separators"));
-                }
-
-                var value = parseInt(datetime.substring(p + alter,
-                    p + alter + 2));
-
-                if (value.toString().length == 2)
-                    alter++;
-    
-                return str == "d"
-                    ? d = value
-                    : (str == "m"
-                        ? m = value
-                        : (str == "M"
-                            ? M = value
-                            : (str == "s"
-                                ? s = value
-                                : h = value))); 
-            case "dd":
-                return d = part; //01-31
-            case "dddd":
-                //changeing alteration because "dddd" have no information about day number
-                alter += i18n.dayNames[i18n.dayNumbers[part.substring(0,3)] + 7].length - 4;
-                break;
-            case "mm":
-                return m = part; //01 - 11
-            case "mmm":
-                return m = i18n.monthNumbers[part] + 1;
-            case "mmmm":
-                var monthNumber = i18n.monthNumbers[part.substring(0, 3)];
-                alter += i18n.monthNames[monthNumber + 12].length - 4;
-                return m = monthNumber + 1;
-            case "yy":
-                return y = parseInt(part) < 70 ? "20" + part : part;
-            case "yyyy":
-                return y = part;
-            case "hh":
-                return h = part;
-            case "HH":
-                return h = part;
-            case "MM":
-                return M = part;
-            case "ss":
-                return s = part;
-            case "T":
-            case "Z":
-                //because in date we have only T
-                alter -= 2;
-                break;
-         }
-    });
-
-    return new Date(y, m-1, d, h, M, s);
-};
-
-// For convenience...
-Date.prototype.format = function (mask, utc) {
-    return apf.date.dateFormat(this, mask, utc);
-};
-
-// #ifdef __WITH_DATE_EXT
 Date.prototype.copy = function() {
     return new Date(this.getTime());
 };
@@ -648,10 +387,10 @@ Date.prototype.addSeconds = function(sec) {
     if (sec < 0)
         return this.subtractSeconds(Math.abs(sec));
 
-    return this.addSpan(new apf.date.span(sec));
+    return this.addSpan(new libDate.span(sec));
 };
 Date.prototype.addSpan = function(span) {
-    if (!(span instanceof apf.date.span)) return this;
+    if (!(span instanceof libDate.span)) return this;
     var d;
 
     this.setSeconds(this.getSeconds() + span.seconds);
@@ -664,7 +403,7 @@ Date.prototype.addSpan = function(span) {
     if (this.getMinutes() >= 60) {
         this.setHours(this.getHours() + 1);
         if (this.getHours() >= 24) {
-            d = apf.date.nextDay(this.getDate(), this.getMonth(), this.getFullYear());
+            d = libDate.nextDay(this.getDate(), this.getMonth(), this.getFullYear());
             this.setFullYear(parseInt(d.year), parseInt(d.month), parseInt(d.day));
             this.setHours(this.getHours() - 24);
         }
@@ -673,14 +412,14 @@ Date.prototype.addSpan = function(span) {
 
     this.setHours(this.getHours() + span.hours);
     if (this.getHours() >= 24) {
-        d = apf.date.nextDay(this.getDate(), this.getMonth(), this.getFullYear());
+        d = libDate.nextDay(this.getDate(), this.getMonth(), this.getFullYear());
         this.setFullYear(parseInt(d.year), parseInt(d.month), parseInt(d.day));
         this.setHours(this.getHours() - 24);
     }
 
-    d = apf.date.dateToDays(this.getDate(), this.getMonth(), this.getFullYear());
+    d = libDate.dateToDays(this.getDate(), this.getMonth(), this.getFullYear());
     d += span.days;
-    var d2 = apf.date.daysToDate(d);
+    var d2 = libDate.daysToDate(d);
 
     this.setFullYear(parseInt(d2.year), parseInt(d2.month), parseInt(d2.day));
     return this;
@@ -692,10 +431,10 @@ Date.prototype.subtractSeconds = function(sec) {
     if (sec < 0)
         return this.addSeconds(Math.abs(sec));
 
-    return this.subtractSpan(new apf.date.span(sec));
+    return this.subtractSpan(new libDate.span(sec));
 };
 Date.prototype.subtractSpan = function(span) {
-    if (!(span instanceof apf.date.span)) return this;
+    if (!(span instanceof libDate.span)) return this;
     var d;
 
     this.setSeconds(this.getSeconds() - span.seconds);
@@ -708,7 +447,7 @@ Date.prototype.subtractSpan = function(span) {
     if (this.getMinutes() < 0) {
         this.setHours(this.getHours() - 1);
         if (this.getHours() < 0) {
-            d = apf.date.prevDay(this.getDate(), this.getMonth(), this.getFullYear());
+            d = libDate.prevDay(this.getDate(), this.getMonth(), this.getFullYear());
             this.setFullYear(parseInt(d.year), parseInt(d.month), parseInt(d.day));
             this.setHours(this.getHours() + 24);
         }
@@ -717,26 +456,26 @@ Date.prototype.subtractSpan = function(span) {
 
     this.setHours(this.getHours() - span.hours);
     if (this.getHours() < 0) {
-        d = apf.date.prevDay(this.getDate(), this.getMonth(), this.getFullYear());
+        d = libDate.prevDay(this.getDate(), this.getMonth(), this.getFullYear());
         this.setFullYear(parseInt(d.year), parseInt(d.month), parseInt(d.day));
         this.setHours(this.getHours() + 24);
     }
 
-    d = apf.date.dateToDays(this.getDate(), this.getMonth(), this.getFullYear());
+    d = libDate.dateToDays(this.getDate(), this.getMonth(), this.getFullYear());
     d -= span.days;
-    var d2 = apf.date.daysToDate(d);
+    var d2 = libDate.daysToDate(d);
     
     this.setFullYear(parseInt(d2.year), parseInt(d2.month), parseInt(d2.day));
     return this;
 };
 Date.prototype.before = function(when) {
-    return (apf.date.compare(this, when) == -1);
+    return (libDate.compare(this, when) == -1);
 };
 Date.prototype.after = function(when) {
-    return (apf.date.compare(this, when) == 1);
+    return (libDate.compare(this, when) == 1);
 };
 Date.prototype.equals = function(when) {
-    return (apf.date.compare(this, when) === 0);
+    return (libDate.compare(this, when) === 0);
 };
 Date.prototype.isFuture = function() {
     return this.after(new Date());
@@ -745,74 +484,42 @@ Date.prototype.isPast = function() {
     return this.before(new Date());
 };
 Date.prototype.isLeapYear = function() {
-    return apf.date.isLeapYear(this.getFullYear());
+    return libDate.isLeapYear(this.getFullYear());
 };
 Date.prototype.getJulianDate = function() {
-    return apf.date.julianDate(this.getDate(), this.getMonth(), this.getFullYear());
+    return libDate.julianDate(this.getDate(), this.getMonth(), this.getFullYear());
 };
 Date.prototype.getWeekOfYear = function() {
-    return apf.date.weekOfYear(this.getDate(), this.getMonth(), this.getFullYear());
+    return libDate.weekOfYear(this.getDate(), this.getMonth(), this.getFullYear());
 };
 Date.prototype.getQuarterOfYear = function() {
-    return apf.date.quarterOfYear(this.getMonth());
+    return libDate.quarterOfYear(this.getMonth());
 };
 Date.prototype.getDaysInMonth = function() {
-    return apf.date.daysInMonth(this.getMonth(), this.getFullYear());
+    return libDate.daysInMonth(this.getMonth(), this.getFullYear());
 };
 Date.prototype.getWeeksInMonth = function() {
-    return apf.date.weeksInMonth(this.getMonth(), this.getFullYear());
+    return libDate.weeksInMonth(this.getMonth(), this.getFullYear());
 };
 Date.prototype.getNextDay =
 Date.prototype.getNextWeekday = function() {
-    var d = apf.date.nextDay(this.getDate(), this.getMonth(), this.getFullYear());
+    var d = libDate.nextDay(this.getDate(), this.getMonth(), this.getFullYear());
     return this.copy().setFullYear(d.year, d.month, d.day);
 };
 Date.prototype.getPrevDay =
 Date.prototype.getPrevWeekday = function() {
-    var d = apf.date.prevDay(this.getDate(), this.getMonth(), this.getFullYear());
+    var d = libDate.prevDay(this.getDate(), this.getMonth(), this.getFullYear());
     return this.copy().setFullYear(d.year, d.month, d.day);
 };
 Date.prototype.getCalendarWeek = function() {
-    return apf.date.getCalendarWeek(this.getDate(), this.getMonth(), this.getFullYear());
+    return libDate.getCalendarWeek(this.getDate(), this.getMonth(), this.getFullYear());
 };
 Date.prototype.getCalendarMonth = function() {
-    return apf.date.getCalendarMonth(this.getMonth(), this.getFullYear());
+    return libDate.getCalendarMonth(this.getMonth(), this.getFullYear());
 };
 Date.prototype.getCalendarYear = function() {
-    return apf.date.getCalendarYear(this.getFullYear());
+    return libDate.getCalendarYear(this.getFullYear());
 };
-Date.prototype.fromISO8601 = function(formattedString) {
-    var match  = formattedString.match(/^(?:(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(.\d+)?)?((?:[+-](\d{2}):(\d{2}))|Z)?)?$/),
-        result = null;
-
-    if (match) {
-        match.shift();
-        if (match[1])
-            match[1]--; // Javascript Date months are 0-based
-        if (match[6])
-            match[6] *= 1000; // Javascript Date expects fractional seconds as milliseconds
-
-        result = new Date(match[0]||1970, match[1]||0, match[2]||1, match[3]||0, match[4]||0, match[5]||0, match[6]||0); //TODO: UTC defaults
-        if (match[0] < 100)
-            result.setFullYear(match[0] || 1970);
-
-        var offset = 0,
-        zoneSign = match[7] && match[7].charAt(0);
-        if (zoneSign != "Z"){
-            offset = ((match[8] || 0) * 60) + (Number(match[9]) || 0);
-            if(zoneSign != "-")
-                offset *= -1;
-        }
-        if (zoneSign)
-            offset -= result.getTimezoneOffset();
-        if (offset)
-            result.setTime(result.getTime() + offset * 60000);
-    }
-    else 
-        return new Date(formattedString);
-
-    return result; // Date or null
-}
 
 Date.prototype.getUTCTime = function() {
     //Date.UTC(year, month[, date[, hrs[, min[, sec[, ms]]]]])
@@ -821,25 +528,4 @@ Date.prototype.getUTCTime = function() {
         this.getUTCMilliseconds());
 };
 
-Date.prototype.toISO8601 = function(date) {
-    var pad = function (amount, width) {
-        var padding = "";
-        while (padding.length < width - 1 && amount < Math.pow(10, width - padding.length - 1))
-            padding += "0";
-        return padding + amount.toString();
-    }
-    date = date ? date : new Date();
-    var offset = date.getTimezoneOffset();
-    return pad(date.getFullYear(), 4)
-        + "-" + pad(date.getMonth() + 1, 2)
-        + "-" + pad(date.getDate(), 2)
-        + "T" + pad(date.getHours(), 2)
-        + ":" + pad(date.getMinutes(), 2)
-        + ":" + pad(date.getUTCSeconds(), 2)
-        + (offset > 0 ? "-" : "+")
-        + pad(Math.floor(Math.abs(offset) / 60), 2)
-        + ":" + pad(Math.abs(offset) % 60, 2);
-};
-// #endif
-
-// #endif
+});

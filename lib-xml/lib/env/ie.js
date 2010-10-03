@@ -14,7 +14,7 @@ var getXmlDom = function(message, noError, preserveWhiteSpaces){
         xmlParser.loadXML(message);
 
         if (!noError)
-            libXml.xmlParseError(xmlParser, message);
+            getXmlDom.xmlParseError(xmlParser, message);
     }
 
     return xmlParser;
