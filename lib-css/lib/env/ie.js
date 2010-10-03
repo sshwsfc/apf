@@ -22,8 +22,8 @@
 require.modify(
     "lib-css", 
     "lib-css/ie", 
-    ["lib-css", "envdetect"]
-    function(css, env){
+    ["lib-css", "envdetect", "envdetect/features"]
+    function(css, env, features){
 
 /**
  * This method retrieves the current value of a property on a HTML element
@@ -36,11 +36,11 @@ css.getStyle = function(el, prop) {
 };
 
 css.getWindowWidth = function(){
-    return document.documentElement.offsetWidth - apf.windowHorBorder;
+    return document.documentElement.offsetWidth - features.windowHorBorder;
 }
 
 css.getWindowHeight = function(){
-    return document.documentElement.offsetHeight - apf.windowVerBorder;
+    return document.documentElement.offsetHeight - features.windowVerBorder;
 }
 
 css.getHtmlLeft = function(oHtml){
