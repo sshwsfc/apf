@@ -19,12 +19,15 @@
  *
  */
 
-// #ifdef __WITH_LAYOUT
+require.def([
+    "envdetect/features", 
+    "aml-core/util/uniquehtml"], 
+    function(features, uniqueHtml){
 
 /**
  * Object dealing with layout updates
  */
-apf.layout = {
+return {
     compile : function(oHtml){
         var l = this.layouts[oHtml.getAttribute("id")];
         if (!l) return false;
@@ -56,7 +59,7 @@ apf.layout = {
         
         var id;
         if (!(id = this.getHtmlId(oHtml)))
-            id = apf.setUniqueHtmlId(oHtml);
+            id = uniqueHtml.setUniqueHtmlId(oHtml);
             
         if (q[id]) {
             if (obj)
@@ -68,10 +71,12 @@ apf.layout = {
 
         q[id] = [oHtml, compile, [obj]];
 
-        if (!this.timer)
-            this.timer = apf.setZeroTimeout(function(){
-                apf.layout.processQueue();
+        if (!this.timer) {
+            var _self = this;
+            this.timer = setTimeout(function(){ //zero timeout??
+                _self.processQueue();
             });
+        }
     },
 
     processQueue : function(){
@@ -95,7 +100,7 @@ apf.layout = {
                 qItem = qlist[id];
     
                 if (qItem[1])
-                    apf.layout.compileAlignment(qItem[1]);
+                    this.compileAlignment(qItem[1]);
     
                 list = qItem[2];
                 for (i = 0, l = list.length; i < l; i++) {
@@ -109,12 +114,12 @@ apf.layout = {
                     }
                 }
     
-                apf.layout.activateRules(qItem[0]);
+                this.activateRules(qItem[0]);
             }
         } while (this.$hasQueue);
         
-        if (apf.hasSingleRszEvent)
-            apf.layout.forceResize();
+        if (features.hasSingleRszEvent)
+            this.forceResize();
 
         this.dlist = [];
         
@@ -139,7 +144,7 @@ apf.layout = {
      */
     setRules : function(oHtml, id, rules, overwrite){
         if (!this.getHtmlId(oHtml))
-            apf.setUniqueHtmlId(oHtml);
+            uniqueHtml.setUniqueHtmlId(oHtml);
         if (!this.rules[this.getHtmlId(oHtml)])
             this.rules[this.getHtmlId(oHtml)] = {};
 
@@ -182,7 +187,7 @@ apf.layout = {
         if (!prop)
             delete this.rules[htmlId]
 
-        if (apf.hasSingleRszEvent) {
+        if (features.hasSingleRszEvent) {
             if (this.onresize[htmlId])
                 this.onresize[htmlId] = null;
             else {
@@ -207,7 +212,7 @@ apf.layout = {
      * @param {HTMLElement} oHtml       the element that triggers the execution of the rules.
      */
     activateRules : function(oHtml, no_exec){
-        if (!oHtml) { //!apf.hasSingleRszEvent &&
+        if (!oHtml) { //!features.hasSingleRszEvent &&
             var prop, obj;
             for(prop in this.rules) {
                 obj = document.getElementById(prop);
@@ -216,13 +221,13 @@ apf.layout = {
                 this.activateRules(obj);
             }
 
-             if (apf.hasSingleRszEvent && window.onresize)
+             if (features.hasSingleRszEvent && window.onresize)
                 window.onresize();
             return;
         }
 
         var rsz, id, rule, rules, strRules = [];
-        if (!apf.hasSingleRszEvent) {
+        if (!features.hasSingleRszEvent) {
             rules = this.rules[this.getHtmlId(oHtml)];
             if (!rules){
                 oHtml.onresize = null;
@@ -235,8 +240,7 @@ apf.layout = {
                 strRules.push(rules[id]);
             }
 
-            //apf.console.info(strRules.join("\n"));
-            rsz = apf.needsCssPx
+            rsz = features.needsCssPx
                 ? new Function(strRules.join("\n"))
                 : new Function(strRules.join("\n").replace(/ \+ 'px'|try\{\}catch\(e\)\{\}\n/g,""))
 
@@ -279,17 +283,7 @@ apf.layout = {
                 f();
 
             if (!window.onresize) {
-                /*var f = apf.layout.onresize;
-                window.onresize = function(){
-                    var s = [];
-                    for (var name in f)
-                        s.unshift(f[name]);
-                    for (var i = 0; i < s.length; i++)
-                        s[i]();
-                }*/
-                
                 var rsz = function(f){
-                    //@todo fix this
                     try{
                         var c = [];
                         for (var name in f)
@@ -307,8 +301,9 @@ apf.layout = {
                     }
                 }
                 
+                var _self = this;
                 window.onresize = function(){
-                    rsz(apf.layout.onresize);
+                    rsz(_self.onresize);
                 }
             }
         }
@@ -319,11 +314,11 @@ apf.layout = {
      * @param {HTMLElement} oHtml  the element for which the rules are executed.
      */
     forceResize : function(oHtml){
-        if (apf.hasSingleRszEvent)
+        if (features.hasSingleRszEvent)
             return window.onresize && window.onresize();
 
         /* @todo this should be done recursive, old way for now
-        apf.hasSingleRszEvent
+        features.hasSingleRszEvent
             ? this.onresize[this.getHtmlId(oHtml)]
             :
         */
@@ -347,7 +342,7 @@ apf.layout = {
      * @param {Function}    func   the resize code that is used temporarily for resize of the html element.
      */
     pause  : function(oHtml, replaceFunc){
-        if (apf.hasSingleRszEvent) {
+        if (features.hasSingleRszEvent) {
             var htmlId = this.getHtmlId(oHtml);
             this.paused[htmlId] = this.onresize[htmlId] || true;
 
@@ -379,7 +374,7 @@ apf.layout = {
         if (!this.paused[this.getHtmlId(oHtml)])
             return;
 
-        if (apf.hasSingleRszEvent) {
+        if (features.hasSingleRszEvent) {
             var htmlId = this.getHtmlId(oHtml);
             var oldFunc = this.paused[htmlId];
             if (typeof oldFunc == "function") {
@@ -407,4 +402,5 @@ apf.layout = {
         }
     }
 };
-// #endif
+
+});

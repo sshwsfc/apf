@@ -19,16 +19,28 @@
  *
  */
 
-//#ifdef __WITH_POPUP
+/*
+envdetect/features
+aml-core/focus
+lib-css/position
+*/
+
+require.def([
+    "aml-core", 
+    "aml-core/focus",
+    "envdetect/features", 
+    "lib-css", 
+    "lib-css/position", 
+    "hotkey"],
+    function(amlCore, focusManager, features, css, position, hotkey){
+
+var popup;
 
 amlCore.addListener(window, "unload", function(){
-    apf.popup.destroy();
+    popup.destroy();
 });
 
-/**
- * @private
- */
-apf.popup = {
+return popup = {
     cache      : {},
     focusFix   : {"INPUT":1,"TEXTAREA":1,"SELECT":1},
     
@@ -50,7 +62,7 @@ apf.popup = {
 
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug 
-              && !apf.popup.focusFix[(e.srcElement || e.target).tagName]) {
+              && !popup.focusFix[(e.srcElement || e.target).tagName]) {
                 apf.window.$focusfix();
             }
             //#endif
@@ -74,7 +86,7 @@ apf.popup = {
         
         apf.addEventListener("hotkey", function(e){
             if (e.keyCode == "27" || e.altKey) 
-                apf.popup.forceHide();
+                popup.forceHide();
         });
     },
     
@@ -124,7 +136,7 @@ apf.popup = {
             }
 
             if (!fixed) {
-                pos = apf.getAbsolutePosition(options.ref,
+                pos = position.getAbsolutePosition(options.ref,
                             o.content.offsetParent || o.content.parentNode),//[ref.offsetLeft+2,ref.offsetTop+4];//
                 top = (options.y || 0) + pos[1],
                     //+ (apf.isWebkit ? window.pageYOffset : 0), <-- appears to be needed in NEW safari...
@@ -146,7 +158,7 @@ apf.popup = {
                     : top) + "px"
             }
             else {
-                pos = apf.getAbsolutePosition(options.ref, p);
+                pos = position.getAbsolutePosition(options.ref, p);
                 top = (options.y || 0) + pos[1] + p.offsetTop;
                 pos[0] += p.offsetLeft;
                 popup.style.position = "fixed";
@@ -207,7 +219,7 @@ apf.popup = {
         }
 
         $setTimeout(function(){
-            apf.popup.last = cacheId;
+            popup.last = cacheId;
         });
 
         if (options.draggable) {
@@ -265,7 +277,7 @@ apf.popup = {
             
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug
-              && !apf.popup.focusFix[(e.srcElement || e.target).tagName]) {
+              && !popup.focusFix[(e.srcElement || e.target).tagName]) {
                 apf.window.$focusfix();
             }
             //#endif
@@ -310,6 +322,7 @@ apf.popup = {
         //this.popup.document.body.c = null;
         //this.popup.document.body.onmouseover = null;
     }
-}
+};
 
-//#endif
+    }
+);

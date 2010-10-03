@@ -263,12 +263,12 @@ oop.inherits(Button, BaseButton);
             apf.setNodeValue(this.$hotkey, value);
 
         if (this.$lastHotkey)
-            apf.removeHotkey(this.$lastHotkey);
+            hotkey.remove(this.$lastHotkey);
 
         if (value) {
             this.$lastHotkey = value;
             var _self = this;
-            apf.registerHotkey(value, function(){
+            hotkey.register(value, function(){
                 //hmm not very scalable...
                 _self.$setState("Over", {});
 

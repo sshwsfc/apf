@@ -1,18 +1,12 @@
-//#ifdef __WITH_HOTKEY
-//@todo maybe generalize this to pub/sub event system??
-/**
- * @private
- */
-apf.hotkeys = {};
+require.def(
+    ["aml-core", "lib-oop/class", "envdetect/features"],
+    function(amlCore, Class, features){
+
+var HotKeyManager = new Class();
+
 (function() {
-    /**
-     * @private
-     */
     var keyMods = {"ctrl": 1, "alt": 2, "option" : 2, "shift": 4, "meta": 8, "command": 8};
 
-    /**
-     * @private
-     */
     this.keyNames = {
         "8"  : "Backspace",
         "9"  : "Tab",
@@ -75,13 +69,11 @@ apf.hotkeys = {};
     // hash to store the hotkeys in
     this.$keys = {};
 
-    var _self = this;
-
     /**
      * Registers a hotkey handler to a key combination.
      * Example:
      * <code>
-     *   apf.registerHotkey('Ctrl-Z', undoHandler);
+     *   hotkey.register('Ctrl-Z', undoHandler);
      * </code>
      * @param {String}   hotkey  the key combination to user. This is a
      * combination of Ctrl, Alt, Shift and a normal key to press. Use + to
@@ -89,7 +81,7 @@ apf.hotkeys = {};
      * @param {Function} handler the code to be executed when the key
      * combination is pressed.
      */
-    apf.registerHotkey = this.register = function(hotkey, handler){
+    this.register = function(hotkey, handler){
         var key,
             hashId = 0,
             keys   = hotkey.splitSafe("\\-", null, true),
@@ -109,18 +101,18 @@ apf.hotkeys = {};
         }
         //#endif
 
-        (_self.$keys[hashId] || (_self.$keys[hashId] = {}))[key] = handler;
+        (this.$keys[hashId] || (this.$keys[hashId] = {}))[key] = handler;
     };
 
     this.$exec = function(eInfo) {
         var hashId = 0 | (eInfo.ctrlKey ? 1 : 0) | (eInfo.altKey ? 2 : 0)
             | (eInfo.shiftKey ? 4 : 0) | (eInfo.metaKey ? 8 : 0);
 
-        var key = _self.keyNames[eInfo.keyCode];
+        var key = this.keyNames[eInfo.keyCode];
         if (!hashId && !key) //Hotkeys should always have one of the modifiers
             return;
 
-        var handler = (_self.$keys[hashId] || {})[(key
+        var handler = (this.$keys[hashId] || {})[(key
             || String.fromCharCode(eInfo.keyCode)).toLowerCase()];
         if (handler) {
             eInfo.returnValue = handler();
@@ -136,8 +128,8 @@ apf.hotkeys = {};
      * Removes a registered hotkey.
      * @param {String} hotkey the hotkey combination.
      */
-    apf.removeHotkey = this.remove = this.unregister = function(hotkey) {
-        _self.register(hotkey, null);
+    this.remove = function(hotkey) {
+        this.register(hotkey, null);
     };
 
     this.toMacNotation = function(hotkey, bHtml) {
@@ -154,13 +146,14 @@ apf.hotkeys = {};
         return keys.join(" ");
     };
 
+    //@todo add keydown for each documents in amlCore
     apf.addEventListener("keydown", function(eInfo) {
         var e = eInfo.htmlEvent;
-        //Hotkey
-        if (/*!eInfo.isTextInput && */_self.$exec(eInfo) === false
+        //Hotkey /*!eInfo.isTextInput && */
+        if (HotKeyManager.$exec(eInfo) === false
           || eInfo.returnValue === false) {
             amlCore.stopEvent(e);
-            if (apf.canDisableKeyCodes) {
+            if (features.canDisableKeyCodes) {
                 try {
                     e.keyCode = 0;
                 }
@@ -180,16 +173,18 @@ apf.hotkeys = {};
         if (e.metaKey)
             keys.push("Meta");
 
-        if (_self.keyNames[e.keyCode])
-            keys.push(_self.keyNames[e.keyCode]);
+        if (this.keyNames[e.keyCode])
+            keys.push(this.keyNames[e.keyCode]);
 
         if (keys.length) {
-            if (e.keyCode > 46 && !_self.keyNames[e.keyCode])
+            if (e.keyCode > 46 && !this.keyNames[e.keyCode])
                 keys.push(String.fromCharCode(e.keyCode));
-            apf.setProperty("hotkey", keys.join("-"));
+            HotKeyManager.setProperty("hotkey", keys.join("-"));
         }
         //#endif
     });
-}).call(apf.hotkeys);
+}).call(HotKeyManager);
 
-//#endif
+return HotKeyManager;
+
+});
