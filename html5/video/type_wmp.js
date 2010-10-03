@@ -165,7 +165,7 @@ apf.video.TypeWmp = function(oVideo, node, options) {
     this.player    = this.pollTimer = null;
     this.volume    = 50; //default WMP
     this.videoPath = options.src;
-    apf.extend(this, apf.video.TypeInterface);
+    Object.extend(this, apf.video.TypeInterface);
 
     this.setOptions(options);
     var _self = this;

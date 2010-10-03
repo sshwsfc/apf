@@ -226,7 +226,7 @@ apf.getData = function(instruction, options){
             }
             else {
                 //#ifdef __WITH_NAMESERVER
-                model = apf.nameserver.get("model", model)
+                model = nameserver.get("model", model)
                 //#endif
             }
             
@@ -338,7 +338,7 @@ apf.setModel = function(instruction, amlNode){
 
     if (instruction == "@default" || fParsed.type == 2) {
         //#ifdef __WITH_NAMESERVER
-        var model = apf.nameserver.get("model", instruction);
+        var model = nameserver.get("model", instruction);
         if (model)
             return model.register(amlNode);
         else
@@ -362,12 +362,12 @@ apf.setModel = function(instruction, amlNode){
             if (fParsed.xpaths.length == 2 && fParsed.xpaths[0] != '#' && fParsed.xpaths [1] != '#') {
                 //#ifdef __WITH_NAMESERVER
                 //#ifdef __DEBUG
-                if (!apf.nameserver.get("model", fParsed.xpaths[0])) {
+                if (!nameserver.get("model", fParsed.xpaths[0])) {
                     throw new Error("Could not find model '" + fParsed.xpaths[0] + "' in " + instruction); //@todo apf3.0 make proper error
                 }
                 //#endif
                 
-                apf.nameserver.get("model", fParsed.xpaths[0]).register(amlNode, fParsed.xpaths[1]);
+                nameserver.get("model", fParsed.xpaths[0]).register(amlNode, fParsed.xpaths[1]);
                 //#endif
                 return;
             }

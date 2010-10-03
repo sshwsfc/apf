@@ -86,7 +86,7 @@ apf.Sort = function(xmlNode){
     this.set = function(struct, clear){
         if (clear) settings = {};
         
-        apf.extend(settings, struct);
+        Object.extend(settings, struct);
 
         if (settings.ascending == undefined)
             settings.ascending = struct.order 
@@ -126,7 +126,7 @@ apf.Sort = function(xmlNode){
     };
     
     this.get = function(){
-        return apf.extend({}, settings);
+        return Object.extend({}, settings);
     };
     
     //use this function in __xmlUpdate [this function isnt done yet]

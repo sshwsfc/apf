@@ -62,7 +62,7 @@ apf.video.TypeFlv = function(oVideo, node, options) {
 
     // Initialize player
     this.player = null;
-    apf.extend(this, apf.video.TypeInterface);
+    Object.extend(this, apf.video.TypeInterface);
 
     this.initProperties().setOptions(options).createPlayer();
 }

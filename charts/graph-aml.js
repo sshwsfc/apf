@@ -43,7 +43,7 @@
 apf.aml.setElement("graph", apf.Graph);
  
 (function(){
-    //this.$attrExcludePropBind = apf.extend({
+    //this.$attrExcludePropBind = Object.extend({
     //���style : 1
     //}, this.$attrExcludePropBind);
 

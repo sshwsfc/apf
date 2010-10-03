@@ -56,7 +56,7 @@ apf.XhtmlElement = function(struct, tagName){
         if (this.$ext) {
             if (type.substr(0,2) == "on")
                 type = type.substr(2);
-            apf.addListener(this.$ext, type, this.$de);
+            amlCore.addListener(this.$ext, type, this.$de);
         }
     };
     
@@ -69,12 +69,12 @@ apf.XhtmlElement = function(struct, tagName){
         //#endif
         
         if (this.$ext)
-            apf.removeListener(this.$ext, type, this.$de);
+            amlCore.removeListener(this.$ext, type, this.$de);
     }
     
     this.$propertyHandler = function(name, value, force, inherit){
         if (this.$booleanProperties[name])
-            value = apf.isTrue(value);
+            value = util.isTrue(value);
 
         this[name] = value;
         var handler = this.$propHandlers && this.$propHandlers[name]
@@ -105,7 +105,7 @@ apf.XhtmlElement = function(struct, tagName){
             str = str.replace(/ on\w+="[^"]*"| on\w+='[^']*'/g, "");
             
             this.$ext = 
-            this.$int = apf.insertHtmlNode(null, pHtmlNode, null, apf.html_entity_decode(str));
+            this.$int = apf.insertHtmlNode(null, pHtmlNode, null, str.unescapeHTML());
         }
         else {
             this.$ext = this.$int = 

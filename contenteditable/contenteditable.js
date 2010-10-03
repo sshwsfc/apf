@@ -55,7 +55,7 @@ apf.addEventListener("load", function(){
                 apf.document.execCommand("rename", false, key == 13);
                 
                 window.focus(); //@todo don't know why this is needed...
-                apf.stopPropagation(e);
+                amlCore.stopPropagation(e);
                 return false;
             }
             else if (apf.hasContentEditableContainerBug && key == 8
@@ -341,7 +341,7 @@ apf.ContentEditable = function() {
                     if (apf.isIE)
                         htmlNode.ondblclick = apf.ContentEditable.$renameStart;
                     else {
-                        apf.addListener(htmlNode, "mousedown", 
+                        amlCore.addListener(htmlNode, "mousedown", 
                           apf.ContentEditable.$renameStart);
                     }
                     
@@ -380,11 +380,11 @@ apf.ContentEditable = function() {
                 
                 //Unset draggable
                 if (n = this.getAttributeNode("draggable")) {
-                    apf.removeListener(this.$ext, "mousedown", this.$dragStart);
+                    amlCore.removeListener(this.$ext, "mousedown", this.$dragStart);
                     n.$triggerUpdate();
                 }
                 else {
-                    apf.removeListener(this.$ext, "mousedown", this.$dragStart);
+                    amlCore.removeListener(this.$ext, "mousedown", this.$dragStart);
                     (this.$propHandlers["draggable"]
                       || apf.GuiElement.propHandlers["draggable"]).call(this, this.localName == "window" || false); //@todo hack!
                 }
@@ -437,7 +437,7 @@ apf.ContentEditable = function() {
                     if (apf.isIE)
                         htmlNode.ondblclick = null;
                     else {
-                        apf.removeListener(htmlNode, "mousedown", 
+                        amlCore.removeListener(htmlNode, "mousedown", 
                             apf.ContentEditable.$renameStart);
                     }
                     
@@ -472,7 +472,7 @@ apf.ContentEditable = function() {
         }catch(e){}
         
         if (!this.editable) {
-            this.editable = apf.isTrue(apf.getInheritedAttribute(this, "editable"));
+            this.editable = util.isTrue(apf.getInheritedAttribute(this, "editable"));
             if (this.editable) {
                 this.$propHandlers["editable"].call(this, true);
                 this.dispatchEvent("prop.editable", {value: true});
@@ -491,7 +491,7 @@ apf.ContentEditable.$contextMenu = function(e){
         htmlEvent: e
     });
 
-    apf.stopEvent(e)
+    amlCore.stopEvent(e)
     return false;
 };
 
@@ -504,7 +504,7 @@ apf.ContentEditable.$contextMenu = function(e){
             return;
         
         apf.findHost(e.srcElement).ownerDocument.execCommand("rename", true);
-        apf.stopPropagation(e);
+        amlCore.stopPropagation(e);
       }
       : function(e){
         if (e.target != this)
@@ -514,7 +514,7 @@ apf.ContentEditable.$contextMenu = function(e){
             time = [new Date().getTime(), e.target];
         else if (time) {
             apf.findHost(e.target).ownerDocument.execCommand("rename", true);
-            apf.stopPropagation(e);
+            amlCore.stopPropagation(e);
             time = null;
         }
       }
@@ -531,7 +531,7 @@ apf.ContentEditable.$renameSkinChange = function(e){
         //e.ext ... .ondblclick        = null;
     }
     else {
-        apf.addListener(htmlNode, "mousedown", 
+        amlCore.addListener(htmlNode, "mousedown", 
           apf.ContentEditable.$renameStart);
     }
 }

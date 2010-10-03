@@ -139,7 +139,7 @@ apf.BindingEachRule = function(struct, tagName){
 
 (function(){
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         "sort"         : 1,
         "data-type"    : 1,
         "date-format"  : 1,

@@ -241,7 +241,7 @@ apf.$debugwin = {
             apf.$debugwin.apf.console.error(
               (apf.$debugwin.apf != apf ? "[Debug Window Error]: " : "") 
                 + "Error on line " + linenr + " of " 
-                + apf.removePathContext(apf.hostPath, filename) + "\n" + message);
+                + util.removePathContext(apf.hostPath, filename) + "\n" + message);
                 //.replace(/</g, "&lt;")
                 //.replace(/\n/g, "\n<br />")
         }
@@ -684,14 +684,14 @@ apf.$debugwin = {
         }
         else if (lut[docId] != doc) {
             //#ifdef __WITH_NAMESERVER
-            var model1 = this.apf.nameserver.get("model", docId);
+            var model1 = this.nameserver.get("model", docId);
             lut[docId] = doc;
 
-            var model2 = apf.nameserver.get("model", docId);
+            var model2 = nameserver.get("model", docId);
             apf.xmldb.getXmlDocId(doc, model2);
             
             if (model1)
-                apf.nameserver.register("model", docId, model1);
+                nameserver.register("model", docId, model1);
             //#endif
         }
         
@@ -810,7 +810,7 @@ apf.$debugwin = {
                 var func = apf.$debugwin.apf.lm.compile(code, {parsecode : true});
                 if (model && !loaded) {
                     //#ifdef __WITH_NAMESERVER
-                    if (data = apf.$debugwin.apf.nameserver.get("model", model))
+                    if (data = apf.$debugwin.nameserver.get("model", model))
                         data = data.data;
                     //#endif
                     if (!data) {
@@ -1012,8 +1012,8 @@ apf.$debugwin = {
             if (apf.isIE) {
                 apf.setStyleRule("BODY", "overflow", "", 0);
     
-                p = apf.getBox(apf.getStyle(document.body, "padding"));
-                m = apf.getBox(apf.getStyle(document.body, "margin"));
+                p = util.getBox(apf.getStyle(document.body, "padding"));
+                m = util.getBox(apf.getStyle(document.body, "margin"));
                 o = [apf.getStyle(document.documentElement, "overflow"),
                          apf.getStyle(document.documentElement, "overflowX"),
                          apf.getStyle(document.documentElement, "overflowY")];

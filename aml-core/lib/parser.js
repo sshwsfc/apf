@@ -497,10 +497,10 @@ return {
                     pNode = info[0];
                     if ("P".indexOf(pNode.tagName) > -1) {
                         lastBefore = pNode.parentNode.insertBefore(
-                            apf.getNode(loop, [0]), pNode);
+                            util.getFirstElement(loop), pNode);
                     }
                     else {
-                        firstNode = apf.getNode(loop, [0]);
+                        firstNode = util.getFirstElement(loop);
                         while(firstNode){
                             if (firstNode) {
                                 lastBefore = pNode.insertBefore(firstNode,
@@ -511,7 +511,7 @@ return {
                                     ? lastBefore
                                     : info[1];
                             }
-                            firstNode = apf.getNode(loop, [0]);
+                            firstNode = util.getFirstElement(loop);
                         }
                     }
 

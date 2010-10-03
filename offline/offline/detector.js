@@ -64,7 +64,7 @@ apf.offline.detector = {
                     + "resources/network_check.txt";
             #endif */
 
-            this.detection = apf.isTrue(aml.getAttribute("detection"))
+            this.detection = util.isTrue(aml.getAttribute("detection"))
                 ? "auto"
                 : aml.getAttribute("detection") || "auto";
 
@@ -93,7 +93,7 @@ apf.offline.detector = {
     },
 
     isSiteAvailable : function(callback){
-        this.oHttp.get(apf.getNoCacheUrl(this.detectUrl), {
+        this.oHttp.get(util.getNoCacheUrl(this.detectUrl), {
             callback: function(data, state, extra){
                 if(state != apf.SUCCESS || !window.navigator.onLine){
                     apf.offline.goOffline(callback); //retry here??

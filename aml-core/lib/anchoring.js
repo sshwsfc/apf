@@ -190,7 +190,7 @@ apf.Anchoring = function(){
             return;
 
         /**** Properties and Attributes ****/
-        apf.extend(this.$propHandlers, propHandlers);
+        Object.extend(this.$propHandlers, propHandlers);
 
         /**** Event handlers ****/
         this.addEventListener("DOMNodeRemoved", remove); 
@@ -317,7 +317,7 @@ apf.Anchoring = function(){
         if (!this.$anchoringEnabled)
             return;
 
-        if (!apf.window.vManager.check(this, "anchoring", visCheck))
+        if (!vManager.check(this, "anchoring", visCheck))
             return;
 
         if (!this.$parsed) {

@@ -36,15 +36,15 @@ apf.defaults = function(struct, tagName){
     //#ifdef __WITH_NAMESERVER
     this.$propHandlers["for"] = function(value){
         if (this.$lastFor)
-            apf.nameserver.remove("defaults_" + this.$lastFor, this);
+            nameserver.remove("defaults_" + this.$lastFor, this);
 
-        apf.nameserver.add("defaults_" + value, this);
+        nameserver.add("defaults_" + value, this);
         this.$lastFor = value;
     }
     
     //@todo apf3.x how should this work?
     this.addEventListener("DOMNodeRemovedFromDocument", function(e){
-        apf.nameserver.remove("defaults_" + this.$lastFor, this);
+        nameserver.remove("defaults_" + this.$lastFor, this);
     });
     //#endif
 }).call(apf.defaults.prototype = new apf.AmlElement());

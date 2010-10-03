@@ -1198,13 +1198,13 @@ apf.BaseTree = function(){
         if (this.nocollapse)
             this.startcollapsed = false;
         else if (this.startcollapsed === 1)
-            this.startcollapsed = !apf.isFalse(this.$getOption("main", "startcollapsed"));
+            this.startcollapsed = !util.isFalse(this.$getOption("main", "startcollapsed"));
     });
     
     this.addEventListener("DOMNodeRemovedFromDocument", function(){
         this.$ext.onclick = null;
         
-        apf.destroyHtmlNode(this.oDrag);
+        amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     });
 // #ifdef __WITH_MULTISELECT

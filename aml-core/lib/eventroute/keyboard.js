@@ -1,6 +1,6 @@
 
     // Keyboard forwarding to focussed object
-    apf.addListener(document, "keyup", this.$keyup = function(e){
+    amlCore.addListener(document, "keyup", this.$keyup = function(e){
         if (!e) e = event;
 
         //#ifdef __WITH_KEYBOARD
@@ -17,7 +17,7 @@
         if ((aEl && !aEl.disableKeyboard
           ? aEl.dispatchEvent("keyup", ev)
           : apf.dispatchEvent("keyup", ev)) === false) {
-            apf.preventDefault(e);
+            amlCore.preventDefault(e);
             return false;
         }
         //#endif
@@ -26,7 +26,7 @@
     
     //var browserNavKeys = {32:1,33:1,34:1,35:1,36:1,37:1,38:1,39:1,40:1}
     
-    apf.addListener(document, "keyup", function(e){
+    amlCore.addListener(document, "keyup", function(e){
         e = e || event;
 
         if (e.ctrlKey && e.keyCode == 9 && apf.document.activeElement) {
@@ -51,7 +51,7 @@
     });
     
     //@todo optimize this function
-    apf.addListener(document, "keydown", this.$keydown = function(e){
+    amlCore.addListener(document, "keydown", this.$keydown = function(e){
         e = e || event;
 
         //#ifdef __WITH_DEBUG_WIN
@@ -115,7 +115,7 @@
         if ((aEl && !aEl.disableKeyboard && !aEl.editable
           ? aEl.dispatchEvent("keydown", eInfo) 
           : apf.dispatchEvent("keydown", eInfo)) === false) {
-            apf.stopEvent(e);
+            amlCore.stopEvent(e);
             if (apf.canDisableKeyCodes) {
                 try {
                     e.keyCode = 0;

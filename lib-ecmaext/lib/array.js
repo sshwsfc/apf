@@ -4,6 +4,17 @@ require.modify(
     function(){
 
 /**
+ * Reliably determines whether a variable is an array.
+ * @see http://thinkweb2.com/projects/prototype/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/
+ *
+ * @param {mixed}   value The variable to check
+ * @type  {Boolean}
+ */
+Array.isArray = function(o) {
+    return o.dataType == ecma.ARRAY;
+},
+
+/**
  * Copy an array, like this statement would: 'this.concat([])', but then do it
  * recursively.
  */

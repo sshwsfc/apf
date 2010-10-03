@@ -93,7 +93,7 @@ apf.xmlrpc = function(){
             //<![CDATA[***your text here***]]>
             //return "<string><![CDATA[" + s.replace(/\]\]\>/g, "")
             //    .replace(/\<\!\[\CDATA\[/g, "") + "]]></string>";
-            return "<string><![CDATA[" + apf.xmlentities(s) + "]]></string>";
+            return "<string><![CDATA[" + xmlEntity.encode(s) + "]]></string>";
             //var str = "<string>" + s.replace(/\&/g, "&amp;")
             //    .replace(/\</g, "&lt;").replace(/\>/g, "&gt;") + "</string>";
         },
@@ -171,7 +171,7 @@ apf.xmlrpc = function(){
                 "XMLRPC serialization", "Cannot Parse functions"));
         }
         else 
-            if (apf.isNot(args)) 
+            if (util.isNot(args)) 
                 return createMessage["boolean"](false);
         
         return createMessage[args.dataType || 0](args);
@@ -187,6 +187,28 @@ apf.xmlrpc = function(){
         message.push("</params></methodCall>");
         
         return message.join("");
+    };
+    
+    this.$getNode = function(data, tree){
+        var nc = 0;//nodeCount
+        //node = 1
+        if (data != null) {
+            for (var i = 0; i < data.childNodes.length; i++) {
+                if (data.childNodes[i].nodeType == 1) {
+                    if (nc == tree[0]) {
+                        data = data.childNodes[i];
+                        if (tree.length > 1) {
+                            tree.shift();
+                            data = this.$getNode(data, tree);
+                        }
+                        return data;
+                    }
+                    nc++
+                }
+            }
+        }
+    
+        return null;
     };
     
     this.unserialize = function(data){
@@ -238,14 +260,14 @@ apf.xmlrpc = function(){
                 
                 break;
             case "array":
-                data = apf.getNode(data, [0]);
+                data = util.getFirstElement(data);
                 
                 if (data && data.tagName == "data") {
                     ret = new Array();
                     
                     var child;
                     i = 0;
-                    while (child = apf.getNode(data, [i++])) {
+                    while (child = this.$getNode(data, [i++])) {
                         ret.push(this.unserialize(child));
                     }
                     
@@ -260,10 +282,10 @@ apf.xmlrpc = function(){
                 ret = {};
                 
                 i = 0;
-                while (child = apf.getNode(data, [i++])) {
+                while (child = this.$getNode(data, [i++])) {
                     if (child.tagName == "member") {
-                        ret[apf.getNode(child, [0]).firstChild.nodeValue] =
-                            this.unserialize(apf.getNode(child, [1]));
+                        ret[util.getFirstElement(child).firstChild.nodeValue] =
+                            this.unserialize(this.$getNode(child, [1]));
                     }
                     else {
                         this.handleError(new Error(apf.formatErrorString(1087, null, "", "Malformed XMLRPC Message2")));
@@ -281,7 +303,7 @@ apf.xmlrpc = function(){
                 return apf.crypt.Base64.decode(data.firstChild.nodeValue);
                 break;
             case "value":
-                child = apf.getNode(data, [0]);
+                child = util.getFirstElement(data);
                 return (!child) ? ((data.firstChild)
                     ? new String(data.firstChild.nodeValue) : "")
                     : this.unserialize(child);
@@ -297,7 +319,7 @@ apf.xmlrpc = function(){
     this.isValid = function(extra){
         var data = extra.data;
         
-        if (apf.getNode(data, [0]).tagName == "fault") {
+        if (util.getFirstElement(data).tagName == "fault") {
             var nr, msg;
             if (!apf.isWebkit) {
                 nr = data.selectSingleNode("//member[name/text()='faultCode']/value/int/text()").nodeValue;
@@ -312,7 +334,7 @@ apf.xmlrpc = function(){
             return false;
         }
         
-        extra.data = apf.getNode(data, [0, 0, 0]);
+        extra.data = this.$getNode(data, [0, 0, 0]);
         
         return true;
     };

@@ -168,9 +168,9 @@ apf.textbox  = function(struct, tagName){
             this.$input.unselectable = e.value ? "On" : "Off";
         else {
             if (e.value) 
-                apf.addListener(this.$input, "mousedown", apf.preventDefault);
+                amlCore.addListener(this.$input, "mousedown", amlCore.preventDefault);
             else
-                apf.removeListener(this.$input, "mousedown", apf.preventDefault);
+                amlCore.removeListener(this.$input, "mousedown", amlCore.preventDefault);
         }
     });
 
@@ -728,9 +728,9 @@ apf.textbox  = function(struct, tagName){
         };
 
         var f;
-        apf.addListener(this.$input, "keypress", f = function(e) {
+        amlCore.addListener(this.$input, "keypress", f = function(e) {
             if (_self.$input.getAttribute("type") != "password")
-                return apf.removeListener(_self.$input, "keypress", f);
+                return amlCore.removeListener(_self.$input, "keypress", f);
             e = e || window.event;
             // get key pressed
             var which = -1;

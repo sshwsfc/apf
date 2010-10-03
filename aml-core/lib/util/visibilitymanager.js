@@ -19,31 +19,28 @@
  *
  */
 
-//#ifdef __WITH_VISIBILITYMANAGER
+require.def(function(){
+    
+function destroy(){
+    //@todo
+}
+
+function remove(){
+    //@todo
+}
+
+function add(){
+    //@todo
+}
+
 /**
  * Manages visibility hooks for elements that need to be visible to set their
  * layout.
  *
  * @private
  */
-apf.visibilitymanager = function(){
-    var tree  = {};
-    var _self  = this;
-    var inited = false;
-    
-    function destroy(){
-        //@todo
-    }
-    
-    function remove(){
-        //@todo
-    }
-    
-    function add(){
-        //@todo
-    }
-    
-    this.check = function(amlNode, type, callback) {
+return {
+    check : function(amlNode, type, callback) {
         if (amlNode.$ext.offsetHeight || amlNode.$ext.offsetWidth)
             return true;
 
@@ -56,7 +53,7 @@ apf.visibilitymanager = function(){
         amlNode.$visibleCheck[type] = true;
 
         function check(e){
-            //apf.isTrue(e.value)
+            //util.isTrue(e.value)
             if (!amlNode.$ext.offsetHeight && !amlNode.$ext.offsetWidth)
                 return;
                 
@@ -89,9 +86,9 @@ apf.visibilitymanager = function(){
         }*/
         
         return false;
-    }
+    },
     
-    this.permanent = function(amlNode, show, hide){
+    permanent : function(amlNode, show, hide){
         var state = amlNode.$ext.offsetHeight && amlNode.$ext.offsetWidth;
         function check(e){
             var newState = amlNode.$ext.offsetHeight && amlNode.$ext.offsetWidth;
@@ -117,4 +114,5 @@ apf.visibilitymanager = function(){
         return state;
     }
 };
-//#endif
+
+});

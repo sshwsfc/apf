@@ -140,7 +140,7 @@ oop.inherits(Skin, GuiElement);
         if (!value)
             this.$ext.style.borderWidth = "";
         else
-            this.$ext.style.borderWidth = apf.getBox(value).join("px ") + "px";
+            this.$ext.style.borderWidth = util.getBox(value).join("px ") + "px";
     }
     
     /**
@@ -150,7 +150,7 @@ oop.inherits(Skin, GuiElement);
         if (!value)
             this.$ext.style.margin = "";
         else
-            this.$ext.style.margin = apf.getBox(value).join("px ") + "px";
+            this.$ext.style.margin = util.getBox(value).join("px ") + "px";
     }
 
     /**
@@ -531,7 +531,7 @@ oop.inherits(Skin, GuiElement);
         }
 
         if (!section)
-            return htmlNode || apf.getFirstElement(node);
+            return htmlNode || util.getFirstElement(node);
 
         var textNode = node.getAttribute(section);
         if (!textNode)
@@ -539,7 +539,7 @@ oop.inherits(Skin, GuiElement);
 
         return (htmlNode
             ? apf.queryNode(htmlNode, textNode)
-            : apf.getFirstElement(node).selectSingleNode(textNode));
+            : util.getFirstElement(node).selectSingleNode(textNode));
     };
 
     this.$getOption = function(type, section){
@@ -548,7 +548,7 @@ oop.inherits(Skin, GuiElement);
         //var node = this.$pNodes[type];
         var node = this.$pNodes[type] || this.$originalNodes[type];
         if (!section || !node)
-            return node;//apf.getFirstElement(node);
+            return node;//util.getFirstElement(node);
         var option = node.selectSingleNode("@" + section);
 
         return option ? option.nodeValue : "";

@@ -69,12 +69,12 @@ apf.window = function(){
 
     /**** Set Window Events ****/
 
-    /*apf.addListener(window, "beforeunload", function(){
+    /*amlCore.addListener(window, "beforeunload", function(){
         return apf.dispatchEvent("exit");
     });
 
     //@todo apf3.x why is this loaded twice
-    apf.addListener(window, "unload", function(){
+    amlCore.addListener(window, "unload", function(){
         if (!apf)
             return;
         

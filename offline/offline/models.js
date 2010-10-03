@@ -46,7 +46,7 @@ apf.offline.models = {
         this.namespace = apf.config.name + ".apf.offline.models";
 
         if (aml.nodeType && aml.getAttribute("realtime"))
-            this.realtime = !apf.isFalse(aml.getAttribute("realtime"));
+            this.realtime = !util.isFalse(aml.getAttribute("realtime"));
 
         if (!this.realtime) {
             apf.addEventListener("exit", function(){
@@ -132,7 +132,7 @@ apf.offline.models = {
     search : function(){
         //Save all the models
         //#ifdef __WITH_NAMESERVER
-        var done = {}, models = apf.nameserver.getAll("model");
+        var done = {}, models = nameserver.getAll("model");
         for (var i = 0; i < models.length; i++) {
             if (done[models[i].$uniqueId])
                 continue;

@@ -103,7 +103,7 @@ apf.upload.html4.isSupported = function() {
             oIframe.style.display = "none";
 
             // Add IFrame onload event
-            apf.addListener(oIframe, "load", function(e){
+            amlCore.addListener(oIframe, "load", function(e){
                 e = e || window.event;
                 var el,
                     n    = e.srcElement || e.target,

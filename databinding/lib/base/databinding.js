@@ -95,7 +95,7 @@ apf.DataBinding = function(){
     this.$attrBindings = false;
 
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         model     : 1,
         each      : 1
         //eachvalue : 1 //disabled because of line 1743 valueRule = in multiselect.js
@@ -1113,13 +1113,13 @@ apf.DataBinding = function(){
             return;
         //#ifdef __WITH_NAMESERVER
         // #ifdef __DEBUG
-        if (!apf.nameserver.get(prop, value))
+        if (!nameserver.get(prop, value))
             throw new Error(apf.formatErrorString(1064, this,
                 "Setting " + prop,
                 "Could not find " + prop + " by name '" + value + "'"));
         // #endif
 
-        apf.nameserver.get(prop, value).register(this);
+        nameserver.get(prop, value).register(this);
         //#endif
         
         if (prop != "actions" && 
@@ -1217,8 +1217,8 @@ apf.DataBinding = function(){
                     //#ifdef __WITH_NAMESERVER
                     //@todo apf3.0 how is this cleaned up???
                     //Add change listener to the data of the model
-                    model = apf.nameserver.get("model", modelId) //is model creation useful here?
-                        || apf.setReference(modelId, apf.nameserver.register("model", modelId, new apf.model()));
+                    model = nameserver.get("model", modelId) //is model creation useful here?
+                        || apf.setReference(modelId, nameserver.register("model", modelId, new apf.model()));
                     //#endif
                 }
                 else {
@@ -1458,7 +1458,7 @@ apf.DataBinding = function(){
         if (typeof value == "object") {
             if (value.dataType == apf.ARRAY) { //Optimization used for templating
                 //#ifdef __WITH_NAMESERVER
-                model = apf.nameserver.get("model", value[0]);
+                model = nameserver.get("model", value[0]);
                 model.register(this, value[1]);
                 return;
                 //#endif

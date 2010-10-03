@@ -132,6 +132,8 @@ DOMParser.prototype = new (function(){
                 doc            = new DOMDocument();
                 doc.$aml       = xmlNode;
                 doc.$domParser = this;
+                
+                doc.dispatchEvent("beforeload"); //readystatechange ??
             }
             if (options.host)
                 doc.$parentNode = options.host; //This is for sub docs that need to access the outside tree

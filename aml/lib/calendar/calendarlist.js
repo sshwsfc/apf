@@ -410,7 +410,7 @@ apf.calendarlist      = function(struct, tagName){
     this.$destroy = function() {
         if (this.$ext)
             this.$ext.onclick = null;
-        apf.destroyHtmlNode(this.oDrag);
+        amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     };
 }).call(apf.calendarlist.prototype = new apf.BaseList());

@@ -85,7 +85,7 @@ apf.ChildValue = function(){
                 this.$setDynamicProperty(this.$childProperty, v);
             else
             //#endif
-                this.setProperty(this.$childProperty, apf.html_entity_decode(v)); //@todo should be xml entity decode
+                this.setProperty(this.$childProperty, v.unescapeHTML()); //@todo should be xml entity decode
         }
         else if (hasNoProp)
             this.$propHandlers[this.$childProperty].call(this, "");

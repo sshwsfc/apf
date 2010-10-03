@@ -660,9 +660,9 @@ apf.upload.files = function(oUpload, model) {
     if (typeof model == "string") {
         //#ifdef __WITH_NAMESERVER
         var sModel = model;
-        if (!(model = apf.nameserver.get(sModel))) {
+        if (!(model = nameserver.get(sModel))) {
             model = apf.setReference(sModel,
-                apf.nameserver.register("model", sModel, new apf.model()));
+                nameserver.register("model", sModel, new apf.model()));
             if (model === 0)
                 model = self[sModel];
             else

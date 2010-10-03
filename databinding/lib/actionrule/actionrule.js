@@ -46,7 +46,7 @@ apf.ActionRule = function(struct, tagName){
     }
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         set    : 1,
         get    : 1,
         undo   : 1,

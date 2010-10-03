@@ -48,7 +48,7 @@ apf.BindingColumnRule = function(struct, tagName){
     this.$cssInit   = false;
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         css     : 1,
         icon    : 1,
         caption : 1
@@ -422,7 +422,7 @@ apf.BindingColumnRule = function(struct, tagName){
                     _self.move(beforeNode ? apf.all[beforeNode.getAttribute("hid")] : null, pNode);
                 }
                 
-                apf.destroyHtmlNode(copy);
+                amlCore.destroyHtmlNode(copy);
             };
 
             document.onmousemove = function(e){

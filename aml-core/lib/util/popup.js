@@ -21,7 +21,7 @@
 
 //#ifdef __WITH_POPUP
 
-apf.addListener(window, "unload", function(){
+amlCore.addListener(window, "unload", function(){
     apf.popup.destroy();
 });
 
@@ -56,7 +56,7 @@ apf.popup = {
             //#endif
             
             //@todo can this cancelBubble just go?
-            apf.cancelBubble(e, null, true);
+            amlCore.cancelBubble(e, null, true);
             //(e || event).cancelBubble = true;
         };
         
@@ -79,7 +79,7 @@ apf.popup = {
     },
     
     show : function(cacheId, options){
-        options = apf.extend({
+        options = Object.extend({
             x            : 0,
             y            : 0,
             animate      : false,
@@ -109,7 +109,7 @@ apf.popup = {
             fixed  = false;
 
         //if (!apf.getStyle(o.content, "zIndex"))
-        apf.window.zManager.set("popup", o.content);
+        zManager.set("popup", o.content);
         
         if ((dp = o.content.style.display) && dp.indexOf("none") > -1)
             o.content.style.display = "";
@@ -225,7 +225,7 @@ apf.popup = {
                 o.content.style.display = "none";
 
             if (o.options && o.options.onclose) {
-                o.options.onclose(apf.extend(o.options, {htmlNode: o.content}));
+                o.options.onclose(Object.extend(o.options, {htmlNode: o.content}));
                 o.options.onclose = false;
             }
         }
@@ -300,7 +300,7 @@ apf.popup = {
         for (var cacheId in this.cache) {
             if (this.cache[cacheId]) {
                 this.cache[cacheId].content.onmousedown = null;
-                apf.destroyHtmlNode(this.cache[cacheId].content);
+                amlCore.destroyHtmlNode(this.cache[cacheId].content);
                 this.cache[cacheId].content = null;
                 this.cache[cacheId] = null;
             }

@@ -195,7 +195,7 @@ apf.portal = function(struct, tagName){
                 amlNode.dataNode.setAttribute("column", 0); //@todo wrong!! apf3.0
             }
 
-            apf.destroyHtmlNode(col);
+            amlCore.destroyHtmlNode(col);
         }
         
         for (var last, col, size, i = 0; i < this.$columnWidths.length; i++) {

@@ -159,7 +159,7 @@ apf.hotkeys = {};
         //Hotkey
         if (/*!eInfo.isTextInput && */_self.$exec(eInfo) === false
           || eInfo.returnValue === false) {
-            apf.stopEvent(e);
+            amlCore.stopEvent(e);
             if (apf.canDisableKeyCodes) {
                 try {
                     e.keyCode = 0;

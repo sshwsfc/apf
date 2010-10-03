@@ -46,7 +46,7 @@
             div.style.position = "absolute";
             div.className = classes[i];
             div.style.zIndex = 1000000;
-            //@todo use apf.window.zManager.set("drag", div);
+            //@todo use zManager.set("drag", div);
             div.style.display = "none";
             div.host = false;
             eval("dragIndicator" + i + " = indicators[" + (i-1) + "] = div;"); //ahum...
@@ -1181,9 +1181,9 @@
                 + this.$ext.offsetHeight);
             
             if (this.margin)
-                m = apf.getBox(this.margin);
+                m = util.getBox(this.margin);
             if (this.parentNode.edge)
-                edge = apf.getBox(this.parentNode.edge);
+                edge = util.getBox(this.parentNode.edge);
             this.maxwidth = Math.min(this.maxwidth || 10000, 
               this.parentNode.$ext.offsetWidth
                 - apf.getHorBorders(this.parentNode.$ext)
@@ -1201,9 +1201,9 @@
             //}
 
             if (this.margin)
-                m = apf.getBox(this.margin);
+                m = util.getBox(this.margin);
             if (this.parentNode.edge)
-                edge = apf.getBox(this.parentNode.edge);
+                edge = util.getBox(this.parentNode.edge);
             this.maxheight = Math.min(this.maxheight || 10000, 
               this.parentNode.$ext.offsetHeight 
                 - apf.getVerBorders(this.parentNode.$ext)

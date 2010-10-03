@@ -74,7 +74,7 @@ apf.offline.queue = {
             apf.console.warn(strWarn);
             //#endif
             
-            callback(null, apf.OFFLINE, apf.extend({
+            callback(null, apf.OFFLINE, Object.extend({
                 offline : true
                 //#ifdef __DEBUG
                 , message : strWarn

@@ -67,7 +67,7 @@ apf.audio.TypeFlash = function(oAudio, oNode, options) {
 
     // Initialize player
     this.player = null;
-    apf.extend(this, apf.audio.TypeInterface);
+    Object.extend(this, apf.audio.TypeInterface);
 
     this.delayCalls = [];
 
@@ -318,7 +318,7 @@ apf.audio.TypeFlash.prototype = {
                 this.inited = true;
                 this.makeDelayCalls();
                 this.player.callMethod("setPolling", true);
-                this.oAudio.$initHook(apf.extend(evtObj, apf.flash.getSandbox(evtObj.sandboxType)));
+                this.oAudio.$initHook(Object.extend(evtObj, apf.flash.getSandbox(evtObj.sandboxType)));
                 break;
             case "id3":
                 this.oAudio.$metadataHook({

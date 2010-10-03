@@ -427,7 +427,7 @@ apf.MultiCheck = function(){
     this.addEventListener("xmlupdate", function(e){
         if (e.action == "synchronize" || e.action == "update") {
             //@todo list support!
-            var c1 = apf.isTrue(this.$applyBindRule("checked", e.xmlNode));
+            var c1 = util.isTrue(this.$applyBindRule("checked", e.xmlNode));
             var c2 = this.isChecked(e.xmlNode);
             if (c1 != c2) {
                 if (c1) {

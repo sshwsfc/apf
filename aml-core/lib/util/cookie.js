@@ -19,67 +19,69 @@
  *
  */
  
-// #ifdef __WITH_COOKIE
+require.def(function(){
 
-/**
- * Sets a name/value pair which is stored in the browser and sent to the server
- * with every request. This is also known as a cookie. Be careful setting 
- * cookies, because they can take up a lot of bandwidth, especially for Ajax
- * applications.
- * 
- * @param {String}  name     cookie name
- * @param {String}  value    cookie value
- * @param {Date}    expire   expire date representing the number of milliseconds
- *                           since 1 January 1970 00:00:00 UTC.
- * @param {String}  path     path name
- * @param {String}  domain   domain name
- * @param {Boolean} secure   cookie may benefit all the documents and CGI programs
- *                           meet the requirements as to the path and domain
- *                           compatibility
- *     Possible values:
- *     true   may benefit
- *     false  can not benefit
- *     
- * @return {String} Returns a cookie name.
- */
-apf.setcookie = function(name, value, expire, path, domain, secure) {
-    var ck = name + "=" + escape(value) + ";";
-    if (expire) ck += "expires=" + new Date(expire
-        + new Date().getTimezoneOffset() * 60).toGMTString() + ";";
-    if (path)   ck += "path=" + path + ";";
-    if (domain) ck += "domain=" + domain + ";";
-    if (secure) ck += "secure";
+return {
+    /**
+     * Sets a name/value pair which is stored in the browser and sent to the server
+     * with every request. This is also known as a cookie. Be careful setting 
+     * cookies, because they can take up a lot of bandwidth, especially for Ajax
+     * applications.
+     * 
+     * @param {String}  name     cookie name
+     * @param {String}  value    cookie value
+     * @param {Date}    expire   expire date representing the number of milliseconds
+     *                           since 1 January 1970 00:00:00 UTC.
+     * @param {String}  path     path name
+     * @param {String}  domain   domain name
+     * @param {Boolean} secure   cookie may benefit all the documents and CGI programs
+     *                           meet the requirements as to the path and domain
+     *                           compatibility
+     *     Possible values:
+     *     true   may benefit
+     *     false  can not benefit
+     *     
+     * @return {String} Returns a cookie name.
+     */
+    setcookie : function(name, value, expire, path, domain, secure) {
+        var ck = name + "=" + escape(value) + ";";
+        if (expire) ck += "expires=" + new Date(expire
+            + new Date().getTimezoneOffset() * 60).toGMTString() + ";";
+        if (path)   ck += "path=" + path + ";";
+        if (domain) ck += "domain=" + domain + ";";
+        if (secure) ck += "secure";
+    
+        document.cookie = ck;
+        return value
+    },
+    
+    /**
+     * Gets the value of a stored name/value pair called a cookie.
+     * 
+     * @param {String} name the name of the stored cookie.
+     * @return {String} Returns a value of the cookie or the empty string if it isn't found
+     */
+    getcookie = function(name) {
+        var aCookie = document.cookie.split("; ");
+        for (var i = 0; i < aCookie.length; i++) {
+            var aCrumb = aCookie[i].split("=");
+            if (name == aCrumb[0])
+                return unescape(aCrumb[1]);
+        }
+        
+        return "";
+    },
+    
+    /**
+     * Deletes a stored name/value pair called a cookie.
+     * 
+     * @param {String} name     the name of the stored cookie
+     * @param {String} domain   the name of the domain of stored cookie
+     */
+    delcookie : function (name, domain){
+        document.cookie = name + "=blah; expires=Fri, 31 Dec 1999 23:59:59 GMT;"
+            + (domain ? 'domain='+domain : '');
+    }
+}
 
-    document.cookie = ck;
-    return value
-};
-
-/**
- * Gets the value of a stored name/value pair called a cookie.
- * 
- * @param {String} name the name of the stored cookie.
- * @return {String} Returns a value of the cookie or the empty string if it isn't found
- */
-apf.getcookie = function(name) {
-  var aCookie = document.cookie.split("; ");
-  for (var i = 0; i < aCookie.length; i++) {
-      var aCrumb = aCookie[i].split("=");
-      if (name == aCrumb[0])
-          return unescape(aCrumb[1]);
-  }
-
-  return "";
-};
-
-/**
- * Deletes a stored name/value pair called a cookie.
- * 
- * @param {String} name     the name of the stored cookie
- * @param {String} domain   the name of the domain of stored cookie
- */
-apf.delcookie = function (name, domain){
-    document.cookie = name + "=blah; expires=Fri, 31 Dec 1999 23:59:59 GMT;"
-        + (domain ? 'domain='+domain : '');
-};
-
-//#endif
+});

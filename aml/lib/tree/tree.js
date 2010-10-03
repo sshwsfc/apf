@@ -193,7 +193,7 @@ apf.tree = function(struct, tagName){
                 "if (this.getAttribute('children') == false) return;\
                 var o = apf.lookup(" + this.$uniqueId + ");\
                 o.slideToggle(this, null, null, true);\
-                apf.cancelBubble(event, o);");
+                amlCore.cancelBubble(event, o);");
             
             elOpenClose.setAttribute("ondblclick", "event.cancelBubble = true");
         }
@@ -206,7 +206,7 @@ apf.tree = function(struct, tagName){
                     "var o = apf.lookup(" + this.$uniqueId + ");\
                     o.checkToggle(this, true);\o.$skipSelect = true;");
 
-                if (apf.isTrue(this.$applyBindRule("checked", xmlNode))) {
+                if (util.isTrue(this.$applyBindRule("checked", xmlNode))) {
                     this.$checkedList.push(xmlNode);
                     this.$setStyleClass(oItem, "checked");
                 }
@@ -260,7 +260,7 @@ apf.tree = function(struct, tagName){
               "o.stopRename();" + 
               //#endif
               (true && !ocAction == "ondblclick" ? "o.slideToggle(this, null, null, true);" : "") +
-              "apf.cancelBubble(event,o);");
+              "amlCore.cancelBubble(event,o);");
         }
 
         //Select interaction
@@ -278,7 +278,7 @@ apf.tree = function(struct, tagName){
                     this.dorename = true;\
                  if (!o.hasFeature(apf.__DRAGDROP__) || !isSelected && !event.ctrlKey)\
                      o.select(this, event.ctrlKey, event.shiftKey, event.button);\
-                 apf.cancelBubble(event, o);';
+                 amlCore.cancelBubble(event, o);';
             
             elSelect.setAttribute("onmouseout", 'this.hasPassedDown = false;' + (elSelect.getAttribute("onmouseout") || ""));
             elSelect.setAttribute("onmouseup", 'if (!this.hasPassedDown) return;\
@@ -297,7 +297,7 @@ apf.tree = function(struct, tagName){
         //#endif 
         {
             strMouseDown = "o.select(this, event.ctrlKey, event.shiftKey, event.button);\
-                            apf.cancelBubble(event, o);";
+                            amlCore.cancelBubble(event, o);";
         }
         
         if (ocAction != "ondblclick") {
@@ -318,7 +318,7 @@ apf.tree = function(struct, tagName){
           "o.stopRename();this.dorename=false;" + 
           //#endif
           (ocAction == "ondblclick" ? "o.slideToggle(this, null, null, true);" : "") +
-          "apf.cancelBubble(event, o);");
+          "amlCore.cancelBubble(event, o);");
         
         //Setup Nodes Identity (Look)
         if (elIcon) {

@@ -167,7 +167,7 @@ apf.errorbox = function(struct, tagName){
     };
     
     this.$loadAml = function(x){
-        if (!apf.isTrue(this.getAttribute("visible")))
+        if (!util.isTrue(this.getAttribute("visible")))
             this.hide();
     };
     

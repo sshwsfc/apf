@@ -404,7 +404,7 @@ apf.markupedit = function(struct, tagName){
                 container.style.display = "none";
             
             if (state & HAS_CHILD) {
-                //this.$getLayoutNode("item", "openclose", htmlNode).onmousedown = new Function('e', 'if(!e) e = event; if(e.button == 2) return;var o = apf.lookup(' + this.$uniqueId + ');o.slideToggle(this);if(o.onmousedown) o.onmousedown(e, this);apf.cancelBubble(e, o);');
+                //this.$getLayoutNode("item", "openclose", htmlNode).onmousedown = new Function('e', 'if(!e) e = event; if(e.button == 2) return;var o = apf.lookup(' + this.$uniqueId + ');o.slideToggle(this);if(o.onmousedown) o.onmousedown(e, this);amlCore.cancelBubble(e, o);');
                 //this.$getLayoutNode("item", "icon", htmlNode)[this.opencloseaction || "ondblclick"] = new Function('var o = apf.lookup(' + this.$uniqueId + '); o.slideToggle(this);o.choose();');
                 //this.$getLayoutNode("item", "select", htmlNode)[this.opencloseaction || "ondblclick"] = new Function('e', 'var o = apf.lookup(' + this.$uniqueId + '); o.slideToggle(this, true);o.choose();(e||event).cancelBubble=true;');
             }
@@ -482,7 +482,11 @@ apf.markupedit = function(struct, tagName){
         else
             this.$txt.className = "attrvalue";
         
-        apf.selectTextHtml(this.$txt);
+        //Select text
+        if (!apf.hasMsRangeObject) return;// oHtml.focus();
+        var r = document.selection.createRange();
+        try {r.moveToElementText(this.$txt);} catch(e){}
+        r.select();
     }
     
     /**
@@ -501,30 +505,30 @@ apf.markupedit = function(struct, tagName){
         elName.setAttribute("aname", name);
         elName.setAttribute("onmousedown", "if ((event.which || event.button) == 1)\
             apf.lookup(" + this.$uniqueId + ").startRenameThis(this, '" + Lid + "', true);\
-            apf.stopPropagation(event);");
+            amlCore.stopPropagation(event);");
         elName.setAttribute("onmouseup", "\
-            apf.stopPropagation(event);\
+            amlCore.stopPropagation(event);\
             return false;");
         elName.setAttribute("onkeydown", "if (event.keyCode==13) {\
               this.blur();\
               return false;\
             };\
-            apf.stopPropagation(event);");
+            amlCore.stopPropagation(event);");
         elName.setAttribute("onselectstart", "event.cancelBubble = true;");
         elName.setAttribute("ondblclick", "event.cancelBubble = true;");
         
         elValue.setAttribute("aname", name);
         elValue.setAttribute("onmousedown", "if ((event.which || event.button) == 1)\
             apf.lookup(" + this.$uniqueId + ").startRenameThis(this, '" + Lid + "');\
-            apf.stopPropagation(event);");
+            amlCore.stopPropagation(event);");
         elValue.setAttribute("onmouseup", "\
-            apf.stopPropagation(event);\
+            amlCore.stopPropagation(event);\
             return false;");
         elValue.setAttribute("onkeydown", "if (event.keyCode==13) {\
               this.blur();\
               return false;\
             };\
-            apf.stopPropagation(event);");
+            amlCore.stopPropagation(event);");
         elValue.setAttribute("onselectstart", "event.cancelBubble = true;");
         elValue.setAttribute("ondblclick", "event.cancelBubble = true;");
         
@@ -557,13 +561,13 @@ apf.markupedit = function(struct, tagName){
         elTextNode.setAttribute("onmousedown", "if ((event.which || event.button) == 1)\
             apf.lookup(" + this.$uniqueId + ").startRenameThis(this, '" + Lid + "');");
         elTextNode.setAttribute("onmouseup", "\
-            apf.stopPropagation(event);\
+            amlCore.stopPropagation(event);\
             return false;");
         elTextNode.setAttribute("onkeydown", "if (event.keyCode==13) {\
               this.blur();\
               return false;\
             };\
-            apf.stopPropagation(event);");
+            amlCore.stopPropagation(event);");
         elTextNode.setAttribute("onselectstart", "event.cancelBubble = true;");
         elTextNode.setAttribute("ondblclick", "event.cancelBubble = true;");
         
@@ -602,7 +606,7 @@ apf.markupedit = function(struct, tagName){
             elOpenClose.setAttribute(this.opencloseaction || "onmousedown",
                 "var o = apf.lookup(" + this.$uniqueId + ");\
                 o.slideToggle(this);\
-                apf.cancelBubble(event,o);");
+                amlCore.cancelBubble(event,o);");
         
         //Select interaction
         var elSelect = this.$getLayoutNode("item", "select");
@@ -614,7 +618,7 @@ apf.markupedit = function(struct, tagName){
         //if(event.button != 1) return; 
         //apf.isChildOf(o.$selected, this) && o.selected [REMOVED THIS LINE... dunno what the repurcusions are exactly]
         elSelect.setAttribute("onmousedown", "var o = apf.lookup(" + this.$uniqueId + ");\
-            apf.cancelBubble(event, o);\
+            amlCore.cancelBubble(event, o);\
             if (o.hasFocus()) \
                 o.select(this);" 
             + (strFunc2 && this.opencloseaction == "onmousedown" ? strFunc2 : ""));
@@ -659,7 +663,7 @@ apf.markupedit = function(struct, tagName){
         }
         elBeginTail.parentNode.appendChild(elBeginTail);
         
-        elEnd.setAttribute("onmousedown", 'var o = apf.lookup(' + this.$uniqueId + ');apf.cancelBubble(event, o);');
+        elEnd.setAttribute("onmousedown", 'var o = apf.lookup(' + this.$uniqueId + ');amlCore.cancelBubble(event, o);');
         
         // #ifdef __WITH_CSS_BINDS
         var cssClass = this.$applyBindRule("css", xmlNode);
@@ -1332,13 +1336,13 @@ apf.markupedit = function(struct, tagName){
             + ").startRenameThis(this, '" + Lid + "', false, " 
             + (knownElements.push(xmlNode) - 1) + ");");
         txtNode.setAttribute("onmouseup", "\
-            apf.stopPropagation(event);\
+            amlCore.stopPropagation(event);\
             return false;");
         txtNode.setAttribute("onkeydown", "if (event.keyCode==13) {\
               this.blur();\
               return false;\
             };\
-            apf.stopPropagation(event);");
+            amlCore.stopPropagation(event);");
         txtNode.setAttribute("onselectstart", "event.cancelBubble = true;");
         txtNode.setAttribute("ondblclick", "event.cancelBubble = true;");
 
@@ -1434,14 +1438,14 @@ apf.markupedit = function(struct, tagName){
     };
     
     this.$loadAml = function(x){
-        this.openOnAdd   = !apf.isFalse(x.getAttribute("openonadd"));
-        this.startcollapsed = !apf.isFalse(this.getAttribute("startcollapsed") 
+        this.openOnAdd   = !util.isFalse(x.getAttribute("openonadd"));
+        this.startcollapsed = !util.isFalse(this.getAttribute("startcollapsed") 
             || this.$getOption("Main", "startcollapsed"));
-        this.nocollapse  = apf.isTrue(this.getAttribute("nocollapse"));
+        this.nocollapse  = util.isTrue(this.getAttribute("nocollapse"));
         if (this.nocollapse)
             this.startcollapsed = false;
-        this.singleopen  = apf.isTrue(this.getAttribute("singleopen"));
-        //this.prerender   = !apf.isFalse(this.getAttribute("prerender"));
+        this.singleopen  = util.isTrue(this.getAttribute("singleopen"));
+        //this.prerender   = !util.isFalse(this.getAttribute("prerender"));
     };
     
     this.$destroy = function(){
@@ -1453,7 +1457,7 @@ apf.markupedit = function(struct, tagName){
         //#endif
         
         this.$ext.onclick = null;
-        apf.destroyHtmlNode(this.oDrag);
+        amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     };
 }).call(apf.markupedit.prototype = new apf.MultiSelect());

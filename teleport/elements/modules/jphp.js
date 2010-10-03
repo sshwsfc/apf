@@ -142,7 +142,7 @@ apf.jphp = function(){
             throw new Error("Cannot Parse functions");
         }
         else {
-            if (apf.isNot(args)) 
+            if (util.isNot(args)) 
                 return createMessage["boolean"](false);
         }
         

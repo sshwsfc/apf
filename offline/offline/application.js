@@ -70,7 +70,7 @@ apf.offline.application = {
                 this.providers = aml.getAttribute("providers").split("|");
 
             if (aml.getAttribute("auto-install"))
-                this.autoInstall = apf.isTrue(aml.getAttribute("auto-install"));
+                this.autoInstall = util.isTrue(aml.getAttribute("auto-install"));
         }
 
         //Check for an available offline provider

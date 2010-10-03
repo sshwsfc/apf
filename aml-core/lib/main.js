@@ -5,7 +5,7 @@ require(["envdetect"],
         "lib-oop/class", 
         "w3cdom/node",
         "w3cdom/document",
-        "optional!debug/console];
+        "optional!debug/console"];
 
     if (env.isIE)
         deps.push("aml-core/env/ie");
@@ -67,12 +67,71 @@ var amlCore = {
         else
             e.returnValue = false;
         return this;
+    },
+    
+    /**
+     * @private
+     * THIS IS A HACK - will be removed in refactor of mouse routing
+     */
+    cancelBubble : function(e, o, noPropagate){
+        if (e.stopPropagation)
+            e.stopPropagation()
+        else 
+            e.cancelBubble = true;
+        // #ifdef __WITH_FOCUS
+        //if (o.$focussable && !o.disabled)
+            //apf.window.$focus(o);
+        // #endif
+        
+        /*if (apf.isIE)
+            o.$ext.fireEvent("on" + e.type, e);
+        else 
+            o.$ext.dispatchEvent(e.name, e);*/
+        
+        if (!noPropagate) {
+            if (o && o.$ext && o.$ext["on" + (e.type || e.name)])
+                o.$ext["on" + (e.type || e.name)](e);
+            apf.window.$mousedown(e);
+        }
+        
+        //#ifdef __WITH_UIRECORDER
+        if (apf.uirecorder && apf.uirecorder.captureDetails 
+          && (apf.uirecorder.isRecording || apf.uirecorder.isTesting)) {
+            apf.uirecorder.capture[e.type](e);
+        }
+        //#endif
+    },
+    
+    /**
+     * Attempt to fix memory leaks
+     * @private
+     */
+    destroyHtmlNode : function (element) {
+        if (!element) return;
+    
+        if (!apf.isIE || element.ownerDocument != document) {
+            if (element.parentNode)
+                element.parentNode.removeChild(element);
+            return;
+        }
+    
+        var garbageBin = document.getElementById('IELeakGarbageBin');
+        if (!garbageBin) {
+            garbageBin    = document.createElement('DIV');
+            garbageBin.id = 'IELeakGarbageBin';
+            garbageBin.style.display = 'none';
+            document.body.appendChild(garbageBin);
+        }
+    
+        // move the element to the garbage bin
+        garbageBin.appendChild(element);
+        garbageBin.innerHTML = '';
     }
 };
 
-DOMDocument.prototype.addEventListener("load", function(e){
+DOMDocument.prototype.addEventListener("beforeload", function(e){
     amlCore.documents.push(this);
-})
+});
 
 events.addListener(window, "beforeunload", function(){
     amlCore.documents.each(function(doc){

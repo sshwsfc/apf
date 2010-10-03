@@ -52,7 +52,7 @@ apf.A11y = function(){
             throw new Error("attr does not exist");
         if ((typeof rel == "boolean" && typeof mValue != "boolean")
           || (typeof rel == "number" && typeof mValue != "number")
-          || ((typeof rel == "string" || apf.isArray(rel)) && typeof mValue != "string"))
+          || ((typeof rel == "string" || Array.isArray(rel)) && typeof mValue != "string"))
             throw new Error("invalid type");
 
         oNode.setAttribute("aria-" + sAttr, mValue);
@@ -64,7 +64,7 @@ apf.A11y = function(){
         if (!rel)
             throw new Error("attr does not exist");
         if ((typeof rel == "boolean" && typeof mValue != "boolean")
-          || (apf.isArray(rel) && typeof mValue != "string"))
+          || (Array.isArray(rel) && typeof mValue != "string"))
             throw new Error("invalid type");
 
         if (oNode) {
@@ -82,7 +82,7 @@ apf.A11y = function(){
         if (!rel)
             throw new Error("attr does not exist");
         if ((typeof rel == "boolean" && typeof mValue != "boolean")
-          || (apf.isArray(rel) && typeof mValue != "string"))
+          || (Array.isArray(rel) && typeof mValue != "string"))
             throw new Error("invalid type");
 
         oNode.setAttribute("aria-" + sAttr, mValue);

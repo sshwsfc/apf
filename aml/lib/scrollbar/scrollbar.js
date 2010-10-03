@@ -520,7 +520,7 @@ apf.scrollbar = function(struct, tagName){
         this.$btnUp       = this.$getLayoutNode("main", "btnup",     this.$ext)
         this.$btnDown     = this.$getLayoutNode("main", "btndown",   this.$ext);
 
-        this.horizontal   = apf.isTrue(this.$getOption("main", "horizontal"));
+        this.horizontal   = util.isTrue(this.$getOption("main", "horizontal"));
         
         this.$windowSize = this.horizontal ? "getWindowWidth" : "getWindowHeight";
         this.$offsetSize = this.horizontal ? "offsetWidth" : "offsetHeight";
@@ -554,7 +554,7 @@ apf.scrollbar = function(struct, tagName){
                 _self.$curValue -= _self.$stepValue;
                 
                 _self.setScroll();
-                apf.stopPropagation(e);
+                amlCore.stopPropagation(e);
                 
                 //apf.window.$mousedown(e);
                 
@@ -587,7 +587,7 @@ apf.scrollbar = function(struct, tagName){
                 
                 _self.$curValue += _self.$stepValue;
                 _self.setScroll();
-                apf.stopPropagation(e);
+                amlCore.stopPropagation(e);
                 
                 //apf.window.$mousedown(e);
                 
@@ -660,7 +660,7 @@ apf.scrollbar = function(struct, tagName){
                 document.onmousemove = null;
             };
     
-            apf.stopPropagation(e);
+            amlCore.stopPropagation(e);
             //apf.window.$mousedown(e);
             
             return false;

@@ -109,7 +109,7 @@ apf.video.TypeSilverlight = function(oVideo, node, options) {
         context:       this
     });
 
-    //apf.extend(this, apf.video.TypeInterface);
+    //Object.extend(this, apf.video.TypeInterface);
     //#ifdef __WITH_LAYOUT
     apf.layout.setRules(this.oVideo.$ext, this.oVideo.$uniqueId + "_silverlight",
         "apf.all[" + this.oVideo.$uniqueId + "].player.resizePlayer()");

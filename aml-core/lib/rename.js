@@ -101,7 +101,7 @@ apf.Rename = function(){
     }
     
     function $keydown(e){
-        if (!this.renaming && apf.isCharacter(e.keyCode))
+        if (!this.renaming && util.isCharacter(e.keyCode))
             this.startRename();
     }
     
@@ -177,7 +177,7 @@ apf.Rename = function(){
         elCaption.parentNode.replaceChild(this.$txt, elCaption);
         elCaption.host = this;
 
-        if (apf.isTrue(this.$getOption("main", "scalerename"))) {
+        if (util.isTrue(this.$getOption("main", "scalerename"))) {
             var diff = apf.getWidthDiff(this.$txt);
             this.$txt.style.width = (wdt - diff - 3) + "px";
         }
@@ -253,10 +253,9 @@ apf.Rename = function(){
         
         //apf.hasContentEditable ??
         if (this.$multiLineRename) {
-            var value = apf.html_entity_decode(
-                apf.htmlCleaner.parse(this.$txt.innerHTML, true)
+            var value = apf.htmlCleaner.parse(this.$txt.innerHTML, true)
                             .replace(/<br \/>/g, "")
-                            .replace(/<\/?p>/g, ""));
+                            .replace(/<\/?p>/g, "").unescapeHTML();
         }
         else {
             var value = this.$txt[apf.hasContentEditable ? "innerText" : "value"]
@@ -374,7 +373,7 @@ apf.Rename.initEditableArea = function(){
         //this.$txt.onkeydown   = 
         this.$txt.onmouseup   = 
         this.$txt.onmousedown = function(e){ 
-            apf.stopPropagation(e || event)
+            amlCore.stopPropagation(e || event)
         };
     
         this.$txt.onkeyup = function(e){
@@ -398,7 +397,7 @@ apf.Rename.initEditableArea = function(){
             try {
                 r.moveToElementText(this);
     
-                if (apf.isFalse(this.host.$getOption("main", "selectrename"))
+                if (util.isFalse(this.host.$getOption("main", "selectrename"))
                   || typeof this.host.$renameStartCollapse != "undefined") //@todo please deprecate renameStartCollapse
                     r.collapse(this.host.$renameStartCollapse);
             } catch(e) {} //BUG!!!!

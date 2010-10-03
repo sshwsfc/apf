@@ -187,7 +187,7 @@ apf.slider = function(struct, tagName){
             markers = this.oMarkers.childNodes;
         for (i = markers.length - 1; i >= 0; i--) {
             if (markers[i].tagName == "U" && markers[i].nodeType == 1) //small hack
-                apf.destroyHtmlNode(markers[i]);
+                amlCore.destroyHtmlNode(markers[i]);
         }
 
         if (!this.step && this.$aml)
@@ -353,7 +353,7 @@ apf.slider = function(struct, tagName){
             max = (this.oSlider.offsetWidth
                 - apf.getWidthDiff(this.oSlider))
                 - this.oKnob.offsetWidth;
-            min = parseInt(apf.getBox(
+            min = parseInt(util.getBox(
                 apf.getStyle(this.oSlider, "padding"))[3]);
 
             offset = Math.round(((max - min) * multiplier) + min);
@@ -382,7 +382,7 @@ apf.slider = function(struct, tagName){
             max = (this.oSlider.offsetHeight
                 - apf.getHeightDiff(this.oSlider))
                 - this.oKnob.offsetHeight;
-            min = parseInt(apf.getBox(
+            min = parseInt(util.getBox(
                 apf.getStyle(this.oSlider, "padding"))[0]);
 
             offset = (((max - min) * (1 - multiplier)) + min);
@@ -680,7 +680,7 @@ apf.slider = function(struct, tagName){
 
         this.$dir = this.$getOption("main", "direction") || "horizontal";
 
-        this.oKnob.style.left = (parseInt(apf.getBox(
+        this.oKnob.style.left = (parseInt(util.getBox(
             apf.getStyle(this.oSlider, "padding"))[3])) + "px";
 
         var _self = this;
@@ -697,14 +697,14 @@ apf.slider = function(struct, tagName){
                 this.max = _self.oSlider.offsetWidth 
                     - apf.getWidthDiff(_self.oSlider)
                     - this.offsetWidth;
-                this.min = parseInt(apf.getBox(
+                this.min = parseInt(util.getBox(
                     apf.getStyle(_self.oSlider, "padding"))[3]);
             }
             else {
                 this.max = _self.oSlider.offsetHeight
                     - apf.getHeightDiff(_self.oSlider)
                     - this.offsetHeight;
-                this.min = parseInt(apf.getBox(
+                this.min = parseInt(util.getBox(
                     apf.getStyle(_self.oSlider, "padding"))[0]);
             }
         }

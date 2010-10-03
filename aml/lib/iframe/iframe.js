@@ -181,11 +181,11 @@ apf.iframe = function(struct, tagName){
         this.$ext.className = "apfiframe"
         
         var _self = this;
-        apf.addListener(this.$iframe, "load", function(){
+        amlCore.addListener(this.$iframe, "load", function(){
             _self.dispatchEvent("load");
         });
 
-        apf.addListener(this.$iframe, "error", function(){
+        amlCore.addListener(this.$iframe, "error", function(){
             _self.dispatchEvent("error");
         });
 

@@ -394,7 +394,7 @@ apf.AmlWindow = function(struct, tagName){
 
     var hEls = [], wasVisible;
     this.$propHandlers["visible"] = function(value){
-        if (apf.isTrue(value)){
+        if (util.isTrue(value)){
             if (this.dispatchEvent("beforeshow") === false)
                 return (this.visible = false);
             
@@ -553,7 +553,7 @@ apf.AmlWindow = function(struct, tagName){
     /**** Init ****/
 
     this.$draw = function(){
-        this.popout = apf.isTrue(this.getAttribute("popout"));
+        this.popout = util.isTrue(this.getAttribute("popout"));
         if (this.popout)
             this.$pHtmlNode = document.body;
 
@@ -623,7 +623,7 @@ apf.AmlWindow = function(struct, tagName){
 
         /*var v;
         if (!((v = this.getAttribute("visible")).indexOf("{") > -1 || v.indexOf("[") > -1)) {
-            this.$aml.setAttribute("visible", "{" + apf.isTrue(v) + "}");
+            this.$aml.setAttribute("visible", "{" + util.isTrue(v) + "}");
         }*/
     };
 
@@ -714,7 +714,7 @@ apf.AmlWindow = function(struct, tagName){
         if (this.oDrag) {
             this.oDrag.host = null;
             this.oDrag.onmousedown = null;
-            apf.destroyHtmlNode(this.oDrag);
+            amlCore.destroyHtmlNode(this.oDrag);
             this.oDrag = null;
         }
 

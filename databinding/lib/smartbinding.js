@@ -666,8 +666,8 @@ apf.smartbinding = function(struct, tagName){
             case "model":
                 //#ifdef __WITH_NAMESERVER
                 if (typeof value == "string")
-                    value = apf.nameserver.get("model", value);
-                this.model          = apf.nameserver.register("model", this.name, value);
+                    value = nameserver.get("model", value);
+                this.model          = nameserver.register("model", this.name, value);
                 //this.modelBaseXpath = xpath;
                 
                 var amlNode;
@@ -691,7 +691,7 @@ apf.smartbinding = function(struct, tagName){
                     ? value 
                     : 
                     //#ifdef __WITH_NAMESERVER
-                    apf.nameserver.lookup("bindings", value);
+                    nameserver.lookup("bindings", value);
                     /* #else
                     {}
                     #endif */
@@ -707,7 +707,7 @@ apf.smartbinding = function(struct, tagName){
                     ? value 
                     :
                     //#ifdef __WITH_NAMESERVER
-                    apf.nameserver.lookup("actions", value);
+                    nameserver.lookup("actions", value);
                     /* #else
                     {}
                     #endif */
@@ -720,7 +720,7 @@ apf.smartbinding = function(struct, tagName){
         this[prop] = value;
         
         //#ifdef __DEBUG
-        /*if (!apf.nameserver.get(name, attr[i].nodeValue))
+        /*if (!nameserver.get(name, attr[i].nodeValue))
             throw new Error(apf.formatErrorString(1036, this, 
                 "Connecting " + name, 
                 "Could not find " + name + " by name '" 

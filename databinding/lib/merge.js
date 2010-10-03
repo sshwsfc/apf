@@ -94,7 +94,7 @@ return function(XMLRoot, parentNode, options){
     else
     // #endif
     {
-        beforeNode = options && options.beforeNode ? options.beforeNode : apf.getNode(parentNode, [0]);
+        beforeNode = options && options.beforeNode ? options.beforeNode : util.getFirstElement(parentNode);
         nodes      = XMLRoot.childNodes;
 
         if (parentNode.ownerDocument.importNode) {

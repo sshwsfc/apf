@@ -277,7 +277,7 @@ apf.Cache = function(){
         this.cache[id].xmlRoot    = null;
 
         if (remove)
-            apf.destroyHtmlNode(this.cache[id]);
+            amlCore.destroyHtmlNode(this.cache[id]);
 
         this.cache[id] = null;
     };
@@ -349,7 +349,7 @@ apf.Cache = function(){
 };
 
 apf.GuiElement.propHandlers["caching"] = function(value) {
-    if (!apf.isTrue(value)) return;
+    if (!util.isTrue(value)) return;
     
     if (!this.hasFeature(apf.__CACHE__))
         this.implement(apf.Cache);

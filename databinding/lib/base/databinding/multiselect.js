@@ -59,7 +59,7 @@ apf.MultiselectBinding = function(){
     this.length = 0;
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         caption   : 2,
         icon      : 2,
         eachvalue : 2,

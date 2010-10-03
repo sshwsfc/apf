@@ -212,7 +212,7 @@ apf.LiveEdit.plugin("fontsize", function() {
             if (apf.isIE)
                 this.editor.$selection.collapse(false);
         }
-        apf.stopEvent(e);
+        amlCore.stopEvent(e);
         return false;
     };
 

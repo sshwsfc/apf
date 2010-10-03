@@ -701,7 +701,7 @@ oop.inherits(DOMNode, Class);
         catch (ex) {}
         
         //#ifdef __WITH_NAMESERVER
-        apf.nameserver.remove(this.localName, this);
+        nameserver.remove(this.localName, this);
         //#endif
     };
     

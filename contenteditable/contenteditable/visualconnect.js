@@ -127,7 +127,7 @@ apf.visualConnect = function (sel){
         div.style.top = "0px";
         div.style.zIndex = 100000001;
         
-        //@todo use apf.window.zManager.set("drag", this.panel);
+        //@todo use zManager.set("drag", this.panel);
 /*
         var showAllTimer = setTimeout(function(){
             // lets show the drawing till someone clicks and then its gone
@@ -333,7 +333,7 @@ apf.visualConnect = function (sel){
                     if (createConnections([fromEl]))
                         showConnections();
                     
-                    //apf.cancelBubble((e || event), attMenu);
+                    //amlCore.cancelBubble((e || event), attMenu);
                 });
             }
             isDrawing = false;

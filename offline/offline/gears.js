@@ -39,7 +39,7 @@ apf.offline.application.gears = {
         this.storeName = apf.config.name + ".apf.offline";
         
         try{
-            this.localServer = apf.nameserver.get("google", "gears").create("beta.localserver", "1.0");
+            this.localServer = nameserver.get("google", "gears").create("beta.localserver", "1.0");
         }
         catch(e){
             apf.console.warn("Error loading gears: " + e.message);

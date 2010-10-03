@@ -78,7 +78,6 @@ String.prototype.toXml = function(){
     }
 };
 
-
 if (typeof window != "undefined" && typeof window.document != "undefined" 
   && typeof window.document.createElement == "function") {
     /**
@@ -134,7 +133,9 @@ if (!String.prototype.escapeHTML) {
 
 if (!String.prototype.unescapeHTML) {
     String.prototype.unescapeHTML = function() {
-        return this.stripTags().replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");
+        //stripTags(). ??
+        return this.replace(/\&\#38;/g, "&").replace(/&lt;/g,"<").
+            replace(/&gt;/g,">").replace(/&amp;/g,"&").replace(/&nbsp;/g, " ");
     };
 }
 

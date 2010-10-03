@@ -76,7 +76,7 @@ apf.propgrid    = function(struct, tagName){
     this.$useiframe      = 0;
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         properties : 3 //only when it has an xpath
     }, this.$attrExcludePropBind);
     
@@ -878,7 +878,7 @@ apf.propgrid    = function(struct, tagName){
 
                 oEditor = this.$editors[editor] = new constr(info);
                 
-                var box = apf.getBox(apf.getStyle(oEditor.$ext, "margin"));
+                var box = util.getBox(apf.getStyle(oEditor.$ext, "margin"));
                 if (box[1] || box[3]) {
                     oEditor.setAttribute("width", "100%+2-" + (box[1] + box[3]));
                 }
@@ -994,7 +994,7 @@ apf.propgrid    = function(struct, tagName){
 
         var widthdiff = this.$widthdiff = this.$getOption("main", "widthdiff") || 0;
         this.$defaultwidth = this.$getOption("main", "defaultwidth") || "100";
-        this.$useiframe    = apf.isIE && (apf.isTrue(this.$getOption("main", "iframe")) || this.iframe);
+        this.$useiframe    = apf.isIE && (util.isTrue(this.$getOption("main", "iframe")) || this.iframe);
 
         var _self = this;
         

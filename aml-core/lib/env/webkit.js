@@ -1,8 +1,8 @@
 require.modify(
     "aml-core", 
     "aml-core/w3c", 
-    ["aml-core", "aml-core/util/htmlentities"]
-    function(amlCore, htmlEntities){
+    ["aml-core", "ecmaext/string"]
+    function(amlCore){
 
 var serializer = new XMLSerializer();
 amlCore.insertHtmlNodes = function(nodeList, htmlNode, beforeNode) {
@@ -16,7 +16,7 @@ amlCore.insertHtmlNodes = function(nodeList, htmlNode, beforeNode) {
 
     (beforeNode || htmlNode).insertAdjacentHTML(beforeNode
         ? "beforebegin"
-        : "beforeend", htmlEntities.html_entity_decode(serializer.serializeToString(frag))
+        : "beforeend", serializer.serializeToString(frag).unescapeHTML()
             .replace(/<([^>]+)\/>/g, "<$1></$1>"));
 };
 
@@ -25,11 +25,11 @@ amlCore.insertHtmlNode = function(xmlNode, htmlNode, beforeNode, s) {
         return htmlNode.appendChild(xmlNode);
     
     if (!s) {
-        s = htmlEntities.html_entity_decode(xmlNode.serialize 
+        s = (xmlNode.serialize 
             ? xmlNode.serialize(true)
             : ((xmlNode.nodeType == 3 || xmlNode.nodeType == 4 || xmlNode.nodeType == 2)
                 ? xmlNode.nodeValue
-                : serializer.serializeToString(xmlNode)));
+                : serializer.serializeToString(xmlNode))).unescapeHTML()
     }
     
     (beforeNode || htmlNode).insertAdjacentHTML(beforeNode

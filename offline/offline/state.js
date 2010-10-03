@@ -56,7 +56,7 @@ apf.offline.state = {
         
         if (aml.nodeType) {
             if (aml.getAttribute("realtime"))
-                this.realtime = !apf.isFalse(aml.getAttribute("realtime"));
+                this.realtime = !util.isFalse(aml.getAttribute("realtime"));
             
             if (aml.getAttribute("set"))
                 this.setInstruction = aml.getAttribute("set");
@@ -80,7 +80,7 @@ apf.offline.state = {
         });
         
         //#ifdef __WITH_REGISTRY
-        var registry       = apf.extend({}, apf.offline.storage || apf.storage);
+        var registry       = Object.extend({}, apf.offline.storage || apf.storage);
         registry.namespace = apf.config.name + ".apf.registry";
         apf.registry.$export(registry);
         apf.registry       = registry;

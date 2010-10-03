@@ -30,7 +30,7 @@ apf.BindingLoadRule = function(struct, tagName){
 
 (function(){
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         get   : 1
     }, this.$attrExcludePropBind);
 

@@ -165,14 +165,14 @@ var docparser = {
                                 }
                             }
                             
-                            //xx = apf.extend({})
-                            else if (t[i + 5] == "apf.extend" && t[i + 6] == 2) {
+                            //xx = Object.extend({})
+                            else if (t[i + 5] == "Object.extend" && t[i + 6] == 2) {
                                 j = loopToNextChild(t[i + 8], 0);
                                 
                                 if (t[i + 8][j + 3] == 2) {
                                     o = addObj(t, i + 3, docTree, docTree, t[i + 8][j + 5]);
                                     
-                                    // xx = apf.extend({}, apf.xx);
+                                    // xx = Object.extend({}, apf.xx);
                                     if (t[i + 8][j + 9] && t[i + 8][j + 9] == 5) {
                                         var source = getContext(docTree, t[i + 8][j + 11]);
                                         

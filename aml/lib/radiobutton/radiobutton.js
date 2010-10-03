@@ -97,7 +97,7 @@ apf.radiobutton = function(struct, tagName){
     this.$focussable = true; // This object can get the focus
     
     //1 = force no bind rule, 2 = force bind rule
-    /*this.$attrExcludePropBind = apf.extend({
+    /*this.$attrExcludePropBind = Object.extend({
         checked: 1
     }, this.$attrExcludePropBind);*/
 
@@ -128,14 +128,14 @@ apf.radiobutton = function(struct, tagName){
         var group = typeof value == "string"
             ?
             //#ifdef __WITH_NAMESERVER
-            apf.nameserver.get("radiogroup", value)
+            nameserver.get("radiogroup", value)
             /* #else
             {}
             #endif */
             : value;
         if (!group) {
             //#ifdef __WITH_NAMESERVER
-            group = apf.nameserver.register("radiogroup", value, 
+            group = nameserver.register("radiogroup", value, 
                 new apf.$group());
             group.setAttribute("id", value);
             group.dispatchEvent("DOMNodeInsertedIntoDocument");

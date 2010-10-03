@@ -18,7 +18,7 @@ apf.dbg = function(struct, tagName){
             if (!value) return;
             //#ifdef __WITH_NAMESERVER
             this[name] = apf.setReference(value,
-                apf.nameserver.register("model", value, new apf.model()));
+                nameserver.register("model", value, new apf.model()));
             
             // set the root node for this model
             this[name].id = this[name].name = value;
@@ -32,7 +32,7 @@ apf.dbg = function(struct, tagName){
             if (!value) return;
             //#ifdef __WITH_NAMESERVER
             this[name] = apf.setReference(value,
-                    apf.nameserver.register("state", value, new apf.state()));
+                    nameserver.register("state", value, new apf.state()));
             
             // set the root node for this model
             this[name].id = this[name].name = value;

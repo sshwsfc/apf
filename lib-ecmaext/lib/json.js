@@ -254,7 +254,7 @@ if (!self["JSON"]) {
             return result;
         },
         stringify: function(o) {
-            if (typeof args == "function" || apf.isNot(o))
+            if (typeof args == "function" || util.isNot(o))
                 return "null";
             return jsonSerialize[o.dataType || 0](o);
         }

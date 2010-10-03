@@ -210,7 +210,7 @@ apf.checkbox = function(struct, tagName){
             this.dispatchEvent(strEvent, {htmlEvent: e});
 
         /*if (state == "Down")
-            apf.cancelBubble(e, this);
+            amlCore.cancelBubble(e, this);
         else
             e.cancelBubble = true;*/
     };

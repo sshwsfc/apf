@@ -63,7 +63,7 @@ apf.storage.modules['air.sql'] = {
         stmt.sqlConnection = this._db;
         stmt.text          = query;
         if (params)
-            apf.extend(stmt.parameters, params);
+            Object.extend(stmt.parameters, params);
 
         stmt.execute();
         return stmt.getResult();

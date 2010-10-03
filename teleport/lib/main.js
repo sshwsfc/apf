@@ -200,7 +200,7 @@ var Teleport = function(){
         if (bHasOffline && !apf.offline.onLine && !options.ignoreOffline) {
             if (apf.offline.queue.enabled) {
                 //Let's record all the necesary information for future use (during sync)
-                var info = apf.extend({
+                var info = Object.extend({
                     url      : url,
                     callback : options.callback,
                     retry    : function(){
@@ -232,12 +232,12 @@ var Teleport = function(){
 
         //#ifdef __SUPPORT_WEBKIT
         if (apf.isWebkit)
-            url = apf.html_entity_decode(url);
+            url = url.unescapeHTML();
         //#endif
 
         var data = options.data || "";
 
-        if (apf.isNot(id)) {
+        if (util.isNot(id)) {
             //#ifdef __WITH_HTTP_CACHE
             if (this.cache[url] && this.cache[url][data]) {
                 var http = {
@@ -343,7 +343,7 @@ var Teleport = function(){
         var errorFound = false;
         try {
             if (options.nocache)
-                httpUrl = apf.getNoCacheUrl(httpUrl);
+                httpUrl = util.getNoCacheUrl(httpUrl);
 
             //#ifdef __WITH_QUERYAPPEND
             if (apf.config.queryAppend) {
@@ -407,7 +407,7 @@ var Teleport = function(){
             // Retry request by routing it
             if (this.autoroute && !autoroute) {
                 //#ifdef __SUPPORT_IE5
-                if (!apf.isNot(id))
+                if (!util.isNot(id))
                     clearInterval(this.queue[id].timer);
                 //#endif
 
@@ -556,7 +556,7 @@ var Teleport = function(){
                 apf.getAbsolutePath(apf.config.baseurl, url), 
                 options.method == "GET" 
                     ? options 
-                    : apf.extend({data : query}, options)
+                    : Object.extend({data : query}, options)
             );
         }
     }
@@ -799,7 +799,7 @@ var Teleport = function(){
                 ? "timeout"
                 : "error"), "Url: " + extra.url + "\nInfo: " + extra.message));
 
-        if ((amlNode || apf).dispatchEvent("error", apf.extend({
+        if ((amlNode || apf).dispatchEvent("error", Object.extend({
             error   : oError,
             state   : state,
             extra   : extra,
@@ -842,7 +842,7 @@ var Teleport = function(){
             return httpObjectCache.pop();
         
         getHttpReq.httpObjectCache = [];
-        apf.addListener(window, "unload", function(){
+        amlCore.addListener(window, "unload", function(){
             for (i = 0, l = this.httpObjectCache.length; i < l; i++)
                 this.httpObjectCache[i] = null;
             
@@ -921,7 +921,7 @@ var Teleport = function(){
                     callback = self[this.childNodes[i].getAttribute("receive") || receive],
                     options  = {
                         useXML  : this.childNodes[i].getAttribute("type") == "XML",
-                        async   : !apf.isFalse(this.childNodes[i].getAttribute("async"))
+                        async   : !util.isFalse(this.childNodes[i].getAttribute("async"))
                     };
 
                 this[this.childNodes[i].getAttribute("name")] = function(data, userdata){

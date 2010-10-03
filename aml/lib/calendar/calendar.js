@@ -707,7 +707,7 @@ apf.calendar = function(struct, tagName){
     
     this.$destroy = function() {
         apf.popup.removeContent(this.$uniqueId);
-        apf.destroyHtmlNode(this.$ext);
+        amlCore.destroyHtmlNode(this.$ext);
         this.oCalendar = null;
     };
     

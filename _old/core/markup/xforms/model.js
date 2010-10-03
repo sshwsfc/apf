@@ -39,7 +39,7 @@ apf.XformsModelElement = function(struct, tagName){
      */
     this.getBindNode = function(bindId){
         //#ifdef __WITH_NAMESERVER
-        var bindObj = apf.nameserver.get("bind", bindId);
+        var bindObj = nameserver.get("bind", bindId);
 
         //#ifdef __DEBUG
         if (!bindObj) {
@@ -181,7 +181,7 @@ apf.XformsModelElement = function(struct, tagName){
         for (i = 0, l = binds.length; i < l; i++) {
             this.$bindValidation.push([binds[i].getAttribute("nodeset"), binds[i]]);
             if (binds[i].getAttribute("id"))
-                apf.nameserver.register("bind", binds[i].getAttribute("id"),
+                nameserver.register("bind", binds[i].getAttribute("id"),
                     new cBind(binds[i]));
         } ^-- @todo apf3.0 no locally declared function 'cBind' found in current scope */
         //#endif
@@ -301,7 +301,7 @@ apf.XformsModelElement = function(struct, tagName){
                     //#endif
                 }
                 else {
-                    model.dispatchEvent("submitsuccess", apf.extend({
+                    model.dispatchEvent("submitsuccess", Object.extend({
                         data: data
                     }, extra));
 
@@ -392,7 +392,7 @@ apf.XformsModelElement = function(struct, tagName){
 }).call(apf.XformsModelElement.prototype = new apf.XformsElement());
 
  /*#ifdef __WITH_XFORMS
-var i, models = apf.nameserver.getAll("model");
+var i, models = nameserver.getAll("model");
 for (i = 0; i < models.length; i++)
     models[i].dispatchEvent("xforms-model-destruct");
 //#endif */

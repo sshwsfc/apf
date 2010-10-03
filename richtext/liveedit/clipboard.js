@@ -91,7 +91,7 @@ apf.LiveEdit.pasteDialog = function(sName) {
         }
         this.editor.$insertHtml(sContent);
 
-        apf.stopEvent(e);
+        amlCore.stopEvent(e);
         return false;
     };
 

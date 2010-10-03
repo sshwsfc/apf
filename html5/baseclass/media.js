@@ -191,7 +191,7 @@ apf.Media = function(){
     this.$propHandlers["paused"] = function(value){
         if (!this.player) return;
 
-        this.paused = apf.isTrue(value);
+        this.paused = util.isTrue(value);
         if (this.paused)
             this.player.pause();
         else

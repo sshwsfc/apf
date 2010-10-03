@@ -131,7 +131,7 @@ apf.repeat = function(struct, tagName){
         for (var i = children.length - 1; i >= 0; i--) {
             children[i].destroy(true);
         }
-        apf.destroyHtmlNode(oItem.$ext);
+        amlCore.destroyHtmlNode(oItem.$ext);
         delete nodes[Lid];
     };
     

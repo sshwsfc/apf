@@ -417,7 +417,7 @@ apf.XPath = {
             case "position":
                 return apf.getChildNumber(contextNode) + 1;
             case "format-number":
-                return apf.formatNumber(arg1); //@todo this should actually do something
+                return util.formatNumber(arg1); //@todo this should actually do something
             case "floor":
                 return Math.floor(arg1);
             case "ceiling":

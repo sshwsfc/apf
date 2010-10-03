@@ -78,7 +78,7 @@ apf.script = function(){
     
     this.$execute = function(code, e){
         if (!this.type || this.type == "text/javascript") {
-            apf.jsexec(code);
+            util.jsexec(code);
         }
         else if (this.type.indexOf("livemarkup") > -1
           || this.type.indexOf("lm") > -1) { //@todo this is wrong, it should start in code mode

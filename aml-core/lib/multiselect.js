@@ -1478,7 +1478,7 @@ apf.MultiSelect = function(){
                         }
                         else {
                             //#ifdef __WITH_NAMESERVER
-                            model = apf.nameserver.get("model", c.cvalue.xpaths[0]);
+                            model = nameserver.get("model", c.cvalue.xpaths[0]);
                             //#endif
                             path  = c.cvalue.xpaths[1];
                         }
@@ -1681,7 +1681,7 @@ apf.MultiSelect = function(){
 
     this.$propHandlers["ctrlselect"] = function(value){
         if (value != "enter")
-            this.ctrlselect = apf.isTrue(value);
+            this.ctrlselect = util.isTrue(value);
     }
 
     function fAutoselect(){

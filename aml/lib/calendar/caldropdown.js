@@ -960,7 +960,7 @@ apf.caldropdown = function(struct, tagName){
 
     this.$destroy = function() {
         apf.popup.removeContent(this.$uniqueId);
-        apf.destroyHtmlNode(this.oSlider);
+        amlCore.destroyHtmlNode(this.oSlider);
         this.oSlider = null;
 
         if (apf.caldropdown.cache) {

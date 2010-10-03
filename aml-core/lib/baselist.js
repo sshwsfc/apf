@@ -256,14 +256,14 @@ apf.BaseList = function(){
                 node   = this.$tempsel
                     ? apf.xmldb.getNode(this.$tempsel)
                     : selXml;
-                margin = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin = util.getBox(apf.getStyle(selHtml, "margin"));
                 items  = selHtml.offsetWidth
                     ? Math.floor((oExt.offsetWidth
                         - (hasScroll ? 15 : 0)) / (selHtml.offsetWidth
                         + margin[1] + margin[3]))
                     : 1;
 
-                //margin = apf.getBox(apf.getStyle(selHtml, "margin"));
+                //margin = util.getBox(apf.getStyle(selHtml, "margin"));
 
                 node   = this.getNextTraverseSelected(node, false);
                 if (node)
@@ -287,7 +287,7 @@ apf.BaseList = function(){
                     ? apf.xmldb.getNode(this.$tempsel)
                     : selXml;
 
-                margin    = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin    = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScroll = oExt.scrollHeight > oExt.offsetHeight;
                 items     = selHtml.offsetWidth
                     ? Math.floor((oExt.offsetWidth
@@ -316,7 +316,7 @@ apf.BaseList = function(){
                 node = this.$tempsel
                     ? apf.xmldb.getNode(this.$tempsel)
                     : selXml;
-                margin = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin = util.getBox(apf.getStyle(selHtml, "margin"));
                 node   = this.getNextTraverseSelected(node, true);
                 if (node)
                     this.$setTempSelected (node, ctrlKey, shiftKey);
@@ -340,7 +340,7 @@ apf.BaseList = function(){
                     ? apf.xmldb.getNode(this.$tempsel)
                     : selXml;
 
-                margin    = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin    = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScroll = oExt.scrollHeight > oExt.offsetHeight;
                 items     = selHtml.offsetWidth
                     ? Math.floor((oExt.offsetWidth
@@ -371,7 +371,7 @@ apf.BaseList = function(){
                     ? apf.xmldb.getNode(this.$tempsel)
                     : selXml;
 
-                margin     = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin     = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScrollY = oExt.scrollHeight > oExt.offsetHeight;
                 hasScrollX = oExt.scrollWidth > oExt.offsetWidth;
                 items      = Math.floor((oExt.offsetWidth
@@ -405,7 +405,7 @@ apf.BaseList = function(){
                     ? apf.xmldb.getNode(this.$tempsel)
                     : selXml;
 
-                margin     = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin     = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScrollY = oExt.scrollHeight > oExt.offsetHeight;
                 hasScrollX = oExt.scrollWidth > oExt.offsetWidth;
                 items      = Math.floor((oExt.offsetWidth - (hasScrollY ? 15 : 0))
@@ -635,7 +635,7 @@ apf.BaseList = function(){
                     "var o = apf.lookup(" + this.$uniqueId + ");\
                     o.checkToggle(this, true);\o.$skipSelect = true;");
 
-                if (apf.isTrue(this.$applyBindRule("checked", xmlNode))) {
+                if (util.isTrue(this.$applyBindRule("checked", xmlNode))) {
                     this.$checkedList.push(xmlNode);
                     this.$setStyleClass(oItem, "checked");
                 }

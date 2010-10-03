@@ -21,7 +21,7 @@
 
 //#ifdef __WITH_XMLDATABASE
 
-apf.addListener(window, "unload", function(){
+amlCore.addListener(window, "unload", function(){
     //#ifdef __WITH_XMLDATABASE
     if (apf.xmldb)
         apf.xmldb.unbind(apf.window);
@@ -130,7 +130,7 @@ apf.xmldb = new (function(){
      */
     this.setModel = function(model){
         //#ifdef __WITH_NAMESERVER
-        apf.nameserver.register("model", model.data.ownerDocument
+        nameserver.register("model", model.data.ownerDocument
             .documentElement.getAttribute(this.xmlDocTag), model);
         //#endif
     };
@@ -143,7 +143,7 @@ apf.xmldb = new (function(){
      */
     this.findModel = function(xmlNode){
         //#ifdef __WITH_NAMESERVER
-        return apf.nameserver.get("model", xmlNode.ownerDocument
+        return nameserver.get("model", xmlNode.ownerDocument
             .documentElement.getAttribute(this.xmlDocTag));
         //#endif
     };
@@ -751,7 +751,7 @@ apf.xmldb = new (function(){
         if (typeof apf.offline != "undefined" && apf.offline.models.enabled
           && apf.offline.models.realtime) {
             //#ifdef __WITH_NAMESERVER
-            var model = apf.nameserver.get("model", apf.xmldb.getXmlDocId(xmlNode));
+            var model = nameserver.get("model", apf.xmldb.getXmlDocId(xmlNode));
             if (model) apf.offline.models.markForUpdate(model);
             //#endif
         }
@@ -930,11 +930,11 @@ apf.xmldb = new (function(){
             xmlNode = xmlNode.ownerElement || xmlNode.selectSingleNode("..");
         //#ifdef __WITH_NAMESERVER
         var mdlId   = apf.xmldb.getXmlDocId(xmlNode),
-            model   = apf.nameserver.get("model", mdlId);
+            model   = nameserver.get("model", mdlId);
         if (!model && apf.isO3)
             model = self[mdlId];
         if (!model) {
-            if (!apf.nameserver.getAll("remote").length)
+            if (!nameserver.getAll("remote").length)
                 return;
             //#ifdef __DEBUG
             apf.console.log("Could not find model '" + mdlId + "' for Remote DataBinding connection, not sending change");
@@ -1069,7 +1069,7 @@ apf.xmldb = new (function(){
         var docId = (docEl || xmlNode).getAttribute(this.xmlDocTag)
             || this.$xmlDocLut.indexOf(docEl || xmlNode.ownerDocument || xmlNode);
 
-        if (model && apf.nameserver.get("model", docId) != model) {
+        if (model && nameserver.get("model", docId) != model) {
             docId = null;
             docEl = xmlNode;
         }
@@ -1081,7 +1081,7 @@ apf.xmldb = new (function(){
         }
         //#ifdef __WITH_NAMESERVER
         if (model)
-            apf.nameserver.register("model", docId, model);
+            nameserver.register("model", docId, model);
         //#endif
 
         return docId;

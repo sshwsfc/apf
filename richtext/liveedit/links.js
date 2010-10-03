@@ -95,7 +95,7 @@ apf.LiveEdit.plugin("link", function(){
         // propagate the change AFTER changing back the link to its proper format
         oEditor.change(oEditor.getValue());
 
-        apf.stopEvent(e);
+        amlCore.stopEvent(e);
         return false;
     };
 

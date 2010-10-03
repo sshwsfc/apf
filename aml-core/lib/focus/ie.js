@@ -54,7 +54,7 @@
         timer = null;
     }
 
-    apf.addListener(window, "focus", this.$focusevent = function(){
+    amlCore.addListener(window, "focus", this.$focusevent = function(){
         // #ifdef __SUPPORT_IPHONE
         if (apf.isIphone)
             return apf.window.dispatchEvent("focus");
@@ -72,7 +72,7 @@
         }
     });
 
-    apf.addListener(window, "blur", this.$blurevent = function(){
+    amlCore.addListener(window, "blur", this.$blurevent = function(){
         if (!apf) return;
         
         // #ifdef __SUPPORT_IPHONE

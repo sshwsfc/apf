@@ -2,10 +2,10 @@ require.modify(
     "aml-core", 
     "aml-core/ie", 
     ["aml-core", 
-    "aml-core/util/htmlentities", 
+    "ecmaext/string", 
     "envdetect", 
     "optional!debug/console"]
-    function(amlCore, htmlEntities, env, console){
+    function(amlCore, env, console){
         
 //IE fix
 try {
@@ -17,7 +17,7 @@ amlCore.insertHtmlNodes = function(nodeList, htmlNode, beforeNode){
     for (var str = [], i = 0, l = nodeList.length; i < l; i++)
         str[i] = nodeList[i].xml;
 
-    str = htmlEntities.html_entity_decode(str.join(""));
+    str = str.join("").unescapeHTML();
     
     if (env.isIE < 7)
         str = str.replace(/style="background-image:([^"]*)"/g, 
@@ -57,9 +57,9 @@ amlCore.insertHtmlNode = function(xmlNode, htmlNode, beforeNode, str){
     var pNode = beforeNode || htmlNode;
     
     if (!str)
-        str = htmlEntities.html_entity_decode(xmlNode.serialize
+        str = (xmlNode.serialize
             ? xmlNode.serialize(true)
-            : xmlNode.xml || xmlNode.outerHTML || xmlNode.nodeValue);
+            : xmlNode.xml || xmlNode.outerHTML || xmlNode.nodeValue).unescapeHTML();
     try {
         pNode.insertAdjacentHTML(beforeNode 
             ? "beforeBegin" 

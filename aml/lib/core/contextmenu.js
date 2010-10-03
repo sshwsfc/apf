@@ -49,7 +49,7 @@ apf.contextmenu = function(){
     this.$amlNodes = [];
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         "match" : 1
     }, this.$attrExcludePropBind);
     

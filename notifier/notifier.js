@@ -201,7 +201,7 @@ apf.notifier = function(struct, tagName){
         oBody.insertAdjacentHTML("beforeend", message || "[No message]");
         oNoti.style.display = "block";
 
-        var margin = apf.getBox(this.margin || "0"),
+        var margin = util.getBox(this.margin || "0"),
             nh     = oNoti.offsetHeight,
             nw     = oNoti.offsetWidth,
             /* It's possible to set for example: position: top-right or right-top */
@@ -401,7 +401,7 @@ apf.notifier = function(struct, tagName){
         this.$ext = this.$getExternal("notification");
         this.$ext.style.display  = "none";
         this.$ext.style.position = "absolute";
-        apf.window.zManager.set("notifier", this.$ext);
+        zManager.set("notifier", this.$ext);
     };
 }).call(apf.notifier.prototype = new apf.Presentation());
 

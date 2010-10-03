@@ -345,17 +345,17 @@ apf.rpc = function(struct, tagName){
             value = nodes[i].value;
 
             if (value) {
-                value = apf.parseExpression(value);
+                value = util.parseExpression(value);
             }
             else {
                 value = args[j++];
 
-                if (apf.isNot(value) && nodes[i]["default"])
-                    value = apf.parseExpression(nodes[i]["default"]);
+                if (util.isNot(value) && nodes[i]["default"])
+                    value = util.parseExpression(nodes[i]["default"]);
             }
 
             //Encode string optionally
-            value = apf.isTrue(nodes[i].encoded)
+            value = util.isTrue(nodes[i].encoded)
                 ? encodeURIComponent(value)
                 : value;
 
@@ -425,7 +425,7 @@ apf.rpc = function(struct, tagName){
         // Send the request
         var auth,
             url  = apf.getAbsolutePath(this.baseurl || apf.config.baseurl, this.url),
-            o    = apf.extend({
+            o    = Object.extend({
                 callback      : pCallback,
                 async         : node.async,
                 userdata      : node.userdata,

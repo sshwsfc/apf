@@ -102,7 +102,7 @@ apf.vbox = function(struct, tagName){
             return;
 
         for (var last, b, el, i = elms.length - 2; i >= 0; i--) {
-            b = (el = elms[i]).margin && apf.getBox(el.margin) || [0,0,0,0];
+            b = (el = elms[i]).margin && util.getBox(el.margin) || [0,0,0,0];
             
             if ((!last || !last.$splitter) && !el.$splitter) {
                 b[this.$vbox ? 2 : 1] += this.padding;
@@ -114,7 +114,7 @@ apf.vbox = function(struct, tagName){
             el.$ext.style.margin = b.join("px ") + "px";
             last = el;
         }
-        b = (el = elms[elms.length - 1]).margin && apf.getBox(el.margin) || [0,0,0,0];
+        b = (el = elms[elms.length - 1]).margin && util.getBox(el.margin) || [0,0,0,0];
         el.$ext.style.margin = b.join("px ") + "px";
         
         if (!apf.hasFlexibleBox)
@@ -131,7 +131,7 @@ apf.vbox = function(struct, tagName){
     
     this.$propHandlers["edge"]  = function(value){
         var el = !apf.hasFlexibleBox && this.$vbox ? this.$ext : this.$int;
-        el.style.padding = (this.$edge = apf.getBox(value)).join("px ") + "px";
+        el.style.padding = (this.$edge = util.getBox(value)).join("px ") + "px";
         
         if (!apf.hasFlexibleBox)
             this.$resize();
@@ -266,7 +266,7 @@ apf.vbox = function(struct, tagName){
         //Handlers for flexible box layout
         "true" : {
             "optimize" : function(value){
-                this.optimize = apf.isTrue(value);
+                this.optimize = util.isTrue(value);
             },
             
             "width" : function(value){
@@ -294,7 +294,7 @@ apf.vbox = function(struct, tagName){
             },
             
             "margin" : function(value){
-                var b = apf.getBox(value);
+                var b = util.getBox(value);
                 if (!isLastVisibleChild(this))
                     b[this.parentNode.$vbox ? 2 : 1] += this.parentNode.padding;
                 this.$ext.style.margin = b.join("px ") + "px";
@@ -366,7 +366,7 @@ apf.vbox = function(struct, tagName){
             },
             
             "margin" : function(value){
-                var b = apf.getBox(value);
+                var b = util.getBox(value);
                 if (this.padding) {
                     if (!isLastVisibleChild(this))
                         b[this.parentNode.$vbox ? 2 : 1] += this.padding;
@@ -690,7 +690,7 @@ apf.vbox = function(struct, tagName){
           this.$lastSize[1] == this.$int.offsetHeight)
             return;
         
-        if (!apf.window.vManager.check(this, this.$uniqueId, this.$resize))
+        if (!vManager.check(this, this.$uniqueId, this.$resize))
             return;
 
         this.$lastSize = [this.$int.offsetWidth, this.$int.offsetHeight];
@@ -743,7 +743,7 @@ apf.vbox = function(struct, tagName){
             if (parseInt(node.flex))
                 total += parseFloat(node.flex);
             else {
-                var m = node.margin && apf.getBox(node.margin);
+                var m = node.margin && util.getBox(node.margin);
                 if (m && !this.$vbox) m.shift();
                 fW += node.$ext[ooffset] + (m ? m[0] + m[2] : 0); //this.padding + 
             }
@@ -760,7 +760,7 @@ apf.vbox = function(struct, tagName){
                 node = hNodes[i];
 
                 if (!node[size] && !this.$vbox || this.$vbox && input[node.$ext.tagName]) {
-                    var m = node.margin && apf.getBox(node.margin);
+                    var m = node.margin && util.getBox(node.margin);
                     if (m && this.$vbox) m.unshift();
                     
                     node.$ext.style[size] = !this[size] && !this.flex && node.$ext.offsetHeight == pH
@@ -785,7 +785,7 @@ apf.vbox = function(struct, tagName){
                 if ((node = hNodes[i]).flex) {
                     var v = (i % 2 == 0 ? Math.floor : Math.ceil)((rW / total) * parseInt(node.flex));
                     done += parseInt(node.flex);
-                    var m = node.margin && apf.getBox(node.margin);
+                    var m = node.margin && util.getBox(node.margin);
                     if (m && !this.$vbox) m.shift();
                     node.$ext.style[osize] = Math.max(0, (done == total ? lW : v) - apf[ogetDiff](node.$ext) - (m ? m[0] + m[2] : 0)) + "px";
                     lW -= v;

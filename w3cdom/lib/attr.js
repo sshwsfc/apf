@@ -46,7 +46,7 @@ oop.inherits(AmlAttr, DOMNode);
     
     this.serialize = 
     this.toString  = function(){
-        return this.name + "=\"" + apf.xmlentities(String(this.value))
+        return this.name + "=\"" + xmlEntity.encode(String(this.value))
             .replace(/</g, "&lt;").replace(/>/g, "&gt;") + "\"";
     };
     

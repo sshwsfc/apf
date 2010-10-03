@@ -249,7 +249,7 @@ apf.editor = function(struct, tagName){
                 _self.$focus({});
         });
 
-        //apf.stopEvent(e); // @todo why was here a stopEvent??
+        //amlCore.stopEvent(e); // @todo why was here a stopEvent??
     }
 
     /**
@@ -347,9 +347,9 @@ apf.editor = function(struct, tagName){
      */
     this.$addListeners = function() {
         var _self = this;
-        apf.addListener(this.$activeDocument, "mouseup", onClick.bindWithEvent(this));
-        //apf.addListener(this.$activeDocument, 'select', onClick.bindWithEvent(this));
-        apf.addListener(this.$activeDocument, "keyup", function(e) {
+        amlCore.addListener(this.$activeDocument, "mouseup", onClick.bindWithEvent(this));
+        //amlCore.addListener(this.$activeDocument, 'select', onClick.bindWithEvent(this));
+        amlCore.addListener(this.$activeDocument, "keyup", function(e) {
             e = e || window.event;
             if (_self.scalewithiframe)
                 rescale.call(_self);
@@ -357,12 +357,12 @@ apf.editor = function(struct, tagName){
             //e.amlNode = _self;
             apf.window.$keyup(e);
         });
-        apf.addListener(this.$activeDocument, "keydown", function(e) {
+        amlCore.addListener(this.$activeDocument, "keydown", function(e) {
             apf.document.activeElement = _self;
             //e.amlNode = _self;
             apf.window.$keydown(e);
         });
-        apf.addListener(this.$activeDocument, "mousedown", function(e){
+        amlCore.addListener(this.$activeDocument, "mousedown", function(e){
             e = e || window.event;
             _self.$selection.cache();
             //#ifdef __WITH_POPUP
@@ -379,14 +379,14 @@ apf.editor = function(struct, tagName){
             this.$oWin.document.addEventListener("DOMMouseScroll", scrollHandler, false);
         window.onmousewheel = document.onmousewheel = scrollHandler;
 
-        apf.addListener(this.$activeDocument, "contextmenu", onContextmenu.bindWithEvent(this));
+        amlCore.addListener(this.$activeDocument, "contextmenu", onContextmenu.bindWithEvent(this));
         //#ifdef __WITH_WINDOW_FOCUS
-        apf.addListener(this.$activeDocument, "focus", apf.window.$focusevent);
-        apf.addListener(this.$activeDocument, "blur", apf.window.$blurevent);
+        amlCore.addListener(this.$activeDocument, "focus", apf.window.$focusevent);
+        amlCore.addListener(this.$activeDocument, "blur", apf.window.$blurevent);
         //#endif
         this.$activeDocument.host = this;
 
-        apf.addListener(this.$activeDocument.body, "paste", function(e) {
+        amlCore.addListener(this.$activeDocument.body, "paste", function(e) {
             e = e || window.event;
             _self.$paste(e);
             $setTimeout(function() {

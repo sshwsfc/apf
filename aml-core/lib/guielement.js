@@ -281,13 +281,13 @@ oop.decorate(GuiElement, LiveEdit);
             var hasPres = (this.hasFeature(apf.__SKIN__)) || false;
             var type        = this.$isLeechingSkin ? this.localName : "main";
             if (this.minwidth == undefined)
-                this.minwidth   = apf.getCoord(hasPres && parseInt(this.$getOption(type, "minwidth")), 0);
+                this.minwidth   = util.getCoord(hasPres && parseInt(this.$getOption(type, "minwidth")), 0);
             if (this.minheight == undefined)
-                this.minheight  = apf.getCoord(hasPres && parseInt(this.$getOption(type, "minheight")), 0);
+                this.minheight  = util.getCoord(hasPres && parseInt(this.$getOption(type, "minheight")), 0);
             if (this.maxwidth == undefined)
-                this.maxwidth   = apf.getCoord(hasPres && parseInt(this.$getOption(type, "maxwidth")), 10000);
+                this.maxwidth   = util.getCoord(hasPres && parseInt(this.$getOption(type, "maxwidth")), 10000);
             if (this.maxheight == undefined)
-                this.maxheight  = apf.getCoord(hasPres && parseInt(this.$getOption(type, "maxheight")), 10000);
+                this.maxheight  = util.getCoord(hasPres && parseInt(this.$getOption(type, "maxheight")), 10000);
 
             //#ifdef __WITH_CONTENTEDITABLE
             //@todo slow??
@@ -343,7 +343,7 @@ GuiElement.propHandlers = {
      * @attribute {Boolean} visible whether this element is shown.
      */
     "visible": function(value){
-        if (apf.isFalse(value) || typeof value == "undefined") {
+        if (util.isFalse(value) || typeof value == "undefined") {
             if (this.$ext)
                 this.$ext.style.display = "none";
             
@@ -357,7 +357,7 @@ GuiElement.propHandlers = {
             
             this.visible = false;
         }
-        else { //if (apf.isTrue(value)) default
+        else { //if (util.isTrue(value)) default
             if (this.$ext) {
                 this.$ext.style.display = ""; //Some form of inheritance detection
                 if (!this.$ext.offsetHeight)
@@ -396,7 +396,7 @@ GuiElement.propHandlers = {
         if (this.canHaveChildren) {
             //@todo Fix focus here first.. else it will jump whilst looping
             if (value != -1)
-                value = this.disabled = apf.isTrue(value);
+                value = this.disabled = util.isTrue(value);
 
             var nodes = this.childNodes;
             for (var node, i = 0, l = nodes.length; i < l; i++) {
@@ -427,7 +427,7 @@ GuiElement.propHandlers = {
             }
         }
 
-        if (apf.isTrue(value) || value == -1) {
+        if (util.isTrue(value) || value == -1) {
             this.disabled = false;
             if (apf.document.activeElement == this) {
                 apf.window.moveNext(true); //@todo should not include window
@@ -486,7 +486,7 @@ GuiElement.propHandlers = {
      * focus handling.
      */
     "disable-keyboard": function(value){
-        this.disableKeyboard = apf.isTrue(value);
+        this.disableKeyboard = util.isTrue(value);
     },
     
     /**

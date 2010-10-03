@@ -49,7 +49,7 @@ apf.XForms.prototype = new (function() {
     function getModel(name){
         if (name){
             //#ifdef __WITH_NAMESERVER
-            var model = apf.nameserver.get("model", name);
+            var model = nameserver.get("model", name);
             
             //#ifdef __DEBUG
             if (!model) {

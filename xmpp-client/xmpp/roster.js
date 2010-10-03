@@ -50,9 +50,9 @@ apf.xmpp_roster = function(model, modelContent, res) {
     if (typeof model == "string") {
         //#ifdef __WITH_NAMESERVER
         var sModel = model;
-        if (!(model = apf.nameserver.get(sModel))) {
+        if (!(model = nameserver.get(sModel))) {
             model = apf.setReference(sModel,
-                apf.nameserver.register("model", sModel, new apf.model()));
+                nameserver.register("model", sModel, new apf.model()));
             if (model === 0)
                 model = self[sModel];
             else
@@ -158,7 +158,7 @@ apf.xmpp_roster = function(model, modelContent, res) {
         }
         else if (oEnt) {
             //adding of an additional 'resource'...except for chat rooms
-            if (!apf.isArray(oEnt))
+            if (!Array.isArray(oEnt))
                 oEnt = [oEnt];
             for (var i = 0, l = oEnt.length; i < l; ++i) {
                 if (!oEnt[i] || oEnt[i].resource) continue;
@@ -169,7 +169,7 @@ apf.xmpp_roster = function(model, modelContent, res) {
             }
         }
 
-        if (apf.isArray(oEnt))
+        if (Array.isArray(oEnt))
             oEnt = oEnt[0];
 
         // Auto-add new users with status TYPE_UNAVAILABLE
@@ -197,7 +197,7 @@ apf.xmpp_roster = function(model, modelContent, res) {
             });
         }
         else {
-            this.update(apf.extend(oEnt, options));
+            this.update(Object.extend(oEnt, options));
         }
 
         return oEnt;

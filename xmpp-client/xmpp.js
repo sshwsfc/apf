@@ -179,7 +179,7 @@ apf.xmpp = function(struct, tagName){
         MSG_HEADLINE  : "headline",
         MSG_NORMAL    : "normal"
     };
-    apf.extend(apf.xmpp, constants);
+    Object.extend(apf.xmpp, constants);
 
     this.$server     = null;
     this.timeout     = 10000;
@@ -2062,7 +2062,7 @@ apf.xmpp = function(struct, tagName){
         if (!from) return false;
 
         var sPresence, aPresence = [];
-        if (apf.isArray(from)) {
+        if (Array.isArray(from)) {
             for (var i = 0, l = from.length; i < l; i++) {
                 aPresence.push(createPresenceBlock({
                     type: constants.TYPE_PROBE,
@@ -2355,7 +2355,7 @@ apf.xmpp = function(struct, tagName){
         }
         //#endif
 
-        var sMsg = createMessageBlock.call(this, apf.extend({
+        var sMsg = createMessageBlock.call(this, Object.extend({
                 type       : constants.MSG_CHAT,
                 "xml:lang" : "en"
             }, options));

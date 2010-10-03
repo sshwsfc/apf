@@ -231,12 +231,12 @@ apf.splitter = function(struct, tagName){
                     if (!_self.realtime) {
                         if (apf.hasFlexibleBox) {
                             if (_self.$previous.flex && !_self.$next.flex) {
-                                var mBox = apf.getBox(_self.$next.margin);
+                                var mBox = util.getBox(_self.$next.margin);
                                 mBox[x1] = _self.parentNode.padding;
                                 _self.$next.$ext.style.margin = mBox.join("px ") + "px";
                             }
                             else {
-                                var mBox = apf.getBox(_self.$previous.margin);
+                                var mBox = util.getBox(_self.$previous.margin);
                                 mBox[x2] = _self.parentNode.padding;
                                 _self.$previous.$ext.style.margin = mBox.join("px ") + "px";
                             }
@@ -299,7 +299,7 @@ apf.splitter = function(struct, tagName){
                 if (apf.hasFlexibleBox && !_self.realtime)
                     (_self.$previous.flex && !_self.$next.flex
                       ? _self.$next : _self.$previous).$ext.style.margin 
-                        = apf.getBox(_self.$previous.margin).join("px ") + "px";
+                        = util.getBox(_self.$previous.margin).join("px ") + "px";
                 
                 if (newPos)
                     _self.update(newPos, true);

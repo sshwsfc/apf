@@ -35,7 +35,7 @@ apf.UndoData = function(settings, at){
     //#ifdef __WITH_RDB
     this.rdbQueue  = {};
     //#endif
-    apf.extend(this, settings);
+    Object.extend(this, settings);
 
     if (!this.timestamp)
         this.timestamp = (new Date()).getUTCTime();
@@ -101,7 +101,7 @@ apf.UndoData = function(settings, at){
             if (args[i] && args[i].nodeType) {
                 if (!serialState.argsModel) {
                     //#ifdef __WITH_NAMESERVER
-                    var model = apf.nameserver.get("model",
+                    var model = nameserver.get("model",
                         apf.xmldb.getXmlDocId(args[i]));
 
                     if(model)
@@ -181,13 +181,13 @@ apf.UndoData = function(settings, at){
         //#ifdef __WITH_NAMESERVER
         //#ifdef __WITH_RDB
         if (this.rdbModel)
-            this.rdbModel = apf.nameserver.get("model", this.rdbModel);
+            this.rdbModel = nameserver.get("model", this.rdbModel);
         //#endif
         //#endif
 
         if (this.argsModel) {
             //#ifdef __WITH_NAMESERVER
-            var model = apf.nameserver.get("model", this.argsModel)
+            var model = nameserver.get("model", this.argsModel)
                 || apf.lookup(this.argsModel);
 
             //Record arguments
@@ -316,11 +316,11 @@ apf.UndoData = function(settings, at){
         if (!dataInstruction)
             return this;
 
-        options = apf.extend({
+        options = Object.extend({
             xmlNode   : this.action == "multicall"
               ? this.args[0].xmlNode
               : this.selNode || this.xmlNode,
-            userdata  : apf.isTrue(this.xmlActionNode.getAttribute("ignore-fail")),
+            userdata  : util.isTrue(this.xmlActionNode.getAttribute("ignore-fail")),
             multicall : multicall,
             undo      : undo,
             precall   : true,

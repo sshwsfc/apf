@@ -66,7 +66,7 @@ apf.BindingDndRule = function(struct, tagName){
     }
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         target   : 1,
         parent   : 1,
         action   : 1,

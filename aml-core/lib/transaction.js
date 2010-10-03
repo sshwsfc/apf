@@ -586,7 +586,7 @@ apf.Transaction = function(){
  * @see baseclass.transaction
  */
 apf.GuiElement.propHandlers["transaction"] = function(value){
-    if (!(this.transaction = apf.isTrue(value)))
+    if (!(this.transaction = util.isTrue(value)))
         return;
 
     if (!this.hasFeature(apf.__DATABINDING__))

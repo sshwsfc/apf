@@ -2003,7 +2003,7 @@ apf.lm_exec = new (function(){
     function __valm(m, x){
         var n;
         if (!m || !(n = (m.charAt && ((m.charAt(0) == "<" && xmlParse(m))
-          || ((n = apf.nameserver.lookup.model[m]) && n.data)))
+          || ((n = nameserver.lookup.model[m]) && n.data)))
           || (m.$isModel ? m.data : (m.charAt ? 0 : m))))
             return (/*#ifdef __DEBUG*/wlvl > 0 && wmodel(m, x, "_valm"),/*#endif*/"");
         return (n = (n.nodeType != 1 && n || (n = n.selectSingleNode(x)) 
@@ -2022,7 +2022,7 @@ apf.lm_exec = new (function(){
     function __nodm(m, x){          // node of model by xpath
         var n;
         if (!m || !(n = (m.charAt && ((m.charAt(0) == "<" && xmlParse(m))
-          || ((n = apf.nameserver.lookup.model[m]) && n.data)))
+          || ((n = nameserver.lookup.model[m]) && n.data)))
           || (m.$isModel ? m.data : (m.charAt ? 0 : m))))
             return (/*#ifdef __DEBUG*/wlvl > 0 && wmodel(m, x, "_nodm"),/*#endif*/null);
 
@@ -2032,7 +2032,7 @@ apf.lm_exec = new (function(){
     function _nodsm(m, x){          // array of nodes from model by xpath
         var n;
         if (!m || !(n = (m.charAt && ((m.charAt(0) == "<" && xmlParse(m))
-          || ((n = apf.nameserver.lookup.model[m]) && n.data)))
+          || ((n = nameserver.lookup.model[m]) && n.data)))
           || (m.$isModel ? m.data : (m.charAt ? 0 : m))))
             return (/*#ifdef __DEBUG*/wlvl > 0 && wmodel(m, x, "_nodsm"),/*#endif*/[]);
 
@@ -2046,7 +2046,7 @@ apf.lm_exec = new (function(){
     function __cntm(m, x){      // count nodes from model by xpath
         var n;
         if (!m || !(n = (m.charAt && ((m.charAt(0) == "<" && xmlParse(m))
-          || ((n = apf.nameserver.lookup.model[m]) && n.data)))
+          || ((n = nameserver.lookup.model[m]) && n.data)))
           || (m.$isModel ? m.data : (m.charAt ? 0 : m))))
             return (/*#ifdef __DEBUG*/wlvl>0&&wmodel(m,x,"_cntm"),/*#endif*/0);
 
@@ -2077,7 +2077,7 @@ apf.lm_exec = new (function(){
     function _xml(n, m, x){     // serialize node by xpath via .xml
         if(n) x = m;
         else if(!m || !(n=(m.charAt && ((m.charAt(0)=="<" && xmlParse(m)) ||
-            ((n = apf.nameserver.lookup.model[m]) && n.data))) ||
+            ((n = nameserver.lookup.model[m]) && n.data))) ||
         (m.$isModel?m.data:(m.charAt?0:m))))
             return (/*#ifdef __DEBUG*/wlvl>0&&wmodel(m,x,"_xml"),/*#endif*/"");
 
@@ -2088,7 +2088,7 @@ apf.lm_exec = new (function(){
     function _xmls(n, m, x){    // serialize nodes by xpath with .xml concatenated
         if(n) x = m;
         else if(!m || !(n=(m.charAt && ((m.charAt(0)=="<" && xmlParse(m)) ||
-            ((n = apf.nameserver.lookup.model[m]) && n.data))) ||
+            ((n = nameserver.lookup.model[m]) && n.data))) ||
         (m.$isModel?m.data:(m.charAt?0:m))))
             return (/*#ifdef __DEBUG*/wlvl>0&&wmodel(m,x,"_xmls"),/*#endif*/"");
         for(var i = 0,j = ((n=n.selectNodes(x))).length,o = [];i<j;i++)
@@ -2099,7 +2099,7 @@ apf.lm_exec = new (function(){
     function _valcr(n, cr, m, x){ // value with a create flag
         if(n) x = m;
         else if(!m || !(n=(m.charAt && ((m.charAt(0)=="<" && xmlParse(m)) ||
-            ((n = apf.nameserver.lookup.model[m]) && n.data))) ||
+            ((n = nameserver.lookup.model[m]) && n.data))) ||
         (m.$isModel?m.data:(m.charAt?0:m))))
             return (/*#ifdef __DEBUG*/wlvl>0&&wmodel(m,x,"_valcr"),/*#endif*/"");
 
@@ -2116,7 +2116,7 @@ apf.lm_exec = new (function(){
     function _nodcr(n, cr, m, x){ // node with create flag
         if(n) x = m;
         else if(!m || !(n=(m.charAt && ((m.charAt(0)=="<" && xmlParse(m)) ||
-            ((n = apf.nameserver.lookup.model[m]) && n.data))) ||
+            ((n = nameserver.lookup.model[m]) && n.data))) ||
         (m.$isModel?m.data:(m.charAt?0:m))))
             return (/*#ifdef __DEBUG*/wlvl>0&&wmodel(m,x,"_nodcr"),/*#endif*/null);
         return n.selectSingleNode(x) || (cr && apf.createNodeFromXpath( n, x ));

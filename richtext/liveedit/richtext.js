@@ -181,7 +181,7 @@ apf.LiveEdit.richtext = function(){
                         break;
                 }
                 if (found) {
-                    apf.stopEvent(e.htmlEvent || e);
+                    amlCore.stopEvent(e.htmlEvent || e);
                     if (this.realtime && this.$bStandalone)
                         // #ifdef __WITH_DATAACTION
                         this.change(this.getValue());
@@ -260,14 +260,14 @@ apf.LiveEdit.richtext = function(){
         // Tab navigation handling
         if (code == 9) {
             if (listBehavior.call(this, e.htmlEvent || e))
-                return apf.stopEvent(e.htmlEvent || e);
+                return amlCore.stopEvent(e.htmlEvent || e);
         }
         else if (code == 8 || code == 46) { //backspace or del
             listBehavior.call(this, e.htmlEvent || e, true); //correct lists, if any
         }
         
         if (found)
-            return apf.stopEvent(e);
+            return amlCore.stopEvent(e);
     };
     
     /**

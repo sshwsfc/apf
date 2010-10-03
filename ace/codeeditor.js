@@ -312,7 +312,7 @@ apf.codeeditor = function(struct, tagName) {
         
         if (typeof value === "string") {
             //#ifdef __WITH_NAMESERVER
-            this.$debugger = apf.nameserver.get("debugger", value);
+            this.$debugger = nameserver.get("debugger", value);
             //#endif
         } else {
             this.$debugger = value;

@@ -135,7 +135,7 @@ apf.actiontracker = function(struct, tagName){
     this.$supportedProperties = ["realtime", "undolength", "redolength", "alias", "length", "position"];
     this.$propertyHandler = function(prop, value, force){
         if (this.$booleanProperties[prop])
-            value = apf.isTrue(value);
+            value = util.isTrue(value);
 
         //Read only properties
         switch (prop) {
@@ -752,7 +752,7 @@ apf.actiontracker = function(struct, tagName){
 
         if (state != apf.SUCCESS) {
             //Tell anyone that wants to hear about our failure :(
-            if (this.dispatchEvent("actionfail", apf.extend(extra, {
+            if (this.dispatchEvent("actionfail", Object.extend(extra, {
                   state   : state,
                   message : "Could not sent Action RPC request for control "
                           + this.name
@@ -804,7 +804,7 @@ apf.actiontracker = function(struct, tagName){
                     + extra.message));
 
                 if ((UndoObj && UndoObj.xmlActionNode || extra.amlNode || apf)
-                  .dispatchEvent("error", apf.extend({
+                  .dispatchEvent("error", Object.extend({
                     error   : oError,
                     state   : state,
                     bubbles : true
@@ -816,7 +816,7 @@ apf.actiontracker = function(struct, tagName){
         }
         else {
             //Tell anyone that wants to hear about our success
-            this.dispatchEvent("actionsuccess", apf.extend(extra, {
+            this.dispatchEvent("actionsuccess", Object.extend(extra, {
                 state   : state,
                 bubbles : true
             }, extra));
@@ -1023,9 +1023,9 @@ GuiElement.propHandlers = {
         else {
             //#ifdef __WITH_NAMESERVER
             this.$at = typeof value == "string" && self[value]
-              ? apf.nameserver.get("actiontracker", value) || self[value].getActionTracker()
+              ? nameserver.get("actiontracker", value) || self[value].getActionTracker()
               : apf.setReference(value,
-                  apf.nameserver.register("actiontracker",
+                  nameserver.register("actiontracker",
                       value, new apf.actiontracker()));
 
             if (!this.$at.name)

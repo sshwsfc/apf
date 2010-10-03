@@ -40,7 +40,7 @@ apf.setZeroTimeout = apf.isIE || apf.isO3
         function handleMessage(e) {
             if (!e) e = event;
             if (e.source == window && e.data == messageName) {
-                apf.stopPropagation(e);
+                amlCore.stopPropagation(e);
                 if (timeouts.length> 0) {
                     var fn = timeouts.shift();
                     fn();
@@ -48,7 +48,7 @@ apf.setZeroTimeout = apf.isIE || apf.isO3
             }
         }
     
-        apf.addListener(window, "message", handleMessage, true);
+        amlCore.addListener(window, "message", handleMessage, true);
     
         // Add the one thing we want added to the window object.
         return setZeroTimeout;

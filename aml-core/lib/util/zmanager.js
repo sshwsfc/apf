@@ -19,7 +19,8 @@
  *
  */
 
-//#ifdef __WITH_ZMANAGER
+require.def(function(){
+    
 /**
  * Manages the z-index of all elements in the UI. It takes care of different
  * regions in the z dimension preserved for certain common UI scenarios.
@@ -36,42 +37,43 @@
  *
  * @private
  */
-apf.zmanager = function(){
-    var count = {
-        "default" : {
-            level  : 10
-        },
-        "plane" : {
-            level  : 1000000
-        },
-        "popup" : {
-            level  : 2000000
-        },
-        "notifier" : {
-            level  : 3000000
-        },
-        "drag" : {
-            level  : 4000000
-        },
-        "print" : {
-            level  : 10000000
-        }
-    };
-    
-    this.set = function(type, main, companion){
+var count = {
+    "default" : {
+        level  : 10
+    },
+    "plane" : {
+        level  : 1000000
+    },
+    "popup" : {
+        level  : 2000000
+    },
+    "notifier" : {
+        level  : 3000000
+    },
+    "drag" : {
+        level  : 4000000
+    },
+    "print" : {
+        level  : 10000000
+    }
+};
+
+return {
+    set : function(type, main, companion){
         main.style.zIndex = count[type].level++;
         if (companion) {
             if (companion.$storedZ == undefined)
                 companion.$storedZ = companion.style.zIndex;
             companion.style.zIndex = count[type].level++
         }
-    }
+    },
     
-    this.clear = function(main, companion){
+    clear : function(main, companion){
         if (companion.$storedZ == main.style.zIndex + 1) {
             companion.style.zIndex = companion.$storedZ;
             companion.$storedZ = undefined;
         }
     }
 };
-//#endif
+
+});

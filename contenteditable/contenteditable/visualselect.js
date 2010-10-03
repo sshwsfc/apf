@@ -63,7 +63,7 @@ apf.visualSelect = function(selection){
             this.style.top = "-10000px";
             var el = document.elementFromPoint(e.clientX, e.clientY);
             this.style.top = prevTop;
-            apf.fireEvent(el, (e.type || e.name), e);
+            amlCore.fireEvent(el, (e.type || e.name), e);
             
             e.cancelBubble = true;
         }

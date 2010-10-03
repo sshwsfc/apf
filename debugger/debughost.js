@@ -27,8 +27,8 @@ apf.debughost = function(struct, tagName){
     this.$propHandlers["model-tabs"] = function(value) {
         if (!value) return;
         //#ifdef __WITH_NAMESERVER
-        this.$modelTabs = apf.nameserver.get("model", value) || 
-            apf.setReference(value, apf.nameserver.register("model", value, new apf.model()));
+        this.$modelTabs = nameserver.get("model", value) || 
+            apf.setReference(value, nameserver.register("model", value, new apf.model()));
         
         // set the root node for this model
         this.$modelTabs.id = this.$modelTabs.name = value;
@@ -39,8 +39,8 @@ apf.debughost = function(struct, tagName){
     this.$propHandlers["state-connected"] = function(value) {
         if (!value) return;
         //#ifdef __WITH_NAMESERVER
-        this.$stateConnected = apf.nameserver.get("state", value) || 
-            apf.setReference(value, apf.nameserver.register("state", value, new apf.state()));
+        this.$stateConnected = nameserver.get("state", value) || 
+            apf.setReference(value, nameserver.register("state", value, new apf.state()));
         
         // set the root node for this model
         this.$stateConnected.id = this.$stateConnected.name = value;

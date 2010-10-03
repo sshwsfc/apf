@@ -143,7 +143,7 @@ apf.offline.transactions = {
         var i, j, qItem, stack, namespace, at, start, len, type;
         //#ifdef __WITH_NAMESERVER
         for (i = 0; i < ats.length; i++) {
-            at        = apf.nameserver.get("actiontracker", ats[i][0]);
+            at        = nameserver.get("actiontracker", ats[i][0]);
             type      = ats[i][1];
             
             //#ifdef __DEBUG
@@ -217,7 +217,7 @@ apf.offline.transactions = {
 
     getSyncLength : function(){
         //#ifdef __WITH_NAMESERVER
-        var ats = apf.nameserver.getAll("actiontracker");
+        var ats = nameserver.getAll("actiontracker");
         
         var len = 0;
         for (var i = 0; i < ats.length; i++)
@@ -229,7 +229,7 @@ apf.offline.transactions = {
 
     sync : function(callback){
         //#ifdef __WITH_NAMESERVER
-        var ats = apf.nameserver.getAll("actiontracker");
+        var ats = nameserver.getAll("actiontracker");
         
         var qNr = 0, len = 0;
         for (var i = 0; i < ats.length; i++) {

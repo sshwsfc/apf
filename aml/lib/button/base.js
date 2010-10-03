@@ -39,7 +39,7 @@ return (function() {
         var forceFocus, _self = this, lastDefaultParent;
         this.$propHandlers["default"] = function(value){
             if (parseInt(value) != value)
-                value = apf.isTrue(value) ? 1 : 0;
+                value = util.isTrue(value) ? 1 : 0;
 
             this["default"] = parseInt(value);
             
@@ -325,7 +325,7 @@ return (function() {
         this.parentNode.hasMoved = false;
 
         if (e)
-            apf.stopPropagation(e.htmlEvent);
+            amlCore.stopPropagation(e.htmlEvent);
 
         return false;
     }
@@ -516,7 +516,7 @@ return (function() {
         this.oIcon    = this.$getLayoutNode("main", "icon", this.$ext);
         this.oCaption = this.$getLayoutNode("main", "caption", this.$ext);
 
-        this.$useExtraDiv = apf.isTrue(this.$getOption("main", "extradiv"));
+        this.$useExtraDiv = util.isTrue(this.$getOption("main", "extradiv"));
         if (!apf.button.$extradiv && this.$useExtraDiv) {
             (apf.button.$extradiv = document.createElement("div"))
                 .className = "extradiv"

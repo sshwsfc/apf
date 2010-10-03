@@ -460,7 +460,7 @@ apf.spinner = function(struct, tagName){
             
             e = e || event;
             //e.cancelBubble = true;
-            apf.cancelBubble(e, this);
+            amlCore.cancelBubble(e, this);
 
             apf.setStyleClass(this, "plusHover", ["plusDown"]);
 
@@ -487,7 +487,7 @@ apf.spinner = function(struct, tagName){
             
             e = e || event;
             //e.cancelBubble = true;
-            apf.cancelBubble(e, this);
+            amlCore.cancelBubble(e, this);
 
             apf.setStyleClass(this, "minusHover", ["minusDown"]);
 

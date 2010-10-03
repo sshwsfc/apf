@@ -38,7 +38,7 @@ apf.AmlProcessingInstruction = function(isPrototype){
     this.target = null;
     
     this.serialize = function(){
-        return "<?" + this.target + "\n" + apf.xmlentities(this.nodeValue) + "\n?>";
+        return "<?" + this.target + "\n" + xmlEntity.encode(this.nodeValue) + "\n?>";
     };
     
     this.reload = function(){
@@ -46,7 +46,7 @@ apf.AmlProcessingInstruction = function(isPrototype){
     };
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         calcdata : 0 //Start in code mode
     }, this.$attrExcludePropBind);
     
@@ -97,7 +97,7 @@ apf.AmlProcessingInstruction = function(isPrototype){
         this.$ext.host = this;
 
         // #ifdef __WITH_LIVEEDIT
-        this.liveedit = apf.isTrue(apf.getInheritedAttribute(this, "liveedit"));
+        this.liveedit = util.isTrue(apf.getInheritedAttribute(this, "liveedit"));
         if (this.liveedit) {
             //this.implement(apf.LiveEdit);
             this.$inheritProperties["liveedit"] = 2;

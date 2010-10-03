@@ -373,7 +373,7 @@ apf.select1   = function(struct, tagName){
         }
         
         //#ifdef __WITH_LISTGRID
-        this.$gridlist = apf.isTrue(this.$getOption("main", "grid"));
+        this.$gridlist = util.isTrue(this.$getOption("main", "grid"));
         
         if (this.$gridlist) {
             this.$ext.setAttribute("onmouseout", this.$ext.getAttribute("onmouseout") 
@@ -397,7 +397,7 @@ apf.select1   = function(struct, tagName){
     this.$destroy = function(){
         if (this.$ext)
             this.$ext.onclick = null;
-        apf.destroyHtmlNode(this.oDrag);
+        amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     };
 }).call(apf.list.prototype = new apf.BaseList());

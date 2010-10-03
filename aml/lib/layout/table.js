@@ -177,7 +177,7 @@ apf.table = function(struct, tagName){
     }
     
     this.$propHandlers["edge"] = function(value){
-        this.$table.style.padding = (this.$edge = apf.getBox(value)).join("px ") + "px";
+        this.$table.style.padding = (this.$edge = util.getBox(value)).join("px ") + "px";
         this.$resize();
     }
     
@@ -295,7 +295,7 @@ apf.table = function(struct, tagName){
         },
         
         "margin" : function(value){
-            this.$ext.style.margin = apf.getBox(value).join("px ") + "px";
+            this.$ext.style.margin = util.getBox(value).join("px ") + "px";
             this.parentNode.$resize();
         },
         

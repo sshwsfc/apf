@@ -113,7 +113,7 @@ apf.model = function(struct, tagName){
     if (!apf.globalModel) {
         apf.globalModel = this;
         //#ifdef __WITH_NAMESERVER
-        apf.nameserver.register("model", "@default", this);
+        nameserver.register("model", "@default", this);
         //#endif
     }
 };
@@ -128,7 +128,7 @@ apf.model = function(struct, tagName){
     this.$state = 0;//1 = loading
 
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         submission : 1,
         src        : 1,
         session    : 1
@@ -165,7 +165,7 @@ apf.model = function(struct, tagName){
         this.rdb = typeof this.remote == "string"
             ? 
             //#ifdef __WITH_NAMESERVER
-            apf.nameserver.get("remote", this.remote)
+            nameserver.get("remote", this.remote)
             /* #else
             {}
             #endif */
@@ -630,7 +630,7 @@ apf.model = function(struct, tagName){
         if (!this.src) {
             var strXml, xmlNode = x;
             if (xmlNode && xmlNode.childNodes.length) {
-                if (apf.getNode(xmlNode, [0])) {
+                if (util.getFirstElement(xmlNode)) {
                     if ((strXml = xmlNode.xml || xmlNode.serialize()).match(/^[\s\S]*?>([\s\S]*)<[\s\S]*?$/)) {
                         strXml = RegExp.$1; //@todo apf3.0 test this with json
                         if (!apf.supportNamespaces)
@@ -651,7 +651,7 @@ apf.model = function(struct, tagName){
         }
 
         //Load data into model if allowed
-        if (!apf.isFalse(this.autoinit))
+        if (!util.isFalse(this.autoinit))
             this.init();
 
         //@todo actions apf3.0
@@ -1037,7 +1037,7 @@ apf.model = function(struct, tagName){
                 options.insertPoint = _self.data.selectSingleNode(options.insertPoint);
 
             if (typeof options.clearContents == "undefined" && extra.userdata) 
-                options.clearContents = apf.isTrue(extra.userdata[1]); //@todo is this still used?
+                options.clearContents = util.isTrue(extra.userdata[1]); //@todo is this still used?
 
             //Call insert function
             (options.amlNode || _self).insert(data, options);
@@ -1167,7 +1167,7 @@ apf.model = function(struct, tagName){
                     model.dispatchEvent("submiterror", extra);
                 }
                 else {
-                    model.dispatchEvent("submitsuccess", apf.extend({
+                    model.dispatchEvent("submitsuccess", Object.extend({
                         data: data
                     }, extra));
                 }
@@ -1182,7 +1182,7 @@ apf.model = function(struct, tagName){
         else if (type.indexOf("json") > -1)
             data = apf.convertXml(xmlNode, "json");
 
-        apf.saveData(instruction, apf.extend({
+        apf.saveData(instruction, Object.extend({
             xmlNode  : xmlNode,
             data     : data,
             callback : cbFunc

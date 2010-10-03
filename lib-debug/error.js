@@ -20,7 +20,7 @@
                 if (!file && amlContext.ownerDocument.documentElement.tagName == "html")
                     file = location.href;
                 file = file
-                    ? apf.removePathContext(apf.hostPath, file)
+                    ? util.removePathContext(apf.hostPath, file)
                     : "Unkown filename";
             }
             else file = "Unknown filename";

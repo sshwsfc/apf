@@ -201,7 +201,7 @@ apf.page = function(struct, tagName){
      */
     this.$propHandlers["fake"] = function(value){
         if (this.$ext) {
-            apf.destroyHtmlNode(this.$ext);
+            amlCore.destroyHtmlNode(this.$ext);
             this.$int = this.$ext = null;
         }
     };
@@ -440,7 +440,7 @@ apf.page = function(struct, tagName){
             
             //#ifdef __ENABLE_TAB_CLOSEBTN
             var closebtn = this.getAttribute("closebtn");
-            if ((apf.isTrue(closebtn) || ((this.parentNode.buttons || "").indexOf("close") > -1 && !apf.isFalse(closebtn)))) {
+            if ((util.isTrue(closebtn) || ((this.parentNode.buttons || "").indexOf("close") > -1 && !util.isFalse(closebtn)))) {
                 var btncontainer = this.parentNode.$getLayoutNode("button", "container");
 
                 this.parentNode.$getNewContext("btnclose");
@@ -450,7 +450,7 @@ apf.page = function(struct, tagName){
                     apf.setStyleClass(elBtn, "btnclose");
 
                     elBtnClose.setAttribute("onmousedown", 
-                        "apf.cancelBubble(event, apf.lookup(" + this.$uniqueId + "));");
+                        "amlCore.cancelBubble(event, apf.lookup(" + this.$uniqueId + "));");
                     elBtnClose.setAttribute("onclick",
                         'var page = apf.lookup(' + this.$uniqueId + ');\
                          page.parentNode.remove(page, event);');

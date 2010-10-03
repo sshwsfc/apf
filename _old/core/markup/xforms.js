@@ -122,7 +122,7 @@ if (tagName == "select1" && x.getAttribute("appearance") == "minimal") {
 }
 //#endif
 //#ifdef __WITH_XFORMS
-                var models = apf.nameserver.getAll("model");
+                var models = nameserver.getAll("model");
                 for (var i = 0; i < models.length; i++)
                     models[i].dispatchEvent("xforms-ready");
                 //#endif

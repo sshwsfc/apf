@@ -417,7 +417,7 @@ apf.dropdown = function(struct, tagName){
         
         this.itemHeight     = this.$getOption("main", "item-height") || 18.5;
         this.widthdiff      = this.$getOption("main", "width-diff") || 0;
-        this.ignoreOverflow = apf.isTrue(this.$getOption("main", "ignore-overflow")) || false;
+        this.ignoreOverflow = util.isTrue(this.$getOption("main", "ignore-overflow")) || false;
     };
     
     this.addEventListener("DOMNodeInsertedIntoDocument", function(){
@@ -430,7 +430,7 @@ apf.dropdown = function(struct, tagName){
     
     this.$destroy = function(){
         apf.popup.removeContent(this.$uniqueId);
-        apf.destroyHtmlNode(this.oSlider);
+        amlCore.destroyHtmlNode(this.oSlider);
         this.oSlider = null;
     };
 

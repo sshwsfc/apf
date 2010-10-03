@@ -144,7 +144,7 @@ apf.offline = {
                 }
             }
             else {
-                apf.extend(this, aml);
+                Object.extend(this, aml);
             }
         }
 
@@ -392,7 +392,7 @@ apf.offline = {
         if (!this.rdbTimeout)
             return;
         //#ifdef __WITH_NAMESERVER
-        var i, j, k, rdbs = apf.nameserver.getAll("remote");
+        var i, j, k, rdbs = nameserver.getAll("remote");
         for (i = 0; i < rdbs.length; i++) {
             var rdb = rdbs[i];
             if (this.reloading
@@ -437,7 +437,7 @@ apf.offline = {
             //#endif
 
             //#ifdef __WITH_NAMESERVER
-            var ats = apf.nameserver.getAll("actiontracker");
+            var ats = nameserver.getAll("actiontracker");
             for (var i = 0; i < ats.length; i++) {
                 ats[i].reset();
             }
@@ -556,7 +556,7 @@ apf.offline = {
             fln.setProperty("position", syncPos);
             fln.setProperty("length", syncLength);
 
-            fln.dispatchEvent("sync", apf.extend(extra, {
+            fln.dispatchEvent("sync", Object.extend(extra, {
                 position : syncPos,
                 length   : syncLength
             }));

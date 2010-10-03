@@ -97,7 +97,7 @@ apf.aml.setElement("skin", apf.skin);
             apf.skins.$first = this;
         
         var defer = this.attributes.getNamedItem("defer");
-        if (!defer || !apf.isTrue(defer.nodeValue)) {
+        if (!defer || !util.isTrue(defer.nodeValue)) {
             domParser.$shouldWait++;
             this.$parseContext = domParser.$parseContext || [this.ownerDocument.documentElement];
         }

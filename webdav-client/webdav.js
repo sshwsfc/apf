@@ -1017,7 +1017,7 @@ apf.webdav = function(struct, tagName){
             sType  = $xmlns(oNode, "collection", NS.D).length > 0 ? "folder" : "file",
             aCType = $xmlns(oNode, "getcontenttype", NS.D),
             aExec  = $xmlns(oNode, "executable", NS.lp2);
-        oItem = this.$fsCache[sPath] = apf.extend(this.$fsCache[sPath] || {}, {
+        oItem = this.$fsCache[sPath] = Object.extend(this.$fsCache[sPath] || {}, {
             path        : sPath,
             type        : sType,
             size        : parseInt(sType == "file"

@@ -50,7 +50,7 @@ apf.video.TypeNative = function(oVideo, oNode, options) {
 
     // Initialize player
     this.player       = null;
-    apf.extend(this, apf.video.TypeInterface);
+    Object.extend(this, apf.video.TypeInterface);
 
     this.setOptions(options).createPlayer();
 };
@@ -243,7 +243,7 @@ apf.video.TypeNative.prototype = {
                 break;
             case "init":
                 this.inited = true;
-                this.oVideo.$initHook(apf.extend(evtObj, apf.flash.getSandbox(evtObj.sandboxType)));
+                this.oVideo.$initHook(Object.extend(evtObj, apf.flash.getSandbox(evtObj.sandboxType)));
                 break;
             case "id3":
                 this.oVideo.$metadataHook({

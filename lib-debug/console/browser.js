@@ -174,7 +174,7 @@
             if (self.console && (!document.all || apf.config.debug)) {
                 console[type == "warn" ? "warn" : 
                     (type == "error" ? "error" : "log")]
-                        (apf.html_entity_decode(msg.replace(/<[^>]*>/g, "")));
+                        (msg.replace(/<[^>]*>/g, "").unescapeHTML());
             }
 
             if (apf.dispatchEvent)
@@ -228,7 +228,7 @@
          */
         log : function(msg, subtype, data){
             //#ifdef __DEBUG
-            this.write(apf.htmlentities(msg).replace(/\n/g, "<br />"), "log", subtype, data);
+            this.write(msg.escapeHTML().replace(/\n/g, "<br />"), "log", subtype, data);
             //#endif
         },
 
@@ -241,7 +241,7 @@
          */
         info : function(msg, subtype, data){
             //#ifdef __DEBUG
-            this.log(apf.htmlentities(msg).replace(/\n/g, "<br />"), subtype, data);
+            this.log(msg.escapeHTML().replace(/\n/g, "<br />"), subtype, data);
             //#endif
         },
 
@@ -254,7 +254,7 @@
          */
         warn : function(msg, subtype, data){
             //#ifdef __DEBUG
-            this.write(apf.htmlentities(msg).replace(/\n/g, "<br />"), "warn", subtype, data);
+            this.write(msg.escapeHTML().replace(/\n/g, "<br />"), "warn", subtype, data);
             //#endif
         },
 

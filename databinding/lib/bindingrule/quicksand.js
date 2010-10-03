@@ -99,7 +99,7 @@ apf.BindingQuicksandRule = function(struct, tagName){
                 // put false if you don't want the plugin to adjust height of container to fit all the items
                 adjustHeight: true
             };
-        apf.extend(options, customOptions);;
+        Object.extend(options, customOptions);;
 
         // Replace the collection and quit if IE6
         if (apf.isIE && apf.isIE < 7) {

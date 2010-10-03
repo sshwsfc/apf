@@ -60,7 +60,7 @@ apf.junction = function(){
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
         var _self = this;
         
-        if (apf.window.vManager.permanent(this.parentNode, function(){
+        if (vManager.permanent(this.parentNode, function(){
             //Show
             _self.$reparent();
         }, function(){

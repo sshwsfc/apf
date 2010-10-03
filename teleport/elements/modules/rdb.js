@@ -162,7 +162,7 @@ apf.rdb = function(){
 
         if (!this.$remote) {
             //#ifdef __WITH_NAMESERVER
-            this.$remote = apf.nameserver.get(this.remote) || self[this.remote];
+            this.$remote = nameserver.get(this.remote) || self[this.remote];
             // #ifdef __DEBUG
             var _self = this;
             this.$remote.transport.addEventListener("rpcresult", function(e) {

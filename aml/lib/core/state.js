@@ -188,7 +188,7 @@ apf.state = function(struct, tagName){
      */
     this.$propHandlers["active"] = function(value){
         //Activate State
-        if (apf.isTrue(value)) {
+        if (util.isTrue(value)) {
             if (this.group) {
                 var nodes = apf.StateServer.groups[this.group];
                 if (!nodes) {

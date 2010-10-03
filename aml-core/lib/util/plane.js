@@ -85,7 +85,7 @@ apf.plane = {
                         this.plane.appendChild(o);
                     }
                 }
-                apf.window.zManager.set("plane", this.plane, !reAppend && o);
+                zManager.set("plane", this.plane, !reAppend && o);
                 
                 useRealSize = apf.isIE;
                 var pWidth = (plane.parentNode == document.body
@@ -157,7 +157,7 @@ apf.plane = {
                                 _self.plane.style.display  = "none";
                                 
                                 if (_self.current)
-                                    apf.window.zManager.clear(_self.current);
+                                    zManager.clear(_self.current);
                             }
                         });
                     }, 100);
@@ -165,7 +165,7 @@ apf.plane = {
                 else {
                     apf.setOpacity(this.plane, 0);
                     if (this.current)
-                        apf.window.zManager.clear(this.plane, this.current);
+                        zManager.clear(this.plane, this.current);
                     this.plane.style.display  = "none";
                 }
                 

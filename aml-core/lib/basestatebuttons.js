@@ -609,7 +609,7 @@ apf.BaseStateButtons = function(){
             this.$buttons.insertBefore(btn, this.$buttons.firstChild);
         }
         
-        marginBox = apf.getBox(apf.getStyle(this.$ext, "borderWidth"));
+        marginBox = util.getBox(apf.getStyle(this.$ext, "borderWidth"));
     };
     
     function setButtonEvents(btn){
@@ -618,10 +618,10 @@ apf.BaseStateButtons = function(){
         btn.setAttribute("onmousedown",
             "var o = apf.all[" + this.$uniqueId + "];\
              o.$setStyleClass(this, 'down', null, true);\
-             apf.cancelBubble(event, o); \
+             amlCore.cancelBubble(event, o); \
              var o = apf.findHost(this).$ext;\
              if (o.onmousedown) o.onmousedown(event);\
-             apf.cancelBubble(event, o);\
+             amlCore.cancelBubble(event, o);\
              apf.window.$mousedown(event);");
         btn.setAttribute("onmouseup",
             "var o = apf.all[" + this.$uniqueId + "];\
@@ -632,7 +632,7 @@ apf.BaseStateButtons = function(){
         btn.setAttribute("onmouseout",
             "var o = apf.all[" + this.$uniqueId + "];\
              o.$setStyleClass(this, '', ['hover', 'down'], true);");
-        btn.setAttribute("ondblclick", "apf.stopPropagation(event);");
+        btn.setAttribute("ondblclick", "amlCore.stopPropagation(event);");
     }
     
     this.$initButtons = function(oExt){

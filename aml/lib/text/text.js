@@ -167,7 +167,7 @@ apf.text = function(struct, tagName){
     };
     
     this.$eachHandler = function(value) {
-        this.$attrExcludePropBind = apf.extend({}, this.$attrExcludePropBind);
+        this.$attrExcludePropBind = Object.extend({}, this.$attrExcludePropBind);
         this.$attrExcludePropBind.value = value ? 2 : 0;
     }
     this.addEventListener("prop.each", this.$eachHandler);
@@ -329,7 +329,7 @@ apf.text = function(struct, tagName){
 
     this.addEventListener("DOMNodeRemovedFromDocument", function() {
         clearInterval(this.$textTimer);
-        apf.destroyHtmlNode(this.oDrag);
+        amlCore.destroyHtmlNode(this.oDrag);
         
         if (this.$scrollArea)
             this.$scrollArea.onscoll = this.$scrollArea = null;

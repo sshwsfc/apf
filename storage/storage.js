@@ -59,7 +59,7 @@ apf.storage = {
         var provider = this.getProvider(name);
 
         //Install the provider
-        apf.storage = apf.extend(this, provider);
+        apf.storage = Object.extend(this, provider);
         apf.storage.init = null;
         
         //#ifdef __DEBUG
@@ -113,7 +113,7 @@ apf.storage = {
         }
         
         provider.name = name;
-        apf.extend(provider, this.base);
+        Object.extend(provider, this.base);
 
         return provider;
     },

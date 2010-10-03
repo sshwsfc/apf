@@ -75,10 +75,10 @@ apf.LiveEdit = function() {
             if (!this.$mouseOver)
                 this.$setMouseEvents();
 
-            apf.addListener(this.$ext, "mouseup",   this.$mouseUp);
-            apf.addListener(this.$ext, "mousedown", this.$mouseDown);
-            apf.addListener(this.$ext, "mouseout",  this.$mouseOut);
-            apf.addListener(this.$ext, "mouseover", this.$mouseOver);
+            amlCore.addListener(this.$ext, "mouseup",   this.$mouseUp);
+            amlCore.addListener(this.$ext, "mousedown", this.$mouseDown);
+            amlCore.addListener(this.$ext, "mouseout",  this.$mouseOut);
+            amlCore.addListener(this.$ext, "mouseover", this.$mouseOver);
             
             this.addEventListener("keydown",   keydownHandler, true);
             this.addEventListener("blur",      blurHandler);
@@ -99,10 +99,10 @@ apf.LiveEdit = function() {
                 delete this.$unFocussable;
             }
             
-            apf.removeListener(this.$ext, "mouseover", this.$mouseOver);
-            apf.removeListener(this.$ext, "mouseout",  this.$mouseOut);
-            apf.removeListener(this.$ext, "mousedown", this.$mouseDown);
-            apf.removeListener(this.$ext, "mouseup",   this.$mouseUp);
+            amlCore.removeListener(this.$ext, "mouseover", this.$mouseOver);
+            amlCore.removeListener(this.$ext, "mouseout",  this.$mouseOut);
+            amlCore.removeListener(this.$ext, "mousedown", this.$mouseDown);
+            amlCore.removeListener(this.$ext, "mouseup",   this.$mouseUp);
 
             this.$activeNode     = null;
             this.$lastActiveNode = null;
@@ -128,12 +128,12 @@ apf.LiveEdit = function() {
         
         function focusHandler(){
             moEditor.removeEventListener("focus", focusHandler);
-            apf.removeListener(moEditor.$ext, "mouseout", extOutHandler);
+            amlCore.removeListener(moEditor.$ext, "mouseout", extOutHandler);
             moEditor = null;
         }
         
         function removeHandler(){
-            apf.removeListener(moEditor.$ext, "mouseout", extOutHandler);
+            amlCore.removeListener(moEditor.$ext, "mouseout", extOutHandler);
             if (_self.$lastEditor && _self.$lastEditor[0] == moEditor)
                 removeEditor.call(_self, _self.$activeNode, true);
             moEditor.removeEventListener("focus", focusHandler);
@@ -142,7 +142,7 @@ apf.LiveEdit = function() {
         
         function extOutHandler(){
             if (!_self.$lastEditor) {
-                apf.removeListener(moEditor.$ext, "mouseout", extOutHandler);
+                amlCore.removeListener(moEditor.$ext, "mouseout", extOutHandler);
                 return;
             }
                 
@@ -166,7 +166,7 @@ apf.LiveEdit = function() {
                 createEditor.call(_self, el);
                 moEditor = _self.$lastEditor[0];
                 moEditor.addEventListener("focus", focusHandler);
-                apf.addListener(moEditor.$ext, "mouseout", extOutHandler);
+                amlCore.addListener(moEditor.$ext, "mouseout", extOutHandler);
             }
             else
                 apf.setStyleClass(el, "liveEditOver");
@@ -183,7 +183,7 @@ apf.LiveEdit = function() {
         };
         this.$mouseDown = function(e, preventPropagation) {
             if (!preventPropagation)
-                apf.cancelBubble(e);
+                amlCore.cancelBubble(e);
 
             var el = e.srcElement || e.target;
             if (!el) return;
@@ -345,7 +345,7 @@ apf.LiveEdit = function() {
         if (code == 13) { //Enter
             isDone = e.ctrlKey || (apf.isMac && e.metaKey);
             if (!isDone)
-                isDone = !apf.isTrue(this.$activeNode.getAttribute("multiline"));
+                isDone = !util.isTrue(this.$activeNode.getAttribute("multiline"));
             e.returnValue = true;
         }
         
@@ -405,12 +405,12 @@ apf.LiveEdit = function() {
             
             // remove the content of a selection manually when it's ranging
             // multiple DOM nodes
-            if (apf.w3cRange && !this.$selection.isCollapsed() && apf.isCharacter(code))
+            if (apf.w3cRange && !this.$selection.isCollapsed() && util.isCharacter(code))
                 this.$selection.remove();
         }
 
         if (found)
-            return apf.stopEvent(e);
+            return amlCore.stopEvent(e);
         else if (this.$activeNode)
             e.returnValue = -1; //@todo what is this for?
     }
@@ -473,7 +473,7 @@ apf.LiveEdit = function() {
         
         //#ifdef __WITH_WINDOW_FOCUS
         if (apf.hasFocusBug) {
-            //@todo this leaks like a -> use apf.addListener
+            //@todo this leaks like a -> use amlCore.addListener
             apf.sanitizeTextbox(oHtml);
         }
         //#endif
@@ -574,7 +574,7 @@ apf.LiveEdit = function() {
                                    .replace(/<\/p>/g, "\n");
                     }
                         
-                    return apf.html_entity_decode(html);
+                    return html.unescapeHTML();
                 };
                 
                 if (apf.hasContentEditable)
@@ -647,7 +647,7 @@ apf.LiveEdit = function() {
                         var _self     = this;
                         var constr    = apf.namespaces[apf.ns.aml].elements[editor];
                         var isTextbox = "textarea|textbox|secret".indexOf(editor) > -1;
-                        var info      = apf.extend({
+                        var info      = Object.extend({
                             htmlNode   : editParent,
                             //width      : "100%+2",
                             //height     : 19,
@@ -693,7 +693,7 @@ apf.LiveEdit = function() {
         
                         oEditor = this.$editorCache[cacheId] = new constr(info);
                         
-                        /*var box = apf.getBox(apf.getStyle(oEditor.$ext, "margin"));
+                        /*var box = util.getBox(apf.getStyle(oEditor.$ext, "margin"));
                         if (box[1] || box[3]) {
                             oEditor.setAttribute("width", "100%+2-" + (box[1] + box[3]));
                         }
@@ -848,7 +848,7 @@ apf.LiveEdit.mousedown = function(oHtml, event){
         if (!lm.hasFocus())
             lm.focus();
         lm.$mouseDown(event, true);
-        apf.stopPropagation(event);
+        amlCore.stopPropagation(event);
     }
 }
 

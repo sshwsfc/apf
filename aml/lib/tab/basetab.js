@@ -130,7 +130,7 @@ apf.BaseTab = function(){
      * </code>
      */
     this.$propHandlers["activepage"]   = function(next, prop, force, callback, noEvent){
-        if (!this.inited || apf.isNot(next)) return;
+        if (!this.inited || util.isNot(next)) return;
 
         if (!callback) {
             callback = this.$lastCallback;
@@ -169,7 +169,7 @@ apf.BaseTab = function(){
                                 
                             _self.setProperty("loading", false);
                             
-                            if (this.dispatchEvent("error", apf.extend({
+                            if (this.dispatchEvent("error", Object.extend({
                                 error   : oError,
                                 bubbles : true
                             }, options)) === false)
@@ -384,7 +384,7 @@ apf.BaseTab = function(){
                 callback();
                 
                 if (_self.$waitForMouseOut == 2) {
-                    apf.removeListener(_self.$buttons, "mouseout", btnMoHandler);
+                    amlCore.removeListener(_self.$buttons, "mouseout", btnMoHandler);
                     delete _self.$waitForMouseOut;
                     _self.$scaleinit(null, "sync");
                 }
@@ -444,7 +444,7 @@ apf.BaseTab = function(){
                         if (e.clientX <= pos[0] || e.clientY <= pos[1] 
                           || e.clientX >= pos[0] + this.offsetWidth 
                           || e.clientY >= pos[1] + this.offsetHeight) {
-                            apf.removeListener(_self.$buttons, "mouseout", btnMoHandler);
+                            amlCore.removeListener(_self.$buttons, "mouseout", btnMoHandler);
                             if (_self.$control.state == apf.tween.STOPPED) {
                                 delete _self.$waitForMouseOut;
                                 _self.$scaleinit(null, "sync");
@@ -455,7 +455,7 @@ apf.BaseTab = function(){
                     }
                 }
                 
-                apf.addListener(_self.$buttons, "mouseout", btnMoHandler);
+                amlCore.addListener(_self.$buttons, "mouseout", btnMoHandler);
             }
         }
         
@@ -735,7 +735,7 @@ apf.BaseTab = function(){
      * @return {Page} the found page element.
      */
     this.getPage = function(nameOrId){
-        if (apf.isNot(nameOrId))
+        if (util.isNot(nameOrId))
             return this.$activepage;
         else
             return this.$findPage(nameOrId);
@@ -1426,7 +1426,7 @@ apf.BaseTab = function(){
             });* /
             //#endif
 
-            this.oLeftScroll  = apf.getNode(this.oScroller, [0]);
+            this.oLeftScroll  = util.getFirstElement(this.oScroller);
             this.oRightScroll = apf.getNode(this.oScroller, [1]);
             
             ["oLeftScroll", "oRightScroll"].forEach(function(sBtn) {

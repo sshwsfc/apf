@@ -22,7 +22,7 @@
 //#ifdef __WITH_CONFIG
 
 apf.config = new apf.Class().$init();
-apf.extend(apf.config, {
+Object.extend(apf.config, {
     //Defaults
     disableRightClick  : false,
     allowSelect        : false,
@@ -136,7 +136,7 @@ apf.extend(apf.config, {
     
     $propHandlers : {
         "baseurl" : function(value){
-            this.baseurl = apf.parseExpression(value);
+            this.baseurl = util.parseExpression(value);
         },
         "language" : function(value){
             //#ifdef __WITH_LANG_SUPPORT
@@ -146,13 +146,13 @@ apf.extend(apf.config, {
             //#endif
         },
         "resource-path" : function(value){
-            this.resourcePath = apf.parseExpression(value || "")
+            this.resourcePath = util.parseExpression(value || "")
               .replace(/resources\/?|\/$/g, '');
         },
         // #ifdef __WITH_IEPNGFIX
         "iepngfix" : function(value, x){
             this.iePngFix           = (!apf.supportPng24 
-                && (apf.isTrue(value)
+                && (util.isTrue(value)
                 || x.getAttribute("iepngfix-elements")));
             
             if (this.iePngFix) {
@@ -174,16 +174,16 @@ apf.extend(apf.config, {
         "outline" : function(value) {
             this.dragOutline    =
             this.resizeOutline  =
-            this.outline        = apf.isTrue(value);
+            this.outline        = util.isTrue(value);
         },
         "drag-outline" : function(value){
             this.dragOutline    = value
-              ? apf.isTrue(value)
+              ? util.isTrue(value)
               : false;
         },
         "resize-outline" : function(value){
             this.resizeOutline  = value
-              ? !apf.isFalse(value)
+              ? !util.isFalse(value)
               : false;
         },
         //#endif

@@ -189,7 +189,7 @@ apf.map = function(struct, tagName){
     }
 
     this.$propHandlers["maptypecontrol"] = function(value) {
-        this.maptypecontrol  = !apf.isFalse(value);
+        this.maptypecontrol  = !util.isFalse(value);
         this.$mapTypeControl = {};
         if (!this.maptypecontrol) return;
         if (loaddone) {
@@ -219,7 +219,7 @@ apf.map = function(struct, tagName){
     };
 
     this.$propHandlers["navigationcontrol"] = function(value) {
-        this.navigationcontrol  = !apf.isFalse(value);
+        this.navigationcontrol  = !util.isFalse(value);
         this.$navigationControl = {};
         if (!this.navigationcontrol) return;
         if (loaddone) {
@@ -252,7 +252,7 @@ apf.map = function(struct, tagName){
     };
 
     this.$propHandlers["scalecontrol"] = function(value) {
-        this.scalecontrol  = !apf.isFalse(value);
+        this.scalecontrol  = !util.isFalse(value);
         this.$scaleControl = {};
         if (!this.scalecontrol) return;
         if (loaddone) {
@@ -555,7 +555,7 @@ apf.map = function(struct, tagName){
         function loaded() {
             loaddone = true;
 
-            if (apf.window.vManager.check(_self, "map", _self.$draw))
+            if (vManager.check(_self, "map", _self.$draw))
                 _self.$draw();
             
             try{

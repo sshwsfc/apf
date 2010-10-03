@@ -274,7 +274,7 @@ function runLM(input, xmldata, options, callback){
 function doTest( id, num ){
 	apf.language.words = testlang;
 	testmodel = apf.testmodel(testxml);
-	apf.nameserver.lookup.model.testmodel = testmodel;
+	nameserver.lookup.model.testmodel = testmodel;
 	
 	if(id){ // find specific test
 		test_proc[id].apply(0,[1,id,num].concat(test_list[id][num]));

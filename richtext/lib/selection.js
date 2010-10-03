@@ -296,7 +296,7 @@ apf.selection = function(oWin, oDoc, editor) {
                     if (e == n[i])
                         return !(sp = i);
                 }
-                return apf.extend(o, {
+                return Object.extend(o, {
                     tag  : e.nodeName,
                     index: sp
                 });
@@ -320,7 +320,7 @@ apf.selection = function(oWin, oDoc, editor) {
                 if (getParent(tr.parentElement(), _block, null, c) != parN)
                     activeEl = parN;
             }
-            return apf.extend(o, {
+            return Object.extend(o, {
                 start : sp - bp - offset,
                 length: Math.abs(tr.move(CHAR, ch)) - sp
             });
@@ -390,7 +390,7 @@ apf.selection = function(oWin, oDoc, editor) {
                     n = n.previousSibling;
                 }
             }
-            apf.extend(o, {
+            Object.extend(o, {
                 block : p,
                 node  : sc,
                 offset: range.startOffset
@@ -409,7 +409,7 @@ apf.selection = function(oWin, oDoc, editor) {
             }
             p += trimNl(n.nodeValue || "").length;
         }
-        apf.extend(o, {
+        Object.extend(o, {
             start: s[0] + range.startOffset,
             end  : s[1] + range.endOffset,
             block: c

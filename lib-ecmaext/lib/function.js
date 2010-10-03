@@ -9,10 +9,10 @@ require.modify(
  *
  * @param {mixed} obj1, obj2, obj3, etc.
  * @type Function
- * @see apf.extend
+ * @see Object.extend
  */
 Function.prototype.extend = function() {
-    apf.extend.apply(this, [this].concat(Array.prototype.slice.call(arguments)));
+    Object.extend.apply(this, [this].concat(Array.prototype.slice.call(arguments)));
     return this;
 };
 

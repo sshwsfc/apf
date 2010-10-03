@@ -44,7 +44,7 @@ require.def(["teleport"], function(teleport){
         if (method == "ajax" && args[0]) {
             var opt = args[1] || {};
             return http.exec(opt.method || "GET", [args[0]], 
-                opt.callback, apf.extend(options || {}, opt));
+                opt.callback, Object.extend(options || {}, opt));
         }
     };
 

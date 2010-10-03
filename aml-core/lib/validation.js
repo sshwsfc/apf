@@ -361,7 +361,7 @@ apf.Validation = function(){
     });
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         pattern   : 1,
         validtest : 3
     }, this.$attrExcludePropBind);
@@ -394,7 +394,7 @@ apf.Validation = function(){
             }
             else {
                 //#ifdef __WITH_NAMESERVER
-                vgroup = apf.nameserver.get("validgroup", value);
+                vgroup = nameserver.get("validgroup", value);
                 //#endif
             }
 
@@ -462,7 +462,7 @@ apf.Validation = function(){
                             "Validating entry at remote source", 
                             "Communication error: \n\n" + extra.message));
 
-                          if (_self.dispatchEvent("error", apf.extend({
+                          if (_self.dispatchEvent("error", Object.extend({
                             error : commError, 
                             state : status
                           }, extra)) !== false)
@@ -471,7 +471,7 @@ apf.Validation = function(){
                       }
                   }
 
-                  rvCache[value] = apf.isTrue(data);//instr[1] ? data == instr[1] : apf.isTrue(data);
+                  rvCache[value] = util.isTrue(data);//instr[1] ? data == instr[1] : util.isTrue(data);
                   
                   if(!rvCache[value]){
                     if (!_self.hasFocus())
@@ -563,7 +563,7 @@ apf.ValidationGroup = function(name){
     
     this.name = name || "validgroup" + this.$uniqueId;
     //#ifdef __WITH_NAMESERVER
-    apf.nameserver.register("validgroup", this.name, this);
+    nameserver.register("validgroup", this.name, this);
     //#endif
 };
 

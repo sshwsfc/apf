@@ -184,7 +184,7 @@ apf.aml.setElement("auth", apf.auth);
     this.inProcess  = 0;
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         login   : 1,
         logout  : 1
     }, this.$attrExcludePropBind);
@@ -298,7 +298,7 @@ apf.aml.setElement("auth", apf.auth);
 
         //#ifdef __WITH_NAMESERVER
         if (e.data && this.model) {
-            this.model = apf.nameserver.get("model", this.model);
+            this.model = nameserver.get("model", this.model);
             if (this.model)
                 this.model.load(e.data);
         }
@@ -424,7 +424,7 @@ apf.aml.setElement("auth", apf.auth);
                 here to test the data for login information
             */
             var result = _self.dispatchEvent("log" + type + "check",
-                apf.extend({
+                Object.extend({
                     state   : state,
                     data    : data,
                     service : service,
@@ -449,7 +449,7 @@ apf.aml.setElement("auth", apf.auth);
                 var commError = new Error(apf.formatErrorString(0, null,
                     "Logging " + type, "Error logging in: " + extra.message));
 
-                if (_self.dispatchEvent("log" + type + "fail", apf.extend({
+                if (_self.dispatchEvent("log" + type + "fail", Object.extend({
                     error    : commError,
                     service  : service,
                     state    : state,
@@ -489,7 +489,7 @@ apf.aml.setElement("auth", apf.auth);
             if (callback)
                 callback();
 
-            _self.dispatchEvent("log" + type + "success", apf.extend({}, extra, {
+            _self.dispatchEvent("log" + type + "success", Object.extend({}, extra, {
                 state   : state,
                 service : service,
                 data    : data,
@@ -601,7 +601,7 @@ apf.aml.setElement("auth", apf.auth);
                 or retry is turned off. If this event returns false
                 the developer will call apf.auth.login() at a later date.
             */
-            var result = this.dispatchEvent("authrequired", apf.extend({
+            var result = this.dispatchEvent("authrequired", Object.extend({
                 bubbles : true,
                 data    : options && options.data
             }, options));

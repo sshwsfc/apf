@@ -169,7 +169,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
     }
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         match : 1
     }, this.$attrExcludePropBind);
 
@@ -285,7 +285,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
             //@todo if this model is in a session stop that session
         }
         else
-            model = new apf.model(); //apf.nameserver.register("model", id, );
+            model = new apf.model(); //nameserver.register("model", id, );
 
         model.setProperty("remote", this);
         model.rdb = this;

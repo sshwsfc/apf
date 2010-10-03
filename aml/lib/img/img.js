@@ -183,12 +183,12 @@ apf.preview = function(struct, tagName){
         }
         
         var _self = this;
-        apf.addListener(this.$ext, "mouseover", function(e) {
+        amlCore.addListener(this.$ext, "mouseover", function(e) {
             if (!_self.disabled)
                 _self.dispatchEvent("mouseover", {htmlEvent: e});
         });
         
-        apf.addListener(this.$ext, "mouseout", function(e) {
+        amlCore.addListener(this.$ext, "mouseout", function(e) {
             if (!_self.disabled)
                 _self.dispatchEvent("mouseout", {htmlEvent: e});
         });

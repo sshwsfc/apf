@@ -282,7 +282,7 @@ apf.datagrid = function(struct, tagName){
                     ? apf.xmldb.getNode(this.$tempsel) 
                     : selXml;
 
-                margin    = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin    = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScroll = oInt.scrollHeight > oInt.offsetHeight;
                 items     = Math.floor((oInt.offsetWidth
                     - (hasScroll ? 15 : 0)) / (selHtml.offsetWidth
@@ -311,7 +311,7 @@ apf.datagrid = function(struct, tagName){
                     ? apf.xmldb.getNode(this.$tempsel) 
                     : selXml;
                 
-                margin    = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin    = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScroll = oInt.scrollHeight > oInt.offsetHeight;
                 items     = Math.floor((oInt.offsetWidth
                     - (hasScroll ? 15 : 0)) / (selHtml.offsetWidth
@@ -340,7 +340,7 @@ apf.datagrid = function(struct, tagName){
                     ? apf.xmldb.getNode(this.$tempsel) 
                     : selXml;
                 
-                margin     = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin     = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScrollY = oInt.scrollHeight > oInt.offsetHeight;
                 hasScrollX = oInt.scrollWidth > oInt.offsetWidth;
                 items      = Math.floor((oInt.offsetWidth
@@ -375,7 +375,7 @@ apf.datagrid = function(struct, tagName){
                     ? apf.xmldb.getNode(this.$tempsel) 
                     : selXml;
                 
-                margin     = apf.getBox(apf.getStyle(selHtml, "margin"));
+                margin     = util.getBox(apf.getStyle(selHtml, "margin"));
                 hasScrollY = oInt.scrollHeight > oInt.offsetHeight;
                 hasScrollX = oInt.scrollWidth > oInt.offsetWidth;
                 items      = Math.floor((oInt.offsetWidth - (hasScrollY ? 15 : 0))
@@ -647,7 +647,7 @@ apf.datagrid = function(struct, tagName){
                         "var o = apf.lookup(" + this.$uniqueId + ");\
                         o.checkToggle(this, true);\o.$skipSelect = true;");
     
-                    if (apf.isTrue(this.$applyBindRule("checked", xmlNode))) {
+                    if (util.isTrue(this.$applyBindRule("checked", xmlNode))) {
                         this.$checkedList.push(xmlNode);
                         this.$setStyleClass(oRow, "checked");
                     }
@@ -926,7 +926,7 @@ apf.datagrid = function(struct, tagName){
 
                 oEditor = this.$editors[editor] = new constr(info);
 
-                var box = apf.getBox(apf.getStyle(oEditor.$ext, "margin"));
+                var box = util.getBox(apf.getStyle(oEditor.$ext, "margin"));
                 if (box[1] || box[3]) {
                     oEditor.setAttribute("width", "100%+2-" + (box[1] + box[3]));
                 }
@@ -1120,7 +1120,7 @@ apf.datagrid = function(struct, tagName){
 
         var widthdiff = this.$widthdiff = this.$getOption("main", "widthdiff") || 0;
         this.$defaultwidth = this.$getOption("main", "defaultwidth") || "100";
-        this.$useiframe    = apf.isIE && (apf.isTrue(this.$getOption("main", "iframe")) || this.iframe);
+        this.$useiframe    = apf.isIE && (util.isTrue(this.$getOption("main", "iframe")) || this.iframe);
 
         //Initialize Iframe 
         if (this.$useiframe && !this.oIframe) {

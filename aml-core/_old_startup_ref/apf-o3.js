@@ -90,7 +90,7 @@ apf = {
                 "Could not load reference. Reference is null"));
     
         if (!strip)
-            return apf.jsexec(ref.toString());
+            return util.jsexec(ref.toString());
         
         var q = ref.toString().replace(/^\s*function\s*\w*\s*\([^\)]*\)\s*\{/, "");
         q = q.replace(/\}\s*$/, "");
@@ -98,7 +98,7 @@ apf = {
         //var q = ref.toString().split("\n");q.shift();q.pop();
         //if(!win.execScript) q.shift();q.pop();
     
-        return apf.jsexec(q);
+        return util.jsexec(q);
     },
     
     /**

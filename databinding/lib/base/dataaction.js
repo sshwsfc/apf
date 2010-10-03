@@ -214,7 +214,7 @@ apf.DataAction = function(){
                         return extra.tpModule.retry(extra.id);
     
                     if (state == apf.SUCCESS) {
-                        _self.dispatchEvent("locksuccess", apf.extend({
+                        _self.dispatchEvent("locksuccess", Object.extend({
                             state   : extra.status,
                             bubbles : true
                         }, extra));
@@ -234,7 +234,7 @@ apf.DataAction = function(){
                         //Cancel the action, because we didnt get a lock
                         fRollback.call(_self, xmlContext);
                         
-                        _self.dispatchEvent("lockfailed", apf.extend({
+                        _self.dispatchEvent("lockfailed", Object.extend({
                             state   : extra.status,
                             bubbles : true
                         }, extra));
@@ -290,7 +290,7 @@ apf.DataAction = function(){
                             (state == apf.SUCCESS
                                 ? "unlocksuccess"
                                 : "unlockfailed"),
-                            apf.extend({
+                            Object.extend({
                                 state   : extra.status,
                                 bubbles : true
                             }, extra));
@@ -480,7 +480,7 @@ apf.DataAction = function(){
         }
         else {
             //#ifdef __WITH_NAMESERVER
-            model = sel[0] && apf.nameserver.get("model", sel[0]) || this.$model,
+            model = sel[0] && nameserver.get("model", sel[0]) || this.$model,
             node  = model
                 ? model.queryNode(sel[1])
                 : (xmlNode || this.xmlRoot).selectSingleNode(sel[1]);

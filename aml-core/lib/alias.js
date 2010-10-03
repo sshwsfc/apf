@@ -14,9 +14,9 @@ GuiElement.propHandlers = {
         if (!value) //@todo think about whether this has more meaning
             return;
         //#ifdef __WITH_NAMESERVER
-        var cg = apf.nameserver.get("alias", value);
+        var cg = nameserver.get("alias", value);
         if (!cg) {
-            cg = apf.nameserver.register("alias", value, {
+            cg = nameserver.register("alias", value, {
                 name  : value,
                 props : {},
                 $propertyHandler : function(prop, value, forceOnMe){

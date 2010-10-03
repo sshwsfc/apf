@@ -105,7 +105,7 @@ apf.Interactive = function(){
                 dragStart.call(o, ev, reparent);
                 apf.removeEventListener("mousedown", f);
             });
-            apf.cancelBubble(nativeEvent, nativeEvent.srcElement || this);
+            amlCore.cancelBubble(nativeEvent, nativeEvent.srcElement || this);
         } 
         else
         // #endif
@@ -115,16 +115,16 @@ apf.Interactive = function(){
     }
 
     this.$propHandlers["draggable"] = function(value){
-        if (apf.isFalse(value))
+        if (util.isFalse(value))
             this.draggable = value = false;
-        else if (apf.isTrue(value))
+        else if (util.isTrue(value))
             this.draggable = value = true;
 
         var o = this.editable ? this.$ext : this.oDrag || this.$ext;
         if (value)
-            apf.addListener(o, "mousedown", this.$dragStart);
+            amlCore.addListener(o, "mousedown", this.$dragStart);
         else
-            apf.removeListener(o, "mousedown", this.$dragStart);
+            amlCore.removeListener(o, "mousedown", this.$dragStart);
         
         //deprecated??
         if (o.interactive & 1) 
@@ -135,9 +135,9 @@ apf.Interactive = function(){
     };
 
     this.$propHandlers["resizable"] = function(value){
-        if (apf.isFalse(value))
+        if (util.isFalse(value))
             this.resizable = value = false;
-        else if (apf.isTrue(value))
+        else if (util.isTrue(value))
             this.resizable = value = true;
         
         this.$ext.style.cursor = "";
@@ -147,11 +147,11 @@ apf.Interactive = function(){
             return;
 
         if (!_self.editable) {        
-            apf.addListener(o, "mousedown", function(){
+            amlCore.addListener(o, "mousedown", function(){
                 resizeStart.apply(o, arguments);
             });
     
-            apf.addListener(o, "mousemove", function(){
+            amlCore.addListener(o, "mousemove", function(){
                 resizeIndicate.apply(o, arguments);
             });
         }
@@ -162,7 +162,7 @@ apf.Interactive = function(){
         
         rszborder = this.$getOption && parseInt(this.$getOption("Main", "resize-border")) || 3;
         rszcorner = this.$getOption && parseInt(this.$getOption("Main", "resize-corner")) || 12;
-        marginBox = apf.getBox(apf.getStyle(this.$ext, "borderWidth"));
+        marginBox = util.getBox(apf.getStyle(this.$ext, "borderWidth"));
     };
     
     /*
@@ -803,7 +803,7 @@ apf.Interactive = function(){
             oOutline.style.position = "absolute";
             oOutline.style.display  = "none";
             //oOutline.style.zIndex   = 2000000;
-            apf.window.zManager.set("drag", oOutline);
+            zManager.set("drag", oOutline);
             oOutline.host = false;
         }
         oOutline.refCount++

@@ -428,7 +428,7 @@ apf.DragDrop = function(){
           ifcopy = rule && rule.copy;//.getAttribute("copy");
 
         if (ifcopy) {
-            ifcopy = !apf.isFalse((rule.ccopy || rule.compile("copy"))(xmlNodeList[0], context));
+            ifcopy = !util.isFalse((rule.ccopy || rule.compile("copy"))(xmlNodeList[0], context));
         }
         else if (typeof this.dragcopy == "boolean" || typeof this.dropcopy == "boolean") { //@todo apf3.0 boolean here?
             if (this.dropcopy) {
@@ -441,7 +441,7 @@ apf.DragDrop = function(){
                 //@todo read this from src
                 var copyRule = this.$attrBindings && this.$attrBindings["dragcopy"];
                 if (copyRule) {
-                    ifcopy = !apf.isFalse((copyRule.cvalue2
+                    ifcopy = !util.isFalse((copyRule.cvalue2
                       || copyRule.compile("value", {
                         withopt : true
                       }))(xmlNodeList[0], context));
@@ -452,7 +452,7 @@ apf.DragDrop = function(){
         if (!ifcopy) { //Implemented one copy is all copy
             for (var i = 0, l = srcRule.length; i < l; i++) {
                 ifcopy = typeof srcRule[i] == "object" && srcRule[i].copy
-                    ? !apf.isFalse((srcRule[i].ccopy || srcRule[i].compile("copy"))(xmlNodeList[0], context))
+                    ? !util.isFalse((srcRule[i].ccopy || srcRule[i].compile("copy"))(xmlNodeList[0], context))
                     : event.ctrlKey;
                 if (ifcopy) break;
             }
@@ -510,7 +510,7 @@ apf.DragDrop = function(){
     /**
      * Loads the dragdrop rules from the dragdrop element
      *
-     * @param  {Array}      rules     the rules array created using {@link core.apf.method.getrules}
+     * @param  {Array}      rules     the rules array
      * @param  {XMLElement} [node] the reference to the dragdrop element
      * @see  SmartBinding
      * @private
@@ -747,7 +747,7 @@ apf.DragDrop = function(){
     this.$propHandlers["dropcopy"] =
     this.$propHandlers["drag"]     =
     this.$propHandlers["drop"]     = function(value, prop){
-        this[prop] = apf.isTrue(value);
+        this[prop] = util.isTrue(value);
 
         if (this.$dragInited && prop == "drag" && value && this.$dragInited != 2) {
             this.$initDragDrop();
@@ -769,7 +769,7 @@ apf.DragDrop = function(){
         disableDragDrop.call(this);
         
         if (this.oDrag) {
-            apf.destroyHtmlNode(this.oDrag);
+            amlCore.destroyHtmlNode(this.oDrag);
             this.oDrag = null;
         }
     });
@@ -779,13 +779,13 @@ apf.GuiElement.propHandlers["dragcopy"] =
 apf.GuiElement.propHandlers["dropcopy"] =
 apf.GuiElement.propHandlers["drop"]     =
 apf.GuiElement.propHandlers["drag"]     = function(value, prop) {
-    if (!apf.isFalse(value)) {
+    if (!util.isFalse(value)) {
         if (!this.hasFeature(apf.__DRAGDROP__)) {
             this.implement(apf.DragDrop);
             this.enableDragDrop();
         }
         
-        this[prop] = apf.isTrue(value);
+        this[prop] = util.isTrue(value);
     }
 };
 
@@ -925,7 +925,7 @@ apf.DragServer = {
                 : apf.xmldb.findXmlNode(el)),
             candrop = o.isDropAllowed && o.xmlRoot
                 ? o.isDropAllowed(this.dragdata.data, elSel || o.xmlRoot)
-                : apf.isTrue(apf.getInheritedAttribute(o, "", function(p){
+                : util.isTrue(apf.getInheritedAttribute(o, "", function(p){
                       if (p.drop) {
                           o = p;
                           if (o == apf.DragServer.last)
@@ -997,7 +997,7 @@ apf.DragServer = {
         }
          
         if (!candrop) 
-            candrop = apf.isTrue(apf.getInheritedAttribute(o, "", function(p){
+            candrop = util.isTrue(apf.getInheritedAttribute(o, "", function(p){
               if (p.drop) {
                   o = p;
                   return true;
@@ -1006,7 +1006,7 @@ apf.DragServer = {
 
         //EVENT - cancelable: ondragdrop
         if (candrop) {
-            if (o.dispatchEvent("dragdrop", apf.extend({candrop : candrop, htmlEvent : e, top: lastTop},
+            if (o.dispatchEvent("dragdrop", Object.extend({candrop : candrop, htmlEvent : e, top: lastTop},
               this.dragdata)) === false) {
                 candrop = false;
             }
@@ -1016,7 +1016,7 @@ apf.DragServer = {
                       ? o.getModel(true) 
                       :
                       //#ifdef __WITH_NAMESERVER
-                      apf.nameserver.get("model", o.model)
+                      nameserver.get("model", o.model)
                       /* #else
                       {}
                       #endif */
@@ -1052,7 +1052,7 @@ apf.DragServer = {
         }
         
         if (o.$dragdrop) {
-            o.$dragdrop(el, apf.extend({
+            o.$dragdrop(el, Object.extend({
                 htmlEvent : e,
                 xmlNode   : rNode
             }, this.dragdata), candrop);
@@ -1233,7 +1233,7 @@ apf.MultiselectDragDrop = function() {
         }
         else if (this.localName == "datagrid") {
             if (this.lastDragNode)
-                apf.destroyHtmlNode(this.lastDragNode);
+                amlCore.destroyHtmlNode(this.lastDragNode);
 
             sel = this.$selected || this.$caret;
             var oDrag = sel.cloneNode(true);
@@ -1267,7 +1267,7 @@ apf.MultiselectDragDrop = function() {
             this.$updateNode(this.selected, this.oDrag);
         }
         
-        apf.window.zManager.set("drag", this.oDrag);
+        zManager.set("drag", this.oDrag);
         
         return this.oDrag;
     };
@@ -1289,7 +1289,7 @@ apf.MultiselectDragDrop = function() {
                 ],
                 onfinish : function(){
                     if (_self.lastDragNode) {
-                        apf.destroyHtmlNode(_self.lastDragNode);
+                        amlCore.destroyHtmlNode(_self.lastDragNode);
                         _self.lastDragNode = null;
                     }
                     else {
@@ -1299,7 +1299,7 @@ apf.MultiselectDragDrop = function() {
             });
         }
         else if (this.lastDragNode) {
-            apf.destroyHtmlNode(this.lastDragNode);
+            amlCore.destroyHtmlNode(this.lastDragNode);
             this.lastDragNode = null;
         }
         else {
@@ -1324,7 +1324,7 @@ apf.MultiselectDragDrop = function() {
         this.oDrag = apf.insertHtmlNode(
             this.$getLayoutNode("dragindicator"), document.body);
 
-        apf.window.zManager.set("drag", this.oDrag);
+        zManager.set("drag", this.oDrag);
         
         this.oDrag.style.position = "absolute";
         this.oDrag.style.cursor   = "default";
@@ -1443,7 +1443,7 @@ apf.StandardDragDrop = function() {
         
         this.oDrag = document.body.appendChild(this.$ext.cloneNode(true));
         
-        apf.window.zManager.set("drag", this.oDrag);
+        zManager.set("drag", this.oDrag);
         
         this.oDrag.style.position   = "absolute";
         this.oDrag.style.cursor     = "default";

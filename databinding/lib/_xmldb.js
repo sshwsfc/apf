@@ -33,7 +33,7 @@ apf.setNodeValue = function(xmlNode, nodeValue, applyChanges, options){
         if (!xmlNode.firstChild)
             xmlNode.appendChild(xmlNode.ownerDocument.createTextNode("-"));
 
-        xmlNode.firstChild.nodeValue = apf.isNot(nodeValue) ? "" : nodeValue;
+        xmlNode.firstChild.nodeValue = util.isNot(nodeValue) ? "" : nodeValue;
 
         if (applyChanges)
             apf.xmldb.applyChanges("text", xmlNode, undoObj);
@@ -44,7 +44,7 @@ apf.setNodeValue = function(xmlNode, nodeValue, applyChanges, options){
             nodeValue = nodeValue.replace(/&/g, "&amp;");
         
         var oldValue      = xmlNode.nodeValue;
-        xmlNode.nodeValue = apf.isNot(nodeValue) ? "" : nodeValue;
+        xmlNode.nodeValue = util.isNot(nodeValue) ? "" : nodeValue;
         
         if (undoObj) {
             undoObj.name = xmlNode.nodeName; 

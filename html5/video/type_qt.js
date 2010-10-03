@@ -423,7 +423,7 @@ apf.video.TypeQT = function(oVideo, node, options) {
     this.videoPath   = options.src;
 
     this.player = null;
-    apf.extend(this, apf.video.TypeInterface);
+    Object.extend(this, apf.video.TypeInterface);
 
     this.setOptions(options);
     var _self = this;

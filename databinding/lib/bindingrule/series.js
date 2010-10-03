@@ -34,7 +34,7 @@ apf.BindingSeriesRule = function(struct, tagName){
 
 (function(){
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         formula : 1
     }, this.$attrExcludePropBind);
 

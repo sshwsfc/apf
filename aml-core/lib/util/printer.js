@@ -50,7 +50,7 @@ apf.printer = {
             height          = "100%";
             backgroundColor = "white";
         }
-        apf.window.zManager.set("print", this.panel);
+        zManager.set("print", this.panel);
         
         apf.importCssString("#print_content{display:none}");
         apf.importCssString(apf.hasCSSChildOfSelector && !apf.isIE

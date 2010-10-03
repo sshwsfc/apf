@@ -159,7 +159,7 @@ apf.textbox.masking = function(){
             setPosition(pos);
         }
 
-        if (apf.isCharacter(e.keyCode) || stop)
+        if (util.isCharacter(e.keyCode) || stop)
             return false;
     }, true);
     

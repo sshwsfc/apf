@@ -192,7 +192,7 @@ oop.decorate(BaseButton, ChildValue);
             _self.$updateState(e, "mousedown");
             
             if (!apf.isIE && !_self.submenu) //Causes a focus problem for menus
-                apf.cancelBubble(e);
+                amlCore.cancelBubble(e);
         };
         
         this.$ext.onmouseup = function(e, force) {

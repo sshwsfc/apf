@@ -477,7 +477,7 @@ TEMPORARILY DISABLED
        
         //Set the new stuff on the past action
         if (typeof f == "string")
-            apf.jsexec(f)
+            util.jsexec(f)
         else
             f();
 

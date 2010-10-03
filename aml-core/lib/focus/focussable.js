@@ -63,7 +63,7 @@ apf.Focussable = function(){
         if (this.$focus && !this.editable)
             this.$focus(e);
 
-        this.dispatchEvent("focus", apf.extend({
+        this.dispatchEvent("focus", Object.extend({
             bubbles    : true
         }, e));
         return this;
@@ -85,7 +85,7 @@ apf.Focussable = function(){
         if (!noset)
             apf.window.$blur(this);
 
-        this.dispatchEvent("blur", apf.extend({
+        this.dispatchEvent("blur", Object.extend({
             bubbles    : !e || !e.cancelBubble
         }, e));
         return this;

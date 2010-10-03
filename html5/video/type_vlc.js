@@ -123,7 +123,7 @@ apf.video.TypeVlc = function(oVideo, node, options) {
     this.videoPath   = options.src;
 
     this.player    = this.pollTimer = null;
-    apf.extend(this, apf.video.TypeInterface);
+    Object.extend(this, apf.video.TypeInterface);
 
     this.setOptions(options);
     var _self = this;

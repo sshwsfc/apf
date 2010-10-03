@@ -64,7 +64,7 @@ apf.item  = function(struct, tagName){
     /**** Properties and Attributes ****/
     
     //1 = force no bind rule, 2 = force bind rule
-    this.$attrExcludePropBind = apf.extend({
+    this.$attrExcludePropBind = Object.extend({
         "match" : 1
     }, this.$attrExcludePropBind);
 
@@ -178,14 +178,14 @@ apf.item  = function(struct, tagName){
         var group = typeof value == "string"
             ? 
             //#ifdef __WITH_NAMESERVER
-            apf.nameserver.get("radiogroup", value)
+            nameserver.get("radiogroup", value)
             /* #else
             {}
             #endif */
             : value;
         if (!group) {
             //#ifdef __WITH_NAMESERVER
-            group = apf.nameserver.register("radiogroup", value, 
+            group = nameserver.register("radiogroup", value, 
                 new apf.$group());
             group.setAttribute("id", value);
             group.dispatchEvent("DOMNodeInsertedIntoDocument");
@@ -279,7 +279,7 @@ apf.item  = function(struct, tagName){
         if (this.type != "check")
             return;
 
-        if (apf.isTrue(value))
+        if (util.isTrue(value))
             apf.setStyleClass(this.$ext, "checked");
         else
             apf.setStyleClass(this.$ext, "", ["checked"]);
@@ -314,7 +314,7 @@ apf.item  = function(struct, tagName){
         if (this.$group)
             this.$group.setProperty("value", this.value);
 
-        if (apf.isTrue(value))
+        if (util.isTrue(value))
             this.$check()
         else
             this.$uncheck();
@@ -324,7 +324,7 @@ apf.item  = function(struct, tagName){
      * @attribute {Boolean} disabled whether the item is active.
      */
     this.$propHandlers["disabled"] = function(value){
-        if (apf.isTrue(value))
+        if (util.isTrue(value))
             apf.setStyleClass(this.$ext, "disabled");
         else
             apf.setStyleClass(this.$ext, "", ["disabled"]);
