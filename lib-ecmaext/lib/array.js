@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/array",
-    function(){
+define(['ecmatypes'],function(){
 
 /**
  * Reliably determines whether a variable is an array.

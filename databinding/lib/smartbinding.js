@@ -161,7 +161,7 @@
  *              <company>Javeline</company>
  *          </contact>
  *          <contact>
- *              <name>Łukasz</name>
+ *              <name>Lukasz</name>
  *              <company>Javeline</company>
  *          </contact>
  *      </data>
@@ -214,7 +214,7 @@
  *              <filename>Baseclasses</filename>
  *          </contact>
  *          <contact>
- *              <name>Łukasz</name>
+ *              <name>Lukasz</name>
  *              <filename>application.png</filename>
  *          </contact>
  *      </data>

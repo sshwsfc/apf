@@ -1,4 +1,4 @@
-require.def([
+define([
     "lib-xml", 
     "lib-ecmaext",
     "lib-ecmaext/json",

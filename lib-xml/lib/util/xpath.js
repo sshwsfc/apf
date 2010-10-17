@@ -1,4 +1,4 @@
-require.def([
+define([
     "lib-xml", 
     "lib-xml/util",
     "optional!debug",

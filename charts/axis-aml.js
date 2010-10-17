@@ -53,10 +53,6 @@ apf.aml.setElement("axis", apf.Axis);
         "orbitxanim","orbityanim","orbitzanim"
     ];
 
-    //this.$attrExcludePropBind = Object.extend({
-    //���style : 1
-    //}, this.$attrExcludePropBind);
- 
     this.$drawCode  = 0;
     this.$_style = null;
     this.$docompile = true;

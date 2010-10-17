@@ -962,7 +962,6 @@ apf.slideshow = function(struct, tagName){
             w = _self.$imageWidth = parseInt(_self.oImage.style.width);
             h = _self.$imageHeight = parseInt(_self.oImage.style.height);
             
-            //wg tej wartosci ustale miejsce na duzym obrazku i bede wiedział wg jakiego punktu mam rozszerzać go
             var percent_posX = sx / _self.$imageWidth;
             var percent_posY = sy / _self.$imageHeight;
             

@@ -43,9 +43,6 @@
 apf.aml.setElement("graph", apf.Graph);
  
 (function(){
-    //this.$attrExcludePropBind = Object.extend({
-    //���style : 1
-    //}, this.$attrExcludePropBind);
 
     //this.$supportedProperties = ["type","series","formula"];
     this.$focussable = false;

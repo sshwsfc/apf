@@ -40,11 +40,14 @@ define(function(){
     function dump(t, s, l){
         if(!s) s = [];
         if(!l) l = 0;
-        for (var n = t; n!=null; n = n.next) {
-            if ( n.type == 2)
-                dump( n.child, s, l+1);
-            else if(n.type!=3)
-                s.push(Array(l).join('----'), n.type, " ", n.token, "\n");
+        if(t)
+        for (var n = t; n!=null; n = n.dn) {
+            if ( n.t == 2){
+                s.push(Array(l).join('----'), n.type, " ", n.v, "\n");
+                dump( n.ch, s, l+1);
+            }
+            else if(n.t!=3)
+                s.push(Array(l).join('----'), n.type, " ", n.v, "\n");
         }
         if(!l) return s.join('');
     }
@@ -52,35 +55,57 @@ define(function(){
     function serialize(t, s, l){
         if(!s) s = [];
         if(!l) l = 0;
-        for (var n = t; n; n = n.next) {
-        	s.push( n.ws + n.token );
-            if (n.type == 2)
-                serialize( n.child, s, l + 1 );
+        if(t)
+        for (var n = t; n; n = n.dn) {
+        	s.push( n.ws + n.v );
+            if (n.t == 2)
+                serialize( n.ch, s, l + 1 );
         }
         if(!l) return s.join('');
 	}
-
+    
+    function store(t, s, l){
+        if(!s) s = [];
+        if(!l) l = 0;
+        var d = 0;
+        for (var n = t; n!=null; n = n.dn, d++) {
+        	s.push(Array(l+1).join(' '),'{t:',n.t,
+        			',v:"',n.v.replace(/\\/g,"\\\\").replace(/\"/g,'\\"').replace(/\r?\n/g,'\\n').replace(/\t/g,'\\t'),
+        			'",ws:"',n.ws.replace(/\\/g,"\\\\").replace(/\"/g,'\\"').replace(/\r?\n/g,"\\n").replace(/\t/g,'\\t'),'"');
+            if ( n.t == 2 && n.ch){
+            	s.push(",ch:\n");
+            	store( n.ch, s, l+1);
+            }
+            if(n.dn)
+            	s.push(",dn:\n");
+            else 
+            	s.push('}');
+        }
+        s.push(Array(d).join('}'));
+        if(!l) return s.join('');
+    }    
+    
     function match(t1, t2){
-		for(var n1 = t1, n2 = t2; (n1 && n2); n1 = n1.next, n2 = n2.next){
-			if(n2.token == '{' && n2.child && n2.child.type==8){
+		for(var n1 = t1, n2 = t2; (n1 && n2); n1 = n1.dn, n2 = n2.dn){
+			if(n2.v == '{' && n2.ch && n2.ch.type==8){
 				if(!n2.rx) 
-					n2.rx = new RegExp(n2.child.token.slice(1,-1));
+					n2.rx = new RegExp(n2.ch.v.slice(1,-1));
 				
-				if(!n1.token.match( n2.rx ))
+				if(!n1.v.match( n2.rx ))
 					break;
-				if(!n2.next)console.log(n2);
+				if(!n2.dn)console.log(n2);
 				
-				n2 = n2.next;
+				n2 = n2.dn;
 			} else {
-    			if(n1.token != n2.token)
+    			if(n1.v != n2.v)
     				break;
     			if(n2.type == 2){ // we (should)have children
-    				if(n2.child){
-    					var m = match( n1.child, n2.child);
+    				if(n2.ch){
+    					var m = match( n1.ch, n2.ch);
     					if(!m) break;
-    					if(!n2.next) return m;
+    					if(!n2.dn) return m;
     				}
-					if(!n2.next) return n1.child;
+					if(!n2.dn) return n1.ch;
     			}
 			}
     	}
@@ -92,24 +117,24 @@ define(function(){
     	if(!results) results = [];
     	if(!l) l = 0;
     	
-    	for (var n = t1; n; n = n.next) {
+    	for (var n = t1; n; n = n.dn) {
     		var m = match(n, t2);
         	
     		if(m)
     			results.push(m);
     		if(n.type == 2 && deep){
         		if(deep!=1 || 
-        		  !(n.token=='{' && n.prev/*(*/ && n.prev.prev/*)*/ && n.prev.prev.prev/*function*/ && 
-        		  (n.prev.prev.prev.token=='function' || (n.prev.prev.prev.prev && n.prev.prev.prev.prev.token=='function'))))
-        			scan(n.child, t2, deep, results, l+1);
+        		  !(n.v=='{' && n.up/*(*/ && n.up.up/*)*/ && n.up.up.up/*function*/ && 
+        		  (n.up.up.up.v=='function' || (n.up.up.up.up && n.up.up.up.up.v=='function'))))
+        			scan(n.ch, t2, deep, results, l+1);
         	}
         }
     	if(!l)return results;
     }
     
-    function find(what, deep){
+    function find(where, what, deep){
      	var args = what.split("#");
-     	var set = [this];
+     	var set = where;
     	for(var i = 0;i<args.length;i++){
     		var nw = parse(args[i]);
     		var set2 = [];
@@ -122,55 +147,54 @@ define(function(){
     }
     
     function parse(str, needcomment){
-        var root = {},     // parse tree root node
+        var root = {ws:"",v:""},     // parse tree root node
             n = root,
         	b = 0,      // block output
-            depth = 0,
             type = 0,   // token type
             mode_tok = 0, // parsemode, contains char of block we parse
-            n,          // tempvar
+            n,          // current node
             lines = [], // array of linepositions
             err = [];   // tokenize array
         	ws = ""; 	// store whitespace
         var last_tok = null;
         str.replace(tokenizerx, function(tok, rx_lut, rx_ws, rx_word, rx_misc, pos){
             type = rx_lut ? tok_lut[rx_lut] : (rx_ws ? 9 : (rx_word ? 5 : 0)); //5 = word
-            
             if (!mode_tok) {
                 switch (type) {
                     case 8: // regex
                         // previous is: throw return ( , [
-                        if (pre_regex[last_tok] || (n.prev && pre_regex[n.prev.token])) {
+                        if (pre_regex[last_tok]) {
                             mode_tok = tok;
-                            n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
+                            n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                             b = [tok];
                         } else 
-                        	n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
+                        	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                         break;                
                     case 7: //Comment
                     	if(needcomment)
-                    		n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
+                    		n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                 		mode_tok = tok;
                         b = [tok];
                         break;
                     case 4: //String 
-                    	n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
+                    	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                         mode_tok = tok;
                         b = [tok];
                         break;
                     case 2: //[ ( {
-                    	n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
-                    	n = n.child = {parent: n, depth: depth+1};
+                    	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
+                    	n = n.ch = {pa: n};
                         break;
                     case 3: // } ) ]
-                        if (n.parent.token != tok_close[tok])  {
-                            err.push({t: "Error closing " + tok + " (opened with: " + n.parent.token + ")", pos: pos, toString: errToString});
+                        if (!n.pa || n.pa.v != tok_close[tok])  {
+                            err.push({t: "Error closing " + tok + " (opened with: " + (n.pa?n.pa.v:"NULL") + ")", pos: pos});
                         }
-                        else {
-                        	n.parent.last = n, n = n.parent, depth--, n.child = n.child.next; 
-                        	if(n.child) delete n.child.prev;
-                        	n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
-                        }
+                    	if(n.pa){
+	                    	n = n.pa, n.ch = n.ch.dn; 
+	                    	if(n.ch) delete n.ch.up;
+                    	}
+	                    n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
+                        
                         break;
                     case 6: // \n
                     	ws += tok;
@@ -180,7 +204,7 @@ define(function(){
                     	ws += tok;
                         break;
                     default: // word
-                    	n = n.next = {type:type, find:find, pos:pos, ws:ws, token:tok, parent:n.parent, prev:n, depth:n.depth}, ws = "";
+                    	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                         break;
                 }
             }
@@ -190,25 +214,25 @@ define(function(){
                     case 4: //String
                         if (mode_tok == tok){
                             mode_tok = 0;
-                            n.token = b.join('');
+                            n.v = b.join('');
                         }
                         break;
                     case 7: //Comment
                         if (tok == '*/' && mode_tok == '/*') {
                             mode_tok = 0;
                             if(needcomment)
-                            	n.token = b.join('');
+                            	n.v = b.join('');
                             else
                             	ws += b.join('');
                         } else if (tok == '*/' && mode_tok == '/') {
                             mode_tok = 0;
-                           	n.token = b.join('');
+                           	n.v = b.join('');
                         }
                         break;
                     case 8: // regex
                         if(mode_tok == '/'){
                             mode_tok = 0;
-                            n.token = b.join('');
+                            n.v = b.join('');
                         }
                         break;
                     case 6: //New line
@@ -216,7 +240,7 @@ define(function(){
                         if (mode_tok == '//'){
                             mode_tok = 0;
                             if(needcomment)
-                            	n.token = b.join('');
+                            	n.v = b.join('');
                             else
                             	ws += b.join('');
                         }
@@ -225,21 +249,28 @@ define(function(){
             }
             if(type<9)last_tok = tok;
         });
-        if(ws) n = n.next = {type:0, id:"", find:find, pos:str.length, ws:ws, token:"", parent:n.parent, prev:n, depth:n.depth}, ws = "";
+        if(mode_tok && mode_tok == '//'){
+            if(needcomment)
+            	n.v = b.join('');
+            else
+            	ws += b.join('');
+        }
+        if(ws) n = n.dn = {t:0, p:str.length, ws:ws, v:"", pa:n.pa, up:n}, ws = "";
                 
-        while (n.parent){
-            err.push({t: "Not closed: " + n.token, pos: n.pos});
-            n.parent.last = n, n = n.parent, n.child = n.child.next;
-            if(n.child) delete n.child.prev;
+        while (n.pa){
+            err.push({t: "Not closed: " + n.v, pos: n.p});
+            n = n.pa, n.ch = n.ch.dn;
+            if(n.ch) delete n.ch.up;
         }
         if (mode_tok)
-            err.push({t: "Blockmode not closed of " + b[0], pos: formatPos(lines,n.pos)});
-        
-        root = root.next; delete root.prev;
+            err.push({t: "Blockmode not closed of " + b[0], pos: n.p});
+        if(root.dn){
+	        root = root.dn; delete root.up;
+        }
         root.lines = lines, root.err  = err;
-        
+	        
         return root;
     };
     
-    return { parse: parse, dump: dump, serialize: serialize, line: lineLookup };
+    return { parse: parse, store:store, find: find, dump: dump, serialize: serialize, line: lineLookup };
 });
