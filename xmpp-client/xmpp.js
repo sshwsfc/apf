@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/teleport", "optional!aml", "lib-oop"], function(Teleport, aml, oop){
 
 /**
  * Element implementing XMPP IM protocol.
@@ -101,7 +101,7 @@ define([], function(){
  */
 
 var Xmpp = function(struct, tagName){
-    this.$init(tagName || "xmpp", this.NODE_HIDDEN, struct);
+    Teleport.call(this, tagName || "xmpp", this.NODE_HIDDEN, struct);
 
     this.$serverVars = {};
     this.$reqCount   = 0;
@@ -113,6 +113,9 @@ var Xmpp = function(struct, tagName){
     this.$RID        = null;
     this.$activeReq  = null;
 };
+
+oop.inherit(Xmpp, Teleport);
+
 
 (function() {
     var constants = {
@@ -350,7 +353,7 @@ var Xmpp = function(struct, tagName){
         if (!this.$canMuc) {
             this.$canMuc   = true;
             // magic!
-            this.implement(apf.xmpp_muc);
+            oop.decorate(Xmpp, Xmpp_muc);;
         }
     };
 
@@ -2592,9 +2595,9 @@ var Xmpp = function(struct, tagName){
     };
     
     // #endif
-}).call(apf.xmpp.prototype = new apf.Teleport());
+}).call(Xmpp.prototype);
 
-apf.aml.setElement("xmpp", apf.xmpp);
+aml && aml.setElement("xmpp", Xmpp);
 
 
 return Xmpp;

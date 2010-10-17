@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Element displays a chart.
@@ -37,10 +37,13 @@ define([], function(){
  */
 
 var Chart     = function(struct, tagName){
-    this.$init(tagName || "chart", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "chart", this.NODE_VISIBLE, struct);
 };
 
-apf.aml.setElement("chart", apf.Chart);
+oop.inherit(Chart, Presentation);
+
+
+aml && aml.setElement("chart", Chart);
  
 (function(){
      //var space    = { x:1000000, w:-2000000, y:1000000, h:-2000000};    
@@ -274,7 +277,7 @@ apf.aml.setElement("chart", apf.Chart);
         window.clearTimeout(this.$timer);
         window.clearInterval(this.$animTimer);
     };
-}).call(apf.Chart.prototype = new apf.Presentation());
+}).call(Chart.prototype);
 
 
 return Chart;

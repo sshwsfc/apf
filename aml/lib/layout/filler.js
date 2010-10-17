@@ -18,11 +18,14 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
 
 var Filler = function(struct, tagName){
-    this.$init(tagName || "filler", this.NODE_VISIBLE, struct);
+    GuiElement.call(this, tagName || "filler", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Filler, GuiElement);
+
 
 (function() {
     this.$focussable = false;
@@ -31,9 +34,9 @@ var Filler = function(struct, tagName){
     this.$draw = function() {
         this.$ext = this.$pHtmlNode.appendChild(this.$pHtmlNode.ownerDocument.createElement("div"));
     };
-}).call(apf.filler.prototype = new apf.GuiElement());
+}).call(Filler.prototype);
 
-apf.aml.setElement("filler", apf.filler);
+aml && aml.setElement("filler", Filler);
 
 
 return Filler;

@@ -19,14 +19,17 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @todo docs
  */
 var BindingQuicksandRule = function(struct, tagName){
-    this.$init(tagName, this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName, this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(BindingQuicksandRule, BindingRule);
+
 
 (function(){
     function getFilteredNodes(pNode) {
@@ -296,9 +299,9 @@ var BindingQuicksandRule = function(struct, tagName){
             quicksand.call(_self);
         });
     });
-}).call(apf.BindingQuicksandRule.prototype = new apf.BindingRule());
+}).call(BindingQuicksandRule.prototype);
 
-apf.aml.setElement("quicksand", apf.BindingQuicksandRule);
+aml && aml.setElement("quicksand", BindingQuicksandRule);
 
 return BindingQuicksandRule;
 

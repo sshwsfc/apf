@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/databinding", "optional!aml", "lib-oop"], function(DataBinding, aml, oop){
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} can bind to data 
  * which contains multiple nodes.
@@ -46,7 +46,7 @@ define([], function(){
  */
 var MultiselectBinding = function(){
     if (!this.setQueryValue)
-        this.implement(apf.DataBinding);
+        oop.decorate(MultiselectBinding, DataBinding);;
 
     this.$regbase    = this.$regbase|apf.__MULTISELECT__; //We're pretending to have multiselect even though we might not.
 
@@ -1204,7 +1204,7 @@ var MultiselectBinding = function(){
      */
     //this.$propHandlers["select"]   = 
     //#endif
-}).call(apf.MultiselectBinding.prototype = new apf.DataBinding());
+}).call(MultiselectBinding.prototype);
 
 return MultiselectBinding;
 

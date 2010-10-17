@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @binding each Determines the list of elements for which each
@@ -125,7 +125,7 @@ define([], function(){
  *   lower-first    Lower case characters are higher.
  */
 var BindingEachRule = function(struct, tagName){
-    this.$init(tagName, this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName, this.NODE_HIDDEN, struct);
     
     var _self = this;
     this.$noderegister = function(e){
@@ -136,6 +136,9 @@ var BindingEachRule = function(struct, tagName){
         //#endif
     }
 };
+
+oop.inherit(BindingEachRule, BindingRule);
+
 
 (function(){
     //1 = force no bind rule, 2 = force bind rule
@@ -301,9 +304,9 @@ var BindingEachRule = function(struct, tagName){
     
     this.addEventListener("DOMNodeInsertedIntoDocument", f);
     
-}).call(apf.BindingEachRule.prototype = new apf.BindingRule());
+}).call(BindingEachRule.prototype);
 
-apf.aml.setElement("each", apf.BindingEachRule);
+aml && aml.setElement("each", BindingEachRule);
 
 return BindingEachRule;
 

@@ -19,7 +19,7 @@
  *
  */
  
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * @attribute {String} match
@@ -34,8 +34,11 @@ define([], function(){
  * @attribute {Boolean} parent
  */
 var ActionRule = function(struct, tagName){
-    this.$init(tagName || true, this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || true, this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(ActionRule, AmlElement);
+
 
 (function(){
     this.$actionRule = true;
@@ -107,16 +110,16 @@ var ActionRule = function(struct, tagName){
         
         (actions[this.localName] || (actions[this.localName] = [])).push(this);
     });
-}).call(apf.ActionRule.prototype = new apf.AmlElement());
+}).call(ActionRule.prototype);
 
-apf.aml.setElement("rename", apf.ActionRule);   
-apf.aml.setElement("remove", apf.ActionRule);
-apf.aml.setElement("add",    apf.ActionRule);
-apf.aml.setElement("update", apf.ActionRule);
-apf.aml.setElement("copy",   apf.ActionRule);
-apf.aml.setElement("move",   apf.ActionRule);
-apf.aml.setElement("check",  apf.ActionRule);
-apf.aml.setElement("change", apf.ActionRule);
+aml && aml.setElement("rename", ActionRule);   
+aml && aml.setElement("remove", ActionRule);
+aml && aml.setElement("add",    ActionRule);
+aml && aml.setElement("update", ActionRule);
+aml && aml.setElement("copy",   ActionRule);
+aml && aml.setElement("move",   ActionRule);
+aml && aml.setElement("check",  ActionRule);
+aml && aml.setElement("change", ActionRule);
 
 return ActionRule;
 

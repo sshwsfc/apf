@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/teleport", "optional!aml", "lib-oop"], function(Teleport, aml, oop){
 
 /**
  * Element implementing the persist messaging protocol.
@@ -70,7 +70,7 @@ define([], function(){
  */
 
 var Persist = function(struct, tagName){
-    this.$init(tagName || "persist", this.NODE_HIDDEN, struct);
+    Teleport.call(this, tagName || "persist", this.NODE_HIDDEN, struct);
     
     var _self = this;
     apf.addEventListener("exit", function(e){
@@ -78,6 +78,9 @@ var Persist = function(struct, tagName){
             _self.disconnect();
     });
 };
+
+oop.inherit(Persist, Teleport);
+
 
 (function() {
     this.retryinterval = 1000;
@@ -461,9 +464,9 @@ var Persist = function(struct, tagName){
             break;
         }
     };
-}).call(apf.persist.prototype = new apf.Teleport());
+}).call(Persist.prototype);
 
-apf.aml.setElement("persist", apf.persist);
+aml && aml.setElement("persist", Persist);
 
 
 return Persist;

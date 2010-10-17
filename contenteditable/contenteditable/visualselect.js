@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
 
 var VisualSelect = function(selection){
     this.$init();
@@ -463,7 +463,7 @@ var VisualSelect = function(selection){
             apf.setStyleClass(this, "idegrabber_resizing");
         }
     }
-}).call(apf.visualSelect.prototype = new apf.Class());
+}).call(VisualSelect.prototype);
 
 
 return VisualSelect;

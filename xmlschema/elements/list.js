@@ -19,14 +19,17 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 var XsdList = function(struct, tagName){
-    this.$init(tagName || "list", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "list", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdList, XsdElement);
+
 
 (function(){
     this.$compile = function(stack){};
-}).call(apf.XsdList.prototype = new apf.XsdElement());
+}).call(XsdList.prototype);
 
 apf.xsd.setElement("list", apf.XsdList);
 

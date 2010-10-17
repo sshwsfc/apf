@@ -19,9 +19,9 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 var XsdSimpleType = function(struct, tagName){
-    this.$init(tagName || "simpletype", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "simpletype", this.NODE_HIDDEN, struct);
     
     var lastName;
     this.$propHandlers["name"] = function(value){
@@ -34,6 +34,9 @@ var XsdSimpleType = function(struct, tagName){
         lastName = value;
     };
 };
+
+oop.inherit(XsdSimpleType, XsdElement);
+
 
 (function(){
     this.$compile = function(stack){
@@ -55,7 +58,7 @@ var XsdSimpleType = function(struct, tagName){
                 (node = nodes[i]).$compile && node.$compile(stack);
         }
     };
-}).call(apf.XsdSimpleType.prototype = new apf.XsdElement());
+}).call(XsdSimpleType.prototype);
 
 apf.xsd.setElement("simpletype", apf.XsdSimpleType);
 

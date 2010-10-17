@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlcharacterdata", "optional!aml", "lib-oop"], function(AmlCharacterData, aml, oop){
 var AmlComment = function(isPrototype){
     this.nodeType = this.NODE_COMMENT;
     this.nodeName = "#comment";
@@ -39,7 +39,7 @@ var AmlComment = function(isPrototype){
             prevValue : this.nodeValue
         });
     }
-}).call(apf.AmlComment.prototype = new apf.AmlCharacterData());
+}).call(AmlComment.prototype);
 
 return AmlComment;
 

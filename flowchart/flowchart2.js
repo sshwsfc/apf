@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
 
 /*
  * @author      Lukasz Lipinski
@@ -27,19 +27,22 @@ define([], function(){
  */
 
 var Flowchart = function(struct, tagName){
-    this.$init(tagName || "flowchart", this.NODE_VISIBLE, struct);
+    BaseList.call(this, tagName || "flowchart", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Flowchart, BaseList);
+
+
 (function() {
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction,
+        oop.decorate(Flowchart, DataAction);
         //#endif
         //#ifdef __WITH_CACHE
-        apf.Cache,
+        oop.decorate(Flowchart, Cache);
         //#endif
-        apf.Rename
-    );
+        oop.decorate(Flowchart, Rename);
+    ;
     
     this.$supportedProperties.push("wa-width", "wa-height");
 
@@ -1187,29 +1190,29 @@ var Flowchart = function(struct, tagName){
         return this.$flowVars.xmlTemplate ? true : false;
     };
 
-}).call(apf.flowchart.prototype = new apf.BaseList());
+}).call(Flowchart.prototype);
 
-apf.aml.setElement("flowchart",   apf.flowchart);
+aml && aml.setElement("flowchart",   Flowchart);
 
-apf.aml.setElement("resize",      apf.BindingRule);
-apf.aml.setElement("left",        apf.BindingRule);
-apf.aml.setElement("top",         apf.BindingRule);
-apf.aml.setElement("id",          apf.BindingRule);
-apf.aml.setElement("width",       apf.BindingRule);
-apf.aml.setElement("height",      apf.BindingRule);
-apf.aml.setElement("flipv",       apf.BindingRule);
-apf.aml.setElement("fliph",       apf.BindingRule);
-apf.aml.setElement("rotation",    apf.BindingRule);
-apf.aml.setElement("lock",        apf.BindingRule);
-apf.aml.setElement("type",        apf.BindingRule);
-apf.aml.setElement("cap-pos",     apf.BindingRule);
-apf.aml.setElement("zindex",      apf.BindingRule);
-apf.aml.setElement("connection",  apf.BindingRule);
-apf.aml.setElement("ref",         apf.BindingRule);
-apf.aml.setElement("name",    apf.BindingRule);
-apf.aml.setElement("blockoutput", apf.BindingRule);
-apf.aml.setElement("blockinput",  apf.BindingRule);
-apf.aml.setElement("blocklabel",  apf.BindingRule);
+aml && aml.setElement("resize",      BindingRule);
+aml && aml.setElement("left",        BindingRule);
+aml && aml.setElement("top",         BindingRule);
+aml && aml.setElement("id",          BindingRule);
+aml && aml.setElement("width",       BindingRule);
+aml && aml.setElement("height",      BindingRule);
+aml && aml.setElement("flipv",       BindingRule);
+aml && aml.setElement("fliph",       BindingRule);
+aml && aml.setElement("rotation",    BindingRule);
+aml && aml.setElement("lock",        BindingRule);
+aml && aml.setElement("type",        BindingRule);
+aml && aml.setElement("cap-pos",     BindingRule);
+aml && aml.setElement("zindex",      BindingRule);
+aml && aml.setElement("connection",  BindingRule);
+aml && aml.setElement("ref",         BindingRule);
+aml && aml.setElement("name",    BindingRule);
+aml && aml.setElement("blockoutput", BindingRule);
+aml && aml.setElement("blockinput",  BindingRule);
+aml && aml.setElement("blocklabel",  BindingRule);
 
 return Flowchart;
 

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Element shows a nice animated loader
@@ -50,8 +50,11 @@ define([], function(){
  *
  */
 var Loadindicator = function(struct, tagName){
-    this.$init(tagName || "loadindicator", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "loadindicator", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Loadindicator, Presentation);
+
 
 (function() {
     this.spinnerspeed  = 66;
@@ -156,9 +159,9 @@ var Loadindicator = function(struct, tagName){
             this.spinnerspeed = spinnerspeed;
         }
     };
-}).call(apf.loadindicator.prototype = new apf.Presentation());
+}).call(Loadindicator.prototype);
 
-apf.aml.setElement("loadindicator", apf.loadindicator);
+aml && aml.setElement("loadindicator", Loadindicator);
 
 return Loadindicator;
 

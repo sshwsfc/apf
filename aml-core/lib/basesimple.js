@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 
 /**
  * Baseclass of a simple element. This are usually displaying elements 
@@ -40,14 +40,14 @@ var BaseSimple = function(){
 
 (function() {
     //#ifdef __WITH_DATAACTION
-    this.implement(apf.DataAction);
+    oop.decorate(BaseSimple, DataAction);;
     //#endif
     
     this.getValue = function(){
         return this.value;
     };
 // #ifdef __WITH_DATABINDING
-}).call(apf.BaseSimple.prototype = new apf.StandardBinding());
+}).call(BaseSimple.prototype);
 /* #else
 }).call(apf.BaseSimple.prototype = new apf.Presentation());
 #endif */

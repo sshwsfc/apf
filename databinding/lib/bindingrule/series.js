@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @attribute {String} formula 
@@ -29,8 +29,11 @@ define([], function(){
  * @attribute {String} css
  */
 var BindingSeriesRule = function(struct, tagName){
-    this.$init(tagName || "series", this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName || "series", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(BindingSeriesRule, BindingRule);
+
 
 (function(){
     //1 = force no bind rule, 2 = force bind rule
@@ -51,9 +54,9 @@ var BindingSeriesRule = function(struct, tagName){
         if (!pNode)
             return;
     });*/
-}).call(apf.BindingSeriesRule.prototype = new apf.BindingRule());
+}).call(BindingSeriesRule.prototype);
 
-apf.aml.setElement("series", apf.BindingSeriesRule);
+aml && aml.setElement("series", BindingSeriesRule);
 
 return BindingSeriesRule;
 

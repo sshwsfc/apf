@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -133,7 +133,7 @@ apf.bindings = function(struct, tagName){
         for (var id in this.$amlNodes)
             this.register(this.$amlNodes[id]);
     });
-}).call(apf.bindings.prototype = new apf.AmlElement());
+}).call(Bindings.prototype);
 
 apf.ruleList = function(){
     this.$compiled = {};
@@ -266,5 +266,5 @@ apf.ruleList.prototype = {
     }
 }
 
-apf.aml.setElement("bindings", apf.bindings);
+aml && aml.setElement("bindings", Bindings);
 });

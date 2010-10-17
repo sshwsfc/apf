@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * @term smartbinding Smartbinding is a type of bidirectional databinding where 
@@ -653,10 +653,13 @@ define([], function(){
  * @default_private
  */
 var Smartbinding = function(struct, tagName){
-    this.$init(tagName || "smartbinding", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "smartbinding", this.NODE_HIDDEN, struct);
 
     this.$bindNodes = {};
 };
+
+oop.inherit(Smartbinding, AmlElement);
+
 
 (function(){
     this.$supportedProperties = ["bindings", "actions", "model"];
@@ -852,9 +855,9 @@ var Smartbinding = function(struct, tagName){
             : "Creating implicitly assigned SmartBinding");
         //#endif
     });
-}).call(apf.smartbinding.prototype = new apf.AmlElement());
+}).call(Smartbinding.prototype);
 
-apf.aml.setElement("smartbinding", apf.smartbinding);
+aml && aml.setElement("smartbinding", Smartbinding);
 
 return Smartbinding;
 

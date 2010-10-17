@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Item of a menu displaying a clickable area.
@@ -48,8 +48,11 @@ define([], function(){
  *   {AMLElement} opener the element that was clicked upon when showing the context menu.
  */
 var Item  = function(struct, tagName){
-    this.$init(tagName || "item", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "item", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Item, Presentation);
+
 
 (function(){
     this.$focussable    = false;
@@ -59,7 +62,7 @@ var Item  = function(struct, tagName){
     this.checked  = false;
     this.selected = false;
 
-    this.implement(apf.ChildValue);
+    oop.decorate(Item, ChildValue);;
 
     /**** Properties and Attributes ****/
     
@@ -641,11 +644,11 @@ var Item  = function(struct, tagName){
                 this.$propertyHandler("caption", this.caption);
         }
     });
-}).call(apf.item.prototype = new apf.Presentation());
+}).call(Item.prototype);
 
 //apf.aml.setElement("radio", apf.radio);
 //apf.aml.setElement("check", apf.check);
-apf.aml.setElement("item",  apf.item);
+aml && aml.setElement("item",  Item);
 
 return Item;
 

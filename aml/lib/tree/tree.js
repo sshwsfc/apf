@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/basetree", "optional!aml", "lib-oop"], function(BaseTree, aml, oop){
 
 /**
  * Element displaying data in a list where each item in the list can contain
@@ -118,8 +118,11 @@ define([], function(){
  * </code>
  */
 var Tree = function(struct, tagName){
-    this.$init(tagName || "tree", this.NODE_VISIBLE, struct);
+    BaseTree.call(this, tagName || "tree", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Tree, BaseTree);
+
 
 (function(){
     var HAS_CHILD = 1 << 1,
@@ -142,7 +145,7 @@ var Tree = function(struct, tagName){
     this.$propHandlers["mode"] = function(value){
         if ("check|radio".indexOf(value) > -1) {
             if (!this.hasFeature(apf.__MULTICHECK__))
-                this.implement(apf.MultiCheck);
+                oop.decorate(Tree, MultiCheck);;
             
             this.addEventListener("afterrename", $afterRenameMode); //what does this do?
             
@@ -416,11 +419,11 @@ var Tree = function(struct, tagName){
     this.$draw = function(){
         this.$drawBase();
     };
-}).call(apf.tree.prototype = new apf.BaseTree());
+}).call(Tree.prototype);
 
-apf.aml.setElement("tree", apf.tree);
+aml && aml.setElement("tree", Tree);
 
-apf.aml.setElement("checked", apf.BindingRule);
+aml && aml.setElement("checked", BindingRule);
 
 return Tree;
 

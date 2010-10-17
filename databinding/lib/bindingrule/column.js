@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @attribute {String}  icon
@@ -33,10 +33,13 @@ define([], function(){
  * @attribute {Boolean} tree
  */
 var BindingColumnRule = function(struct, tagName){
-    this.$init(tagName, this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName, this.NODE_HIDDEN, struct);
     
     this.$className = "col" + this.$uniqueId;
 };
+
+oop.inherit(BindingColumnRule, BindingRule);
+
 
 (function(){
     this.$defaultwidth = "100";
@@ -521,9 +524,9 @@ var BindingColumnRule = function(struct, tagName){
         this.$int.onmouseout    = null;
     });
     
-}).call(apf.BindingColumnRule.prototype = new apf.BindingRule());
+}).call(BindingColumnRule.prototype);
 
-apf.aml.setElement("column", apf.BindingColumnRule);
+aml && aml.setElement("column", BindingColumnRule);
 
 return BindingColumnRule;
 

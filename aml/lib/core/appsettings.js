@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element specifying the settings of the application.
@@ -91,8 +91,11 @@ define([], function(){
  * @todo describe defaults
  */
 var Appsettings = function(struct, tagName){
-    this.$init(tagName || "appsettings", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "appsettings", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(Appsettings, AmlElement);
+
 
 (function(){
     this.$parsePrio = "001";
@@ -165,9 +168,9 @@ var Appsettings = function(struct, tagName){
         }
         // #endif
     });
-}).call(apf.appsettings.prototype = new apf.AmlElement());
+}).call(Appsettings.prototype);
 
-apf.aml.setElement("appsettings", apf.appsettings);
+aml && aml.setElement("appsettings", Appsettings);
 
 return Appsettings;
 

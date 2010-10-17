@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
 
 /**
  * Element that is able to play a video file or remote stream
@@ -70,11 +70,11 @@ apf.video = function(struct, tagName){
 };
 
 (function(){
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Video, DataAction);
         //#endif
-    );
+    ;
 
     this.$booleanProperties["fullscreen"] = true;
 
@@ -556,9 +556,9 @@ apf.video = function(struct, tagName){
         if (bRuntime)
             this.$ext.innerHTML = "";
     };
-}).call(apf.video.prototype = new apf.Media());
+}).call(Video.prototype);
 
-apf.aml.setElement("video", apf.video);
+aml && aml.setElement("video", Video);
 
 apf.video.TypeInterface = {
     properties: ["src", "width", "height", "volume", "showControls",

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
 * @define actions  element containing all the action rules for the data 
@@ -49,11 +49,14 @@ define([], function(){
  * @default_private
  */
 var Actions = function(struct, tagName){
-    this.$init(tagName || "actions", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "actions", this.NODE_HIDDEN, struct);
     
     this.$actions      = new apf.ruleList();
     this.$amlNodes     = {};
 };
+
+oop.inherit(Actions, AmlElement);
+
 
 (function(){
     this.$smartbinding = null;
@@ -94,9 +97,9 @@ var Actions = function(struct, tagName){
         
         this.register(this.parentNode);
     });
-}).call(apf.actions.prototype = new apf.AmlElement());
+}).call(Actions.prototype);
 
-apf.aml.setElement("actions", apf.actions);
+aml && aml.setElement("actions", Actions);
 
 return Actions;
 

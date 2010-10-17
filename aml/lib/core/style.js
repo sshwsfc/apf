@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * @todo description
@@ -29,8 +29,11 @@ define([], function(){
  * @since       0.4
  */
 var Style = function(struct, tagName){
-    this.$init(tagName || "style", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "style", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(Style, AmlElement);
+
 
 (function(){
     this.$focussable = false;
@@ -49,9 +52,9 @@ var Style = function(struct, tagName){
         if (this.type != "text/chartcss" && this.firstChild)
             apf.importCssString(this.firstChild.nodeValue);
     });
-}).call(apf.style.prototype = new apf.AmlElement());
+}).call(Style.prototype);
 
-apf.aml.setElement("style", apf.style);
+aml && aml.setElement("style", Style);
 apf.xhtml.setElement("style",  apf.style);
 
 

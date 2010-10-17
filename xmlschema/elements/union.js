@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /*
   <xs:simpleType name="SizeType">
     <xs:union memberTypes="DressSizeType">
@@ -41,8 +41,11 @@ define([], function(){
   </xs:simpleType>
 */
 var XsdUnion = function(struct, tagName){
-    this.$init(tagName || "union", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "union", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdUnion, XsdElement);
+
 
 (function(){
     this.$propHandlers["memberTypes"] = function(value){
@@ -61,7 +64,7 @@ var XsdUnion = function(struct, tagName){
         for (i = 0, l = nodes.length; i < l; i++)
             (node = nodes[i]).$compile && node.$compile(stack);
     }
-}).call(apf.XsdUnion.prototype = new apf.XsdElement());
+}).call(XsdUnion.prototype);
 
 apf.xsd.setElement("union", apf.XsdUnion);
 

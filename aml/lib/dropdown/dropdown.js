@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
 
 /**
  * Element allowing a user to select a value from a list, which is 
@@ -94,8 +94,11 @@ define([], function(){
  * @since       0.4
  */
 var Dropdown = function(struct, tagName){
-    this.$init(tagName || "dropdown", this.NODE_VISIBLE, struct);
+    BaseList.call(this, tagName || "dropdown", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Dropdown, BaseList);
+
 
 (function(){
     this.$animType        = 1;
@@ -446,11 +449,11 @@ var Dropdown = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.dropdown.prototype = new apf.BaseList());
+}).call(Dropdown.prototype);
 
 apf.config.$inheritProperties["initial-message"] = 1;
 
-apf.aml.setElement("dropdown", apf.dropdown);
+aml && aml.setElement("dropdown", Dropdown);
 
 return Dropdown;
 

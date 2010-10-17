@@ -19,15 +19,18 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * @constructor
  * @private
  */
 var Splitter = function(struct, tagName){
-    this.$init(tagName || "splitter", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "splitter", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Splitter, Presentation);
+
 
 (function() {
     this.$focussable = false; // This object can get the focus
@@ -352,9 +355,9 @@ var Splitter = function(struct, tagName){
         if (this.realtime !== false) // && (!apf.isIE || apf.isIE > 8))
             this.$propHandlers.realtime.call(this, this.realtime = true);
     };
-}).call(apf.splitter.prototype = new apf.Presentation());
+}).call(Splitter.prototype);
 
-apf.aml.setElement("splitter", apf.splitter);
+aml && aml.setElement("splitter", Splitter);
 
 return Splitter;
 

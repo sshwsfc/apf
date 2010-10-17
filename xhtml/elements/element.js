@@ -19,10 +19,10 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 var XhtmlElement = function(struct, tagName){
-    this.$init(tagName || true, this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName || true, this.NODE_VISIBLE, struct);
     
     this.$xoe                = this.addEventListener;
     this.addEventListener    = this.$xae;
@@ -33,6 +33,9 @@ var XhtmlElement = function(struct, tagName){
         _self.dispatchEvent(e.type, null, e);
     }
 };
+
+oop.inherit(XhtmlElement, AmlElement);
+
 
 (function(){
     var excludedEvents = {
@@ -122,7 +125,7 @@ var XhtmlElement = function(struct, tagName){
             this.$setLayout();
     });
     //#endif
-}).call(apf.XhtmlElement.prototype = new apf.AmlElement());
+}).call(XhtmlElement.prototype);
 
 apf.Init.addConditional(function(){
     if (apf.isO3) return;

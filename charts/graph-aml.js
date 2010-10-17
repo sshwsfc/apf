@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element displays a chart.
@@ -37,10 +37,13 @@ define([], function(){
  */
 
  var Graph     = function(struct, tagName){
-    this.$init(tagName || "graph", this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName || "graph", this.NODE_VISIBLE, struct);
 };
 
-apf.aml.setElement("graph", apf.Graph);
+oop.inherit(Graph, AmlElement);
+
+
+aml && aml.setElement("graph", Graph);
  
 (function(){
 
@@ -579,7 +582,7 @@ addEventListener("DOMNodeInsertedIntoDocument", function( e ){
 			this.$styletag = n[0].firstChild.nodeValue;
 		}
     });
-}).call(apf.Graph.prototype = new apf.AmlElement());
+}).call(Graph.prototype);
 
 return Graph;
 

@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the lower bounds for numeric values (the value must be greater than or equal to this value)
  */
 var XsdMinInclusive = function(struct, tagName){
-    this.$init(tagName || "mininclusive", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "mininclusive", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdMinInclusive, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -35,7 +38,7 @@ var XsdMinInclusive = function(struct, tagName){
     this.$compile = function(stack){
         stack.push("if (parseFloat(value) < " + this.value + ") return false;");
     };
-}).call(apf.XsdMinInclusive.prototype = new apf.XsdElement());
+}).call(XsdMinInclusive.prototype);
 
 apf.xsd.setElement("mininclusive", apf.XsdMinInclusive);
 

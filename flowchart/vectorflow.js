@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
 // || __INC_ALL
 
 /**
@@ -37,8 +37,11 @@ define([], function(){
  * @inherits apf.DataAction
  */
 var Vectorflow = function(struct, tagName){
-    this.$init(tagName || "vectorflow", this.NODE_VISIBLE, struct);
+    MultiSelect.call(this, tagName || "vectorflow", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Vectorflow, MultiSelect);
+
 
 (function(){
     this.self = this;
@@ -50,7 +53,7 @@ var Vectorflow = function(struct, tagName){
     this.$selectionLayers = ["selection_outline", "selection_resize", "selection_lineConnect"];
 
     //#ifdef __WITH_DATAACTION
-    this.implement(apf.DataAction);
+    oop.decorate(Vectorflow, DataAction);;
     //#endif
     
     //Options
@@ -1455,14 +1458,14 @@ var Vectorflow = function(struct, tagName){
         //Any deinitialization code comes here
     };
 // #ifdef __WITH_MULTISELECT
-}).call(apf.vectorflow.prototype = new apf.MultiSelect());
+}).call(Vectorflow.prototype);
 /* #elseif __WITH_DATABINDING
 }).call(apf.vectorflow.prototype = new apf.MultiselectBinding());
    #else
 }).call(apf.vectorflow.prototype = new apf.Presentation());
 #endif*/
 
-apf.aml.setElement("vectorflow", apf.vectorflow);
+aml && aml.setElement("vectorflow", Vectorflow);
 
 return Vectorflow;
 

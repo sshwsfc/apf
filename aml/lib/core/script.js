@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * element that loads javascript into the application
@@ -104,9 +104,9 @@ var Script = function(){
         
         this.$execute(code);
     });
-}).call(apf.script.prototype = new apf.AmlElement());
+}).call(Script.prototype);
 
-apf.aml.setElement("script", apf.script);
+aml && aml.setElement("script", Script);
 
 
 return Script;

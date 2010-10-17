@@ -19,11 +19,14 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 var XhtmlOptionElement = function(struct, tagName){
-    this.$init(tagName || "option", this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName || "option", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(XhtmlOptionElement, AmlElement);
+
 
 (function(){
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
@@ -34,7 +37,7 @@ var XhtmlOptionElement = function(struct, tagName){
         if (this.value)
             this.$int.setAttribute("value", this.value);
     }, true);
-}).call(apf.XhtmlOptionElement.prototype = new apf.AmlElement());
+}).call(XhtmlOptionElement.prototype);
 
 apf.xhtml.setElement("option", apf.XhtmlOptionElement);
 

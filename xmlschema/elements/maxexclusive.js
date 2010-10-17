@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the upper bounds for numeric values (the value must be less than this value)
  */
 var XsdMaxExclusive = function(struct, tagName){
-    this.$init(tagName || "maxexclusive", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "maxexclusive", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdMaxExclusive, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -35,7 +38,7 @@ var XsdMaxExclusive = function(struct, tagName){
     this.$compile = function(stack){
         stack.push("if (parseFloat(value) =< " + this.value + ") return false;");
     };
-}).call(apf.XsdMaxExclusive.prototype = new apf.XsdElement());
+}).call(XsdMaxExclusive.prototype);
 
 apf.xsd.setElement("maxexclusive", apf.XsdMaxExclusive);
 

@@ -21,7 +21,7 @@
 
 apf.__MEDIA__ = 1 << 20;
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have media node features and dynamics.
@@ -535,7 +535,7 @@ apf.Media = function(){
     });
 
 // #ifdef __WITH_DATABINDING
-}).call(apf.Media.prototype = new apf.StandardBinding());
+}).call(Media.prototype);
 /* #else
 }).call(apf.Media.prototype = new apf.Presentation());
 #endif*/
@@ -551,7 +551,7 @@ apf.nomedia = function(struct, tagName) {
     });
 }).call(apf.nomedia.prototype = new apf.AmlElement());
 
-apf.aml.setElement("nomedia", apf.nomedia);
+aml && aml.setElement("nomedia", Nomedia);
 
 // network state (.networkState)
 apf.Media.NETWORK_EMPTY   = 0;

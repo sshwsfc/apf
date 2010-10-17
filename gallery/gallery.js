@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
 // #define __WITH_PRESENTATION 1
 
 /**
@@ -35,7 +35,7 @@ define([], function(){
  */
 
 var Gallery = function(struct, tagName){
-    this.$init(tagName || "gallery", this.NODE_VISIBLE, struct);
+    BaseList.call(this, tagName || "gallery", this.NODE_VISIBLE, struct);
     
     this.imageheight   = "auto";
     
@@ -77,6 +77,9 @@ var Gallery = function(struct, tagName){
     this.mediaType = null;
     this.supportedMediaTypes = ["image", "flash"];
 };
+
+oop.inherit(Gallery, BaseList);
+
 
 (function(){
     this.$supportedProperties.push("thumbheight", "imageheight", "scalewidth", 
@@ -791,12 +794,12 @@ var Gallery = function(struct, tagName){
         if (vManager.check(this, "gallery", this.initiateThumbnailEvents))
             this.initiateThumbnailEvents();
     };
-}).call(apf.gallery.prototype = new apf.BaseList());
+}).call(Gallery.prototype);
 
-apf.aml.setElement("gallery", apf.gallery);
+aml && aml.setElement("gallery", Gallery);
 
-apf.aml.setElement("url", apf.BindingRule);
-apf.aml.setElement("mediatype", apf.BindingRule);
+aml && aml.setElement("url", BindingRule);
+aml && aml.setElement("mediatype", BindingRule);
 
 return Gallery;
 

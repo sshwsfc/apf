@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element functioning as the central access point for xml data. Data can be
@@ -102,7 +102,7 @@ define([], function(){
  * @since       0.8
  */
 var Model = function(struct, tagName){
-    this.$init(tagName || "model", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "model", this.NODE_HIDDEN, struct);
     
     this.$amlNodes = {};
     this.$propBinds = {};
@@ -117,6 +117,9 @@ var Model = function(struct, tagName){
         //#endif
     }
 };
+
+oop.inherit(Model, AmlElement);
+
 
 (function(){
     this.$parsePrio = "020";
@@ -1195,9 +1198,9 @@ var Model = function(struct, tagName){
         if (this.session && this.data)
             apf.saveData(this.session, {xmlNode: this.getXml()});
     };
-}).call(apf.model.prototype = new apf.AmlElement());
+}).call(Model.prototype);
 
-apf.aml.setElement("model", apf.model);
+aml && aml.setElement("model", Model);
 
 
 return Model;

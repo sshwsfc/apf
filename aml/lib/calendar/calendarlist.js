@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
 /**
  *
  * @inherits apf.DataAction
@@ -31,7 +31,7 @@ define([], function(){
  */
 
 var Calendarlist      = function(struct, tagName){
-    this.$init(tagName || "calendarlist", this.NODE_VISIBLE, struct);
+    BaseList.call(this, tagName || "calendarlist", this.NODE_VISIBLE, struct);
     
     this.date       = new Date();
     this.strDate    = "";
@@ -67,10 +67,13 @@ var Calendarlist      = function(struct, tagName){
     this.calendarEvents = [];
 };
 
+oop.inherit(Calendarlist, BaseList);
+
+
 (function() {
     // #ifdef __WITH_RENAME
     if (!apf.isIphone)
-        this.implement(apf.Rename);
+        oop.decorate(Calendarlist, Rename);;
     // #endif
     
     // #ifdef __WITH_RENAME
@@ -413,10 +416,10 @@ var Calendarlist      = function(struct, tagName){
         amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     };
-}).call(apf.calendarlist.prototype = new apf.BaseList());
-apf.aml.setElement("calendarlist", apf.calendarlist);
-apf.aml.setElement("date",         apf.BindingRule);
-apf.aml.setElement("duration",     apf.BindingRule);
+}).call(Calendarlist.prototype);
+aml && aml.setElement("calendarlist", Calendarlist);
+aml && aml.setElement("date",         BindingRule);
+aml && aml.setElement("duration",     BindingRule);
 
 return Calendarlist;
 

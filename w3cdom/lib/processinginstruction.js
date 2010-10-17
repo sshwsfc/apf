@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/domnode", "optional!aml", "lib-oop"], function(DOMNode, aml, oop){
 var AmlProcessingInstruction = function(isPrototype){
     this.$init(isPrototype);
 };
@@ -58,7 +58,7 @@ var AmlProcessingInstruction = function(isPrototype){
     this.$inheritProperties   = {};
     
     //#ifdef __WITH_LIVEEDIT
-    apf.LiveEdit && this.implement(apf.LiveEdit);
+    apf.LiveEdit && oop.decorate(AmlProcessingInstruction, LiveEdit);;
     //#endif
     
     this.$setValue = function(value){
@@ -122,7 +122,7 @@ var AmlProcessingInstruction = function(isPrototype){
         this.$clearDynamicProperty("calcdata");
         this.$propHandlers["calcdata"].call(this, "");
     };
-}).call(apf.AmlProcessingInstruction.prototype = new apf.DOMNode());
+}).call(AmlProcessingInstruction.prototype);
 
 return AmlProcessingInstruction;
 

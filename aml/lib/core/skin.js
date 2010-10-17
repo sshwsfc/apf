@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * element specifying the skin of an application.
@@ -41,9 +41,12 @@ define([], function(){
  * @since       0.4
  */
 var Skin = function(struct, tagName){
-    this.$init(tagName || "skin", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "skin", this.NODE_HIDDEN, struct);
 };
-apf.aml.setElement("skin", apf.skin);
+
+oop.inherit(Skin, AmlElement);
+
+aml && aml.setElement("skin", Skin);
 
 (function(){
     this.$parsePrio = "002";
@@ -264,7 +267,7 @@ apf.aml.setElement("skin", apf.skin);
             apf.skins.skins[name].templates[q.parentNode[apf.TAGNAME]] = q;
         }*/
     });
-}).call(apf.skin.prototype = new apf.AmlElement());
+}).call(Skin.prototype);
 
 
 return Skin;

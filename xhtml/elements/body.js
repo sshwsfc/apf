@@ -19,10 +19,13 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 var XhtmlBodyElement = function(struct, tagName){
-    this.$init(tagName || "body", this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName || "body", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(XhtmlBodyElement, AmlElement);
+
 
 (function(){
     //#ifdef __WITH_CONTENTEDITABLE
@@ -36,7 +39,7 @@ var XhtmlBodyElement = function(struct, tagName){
         this.$ext = 
         this.$int = document.body;
     }, true);
-}).call(apf.XhtmlBodyElement.prototype = new apf.AmlElement());
+}).call(XhtmlBodyElement.prototype);
 
 apf.Init.addConditional(function(){
     if (apf.isO3) return;

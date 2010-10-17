@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
 var AmlSelection = function(doc){
     this.$init();
     
@@ -274,7 +274,7 @@ var AmlSelection = function(doc){
         var r;
         return (r = this.$ranges[0]).startContainer.childNodes[r.startOffset];
     }
-}).call(apf.AmlSelection.prototype = new apf.Class());
+}).call(AmlSelection.prototype);
 
 return AmlSelection;
 

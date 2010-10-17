@@ -19,14 +19,17 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @todo docs
  */
 var BindingLoadRule = function(struct, tagName){
-    this.$init(tagName, this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName, this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(BindingLoadRule, BindingRule);
+
 
 (function(){
     //1 = force no bind rule, 2 = force bind rule
@@ -37,10 +40,10 @@ var BindingLoadRule = function(struct, tagName){
     this.$propHandlers["get"] = function(value, prop){
         delete this["c" + prop];
     }
-}).call(apf.BindingLoadRule.prototype = new apf.BindingRule());
+}).call(BindingLoadRule.prototype);
 
-apf.aml.setElement("load", apf.BindingLoadRule);
-apf.aml.setElement("insert", apf.BindingLoadRule);
+aml && aml.setElement("load", BindingLoadRule);
+aml && aml.setElement("insert", BindingLoadRule);
 
 return BindingLoadRule;
 

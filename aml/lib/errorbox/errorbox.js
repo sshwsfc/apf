@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Element showing an error message when the attached element 
@@ -84,8 +84,11 @@ define([], function(){
  * @since       0.4
  */
 var Errorbox = function(struct, tagName){
-    this.$init(tagName || "errorbox", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "errorbox", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Errorbox, Presentation);
+
 
 (function(){
     this.$positioning = "basic";
@@ -179,9 +182,9 @@ var Errorbox = function(struct, tagName){
         
         apf.popup.removeContent(this.$uniqueId);
     };
-}).call(apf.errorbox.prototype = new apf.Presentation());
+}).call(Errorbox.prototype);
 
-apf.aml.setElement("errorbox", apf.errorbox);
+aml && aml.setElement("errorbox", Errorbox);
 
 return Errorbox;
 

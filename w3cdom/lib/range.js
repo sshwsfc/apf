@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
 /**
  * HTML5 Range object
  * @todo copy docs from http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html
@@ -417,7 +417,7 @@ var AmlRange = function(doc){
             }
         }
     }
-}).call(apf.AmlRange.prototype = new apf.Class());
+}).call(AmlRange.prototype);
 
 return AmlRange;
 

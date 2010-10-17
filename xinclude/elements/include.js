@@ -19,16 +19,19 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 /**
  * Defines a list of acceptable values
  */
 var XiInclude = function(struct, tagName){
-    this.$init(tagName || "include", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "include", this.NODE_HIDDEN, struct);
 };
 
+oop.inherit(XiInclude, AmlElement);
+
+
 apf.xinclude.setElement("include", apf.XiInclude);
-apf.aml.setElement("include", apf.XiInclude);
+aml && aml.setElement("include", XiInclude);
 
 //@todo test defer="true" situation
 (function(){
@@ -182,7 +185,7 @@ apf.aml.setElement("include", apf.XiInclude);
             ignoreOffline : true
         }));
     }
-}).call(apf.XiInclude.prototype = new apf.AmlElement());
+}).call(XiInclude.prototype);
 
 return XiInclude;
 

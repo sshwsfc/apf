@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element displays a chart.
@@ -37,11 +37,14 @@ define([], function(){
  */
 
  var Axis     = function(struct, tagName){
-    this.$init(tagName || "axis", this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName || "axis", this.NODE_VISIBLE, struct);
     this.$subpos = {left:0,right:0,width:1,height:1};
 };
 
-apf.aml.setElement("axis", apf.Axis);
+oop.inherit(Axis, AmlElement);
+
+
+aml && aml.setElement("axis", Axis);
  
 (function(){
     this.$supportedProperties = [
@@ -349,7 +352,7 @@ apf.aml.setElement("axis", apf.Axis);
 		
         this.$redraw();
      });
-}).call(apf.Axis.prototype = new apf.AmlElement());
+}).call(Axis.prototype);
 
 return Axis;
 

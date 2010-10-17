@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -55,8 +55,11 @@ define([], function(){
  * @default_private
  */
 var BindingRule = function(struct, tagName){
-    this.$init(tagName || true, this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || true, this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(BindingRule, AmlElement);
+
 
 (function(){
     this.$bindingRule = true;
@@ -234,19 +237,19 @@ var BindingRule = function(struct, tagName){
             }
         }
     });
-}).call(apf.BindingRule.prototype = new apf.AmlElement());
+}).call(BindingRule.prototype);
 
-apf.aml.setElement("icon",       apf.BindingRule);
-apf.aml.setElement("image",      apf.BindingRule);
-apf.aml.setElement("caption",    apf.BindingRule);
-apf.aml.setElement("tooltip",    apf.BindingRule);
-apf.aml.setElement("css",        apf.BindingRule);
-apf.aml.setElement("selectable", apf.BindingRule);
-apf.aml.setElement("value",      apf.BindingRule);
-apf.aml.setElement("src",        apf.BindingRule);
-apf.aml.setElement("collapsed",  apf.BindingRule);
-apf.aml.setElement("expanded",  apf.BindingRule);
-apf.aml.setElement("empty",      apf.BindingRule);
+aml && aml.setElement("icon",       BindingRule);
+aml && aml.setElement("image",      BindingRule);
+aml && aml.setElement("caption",    BindingRule);
+aml && aml.setElement("tooltip",    BindingRule);
+aml && aml.setElement("css",        BindingRule);
+aml && aml.setElement("selectable", BindingRule);
+aml && aml.setElement("value",      BindingRule);
+aml && aml.setElement("src",        BindingRule);
+aml && aml.setElement("collapsed",  BindingRule);
+aml && aml.setElement("expanded",  BindingRule);
+aml && aml.setElement("empty",      BindingRule);
 
 return BindingRule;
 

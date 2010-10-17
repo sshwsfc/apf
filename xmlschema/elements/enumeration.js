@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Defines a list of acceptable values
  */
 var XsdEnumeration = function(struct, tagName){
-    this.$init(tagName || "enumeration", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "enumeration", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdEnumeration, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -47,7 +50,7 @@ var XsdEnumeration = function(struct, tagName){
         
         stack.push("if (!/^(?:" + re.join("|") + ")$/.test(value)) return false;");
     };
-}).call(apf.XsdEnumeration.prototype = new apf.XsdElement());
+}).call(XsdEnumeration.prototype);
 
 apf.xsd.setElement("enumeration", apf.XsdEnumeration);
 

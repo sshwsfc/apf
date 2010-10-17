@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/amlprocessinginstruction", "optional!aml", "lib-oop"], function(AmlProcessingInstruction, aml, oop){
 
 /**
  * Live Markup processor for a processing instruction
@@ -52,7 +52,7 @@ var LiveMarkupPi = function(){
 (function(){
     this.mainBind = "data";
     
-    this.implement(apf.StandardBinding);
+    oop.decorate(LiveMarkupPi, StandardBinding);;
 
     this.getDocument = function(){
         return this.$data && this.$data.ownerDocument;
@@ -119,7 +119,7 @@ var LiveMarkupPi = function(){
                 this.$ext.innerHTML = data || "";
         }
     };
-}).call(apf.LiveMarkupPi.prototype = new apf.AmlProcessingInstruction(true));
+}).call(LiveMarkupPi.prototype);
 
 apf.aml.setProcessingInstruction("lm", apf.LiveMarkupPi);
 apf.aml.setProcessingInstruction("lm-debug", apf.LiveMarkupPi);

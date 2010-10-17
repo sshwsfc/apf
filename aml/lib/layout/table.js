@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
 
 /**
  * Any child element of this element is placed in a table. The size of the 
@@ -79,8 +79,11 @@ define([], function(){
  * @since       1.0
  */
 var Table = function(struct, tagName){
-    this.$init(tagName || "table", this.NODE_VISIBLE, struct);
+    GuiElement.call(this, tagName || "table", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Table, GuiElement);
+
 
 (function(){
     /**** Properties and Attributes ****/
@@ -464,9 +467,9 @@ var Table = function(struct, tagName){
             this.$propHandlers.columns.call(this, this.columns = "150, 200");
         this.$amlLoaded = true; //@todo hack
     };
-}).call(apf.table.prototype = new apf.GuiElement());
+}).call(Table.prototype);
 
-apf.aml.setElement("table", apf.table);
+aml && aml.setElement("table", Table);
 
 return Table;
 

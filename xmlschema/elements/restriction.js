@@ -19,10 +19,13 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 var XsdRestriction = function(struct, tagName){
-    this.$init(tagName || "restriction", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "restriction", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdRestriction, XsdElement);
+
 
 (function(){
     this.$propHandlers["base"] = function(){
@@ -38,7 +41,7 @@ var XsdRestriction = function(struct, tagName){
         for (i = 0, l = nodes.length; i < l; i++)
             (node = nodes[i]).$compile && node.$compile(stack);
     }
-}).call(apf.XsdRestriction.prototype = new apf.XsdElement());
+}).call(XsdRestriction.prototype);
 
 apf.xsd.setElement("restriction", apf.XsdRestriction);
 

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/multiselectbinding", "optional!aml", "lib-oop"], function(MultiselectBinding, aml, oop){
 
 /**
  * Element displaying a rectangle containing arbitrary (X)HTML.
@@ -38,18 +38,21 @@ define([], function(){
  * @todo Please refactor this object
  */
 var Text = function(struct, tagName){
-    this.$init(tagName || "text", this.NODE_VISIBLE, struct);
+    MultiselectBinding.call(this, tagName || "text", this.NODE_VISIBLE, struct);
     
     this.$nodes = [];
 };
 
+oop.inherit(Text, MultiselectBinding);
+
+
 (function(){
-    this.implement(
+    
         // #ifdef __WITH_CACHE
-        apf.Cache,
+        oop.decorate(Text, Cache);
         // #endif
-        apf.ChildValue
-    );
+        oop.decorate(Text, ChildValue);
+    ;
 
     this.$focussable       = true; // This object can't get the focus
     this.focussable        = false;
@@ -336,9 +339,9 @@ var Text = function(struct, tagName){
 
         this.oDrag = this.oIframe = this.oFocus = this.$container = this.$ext = null;
     });
-}).call(apf.text.prototype = new apf.MultiselectBinding());
+}).call(Text.prototype);
 
-apf.aml.setElement("text", apf.text);
+aml && aml.setElement("text", Text);
 
 return Text;
 

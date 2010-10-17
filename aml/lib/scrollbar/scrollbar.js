@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 //@todo: fix the stuff with all the uppercase variable and function names...wazzup?
 
@@ -29,8 +29,11 @@ define([], function(){
  * @private
  */
 var Scrollbar = function(struct, tagName){
-    this.$init(tagName || "scrollbar", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "scrollbar", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Scrollbar, Presentation);
+
 
 (function(){
     this.realtime = true;
@@ -734,8 +737,8 @@ var Scrollbar = function(struct, tagName){
         this.addEventListener("resize", this.$resize);
         this.$update();
     }
-}).call(apf.scrollbar.prototype = new apf.Presentation());
-apf.aml.setElement("scrollbar", apf.scrollbar);
+}).call(Scrollbar.prototype);
+aml && aml.setElement("scrollbar", Scrollbar);
 
 return Scrollbar;
 

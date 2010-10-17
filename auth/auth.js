@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * @define auth Centralized authentication handling. Not being logged in, after being
@@ -154,7 +154,7 @@ define([], function(){
  */
 
 var Auth = function(struct, tagName){
-    this.$init(tagName || "auth", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "auth", this.NODE_HIDDEN, struct);
 
     this.$services    = {};
     this.$cache       = {};
@@ -162,7 +162,10 @@ var Auth = function(struct, tagName){
     this.$credentials = null;
 };
 
-apf.aml.setElement("auth", apf.auth);
+oop.inherit(Auth, AmlElement);
+
+
+aml && aml.setElement("auth", Auth);
 
 (function(){
     this.autostart     = true;
@@ -617,7 +620,7 @@ apf.aml.setElement("auth", apf.auth);
         }
     };
 
-}).call(apf.auth.prototype = new apf.AmlElement());
+}).call(Auth.prototype);
 
 return Auth;
 

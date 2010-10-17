@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element allowing data synchronization between multiple clients using the same
@@ -589,8 +589,8 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
         for (var i = 0, l = this.$sessions.length; i < l; ++i)
             this.endSession(this.$sessions[i].uri);
     });
-}).call(apf.remote.prototype = new apf.AmlElement());
+}).call(Remote.prototype);
 
-apf.aml.setElement("remote", apf.remote);
+aml && aml.setElement("remote", Remote);
 
 });

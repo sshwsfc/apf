@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the maximum number of decimal places allowed. Must be equal to or greater than zero
  */
 var XsdFractionDigits = function(struct, tagName){
-    this.$init(tagName || "maxinclusive", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "maxinclusive", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdFractionDigits, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -36,7 +39,7 @@ var XsdFractionDigits = function(struct, tagName){
         stack.push("if (parseFloat(value) == value && value.split('.')[1].length != "
             + this.value + ") return false;");
     };
-}).call(apf.XsdFractionDigits.prototype = new apf.XsdElement());
+}).call(XsdFractionDigits.prototype);
 
 apf.xsd.setElement("maxinclusive", apf.XsdFractionDigits);
 

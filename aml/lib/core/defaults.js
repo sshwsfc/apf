@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  *
@@ -28,8 +28,11 @@ define([], function(){
  * @since       0.4
  */
 var Defaults = function(struct, tagName){
-    this.$init(tagName || "services", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "services", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(Defaults, AmlElement);
+
 
 (function(){
     this.$parsePrio = "002";
@@ -47,9 +50,9 @@ var Defaults = function(struct, tagName){
         nameserver.remove("defaults_" + this.$lastFor, this);
     });
     //#endif
-}).call(apf.defaults.prototype = new apf.AmlElement());
+}).call(Defaults.prototype);
 
-apf.aml.setElement("defaults", apf.defaults);
+aml && aml.setElement("defaults", Defaults);
 
 
 return Defaults;

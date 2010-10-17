@@ -19,14 +19,17 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @todo docs
  */
 var BindingColorRule = function(struct, tagName){
-    this.$init(tagName, this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName, this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(BindingColorRule, BindingRule);
+
 
 (function(){
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
@@ -60,9 +63,9 @@ var BindingColorRule = function(struct, tagName){
         
         this.$draw();
     });
-}).call(apf.BindingColorRule.prototype = new apf.BindingRule());
+}).call(BindingColorRule.prototype);
 
-apf.aml.setElement("color", apf.BindingColorRule);
+aml && aml.setElement("color", BindingColorRule);
 
 return BindingColorRule;
 

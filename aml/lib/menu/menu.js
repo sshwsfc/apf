@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Element displaying a skinnable menu of items which can be choosen.
@@ -81,10 +81,13 @@ define([], function(){
  * @inherits apf.Presentation
  */
 var Menu = function(struct, tagName){
-    this.$init(tagName || "menu", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "menu", this.NODE_VISIBLE, struct);
     
     this.animate = apf.enableAnim;
 };
+
+oop.inherit(Menu, Presentation);
+
 
 (function(){
     this.$focussable  = apf.KEYBOARD;
@@ -544,9 +547,9 @@ var Menu = function(struct, tagName){
     this.$destroy = function(){
         apf.popup.removeContent(this.$uniqueId);
     };
-}).call(apf.menu.prototype = new apf.Presentation());
+}).call(Menu.prototype);
 
-apf.aml.setElement("menu", apf.menu);
+aml && aml.setElement("menu", Menu);
 
 return Menu;
 

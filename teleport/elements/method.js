@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * element specifying a method available within the rpc element.
@@ -58,12 +58,15 @@ define([], function(){
  * @allowchild variable
  */
 var Method = function(struct, tagName){
-    this.$init(tagName || "method", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "method", this.NODE_HIDDEN, struct);
 
     this.async             = true;
     this.caching           = false;
     this["ignore-offline"] = false;
 };
+
+oop.inherit(Method, AmlElement);
+
 
 (function(){
     this.$parsePrio = "002";
@@ -99,9 +102,9 @@ var Method = function(struct, tagName){
         if (this.parentNode.$addMethod)
             this.parentNode.$addMethod(this);
     });
-}).call(apf.method.prototype = new apf.AmlElement());
+}).call(Method.prototype);
 
-apf.aml.setElement("method", apf.method);
+aml && aml.setElement("method", Method);
 
 return Method;
 

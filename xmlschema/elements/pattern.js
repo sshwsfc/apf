@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Defines the exact sequence of characters that are acceptable
  */
 var XsdPattern = function(struct, tagName){
-    this.$init(tagName || "pattern", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "pattern", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdPattern, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -36,7 +39,7 @@ var XsdPattern = function(struct, tagName){
         stack.push("if (!/^" + this.value
             .replace(/(\/|\^|\$)/g, "\\$1") + "$/.test(value)) return false;")
     };
-}).call(apf.XsdPattern.prototype = new apf.XsdElement());
+}).call(XsdPattern.prototype);
 
 apf.xsd.setElement("pattern", apf.XsdPattern);
 

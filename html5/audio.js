@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
 
 /**
  * Element that is able to play an audio file or remote stream
@@ -367,9 +367,9 @@ apf.audio = function(struct, tagName){
         if (bRuntime)
             this.$ext.innerHTML = "";
     };
-}).call(apf.audio.prototype = new apf.Media());
+}).call(Audio.prototype);
 
-apf.aml.setElement("audio", apf.audio);
+aml && aml.setElement("audio", Audio);
 
 apf.audio.TypeInterface = {
     properties: ["src", "volume", "showControls", "autoPlay", "totalTime", "mimeType"],

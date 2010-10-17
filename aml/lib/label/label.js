@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/basesimple", "optional!aml", "lib-oop"], function(BaseSimple, aml, oop){
 
 /**
  * Element displaying a text in the user interface, usually specifying
@@ -61,16 +61,19 @@ define([], function(){
  * </code>
  */
 var Label = function(struct, tagName){
-    this.$init(tagName || "label", this.NODE_VISIBLE, struct);
+    BaseSimple.call(this, tagName || "label", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Label, BaseSimple);
+
+
 (function(){
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction,
+        oop.decorate(Label, DataAction);
         //#endif
-        apf.ChildValue
-    );
+        oop.decorate(Label, ChildValue);
+    ;
 
     var _self = this;
     
@@ -148,9 +151,9 @@ var Label = function(struct, tagName){
     
     this.$childProperty = "caption";
     
-}).call(apf.label.prototype = new apf.BaseSimple());
+}).call(Label.prototype);
 
-apf.aml.setElement("label", apf.label);
+aml && aml.setElement("label", Label);
 
 return Label;
 

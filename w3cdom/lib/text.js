@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlcharacterdata", "optional!aml", "lib-oop"], function(AmlCharacterData, aml, oop){
 var AmlText = function(isPrototype){
     this.$init(isPrototype);
 };
@@ -92,7 +92,7 @@ var AmlText = function(isPrototype){
             
             this.$setInheritedAttribute = apf.AmlElement.prototype.$setInheritedAttribute;
             //#ifdef __WITH_DATABINDING
-            this.implement(apf.StandardBinding);
+            oop.decorate(AmlText, StandardBinding);;
             //#endif
             
             pHtmlNode.appendChild(this.$ext = document.createElement("span"));
@@ -112,7 +112,7 @@ var AmlText = function(isPrototype){
             this.$ext = pHtmlNode.appendChild(
               pHtmlNode.ownerDocument.createTextNode(nodeValue));
     }, true);
-}).call(apf.AmlText.prototype = new apf.AmlCharacterData());
+}).call(AmlText.prototype);
 
 return AmlText;
 

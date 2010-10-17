@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * element specifying which menu is shown when a
@@ -66,9 +66,9 @@ var Contextmenu = function(){
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
         this.register(this.parentNode);
     });
-}).call(apf.contextmenu.prototype = new apf.AmlElement());
+}).call(Contextmenu.prototype);
 
-apf.aml.setElement("contextmenu", apf.contextmenu);
+aml && aml.setElement("contextmenu", Contextmenu);
 
 // #endif
 

@@ -19,10 +19,13 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 var XhtmlInputElement = function(struct, tagName){
-    this.$init(tagName || "input", this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName || "input", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(XhtmlInputElement, AmlElement);
+
 
 (function(){
     this.$xae = apf.XhtmlElement.prototype.$xae;
@@ -52,7 +55,7 @@ var XhtmlInputElement = function(struct, tagName){
             pHtmlNode.appendChild(this.$int);
         }
     }, true);
-}).call(apf.XhtmlInputElement.prototype = new apf.AmlElement());
+}).call(XhtmlInputElement.prototype);
 
 apf.xhtml.setElement("input", apf.XhtmlInputElement);
 

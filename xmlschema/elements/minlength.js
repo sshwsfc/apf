@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the minimum number of characters or list items allowed. Must be equal to or greater than zero
  */
 var XsdMinLength = function(struct, tagName){
-    this.$init(tagName || "minlength", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "minlength", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdMinLength, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -37,7 +40,7 @@ var XsdMinLength = function(struct, tagName){
         stack.push("if (value.length < " + this.value
             + ") return false;");
     };
-}).call(apf.XsdMinLength.prototype = new apf.XsdElement());
+}).call(XsdMinLength.prototype);
 
 apf.xsd.setElement("minlength", apf.XsdMinLength);
 

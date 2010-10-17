@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * The Accordion is component that allows you to provide multiple vertical or 
@@ -143,7 +143,7 @@ define([], function(){
  * @since       2.2
  */
 var Accordion = function(struct, tagName){
-    this.$init(tagName || "accordion", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "accordion", this.NODE_VISIBLE, struct);
     
     this.$animtype1      = apf.tween.NORMAL;
     this.$animtype2      = apf.tween.NORMAL;
@@ -196,6 +196,9 @@ var Accordion = function(struct, tagName){
      */
     this.inprogress = false;
 };
+
+oop.inherit(Accordion, Presentation);
+
 
 (function() {
     this.$booleanProperties["multiexpand"]  = true;
@@ -635,9 +638,9 @@ var Accordion = function(struct, tagName){
     this.$destroy = function() {
         
     };
-}).call(apf.accordion.prototype = new apf.Presentation());
+}).call(Accordion.prototype);
 
-apf.aml.setElement("accordion", apf.accordion);
+aml && aml.setElement("accordion", Accordion);
 
 return Accordion;
 

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * element that provides a means to get icons from a
@@ -83,9 +83,9 @@ var Iconmap = function(){
             offset : (this.offset || "0,0").splitSafe(",")
         });
     });
-}).call(apf.iconmap.prototype = new apf.AmlElement());
+}).call(Iconmap.prototype);
 
-apf.aml.setElement("iconmap", apf.iconmap);
+aml && aml.setElement("iconmap", Iconmap);
 
 
 return Iconmap;

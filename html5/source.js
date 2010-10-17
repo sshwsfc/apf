@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element 
@@ -34,8 +34,11 @@ define([], function(){
  * @since       3.0
  */
 var Source = function(struct, tagName){
-    this.$init(tagName || "source", this.NODE_HIDDEN, struct);
+    AmlElement.call(this, tagName || "source", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(Source, AmlElement);
+
 
 (function(){
     this.$supportedProperties.push("src", "type");
@@ -44,9 +47,9 @@ var Source = function(struct, tagName){
         if (this.parentNode.$addSource)
             this.parentNode.$addSource(this);
     });
-}).call(apf.source.prototype = new apf.AmlElement());
+}).call(Source.prototype);
 
-apf.aml.setElement("source", apf.source);
+aml && aml.setElement("source", Source);
 
 
 return Source;

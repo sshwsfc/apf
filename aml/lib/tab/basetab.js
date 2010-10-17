@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Baseclass of a paged element. 
@@ -1549,7 +1549,7 @@ var BaseTab = function(){
         });*/
         // #endif
     };
-}).call(apf.BaseTab.prototype = new apf.Presentation());
+}).call(BaseTab.prototype);
 
 
 return BaseTab;

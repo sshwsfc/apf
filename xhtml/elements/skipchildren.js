@@ -19,10 +19,13 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 var XhtmlSkipChildrenElement = function(struct, tagName){
-    this.$init(tagName, this.NODE_VISIBLE, struct);
+    AmlElement.call(this, tagName, this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(XhtmlSkipChildrenElement, AmlElement);
+
 
 (function(){
     this.canHaveChildren = false;
@@ -49,7 +52,7 @@ var XhtmlSkipChildrenElement = function(struct, tagName){
             ? (this.$aml.serialize ? this.$aml.serialize() : this.$aml.xml)
             : this.serialize());
     }, true);
-}).call(apf.XhtmlSkipChildrenElement.prototype = new apf.AmlElement());
+}).call(XhtmlSkipChildrenElement.prototype);
 
 apf.xhtml.setElement("object", apf.XhtmlSkipChildrenElement);
 apf.xhtml.setElement("embed", apf.XhtmlSkipChildrenElement);

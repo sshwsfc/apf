@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the exact number of characters or list items allowed. Must be equal to or greater than zero
  */
 var XsdLength = function(struct, tagName){
-    this.$init(tagName || "length", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "length", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdLength, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -35,7 +38,7 @@ var XsdLength = function(struct, tagName){
     this.$compile = function(stack){
         stack.push("if (value.length != " + this.value + ") return false;");
     };
-}).call(apf.XsdLength.prototype = new apf.XsdElement());
+}).call(XsdLength.prototype);
 
 apf.xsd.setElement("length", apf.XsdLength);
 

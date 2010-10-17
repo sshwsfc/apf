@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Element acting as the navigational instrument for any
@@ -41,8 +41,11 @@ define([], function(){
  * @since       0.8
  */
 var Toc = function(struct, tagName){
-    this.$init(tagName || "toc", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "toc", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Toc, Presentation);
+
 
 (function(){
     /**** Properties and Attributes ****/
@@ -224,9 +227,9 @@ var Toc = function(struct, tagName){
         }
     });
     // #endif
-}).call(apf.toc.prototype = new apf.Presentation());
+}).call(Toc.prototype);
 
-apf.aml.setElement("toc", apf.toc);
+aml && aml.setElement("toc", Toc);
 
 return Toc;
 

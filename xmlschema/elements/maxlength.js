@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the maximum number of characters or list items allowed. Must be equal to or greater than zero
  */
 var XsdMaxLength = function(struct, tagName){
-    this.$init(tagName || "maxlength", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "maxlength", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdMaxLength, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -36,7 +39,7 @@ var XsdMaxLength = function(struct, tagName){
     this.$compile = function(stack){
         stack.push("if (value.length > " + this.value + ") return false;");
     };
-}).call(apf.XsdMaxLength.prototype = new apf.XsdElement());
+}).call(XsdMaxLength.prototype);
 
 apf.xsd.setElement("maxlength", apf.XsdMaxLength);
 

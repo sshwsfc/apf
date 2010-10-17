@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/teleport", "optional!aml", "lib-oop"], function(Teleport, aml, oop){
 
 /**
  * Element implementing WebDAV remote filesystem protocol.
@@ -1129,9 +1129,9 @@ apf.webdav = function(struct, tagName){
     };
     
     // #endif
-}).call(apf.webdav.prototype = new apf.Teleport());
+}).call(Webdav.prototype);
 
-apf.aml.setElement("webdav", apf.webdav);
+aml && aml.setElement("webdav", Webdav);
 
 // Collection of shorthands for all namespaces known and used by this class
 apf.webdav.NS = {

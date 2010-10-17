@@ -21,7 +21,7 @@
 
 apf.__MULTISELECT__ = 1 << 8;
 
-define([], function(){
+define(["aml-core/multiselectbinding", "optional!aml", "lib-oop"], function(MultiselectBinding, aml, oop){
 
 /**
  * @term eachnode A each node is a {@link term.datanode data node} that is in the set selected by the 
@@ -1856,7 +1856,7 @@ var MultiSelect = function(){
     this.addEventListener("prop.caret", fSelState);
     //#endif
 // #ifdef __WITH_DATABINDING
-}).call(apf.MultiSelect.prototype = new apf.MultiselectBinding());
+}).call(MultiSelect.prototype);
 /* #else
 }).call(apf.MultiSelect.prototype = new apf.Presentation());
  #endif*/

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * A page in a pageable element. (i.e. a page in {@link element.tab})
@@ -34,8 +34,11 @@ define([], function(){
  * @since       0.8
  */
 var Page = function(struct, tagName){
-    this.$init(tagName || "page", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "page", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Page, Presentation);
+
 
 (function(){
     this.canHaveChildren = true;
@@ -525,9 +528,9 @@ var Page = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.page.prototype = new apf.Presentation());
+}).call(Page.prototype);
 
-apf.aml.setElement("page", apf.page);
+aml && aml.setElement("page", Page);
 
 
 return Page;

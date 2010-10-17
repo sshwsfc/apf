@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 
 /**
  * This elements displays buttons which can be used to navigate between some
@@ -45,8 +45,11 @@ define([], function(){
  * 
  */
 var Pagenav = function(struct, tagName){
-    this.$init(tagName || "pagenav", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "pagenav", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Pagenav, StandardBinding);
+
 
 (function() {
     this.previous   = "Previous";
@@ -235,14 +238,14 @@ var Pagenav = function(struct, tagName){
     }
     
 // #ifdef __WITH_DATABINDING
-}).call(apf.pagenav.prototype = new apf.StandardBinding());
+}).call(Pagenav.prototype);
 /* #else
 }).call(apf.pagenav.prototype = new apf.Presentation());
 #endif */
 
-apf.aml.setElement("pagenav",   apf.pagenav);
-apf.aml.setElement("total",   apf.BindingRule);
-apf.aml.setElement("current", apf.BindingRule);
+aml && aml.setElement("pagenav",   Pagenav);
+aml && aml.setElement("total",   BindingRule);
+aml && aml.setElement("current", BindingRule);
 
 return Pagenav;
 

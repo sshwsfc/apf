@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/teleport", "optional!aml", "lib-oop"], function(Teleport, aml, oop){
 
 /**
  * Baseclass for rpc in teleport. Modules are available for
@@ -239,7 +239,7 @@ define([], function(){
  * @default_private
  */
 var Rpc = function(struct, tagName){
-    this.$init(tagName || "rpc", this.NODE_HIDDEN, struct);
+    Teleport.call(this, tagName || "rpc", this.NODE_HIDDEN, struct);
 
     if (!this.supportMulticall)
         this.multicall = false;
@@ -247,6 +247,9 @@ var Rpc = function(struct, tagName){
     this.urls     = {};
     this.$methods = {};
 };
+
+oop.inherit(Rpc, Teleport);
+
 
 (function(){
     this.useHTTP         = true;
@@ -638,11 +641,11 @@ var Rpc = function(struct, tagName){
          this['postform'].apply(this, args);
      };
      */
-}).call(apf.rpc.prototype = new apf.Teleport());
+}).call(Rpc.prototype);
 
 apf.config.$inheritProperties["baseurl"] = 1;
 
-apf.aml.setElement("rpc", apf.rpc);
+aml && aml.setElement("rpc", Rpc);
 
 
 return Rpc;

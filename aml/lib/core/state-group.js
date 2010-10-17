@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * Element that groups state elements together and
@@ -51,7 +51,7 @@ define([], function(){
 var StateGroup = function(){
     this.$init("state-group", this.NODE_HIDDEN);
 };
-apf.aml.setElement("state-group", apf.stateGroup);
+aml && aml.setElement("state-group", StateGroup);
 
 (function(){
     this.$propertyHandler = function(prop, value, force){
@@ -84,7 +84,7 @@ apf.aml.setElement("state-group", apf.stateGroup);
             nodes[i].setProperty("group", this.id);
         }
     });
-}).call(apf.stateGroup.prototype = new apf.AmlElement());
+}).call(StateGroup.prototype);
 
 
 return StateGroup;

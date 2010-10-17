@@ -19,13 +19,16 @@
  *
  */
 
-define([], function(){
+define(["aml-core/xsdelement", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
 /**
  * Specifies the exact number of digits allowed. Must be greater than zero
  */
 var XsdTotalDigits = function(struct, tagName){
-    this.$init(tagName || "totaldigits", this.NODE_HIDDEN, struct);
+    XsdElement.call(this, tagName || "totaldigits", this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(XsdTotalDigits, XsdElement);
+
 
 (function(){
     this.$propHandlers["value"] = function(){
@@ -36,7 +39,7 @@ var XsdTotalDigits = function(struct, tagName){
         stack.push("if (new String(parseFloat(value)).length == "
             + this.value + ") return false;");
     };
-}).call(apf.XsdTotalDigits.prototype = new apf.XsdElement());
+}).call(XsdTotalDigits.prototype);
 
 apf.xsd.setElement("totaldigits", apf.XsdTotalDigits);
 

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 /**
  * Notification element, which shows popups when events occur. Similar
  * to growl on the OSX platform.
@@ -101,8 +101,11 @@ define([], function(){
  * @allowchild event
  */
 var Notifier = function(struct, tagName){
-    this.$init(tagName || "notifier", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "notifier", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Notifier, Presentation);
+
 
 (function() {
     this.timeout    = 2000;
@@ -403,10 +406,10 @@ var Notifier = function(struct, tagName){
         this.$ext.style.position = "absolute";
         zManager.set("notifier", this.$ext);
     };
-}).call(apf.notifier.prototype = new apf.Presentation());
+}).call(Notifier.prototype);
 
-apf.aml.setElement("notifier", apf.notifier);
-apf.aml.setElement("event", apf.event);
+aml && aml.setElement("notifier", Notifier);
+aml && aml.setElement("event", Event);
 
 return Notifier;
 

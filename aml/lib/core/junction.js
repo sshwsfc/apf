@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * A symbolic link to an AML element. The visibility of this element determines
@@ -70,9 +70,9 @@ var Junction = function(){
             this.$reparent();
         }
     });
-}).call(apf.junction.prototype = new apf.AmlElement());
+}).call(Junction.prototype);
 
-apf.aml.setElement("junction", apf.junction);
+aml && aml.setElement("junction", Junction);
 
 
 return Junction;

@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 /**
  * Element displaying a two state button which is one of a grouped set.
@@ -80,7 +80,7 @@ define([], function(){
  * @see baseclass.amlnode.event.afterchange
  */
 var Radiobutton = function(struct, tagName){
-    this.$init(tagName || "radiobutton", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "radiobutton", this.NODE_VISIBLE, struct);
     
     /*this.$constructor = apf.radiobutton;
     var fEl = apf.aml.setElement("radiobutton", function(){
@@ -90,8 +90,11 @@ var Radiobutton = function(struct, tagName){
     apf.radiobutton = fEl;*/
 };
 
+oop.inherit(Radiobutton, Presentation);
+
+
 (function(){
-    this.implement(apf.ChildValue);
+    oop.decorate(Radiobutton, ChildValue);;
     this.$childProperty = "label";
     
     this.$focussable = true; // This object can get the focus
@@ -473,9 +476,9 @@ var Radiobutton = function(struct, tagName){
         return this.$activeElements;
     };
     //#endif
-}).call(apf.radiobutton.prototype = new apf.Presentation());
+}).call(Radiobutton.prototype);
 
-apf.aml.setElement("radiobutton", apf.radiobutton);
+aml && aml.setElement("radiobutton", Radiobutton);
 
 apf.$group = function(struct, tagName){
     this.$init(tagName || "radiogroup", this.NODE_VISIBLE, struct);
@@ -559,7 +562,7 @@ apf.$group = function(struct, tagName){
 };
 apf.$group.prototype = new apf.GuiElement();
 
-apf.aml.setElement("group", apf.$group);
+aml && aml.setElement("group", $group);
 
 
 return Radiobutton;

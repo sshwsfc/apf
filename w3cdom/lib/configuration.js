@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
 var AmlConfiguration = function(isPrototype){
     this.parameterNames = [];
 
@@ -34,7 +34,7 @@ var AmlConfiguration = function(isPrototype){
     this.canSetParameter = function(name, value){ //@todo for value
         return this.parameterNames.indexOf(name) > -1;
     };
-}).call(apf.AmlConfiguration.prototype = new apf.Class());
+}).call(AmlConfiguration.prototype);
 
 return AmlConfiguration;
 

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
 
 /**
  * @attribute {String} target 
@@ -27,8 +27,11 @@ define([], function(){
  * @attribute {Boolean} copy
  */
 var BindingDndRule = function(struct, tagName){
-    this.$init(tagName, this.NODE_HIDDEN, struct);
+    BindingRule.call(this, tagName, this.NODE_HIDDEN, struct);
 };
+
+oop.inherit(BindingDndRule, BindingRule);
+
 
 (function(){
     this.compile = function(prop){
@@ -106,10 +109,10 @@ var BindingDndRule = function(struct, tagName){
             apf.GuiElement.propHandlers["drop"].call(pNode, true);
         }
     });
-}).call(apf.BindingDndRule.prototype = new apf.BindingRule());
+}).call(BindingDndRule.prototype);
 
-apf.aml.setElement("drag", apf.BindingDndRule);
-apf.aml.setElement("drop", apf.BindingDndRule);
+aml && aml.setElement("drag", BindingDndRule);
+aml && aml.setElement("drop", BindingDndRule);
 
 return BindingDndRule;
 
