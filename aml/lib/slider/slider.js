@@ -19,7 +19,7 @@
  *
  */ 
 
-//#ifdef SLIDER
+define([], function(){
 
 /**
  * Element allowing the user to select a value from a range of
@@ -108,7 +108,7 @@
  *    value = "[mdlSlider::@value]" />
  * </code>
  */
-apf.slider = function(struct, tagName){
+var Slider = function(struct, tagName){
     this.$init(tagName || "slider", this.NODE_VISIBLE, struct);
 };
 
@@ -926,4 +926,7 @@ apf.slider = function(struct, tagName){
 
 apf.aml.setElement("slider", apf.slider);
 
-//#endif
+
+return Slider;
+
+});

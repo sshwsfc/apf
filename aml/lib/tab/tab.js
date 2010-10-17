@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef TAB
+define(["aml-core/basetab", "optional!aml", "lib-oop"], function(BaseTab, aml, oop){
 
 /**
  * Element displaying a page and several buttons allowing a
@@ -56,7 +56,7 @@
  *
  * @inherits apf.BaseTab
  */
-apf.tab       = function(struct, tagName){
+var Tab       = function(struct, tagName){
     this.$hasButtons = true;
     this.$init(tagName || "tab", this.NODE_VISIBLE, struct);
 };
@@ -71,8 +71,11 @@ apf.tab       = function(struct, tagName){
         this.$ext = this.$getExternal();
         this.$loadChildren();
     };
-}).call(apf.tab.prototype = new apf.BaseTab());
+}).call(Tab.prototype);
 
-apf.aml.setElement("tab",    apf.tab);
+aml && aml.setElement("tab",    Tab);
 
-//#endif
+
+return Tab;
+
+});

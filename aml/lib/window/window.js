@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef WINDOW
+define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
 
 var WinServer = {
     count : 9000,
@@ -136,14 +136,14 @@ var WinServer = {
  *   {Boolean} edit       whether the window is in the edit state.
  *   {Boolean} closed     whether the window is closed.
  */
-apf.modalwindow = function(struct, tagName){
+var Modalwindow = function(struct, tagName){
     this.$init(tagName || "window", this.NODE_VISIBLE, struct);
 };
 
 (function(){
-    this.implement(
-        apf.BaseStateButtons
-    );
+    
+        oop.decorate(Window, BaseStateButtons);
+    ;
 
     this.$isWindowContainer = true;
     this.collapsedHeight   = 30;
@@ -736,8 +736,11 @@ apf.modalwindow = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.window.prototype = new apf.Presentation());
+}).call(Window.prototype);
 
-apf.aml.setElement("window", apf.modalwindow);
+aml && aml.setElement("window", Modalwindow);
 
-//#endif
+
+return Modalwindow;
+
+});

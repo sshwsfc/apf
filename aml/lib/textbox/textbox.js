@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef TEXTBOX
+define([], function(){
 
 //@todo DOCUMENT the modules too
 
@@ -72,7 +72,7 @@
  *   {Number}  keyCode   which key was pressed. This is an ascii number.
  * @event clear     Fires when the content of this element is cleared. 
  */
-apf.input    = function(struct, tagName){
+var Input    = function(struct, tagName){
     this.$init(tagName || "input", this.NODE_VISIBLE, struct);
 };
 
@@ -768,4 +768,7 @@ apf.config.$inheritProperties["realtime"]        = 1;
 
 apf.aml.setElement("input",    apf.input);
 
-//#endif
+
+return Input;
+
+});

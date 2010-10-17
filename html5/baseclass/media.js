@@ -21,7 +21,7 @@
 
 apf.__MEDIA__ = 1 << 20;
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have media node features and dynamics.
@@ -549,7 +549,7 @@ apf.nomedia = function(struct, tagName) {
         this.parentNode.notSupported =
             apf.getXmlString(this.$aml).replace(/<\/?a:nomedia[^>]*>/g, "");
     });
-}).call(apf.nomedia.prototype = new apf.AmlElement());
+}).call(Nomedia.prototype);
 
 aml && aml.setElement("nomedia", Nomedia);
 
