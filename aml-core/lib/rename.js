@@ -63,7 +63,7 @@ define([], function(){
  * @version     %I%, %G%
  * @since       0.5
  */
-apf.Rename = function(){
+var Rename = function(){
     this.$regbase       = this.$regbase|apf.__RENAME__;
 
     this.canrename      = false;
@@ -336,10 +336,10 @@ apf.Rename = function(){
         this.$txt = null;
     });
     
-    this.$init(apf.Rename.initEditableArea);
+    this.$init(Rename.initEditableArea);
 };
 
-apf.Rename.initEditableArea = function(){
+Rename.initEditableArea = function(){
     if (!(this.$txt = document.getElementById("txt_rename"))) {
         if (apf.hasContentEditable) {
             this.$txt = document.createElement("DIV");
@@ -435,5 +435,6 @@ apf.Rename.initEditableArea = function(){
     this.$txt.refCount++;
 }
 
+return Rename;
 
 });

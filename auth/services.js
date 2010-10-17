@@ -19,7 +19,8 @@
  *
  */
 
-define([], function(){
+define(["w3cdom/element", "optional!aml", "lib-oop"], 
+    function(AmlElement, aml, oop){
 
 /**
  *
@@ -27,7 +28,7 @@ define([], function(){
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.services = function(struct, tagName){
+var Services = function(struct, tagName){
     this.$init(tagName || "services", this.NODE_VISIBLE, struct);
     
     this.addEventListener("DOMNodeInsertedIntoDocument", function(aml){
@@ -37,7 +38,10 @@ apf.services = function(struct, tagName){
     });
 };
 
-apf.services.prototype = new apf.AmlElement();
-apf.aml.setElement("services", apf.services);
+oop.inherit(Services, AmlElement);
+
+aml && aml.setElement("services", Services);
+
+return Services;
 
 });
