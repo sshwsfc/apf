@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["optional!aml", "lib-oop"], function(aml, oop){
 
 /**
  * Element displaying a skinnable rectangle which can contain other 
@@ -47,106 +47,11 @@ define([], function(){
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.section = function(struct, tagName){
-    this.$init(tagName || "section", this.NODE_VISIBLE, struct);
+var Bar = function(struct, tagName){
+    Presentation.call(this, tagName || "bar", this.NODE_VISIBLE, struct);
 };
 
-apf.menubar = function(struct, tagName){
-    this.$init(tagName || "menubar", this.NODE_VISIBLE, struct);
-};
-
-apf.bar     = function(struct, tagName){
-    this.$init(tagName || "bar", this.NODE_VISIBLE, struct);
-};
-
-/**
- * Element displaying a bar containing buttons and other aml elements.
- * This element is usually positioned in the top of an application allowing
- * the user to choose from grouped buttons.
- * Example:
- * <code>
- *  <a:menu id="menu5">
- *      <a:item>About us</a:item>
- *      <a:item>Help</a:item>
- *  </a:menu>
- *  <a:menu id="menu6">
- *      <a:item icon="email.png">Tutorials</a:item>
- *      <a:item>Live Helps</a:item>
- *      <a:divider></a:divider>
- *      <a:item>Visit Ajax.org</a:item>
- *      <a:item>Exit</a:item>
- *  </a:menu>
- *  <a:window 
- *    id          = "winMail"
- *    contextmenu = "menu6"
- *    width       = "300"
- *    height      = "200" 
- *    visible     = "true"
- *    resizable   = "true" 
- *    title       = "Mail message"
- *    icon        = "email.png">
- *      <a:toolbar>
- *          <a:menubar>
- *              <a:button submenu="menu6">File</a:button>
- *              <a:button submenu="menu5">Edit</a:button>
- *          </a:menubar>
- *      </a:toolbar>
- *  </a:window>
- * </code>
- *
- * @constructor
- * @define toolbar
- * @addnode elements
- * @allowchild bar, menubar
- *
- * @author      Ruben Daniels (ruben AT ajax DOT org)
- * @version     %I%, %G%
- * @since       0.4
- *
- * @inherits apf.Presentation
- */
-apf.toolbar = function(struct, tagName){
-    this.$init(tagName || "toolbar", this.NODE_VISIBLE, struct);
-};
-
-/**
- * Element displaying a bar consisting of bars containing other text, icons
- * and more aml. This element is usually placed in the bottom of the screen to 
- * display context sensitive and other information about the state of the 
- * application.
- * Example:
- * <code>
- *  <a:statusbar>
- *      <a:section icon="application.png">Ajax.org</a:section>
- *      <a:section>Some status information</a:section>
- *      <a:section>
- *          <a:progressbar anchors="6 5 5 5" autostart="true" />
- *      </a:section>
- *  </a:statusbar>
- * </code>
- *
- * @constructor
- * @define statusbar
- * @allowchild bar
- * @allowchild progressbar
- * @addnode elements
- *
- * @author      Ruben Daniels (ruben AT ajax DOT org)
- * @version     %I%, %G%
- * @since       0.9
- */
-apf.statusbar = function(struct, tagName){
-    this.$init(tagName || "statusbar", this.NODE_VISIBLE, struct);
-};
-
-/**
- * Element displaying a divider. For use in toolbars, menu's and such.
- * @define divider
- * @constructor
- */
-apf.divider = function(struct, tagName){
-    this.$init(tagName || "divider", this.NODE_VISIBLE, struct);
-};
+oop.implement(Bar, Presentation);
 
 (function(){
     this.$focussable     = false;
@@ -217,19 +122,10 @@ apf.divider = function(struct, tagName){
         
     }
     //#endif*/
-}).call(apf.bar.prototype = new apf.Presentation());
+}).call(Bar.prototype);
 
-apf.menubar.prototype   = 
-apf.section.prototype   = 
-apf.toolbar.prototype   = 
-apf.statusbar.prototype = 
-apf.divider.prototype   = apf.bar.prototype;
+aml && aml.setElement("bar", Bar);
 
-apf.aml.setElement("bar", apf.bar);
-apf.aml.setElement("menubar", apf.menubar);
-apf.aml.setElement("section", apf.section);
-apf.aml.setElement("toolbar", apf.toolbar);
-apf.aml.setElement("statusbar", apf.statusbar);
-apf.aml.setElement("divider", apf.divider);
+return Bar
 
 });
