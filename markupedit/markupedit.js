@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
 
 var HAS_CHILD = 1 << 1,
     IS_CLOSED = 1 << 2,
@@ -50,22 +50,25 @@ var HAS_CHILD = 1 << 1,
  * @binding empty    Determines the empty message of a node.
  */
 var Markupedit = function(struct, tagName){
-    this.$init(tagName || "markupedit", this.NODE_VISIBLE, struct);
+    MultiSelect.call(this, tagName || "markupedit", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Markupedit, MultiSelect);
+
+
 (function(){
-    this.implement(
+    
         //#ifdef __WITH_XFORMS
         //apf.XForms,
         //#endif
         //#ifdef __WITH_DATAACTION
-        apf.DataAction,
+        oop.decorate(Markupedit, DataAction);
         //#endif
         //#ifdef __WITH_CACHE
-        apf.Cache,
+        oop.decorate(Markupedit, Cache);
         //#endif
-        apf.Rename
-    );
+        oop.decorate(Markupedit, Rename);
+    ;
 
     this.$isTreeArch  = true; // Tree Architecture for loading Data
     this.$focussable  = true; // This object can get the focus
@@ -1460,9 +1463,9 @@ var Markupedit = function(struct, tagName){
         amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     };
-}).call(apf.markupedit.prototype = new apf.MultiSelect());
+}).call(Markupedit.prototype);
 
-apf.aml.setElement("markupedit", apf.markupedit);
+aml && aml.setElement("markupedit", Markupedit);
 
 return Markupedit;
 

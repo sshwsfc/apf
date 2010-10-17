@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/basebutton", "optional!aml", "lib-oop"], function(BaseButton, aml, oop){
 
 /**
  * Element displaying a clickable rectangle having two states which
@@ -63,18 +63,21 @@ define([], function(){
  * </code>
  */
 var Checkbox = function(struct, tagName){
-    this.$init(tagName || "checkbox", this.NODE_VISIBLE, struct);
+    BaseButton.call(this, tagName || "checkbox", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Checkbox, BaseButton);
+
+
 (function() {
-    this.implement(
+    
         //#ifdef __WITH_XFORMS
         //apf.XForms
         //#endif
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Checkbox, DataAction);
         //#endif
-    );
+    ;
 
     //Options
     this.$focussable = true; // This object can get the focus
@@ -259,9 +262,9 @@ var Checkbox = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.checkbox.prototype = new apf.BaseButton());
+}).call(Checkbox.prototype);
 
-apf.aml.setElement("checkbox", apf.checkbox);
+aml && aml.setElement("checkbox", Checkbox);
 
 return Checkbox;
 

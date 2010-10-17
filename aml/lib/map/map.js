@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
 
 /**
  * Element displaying a Google Map with all option customizable through attributes
@@ -70,21 +70,24 @@ define([], function(){
  * @event loaded Fires after the the javascript libraries from Google have been loaded and the map is drawn
  */
 var Map = function(struct, tagName){
-    this.$init(tagName || "map", this.NODE_VISIBLE, struct);
+    GuiElement.call(this, tagName || "map", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Map, GuiElement);
+
+
 (function(){
-    this.implement(
+    
         // #ifdef __WITH_DATABINDING
-        apf.StandardBinding
+        oop.decorate(Map, StandardBinding);
         // #endif
         //#ifdef __WITH_DATAACTION
-        ,apf.DataAction
+        ,oop.decorate(Map, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
        // ,apf.XForms
         //#endif
-    );
+    ;
     //Options
     this.$focussable           = true; // This object can get the focus
     this.$hasMaptypeControl    = true;
@@ -579,9 +582,9 @@ var Map = function(struct, tagName){
             loaded();
         }
     });
-}).call(apf.map.prototype = new apf.GuiElement());
+}).call(Map.prototype);
 
-apf.aml.setElement("map", apf.map);
+aml && aml.setElement("map", Map);
 
 
 return Map;

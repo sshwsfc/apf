@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 /**
  * Element displaying a calendar, ordered by week. It allows the user to choose 
  * the month and year for which to display the days. Calendar returns a date 
@@ -68,7 +68,7 @@ define([], function(){
  *
  */
 var Calendar = function(struct, tagName){
-    this.$init(tagName || "calendar", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "calendar", this.NODE_VISIBLE, struct);
     
     /**** Properties and Attributes ****/
     this.$calVars = {
@@ -112,15 +112,18 @@ var Calendar = function(struct, tagName){
     };
 };
 
+oop.inherit(Calendar, StandardBinding);
+
+
 (function() {
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Calendar, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
 
     this.$supportedProperties.push("output-format", "default");
 
@@ -746,9 +749,9 @@ var Calendar = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.calendar.prototype = new apf.StandardBinding());
+}).call(Calendar.prototype);
 
-apf.aml.setElement("calendar", apf.calendar);
+aml && aml.setElement("calendar", Calendar);
 
 return Calendar;
 

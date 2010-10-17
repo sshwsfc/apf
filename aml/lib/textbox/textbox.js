@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 
 //@todo DOCUMENT the modules too
 
@@ -77,14 +77,14 @@ var Input    = function(struct, tagName){
 };
 
 (function(){
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Textbox, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
 
     this.$focussable       = true; // This object can get the focus
     this.$masking          = false;
@@ -758,7 +758,7 @@ var Input    = function(struct, tagName){
         }
     });
 // #ifdef __WITH_DATABINDING
-}).call(apf.textbox.prototype = new apf.StandardBinding());
+}).call(Textbox.prototype);
 /* #else
 }).call(apf.textbox.prototype = new apf.Presentation());
 #endif*/
@@ -766,7 +766,7 @@ var Input    = function(struct, tagName){
 apf.config.$inheritProperties["initial-message"] = 1;
 apf.config.$inheritProperties["realtime"]        = 1;
 
-apf.aml.setElement("input",    apf.input);
+aml && aml.setElement("input",    Input);
 
 
 return Input;

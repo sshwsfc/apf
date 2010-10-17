@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 
 /**
  * Element displaying a set of choices to the user which allows
@@ -57,18 +57,21 @@ define([], function(){
  * </code>
  */
 var Palette = function(struct, tagName){
-    this.$init(tagName || "palette", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "palette", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Palette, StandardBinding);
+
+
 (function(){
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Palette, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
     /**** Properties and Attributes ****/
     
     this.$focussable = true; // This object can get the focus
@@ -174,12 +177,12 @@ var Palette = function(struct, tagName){
         //this.oViewer.setAttribute("ondblclick", "apf.lookup(" + this.$uniqueId + ").openColorPicker()");
     };
 // #ifdef __WITH_DATABINDING
-}).call(apf.palette.prototype = new apf.StandardBinding());
+}).call(Palette.prototype);
 /* #else
 }).call(apf.palette.prototype = new apf.Presentation());
 #endif*/
 
-apf.aml.setElement("palette", apf.palette);
+aml && aml.setElement("palette", Palette);
 
 return Palette;
 

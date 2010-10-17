@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
 
 /**
  * Element displaying the rendered contents of an URL.
@@ -66,20 +66,23 @@ define([], function(){
  * </code>
  */
 var Iframe = function(struct, tagName){
-    this.$init(tagName || "iframe", this.NODE_VISIBLE, struct);
+    GuiElement.call(this, tagName || "iframe", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Iframe, GuiElement);
+
 (function(){
-    this.implement(
+    
         // #ifdef __WITH_XFORMS
         //apf.XForms,
         // #endif
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Iframe, DataAction);
         //#endif
         // #ifdef __WITH_DATABINDING
-        ,apf.StandardBinding
+        ,oop.decorate(Iframe, StandardBinding);
         // #endif
-    );
+    ;
 
     /**
      * @attribute {String} src   the url to be displayed in this element
@@ -193,9 +196,9 @@ var Iframe = function(struct, tagName){
         this.$ext.host = this;
         //this.$iframe.host = this;
     };
-}).call(apf.iframe.prototype = new apf.GuiElement());
+}).call(Iframe.prototype);
 
-apf.aml.setElement("iframe", apf.iframe);
+aml && aml.setElement("iframe", Iframe);
 
 return Iframe;
 

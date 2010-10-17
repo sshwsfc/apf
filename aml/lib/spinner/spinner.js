@@ -18,7 +18,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 /** 
  * This element is used to choosing number by plus/minus buttons.
  * When plus button is clicked longer, number growing up faster. The same
@@ -77,7 +77,7 @@ define([], function(){
  * from the bound data.
  */
 var Spinner = function(struct, tagName){
-    this.$init(tagName || "spinner", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "spinner", this.NODE_VISIBLE, struct);
     
     this.max     = 64000;
     this.min     = -64000;
@@ -87,15 +87,18 @@ var Spinner = function(struct, tagName){
     this.realtime = false;
 };
 
+oop.inherit(Spinner, StandardBinding);
+
+
 (function() {
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Spinner, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
 
     this.$supportedProperties.push("width", "value", "max", "min", "caption", "realtime");
 
@@ -549,12 +552,12 @@ var Spinner = function(struct, tagName){
     //#endif
 
 // #ifdef __WITH_DATABINDING
-}).call(apf.spinner.prototype = new apf.StandardBinding());
+}).call(Spinner.prototype);
 /* #else
 }).call(apf.spinner.prototype = new apf.Presentation());
 #endif */
 
-apf.aml.setElement("spinner", apf.spinner);
+aml && aml.setElement("spinner", Spinner);
 
 return Spinner;
 

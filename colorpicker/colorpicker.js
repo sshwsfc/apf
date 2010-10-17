@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
 
 /**
  * Element giving the user a visual choice of several colors presented in a
@@ -61,21 +61,24 @@ define([], function(){
  * </code>
  */
 var Colorpicker = function(struct, tagName){
-    this.$init(tagName || "colorpicker", this.NODE_VISIBLE, struct);
+    GuiElement.call(this, tagName || "colorpicker", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Colorpicker, GuiElement);
+
+
 (function(){
-    this.implement(
+    
         // #ifdef __WITH_DATABINDING
-        apf.StandardBinding
+        oop.decorate(Colorpicker, StandardBinding);
         // #endif
         //#ifdef __WITH_DATAACTION
-        ,apf.DataAction
+        ,oop.decorate(Colorpicker, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
        // ,apf.XForms
         //#endif
-    );
+    ;
     //Options
     this.$focussable = true; // This object can get the focus
 
@@ -372,9 +375,9 @@ var Colorpicker = function(struct, tagName){
         this.tbHexColor.host =
         this.pHolder.host    = null;
     }
-}).call(apf.colorpicker.prototype = new apf.GuiElement());
+}).call(Colorpicker.prototype);
 
-apf.aml.setElement("colorpicker", apf.colorpicker);
+aml && aml.setElement("colorpicker", Colorpicker);
 
 
 return Colorpicker;

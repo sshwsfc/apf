@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
 
 /**
  * Element displaying a rectangle consisting of one or more columns
@@ -100,12 +100,12 @@ apf.portal = function(struct, tagName){
 };
 
 (function(){
-    this.implement(
+    
         //apf.Cache,
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Portal, DataAction);
         //#endif
-    );
+    ;
 
     this.$focussable     = false;
     this.buttons         = "edit|min|close";
@@ -642,22 +642,22 @@ apf.portal = function(struct, tagName){
             document.elementFromPointAdd(this.$ext);
     };
 // #ifdef __WITH_MULTISELECT
-}).call(apf.portal.prototype = new apf.MultiSelect());
+}).call(Portal.prototype);
 /* #elseif __WITH_DATABINDING
 }).call(apf.portal.prototype = new apf.MultiselectBinding());
    #else
 }).call(apf.portal.prototype = new apf.Presentation());
 #endif*/
 
-apf.aml.setElement("portal",    apf.portal);
-apf.aml.setElement("src",       apf.BindingRule);
-apf.aml.setElement("column",    apf.BindingRule);
+aml && aml.setElement("portal",    Portal);
+aml && aml.setElement("src",       BindingRule);
+aml && aml.setElement("column",    BindingRule);
 //apf.aml.setElement("state",     apf.BindingRule);
-apf.aml.setElement("draggable", apf.BindingRule);
-apf.aml.setElement("dockskin",  apf.BindingRule);
-apf.aml.setElement("buttons",   apf.BindingRule);
-apf.aml.setElement("caption",   apf.BindingRule);
-apf.aml.setElement("traverse",  apf.BindingRule);
+aml && aml.setElement("draggable", BindingRule);
+aml && aml.setElement("dockskin",  BindingRule);
+aml && aml.setElement("buttons",   BindingRule);
+aml && aml.setElement("caption",   BindingRule);
+aml && aml.setElement("traverse",  BindingRule);
 
 /**
  * @constructor

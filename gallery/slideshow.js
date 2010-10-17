@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/multiselectbinding", "optional!aml", "lib-oop"], function(MultiselectBinding, aml, oop){
 /** 
  * This element is used for viewing images. It's possible to add thumbnail and 
  * description to each of them. You can select a displayed image in several ways.
@@ -105,7 +105,7 @@ define([], function(){
  * @binding thumb    Determines the url to thumbnail file.
  */
 var Slideshow = function(struct, tagName){
-    this.$init(tagName || "slideshow", this.NODE_VISIBLE, struct);
+    MultiselectBinding.call(this, tagName || "slideshow", this.NODE_VISIBLE, struct);
     
     this.title            = "number";
     this.thumbheight      = 50;
@@ -180,13 +180,16 @@ var Slideshow = function(struct, tagName){
     this.$positioning = "basic";
 };
 
+oop.inherit(Slideshow, MultiselectBinding);
+
+
 (function() {
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Slideshow, DataAction);
         //#endif
         //,apf.Cache
-    );
+    ;
 
     this.$supportedProperties.push("model", "thumbheight", "title", "loadmsg",
                                    "defaultthumb", "defaulttitle",
@@ -1337,16 +1340,16 @@ var Slideshow = function(struct, tagName){
     };
 
 // #ifdef __WITH_DATABINDING
-}).call(apf.slideshow.prototype = new apf.MultiselectBinding());
+}).call(Slideshow.prototype);
 /* #else
 }).call(apf.slideshow.prototype = new apf.Presentation());
 #endif*/
 
-apf.aml.setElement("slideshow", apf.slideshow);
+aml && aml.setElement("slideshow", Slideshow);
 
-apf.aml.setElement("src",   apf.BindingRule);
-apf.aml.setElement("title", apf.BindingRule);
-apf.aml.setElement("thumb", apf.BindingRule);
+aml && aml.setElement("src",   BindingRule);
+aml && aml.setElement("title", BindingRule);
+aml && aml.setElement("thumb", BindingRule);
 
 return Slideshow;
 

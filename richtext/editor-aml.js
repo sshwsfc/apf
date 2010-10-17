@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 /**
  * Element displaying a Rich Text Editor, like M$ Office Word in a browser
  * window. Even though this Editor does not offer the same amount of features
@@ -64,16 +64,19 @@ define([], function(){
  * </code>
  */
 var Editor = function(struct, tagName){
-    this.$init(tagName || "editor", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "editor", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Editor, StandardBinding);
+
+
 (function() {
-    this.implement(
-        apf.LiveEdit
+    
+        oop.decorate(Editor, LiveEdit);
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
     
     this.value  = "";
     this.$value = "";
@@ -568,12 +571,12 @@ var Editor = function(struct, tagName){
             this.$activeDocument = this.$oWin = this.iframe = null;
     };
 // #ifdef __WITH_DATABINDING
-}).call(apf.editor.prototype = new apf.StandardBinding());
+}).call(Editor.prototype);
 /* #else
 }).call(apf.editor.prototype = new apf.Presentation());
 #endif */
 
-apf.aml.setElement("editor", apf.editor);
+aml && aml.setElement("editor", Editor);
 
 return Editor;
 

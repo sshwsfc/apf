@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
 
 /**
  * Baseclass of elements that allows the user to select one or more items
@@ -51,21 +51,21 @@ var BaseTree = function(){
 
 (function() {
     //#ifdef __WITH_RENAME || __WITH_DATAACTION || __WITH_CACHE
-    this.implement(
+    
         //#ifdef __WITH_XFORMS
         //apf.XForms,
         //#endif
         //#ifdef __WITH_RENAME
-        apf.Rename,
+        oop.decorate(BaseTree, Rename);
         //#endif
         //#ifdef __WITH_DATAACTION
-        apf.DataAction,
+        oop.decorate(BaseTree, DataAction);
         //#endif
         //#ifdef __WITH_CACHE
-        apf.Cache,
+        oop.decorate(BaseTree, Cache);
         //#endif
-        apf.K
-    );
+        oop.decorate(BaseTree, K);
+    ;
     //#endif
 
     /**** Properties and Attributes ****/
@@ -1208,7 +1208,7 @@ var BaseTree = function(){
         this.oDrag = null;
     });
 // #ifdef __WITH_MULTISELECT
-}).call(apf.BaseTree.prototype = new apf.MultiSelect());
+}).call(BaseTree.prototype);
 /* #elseif __WITH_DATABINDING
 }).call(apf.BaseTree.prototype = new apf.MultiselectBinding());
 #else 

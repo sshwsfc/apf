@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
 
 /**
  * Baseclass of elements that allows the user to select one or more items
@@ -109,18 +109,18 @@ var BaseList = function(){
 
 (function() {
     //#ifdef __WITH_CACHE || __WITH_DATAACTION
-    this.implement(
+    
         //#ifdef __WITH_CACHE
-        apf.Cache,
+        oop.decorate(BaseList, Cache);
         //#endif
         //#ifdef __WITH_DATAACTION
-        apf.DataAction,
+        oop.decorate(BaseList, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
         //apf.XForms,
         //#endif
-        apf.K
-    );
+        oop.decorate(BaseList, K);
+    ;
     //#endif
 
     /**** Properties and Attributes ****/
@@ -961,7 +961,7 @@ var BaseList = function(){
         this.load("<data>" + data.join("") + "</data>");
     };
 // #ifdef __WITH_MULTISELECT
-}).call(apf.BaseList.prototype = new apf.MultiSelect());
+}).call(BaseList.prototype);
 /* #elseif __WITH_DATABINDING
 }).call(apf.BaseList.prototype = new apf.MultiselectBinding());
 #else 

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 /**
  * Element displaying a calendar, ordered by week. It allows the user to choose 
  * the month and year for which to display the days. Calendar returns a date 
@@ -136,9 +136,9 @@ var Caldropdown = function(struct, tagName){
 };
 
 (function() {
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Caldropdown, DataAction);
         //#endif
         //#ifdef __WITH_DATABINDING
         //,apf.StandardBinding
@@ -146,7 +146,7 @@ var Caldropdown = function(struct, tagName){
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
 
     this.$supportedProperties.push("initial-message", "output-format",
                                    "default", "caption-format", "value");
@@ -970,11 +970,11 @@ var Caldropdown = function(struct, tagName){
                 apf.caldropdown.cache.refcount--;
         }
     };
-}).call(apf.caldropdown.prototype = new apf.StandardBinding());
+}).call(Caldropdown.prototype);
 
 apf.config.$inheritProperties["initial-message"] = 1;
 
-apf.aml.setElement("caldropdown", apf.caldropdown);
+aml && aml.setElement("caldropdown", Caldropdown);
 
 return Caldropdown;
 

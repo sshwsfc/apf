@@ -19,7 +19,7 @@
  *
  */ 
 
-define([], function(){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
 
 /**
  * Element allowing the user to select a value from a range of
@@ -109,18 +109,21 @@ define([], function(){
  * </code>
  */
 var Slider = function(struct, tagName){
-    this.$init(tagName || "slider", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "slider", this.NODE_VISIBLE, struct);
 };
 
+oop.inherit(Slider, StandardBinding);
+
+
 (function(){
-    this.implement(
+    
         //#ifdef __WITH_DATAACTION
-        apf.DataAction
+        oop.decorate(Slider, DataAction);
         //#endif
         //#ifdef __WITH_XFORMS
         //,apf.XForms
         //#endif
-    );
+    ;
 
     this.$focussable = true; // This object can get the focus
 
@@ -919,12 +922,12 @@ var Slider = function(struct, tagName){
     //#endif
 
 // #ifdef __WITH_DATABINDING
-}).call(apf.slider.prototype = new apf.StandardBinding());
+}).call(Slider.prototype);
 /* #else
 }).call(apf.slider.prototype = new apf.Presentation());
 #endif*/
 
-apf.aml.setElement("slider", apf.slider);
+aml && aml.setElement("slider", Slider);
 
 
 return Slider;
