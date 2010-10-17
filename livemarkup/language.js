@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_LANG_SUPPORT
+define([],function(){
 
 /**
  * Adds multilingual support for aml applications. Reads language symbols from
@@ -92,7 +92,7 @@
  * @default_private
  * @todo get appsettings to understand language
  */
-apf.language = {
+var Language = {
     /**
      * Boolean specifying whether read strings are tried to match themselves if no key
      * was gives.
@@ -248,4 +248,4 @@ apf.language = {
     }
 };
 
-// #endif
+});

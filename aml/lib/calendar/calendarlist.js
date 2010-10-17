@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCALENDARLIST || __INC_ALL
+define([],function(){
 /**
  *
  * @inherits apf.DataAction
@@ -30,7 +30,7 @@
  *
  */
 
-apf.calendarlist      = function(struct, tagName){
+var Calendarlist      = function(struct, tagName){
     this.$init(tagName || "calendarlist", this.NODE_VISIBLE, struct);
     
     this.date       = new Date();
@@ -417,4 +417,4 @@ apf.calendarlist      = function(struct, tagName){
 apf.aml.setElement("calendarlist", apf.calendarlist);
 apf.aml.setElement("date",         apf.BindingRule);
 apf.aml.setElement("duration",     apf.BindingRule);
-// #endif
+});

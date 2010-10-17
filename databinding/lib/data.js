@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATA
+define([],function(){
 
 /**
  * @term datainstruction Data instructions offer a single and consistent way for
@@ -428,4 +428,4 @@ apf.setModel = function(instruction, amlNode){
 };
 //#endif
 
-//#endif
+});

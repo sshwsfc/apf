@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCHART || __INC_ALL
+define([],function(){
 
 /**
  * Element displays a chart.
@@ -36,7 +36,7 @@
  * @since       0.4
  */
 
-apf.Chart     = function(struct, tagName){
+var Chart     = function(struct, tagName){
     this.$init(tagName || "chart", this.NODE_VISIBLE, struct);
 };
 
@@ -276,4 +276,4 @@ apf.aml.setElement("chart", apf.Chart);
     };
 }).call(apf.Chart.prototype = new apf.Presentation());
 
-// #endif
+});

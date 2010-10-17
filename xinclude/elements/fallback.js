@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_XIFALLBACK
+define([],function(){
 /**
  * Defines a list of acceptable values
  */
@@ -32,4 +32,4 @@ apf.XiFallback.prototype.$parsePrio = "002";
 
 apf.xinclude.setElement("fallback", apf.XiFallback);
 apf.aml.setElement("fallback", apf.XiFallback);
-//#endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_JSON
+define([],function(){
 
 /**
  * Implementation of the JSON-RPC protocol as a module for the RPC
@@ -67,7 +67,7 @@
  *
  * @default_private
  */
-apf.jsonrpc = function(){
+var Jsonrpc = function(){
     this.supportMulticall = false;
     this.multicall        = false;
     
@@ -104,4 +104,4 @@ apf.jsonrpc = function(){
     };
 };
 
-// #endif
+});

@@ -21,7 +21,7 @@
 
 apf.__VALIDATION__ = 1 << 6;
 
-// #ifdef __WITH_VALIDATION
+define([],function(){
 
 //if checkequal then notnull = true
 apf.validator = {
@@ -738,4 +738,4 @@ apf.ValidationGroup = function(name){
 
 apf.config.$inheritProperties["validgroup"] = 1;
 
-// #endif
+});

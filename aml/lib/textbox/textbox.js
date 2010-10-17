@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLTEXTBOX || __AMLSECRET || __AMLTEXTAREA || __AMLINPUT || __INC_ALL
+define([],function(){
 
 //@todo DOCUMENT the modules too
 
@@ -800,4 +800,4 @@ apf.aml.setElement("secret",   apf.secret);
 apf.aml.setElement("password", apf.password);
 apf.aml.setElement("textarea", apf.textarea);
 apf.aml.setElement("textbox",  apf.textbox);
-// #endif
+});

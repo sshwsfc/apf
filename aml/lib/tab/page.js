@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLPAGE || __INC_ALL
+define([],function(){
 
 /**
  * A page in a pageable element. (i.e. a page in {@link element.tab})
@@ -33,7 +33,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.page = function(struct, tagName){
+var Page = function(struct, tagName){
     this.$init(tagName || "page", this.NODE_VISIBLE, struct);
 };
 
@@ -529,4 +529,4 @@ apf.page = function(struct, tagName){
 
 apf.aml.setElement("page", apf.page);
 
-// #endif
+});

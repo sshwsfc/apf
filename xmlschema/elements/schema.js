@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_XSDSCHEMA
+define([],function(){
 apf.XsdSchema = function(struct, tagName){
     this.$init(true);
 };
@@ -27,4 +27,4 @@ apf.XsdSchema = function(struct, tagName){
 apf.XsdSchema.prototype = new apf.XsdElement();
 
 apf.xsd.setElement("schema", apf.XsdSchema);
-//#endif
+});

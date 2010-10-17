@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_STORAGE
+define([],function(){
 /**
  * Stores javascript structures based on a name and a namespace. This object
  * is used by {@link element.offline apf offline support} as well as the 
@@ -39,7 +39,7 @@
  *
  * @default_private
  */
-apf.storage = {
+var Storage = {
     modules : {},
 
     /**
@@ -241,4 +241,4 @@ apf.storage = {
     removeMultiple: function(keys, namespace){}
     // #endif
 };
-//#endif
+});

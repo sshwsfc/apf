@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLPORTAL || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a rectangle consisting of one or more columns
@@ -672,4 +672,4 @@ apf.portal.Docklet.prototype.create = function(xmlSettings, oWidget, oPortal){
         this.$create(xmlSettings, oWidget, oPortal);
 };
 
-// #endif
+});

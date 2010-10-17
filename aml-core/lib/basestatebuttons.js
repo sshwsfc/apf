@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLBASESTATEBUTTONS || __INC_ALL
+define([],function(){
 
 /**
  * @constructor
@@ -28,7 +28,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.BaseStateButtons = function(){
+var BaseStateButtons = function(){
     this.state   = "normal";
     this.edit    = false;
     
@@ -661,4 +661,4 @@ apf.BaseStateButtons = function(){
     });
 };
 
-//#endif
+});

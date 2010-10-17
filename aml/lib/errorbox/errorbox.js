@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLERRORBOX || __INC_ALL
+define([],function(){
 
 /**
  * Element showing an error message when the attached element 
@@ -83,7 +83,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.errorbox = function(struct, tagName){
+var Errorbox = function(struct, tagName){
     this.$init(tagName || "errorbox", this.NODE_VISIBLE, struct);
 };
 
@@ -182,4 +182,4 @@ apf.errorbox = function(struct, tagName){
 }).call(apf.errorbox.prototype = new apf.Presentation());
 
 apf.aml.setElement("errorbox", apf.errorbox);
-// #endif
+});

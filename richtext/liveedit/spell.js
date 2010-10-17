@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_SPELL || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("spell", function(){
     this.name        = "spell";
@@ -288,4 +288,4 @@ apf.LiveEdit.plugin("spell", function(){
     }();
 });
 
-// #endif
+});

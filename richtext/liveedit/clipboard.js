@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_CLIPBOARD || __INC_ALL
+define([],function(){
 
-apf.LiveEdit.pasteDialog = function(sName) {
+var LiveEditpasteDialog = function(sName) {
     this.name        = sName;
     this.icon        = sName == "pasteworddialog" ? "pasteword" : sName;
     this.type        = apf.TOOLBARITEM;
@@ -322,4 +322,4 @@ apf.LiveEdit.plugin("pasteword", function() {
     };
 });
 
-// #endif
+});

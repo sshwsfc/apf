@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_BLOCKQUOTE || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("blockquote", function(){
     this.name        = "blockquote";
@@ -42,4 +42,4 @@ apf.LiveEdit.plugin("blockquote", function(){
     };
 });
 
-// #endif
+});

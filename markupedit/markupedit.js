@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLMARKUPEDIT || __INC_ALL
+define([],function(){
 
 var HAS_CHILD = 1 << 1,
     IS_CLOSED = 1 << 2,
@@ -49,7 +49,7 @@ var HAS_CHILD = 1 << 1,
  * @binding css      Determines a css class for a node.
  * @binding empty    Determines the empty message of a node.
  */
-apf.markupedit = function(struct, tagName){
+var Markupedit = function(struct, tagName){
     this.$init(tagName || "markupedit", this.NODE_VISIBLE, struct);
 };
 
@@ -1463,4 +1463,4 @@ apf.markupedit = function(struct, tagName){
 }).call(apf.markupedit.prototype = new apf.MultiSelect());
 
 apf.aml.setElement("markupedit", apf.markupedit);
-// #endif
+});

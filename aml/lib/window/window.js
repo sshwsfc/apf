@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLMODALWINDOW || __INC_ALL
+define([],function(){
 
 /**
  * @private
@@ -754,4 +754,4 @@ apf.AmlWindow.prototype = apf.toolwindow.prototype = apf.modalwindow.prototype;
 apf.aml.setElement("toolwindow",  apf.toolwindow);
 apf.aml.setElement("modalwindow", apf.modalwindow);
 apf.aml.setElement("window",      apf.modalwindow);
-// #endif
+});

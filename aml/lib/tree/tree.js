@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLTREE || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying data in a list where each item in the list can contain
@@ -117,7 +117,7 @@
  *  </a:tree>
  * </code>
  */
-apf.tree = function(struct, tagName){
+var Tree = function(struct, tagName){
     this.$init(tagName || "tree", this.NODE_VISIBLE, struct);
 };
 
@@ -421,4 +421,4 @@ apf.tree = function(struct, tagName){
 apf.aml.setElement("tree", apf.tree);
 
 apf.aml.setElement("checked", apf.BindingRule);
-// #endif
+});

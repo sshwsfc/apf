@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __WITH_XMLDIFF
+define([],function(){
 
-apf.xmlDiff = function (doc1, doc2){
+var XmlDiff = function (doc1, doc2){
     /*var domParser = new apf.DOMParser();
     domParser.allowAnyElement = true;
     domParser.preserveWhiteSpace = true;
@@ -920,4 +920,4 @@ apf.xmlDiff = function (doc1, doc2){
     //#endif
 }
 
-//#endif
+});

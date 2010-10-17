@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_O3
+define([],function(){
 /**
  * Helper class that aids in creating and controlling Ajax O3 instances
  *
@@ -315,4 +315,4 @@ global.o3 = {
 
 })(this);
 
-// #endif
+});

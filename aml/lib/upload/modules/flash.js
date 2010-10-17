@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLUPLOAD || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a Flash uploader
@@ -234,4 +234,4 @@ apf.upload.flash.isSupported = function() {
         apf.flash.remote(this.$player, "fileRemove", file.id);
     };
 }).call(apf.upload.flash.prototype = new apf.Class());
-// #endif
+});

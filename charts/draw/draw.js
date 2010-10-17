@@ -18,12 +18,12 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __WITH_DRAW
+define([],function(){
 
 /**
  * @private
  */
-apf.draw = {
+var Draw = {
     
     initDriver : function(){
         // initialize by copying either canvas of VML into my object.
@@ -1631,4 +1631,4 @@ this.moveTo("_x6=__cos(_y8=((_x9="+rs+")+(_y9="+rw+"))*0.5)*(_x8="+ds+")*(_x7="+
 
     colors : apf.color.colors
 };
-//#endif
+});

@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLUPLOAD || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a HTML5 uploader
@@ -251,4 +251,4 @@ apf.upload.html5.isSupported = function() {
             xhr.send(nativeFile);
     };
 }).call(apf.upload.html5.prototype = new apf.Class());
-// #endif
+});

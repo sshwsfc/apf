@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_ZERO_TIMEOUT
+define([],function(){
 
 // Only add setZeroTimeout to the window object, and hide everything
 // else in a closure.
@@ -103,4 +103,4 @@ apf.queue = {
     }
 };
 
-// #endif
+});

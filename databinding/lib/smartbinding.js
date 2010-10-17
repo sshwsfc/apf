@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @term smartbinding Smartbinding is a type of bidirectional databinding where 
@@ -652,7 +652,7 @@
  *
  * @default_private
  */
-apf.smartbinding = function(struct, tagName){
+var Smartbinding = function(struct, tagName){
     this.$init(tagName || "smartbinding", this.NODE_HIDDEN, struct);
 
     this.$bindNodes = {};
@@ -855,4 +855,4 @@ apf.smartbinding = function(struct, tagName){
 }).call(apf.smartbinding.prototype = new apf.AmlElement());
 
 apf.aml.setElement("smartbinding", apf.smartbinding);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_CGI
+define([],function(){
 
 /**
  * Implementation of the Common Gateway Interface (CGI) as a module for the RPC
@@ -77,7 +77,7 @@
  *
  * @default_private
  */
-apf.cgi = function(){
+var Cgi = function(){
     this.supportMulticall = false;
     this.namedArguments   = true;
 
@@ -212,4 +212,4 @@ apf.cgi = function(){
     };
 };
 
-// #endif
+});

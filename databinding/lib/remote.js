@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_RDB
+define([],function(){
 
 /**
  * Element allowing data synchronization between multiple clients using the same
@@ -593,4 +593,4 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
 
 apf.aml.setElement("remote", apf.remote);
 
-// #endif
+});

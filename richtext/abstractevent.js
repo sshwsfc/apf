@@ -19,7 +19,7 @@
  *
  */
   
-// #ifdef __WITH_ABSTRACTEVENT
+define([],function(){
 
 /**
  * @constructor
@@ -130,4 +130,4 @@ apf.AbstractEvent.stop = function(event) {
     return (new apf.AbstractEvent(event)).stop();
 };
 
-// #endif
+});

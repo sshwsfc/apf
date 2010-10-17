@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_AMLCHARACTERDATA
+define([],function(){
 //@todo apf3.0 The functions seem to not set nodeValue...
 apf.AmlCharacterData = function(){
     this.data = "";
@@ -58,4 +58,4 @@ apf.AmlCharacterData = function(){
     this.substringData = function(nOffset, nCount){};
 }
 apf.AmlCharacterData.prototype = new apf.DOMNode();
-// #endif
+});

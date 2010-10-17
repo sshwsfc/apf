@@ -18,9 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-//#ifdef __WITH_DRAW
+define([],function(){
 //#ifdef __ENABLE_DRAW_CANVAS
-apf.draw.canvas = {
+var Drawcanvas = {
    
    //----------------------------------------------------------------------
     
@@ -496,4 +496,4 @@ apf.draw.canvas = {
         
 };
 //#endif
-//#endif
+});

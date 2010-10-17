@@ -1,4 +1,4 @@
-    //#ifdef __WITH_WINDOW_FOCUS
+    define([],function(){
 
     var timer, state = "", last = "";
     this.$focusfix = function(){
@@ -116,7 +116,7 @@
 /**
  * @private
  */
-apf.sanitizeTextbox = function(oTxt){
+var SanitizeTextbox = function(oTxt){
     if (!apf.hasFocusBug)
         return;
     
@@ -130,4 +130,4 @@ apf.sanitizeTextbox = function(oTxt){
             apf.window.$blurfix();
     };
 };
-// #endif
+});

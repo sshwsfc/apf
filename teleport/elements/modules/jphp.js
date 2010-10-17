@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_JPHP
+define([],function(){
 
 /**
  * Implementation of an RPC protocol which encodes the data in a serialized 
@@ -62,7 +62,7 @@
  *
  * @default_private
  */
-apf.jphp = function(){
+var Jphp = function(){
     this.supportMulticall = true;
     this.multicall        = false;
     this.mcallname        = "multicall";
@@ -180,4 +180,4 @@ apf.jphp = function(){
     };
 };
 
-// #endif
+});

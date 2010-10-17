@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLVIDEO || __INC_ALL
+define([],function(){
 
 /**
  * Element that is able to play a video file or remote stream
@@ -605,4 +605,4 @@ apf.video.TypeInterface = {
     }
 };
 
-// #endif
+});

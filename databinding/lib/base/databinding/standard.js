@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @constructor
@@ -182,4 +182,4 @@ apf.StandardBinding = function(){
 apf.StandardBinding.prototype = new apf.DataBinding();
 
 apf.Init.run("standardbinding");
-// #endif
+});

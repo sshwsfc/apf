@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_XMLRPC
+define([],function(){
 
 /**
  * Implementation of the XML-RPC protocol as a module for the RPC
@@ -60,7 +60,7 @@
  *
  * @default_private
  */
-apf.xmlrpc = function(){
+var Xmlrpc = function(){
     this.supportMulticall = true;
     this.multicall        = false;
     this.mcallname        = "system.multicall";
@@ -340,4 +340,4 @@ apf.xmlrpc = function(){
     };
 };
 
-// #endif
+});

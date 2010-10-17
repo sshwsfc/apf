@@ -21,11 +21,11 @@
 
 apf.__DATAACTION__ = 1 << 25;
 
-// #ifdef __WITH_DATAACTION
+define([],function(){
 /**
  * Baseclass adding data action features to this element. 
  */
-apf.DataAction = function(){
+var DataAction = function(){
     this.$regbase = this.$regbase | apf.__DATAACTION__;
 
     /**** Public Methods ****/
@@ -646,4 +646,4 @@ apf.DataAction = function(){
 
 apf.config.$inheritProperties["create-model"] = 1;
 
-//#endif
+});

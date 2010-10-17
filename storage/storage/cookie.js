@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_MEMORY
+define([],function(){
 
 /**
  * Storage module using browsers cookies objects to store the data. 
@@ -28,7 +28,7 @@
  * @default_private
  * @todo only the put/get/remove methods are implemented correctly
  */
-apf.storage.modules.cookie = {
+var Storagemodulescookie = {
     initialized: true,
     
     isAvailable: function(){
@@ -301,4 +301,4 @@ apf.storage.modules.cookie = {
             + " does not support a storage settings user-interface");
     }
 };
-// #endif
+});

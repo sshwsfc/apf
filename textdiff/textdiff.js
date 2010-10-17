@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_TEXTDIFF
+define([],function(){
 
 /**
  * @fileoverview Computes the difference between two texts to create a patch.
@@ -31,7 +31,7 @@
  * Class containing the diff, match and patch methods.
  * @constructor
  */
-apf.diff_match_patch = new (function() {
+var Diff_match_patch = new (function() {
 
     // Defaults.
     // Redefine these in your program to override the defaults.
@@ -2098,4 +2098,4 @@ apf.diff_match_patch = new (function() {
     };
 })();
 
-// #endif
+});

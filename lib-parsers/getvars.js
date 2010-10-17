@@ -1,4 +1,4 @@
-        //#ifdef __PARSE_GET_VARS
+        define([],function(){
         for (var i, l2, a, m, n, o, v, p = location.href.split(/[?&]/), l = p.length, k = 1; k < l; k++) {
             if (m = p[k].match(/(.*?)(\..*?|\[.*?\])?=([^#]*)/)) {
                 n = decodeURI(m[1]).toLowerCase(), o = this._GET;
@@ -16,4 +16,4 @@
                 o[n != "-1" ? n : o.length] = unescape(decodeURI(m[3]));
             }
         }
-        //#endif
+        });

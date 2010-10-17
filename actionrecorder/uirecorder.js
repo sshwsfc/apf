@@ -1,4 +1,4 @@
-// #ifdef __WITH_UIRECORDER
+define([],function(){
 /**
  * Provides a way to record user actions, store them and play them back.
  * @experimental
@@ -1768,4 +1768,4 @@ TEMPORARILY DISABLED
             });
         }
     }
-    //#endif
+    });

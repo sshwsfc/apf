@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_PRINTING || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("print", function(){
     this.name        = "print";
@@ -63,4 +63,4 @@ apf.LiveEdit.plugin("preview", function(){
     };
 });
 
-// #endif
+});

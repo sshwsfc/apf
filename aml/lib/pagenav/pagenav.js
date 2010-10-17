@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLpagenav || __INC_ALL
+define([],function(){
 
 /**
  * This elements displays buttons which can be used to navigate between some
@@ -44,7 +44,7 @@
  * @binding total        Determines the number of pages.
  * 
  */
-apf.pagenav = function(struct, tagName){
+var Pagenav = function(struct, tagName){
     this.$init(tagName || "pagenav", this.NODE_VISIBLE, struct);
 };
 
@@ -243,4 +243,4 @@ apf.pagenav = function(struct, tagName){
 apf.aml.setElement("pagenav",   apf.pagenav);
 apf.aml.setElement("total",   apf.BindingRule);
 apf.aml.setElement("current", apf.BindingRule);
-// #endif
+});

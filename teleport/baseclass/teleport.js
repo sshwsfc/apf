@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLTELEPORT
+define([],function(){
 
 /**
  * Element which specifies the ways the application can communicate to remote
@@ -256,6 +256,5 @@ apf.teleportLog = function(extra){
 }
 //#endif
 
-// #endif
-
+});
 apf.Init.run("teleport");

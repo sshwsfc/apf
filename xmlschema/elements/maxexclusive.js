@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_XSDMAXEXCLUSIVE
+define([],function(){
 /**
  * Specifies the upper bounds for numeric values (the value must be less than this value)
  */
-apf.XsdMaxExclusive = function(struct, tagName){
+var XsdMaxExclusive = function(struct, tagName){
     this.$init(tagName || "maxexclusive", this.NODE_HIDDEN, struct);
 };
 
@@ -38,4 +38,4 @@ apf.XsdMaxExclusive = function(struct, tagName){
 }).call(apf.XsdMaxExclusive.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("maxexclusive", apf.XsdMaxExclusive);
-//#endif
+});

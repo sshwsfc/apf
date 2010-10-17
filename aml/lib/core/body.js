@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_CONFIG || __INC_ALL
+define([],function(){
 
 /**
  * @todo description
@@ -57,4 +57,4 @@ apf.aml.setElement("body", apf.body);
 }).call(apf.AmlConfig.prototype = new apf.Presentation());
 #endif*/
 apf.aml.setElement("config", apf.AmlConfig);
-// #endif
+});

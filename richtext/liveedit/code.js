@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_CODE || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("code", function() {
     this.name        = "code";
@@ -333,4 +333,4 @@ apf.LiveEdit.plugin("code", function() {
     };
 });
 
-// #endif
+});

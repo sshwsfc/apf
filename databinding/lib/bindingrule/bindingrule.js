@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -54,7 +54,7 @@
  *
  * @default_private
  */
-apf.BindingRule = function(struct, tagName){
+var BindingRule = function(struct, tagName){
     this.$init(tagName || true, this.NODE_HIDDEN, struct);
 };
 
@@ -247,5 +247,4 @@ apf.aml.setElement("src",        apf.BindingRule);
 apf.aml.setElement("collapsed",  apf.BindingRule);
 apf.aml.setElement("expanded",  apf.BindingRule);
 apf.aml.setElement("empty",      apf.BindingRule);
-// #endif
-
+});

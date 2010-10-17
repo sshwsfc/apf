@@ -19,7 +19,7 @@
  *
  */
  
-// #ifdef __AMLCHART || __INC_ALL
+define([],function(){
 
 apf.chart_draw = {
     // #ifdef __ENABLE_CHART_AXIS2D
@@ -1266,4 +1266,4 @@ $:0};
 apf.chart_draw.height2D = apf.chart_draw.line2D;
 apf.chart_draw._height2D = apf.chart_draw._line2D;
 
-//#endif
+});

@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __WITH_LIVEMARKUP || __INC_ALL
+define([],function(){
 
 /**
  * Live Markup processor for a processing instruction
@@ -28,7 +28,7 @@
  * @since       0.9
  */
 
-apf.LiveMarkupPi = function(){
+var LiveMarkupPi = function(){
     //this.$data;
     this.$init();
 };
@@ -125,4 +125,4 @@ apf.aml.setProcessingInstruction("lm", apf.LiveMarkupPi);
 apf.aml.setProcessingInstruction("lm-debug", apf.LiveMarkupPi);
 apf.aml.setProcessingInstruction("livemarkup", apf.LiveMarkupPi);
 
-// #endif
+});

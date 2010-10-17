@@ -21,7 +21,7 @@
 
 apf.__DRAGDROP__ = 1 << 5;
 
-// #ifdef __WITH_DRAGDROP
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have drag&drop 
@@ -1456,4 +1456,4 @@ apf.StandardDragDrop = function() {
 
 apf.DragServer.Init();
 
-// #endif
+});

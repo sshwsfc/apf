@@ -1,4 +1,4 @@
-//#ifdef __ENABLE_TEXTBOX_AUTOCOMPLETE2
+define([],function(){
 
 this.$btndown = function(oHtml, e){
     this.$setStyleClass(oHtml, "down");
@@ -374,4 +374,4 @@ this.addEventListener("popuphide", function(){
         });
     };
 
-//#endif
+});

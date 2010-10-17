@@ -19,12 +19,12 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @todo docs
  */
-apf.BindingLoadRule = function(struct, tagName){
+var BindingLoadRule = function(struct, tagName){
     this.$init(tagName, this.NODE_HIDDEN, struct);
 };
 
@@ -41,5 +41,4 @@ apf.BindingLoadRule = function(struct, tagName){
 
 apf.aml.setElement("load", apf.BindingLoadRule);
 apf.aml.setElement("insert", apf.BindingLoadRule);
-// #endif
-
+});

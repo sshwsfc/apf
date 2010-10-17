@@ -21,8 +21,8 @@
 
 apf.__CHILDVALUE__ = 1 << 27;
 
-//#ifdef __WITH_CHILDVALUE
-apf.ChildValue = function(){
+define([],function(){
+var ChildValue = function(){
     if (!this.$childProperty)
         this.$childProperty = "value";
     
@@ -91,4 +91,4 @@ apf.ChildValue = function(){
             this.$propHandlers[this.$childProperty].call(this, "");
     });
 };
-// #endif
+});

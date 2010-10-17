@@ -19,12 +19,12 @@
  *
  */
 
-// #ifdef __WITH_HTML_CLEANER
+define([],function(){
 /**
  * The parser of the HyperText Markup Language.
  * @private
  */
-apf.htmlCleaner = (function() {
+var HtmlCleaner = (function() {
     var prepareRE    = null, exportRE = null,
         noMarginTags = {"table": 1, "TABLE": 1},
         selfClosing  = {"br": 1, "img": 1, "input": 1, "hr": 1};
@@ -362,4 +362,4 @@ apf.htmlCleaner = (function() {
     };
 })();
 
-// #endif
+});

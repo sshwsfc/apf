@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_QUEUE
+define([],function(){
 
 /**
  * Object handling queuing of actions that can only be executed whilst online.
@@ -31,7 +31,7 @@
  *
  * @default_private
  */
-apf.offline.queue = {
+var Offlinequeue = {
     enabled : false,
     stack   : [],
     
@@ -195,4 +195,4 @@ apf.offline.queue = {
     }
 };
 
-// #endif
+});

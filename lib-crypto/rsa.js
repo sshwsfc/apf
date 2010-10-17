@@ -14,9 +14,9 @@
  * @author Dave Shapiro <dave AT ohdave DOT com>
  */
 
-// #ifdef __WITH_RSA
+define([],function(){
 
-apf.crypto.RSA = (function() {
+var CryptoRSA = (function() {
     function RSAKeyPair(encryptionExponent, decryptionExponent, modulus) {
         this.e = apf.crypto.BigInt.fromHex(encryptionExponent);
         this.d = apf.crypto.BigInt.fromHex(decryptionExponent);
@@ -140,5 +140,4 @@ apf.crypto.RSA = (function() {
     };
 })();
 
-//#endif
-
+});

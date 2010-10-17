@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_HISTORY
+define([],function(){
 
 /**
  * Implementation of hash change listener. The 'hash' is the part of the
@@ -65,7 +65,7 @@
  *
  * @default_private
  */
-apf.history = {
+var History = {
     inited: false,
     page  : null,
     past  : [],
@@ -272,4 +272,4 @@ apf.history = {
     }
 };
 
-// #endif
+});

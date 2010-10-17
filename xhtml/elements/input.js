@@ -19,8 +19,8 @@
  *
  */
 
-//#ifdef __PARSER_XHTML
-apf.XhtmlInputElement = function(struct, tagName){
+define([],function(){
+var XhtmlInputElement = function(struct, tagName){
     this.$init(tagName || "input", this.NODE_VISIBLE, struct);
 };
 
@@ -55,4 +55,4 @@ apf.XhtmlInputElement = function(struct, tagName){
 }).call(apf.XhtmlInputElement.prototype = new apf.AmlElement());
 
 apf.xhtml.setElement("input", apf.XhtmlInputElement);
-//#endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_XMPP_ROSTER
+define([],function(){
 
 /**
  * Element implementing a Roster service for the apf.xmpp object.
@@ -36,7 +36,7 @@
  * @type {Object}
  * @constructor
  */
-apf.xmpp_roster = function(model, modelContent, res) {
+var Xmpp_roster = function(model, modelContent, res) {
     this.resource = res;
     this.username = this.host = this.fullJID = "";
 
@@ -413,4 +413,4 @@ apf.xmpp_roster = function(model, modelContent, res) {
     };
 };
 
-// #endif
+});

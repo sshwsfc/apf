@@ -19,9 +19,9 @@
  *
  */
 
-//#ifdef __WITH_COLORS
+define([],function(){
 
-apf.color = {
+var Color = {
 /*
     colors: {
         aliceblue:"#f0f8ff",antiquewhite:"#faebd7",aqua:"#00ffff",
@@ -228,4 +228,4 @@ apf.color = {
     }
 };
 
-//#endif
+});

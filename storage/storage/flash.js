@@ -19,14 +19,14 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_FLASH
+define([],function(){
 
 // summary:
 //        Storage provider that uses features in Flash to achieve permanent
 //        storage
 // description:
 
-apf.storage.modules.flash = {
+var Storagemodulesflash = {
     initialized   : false,
     asyncInit     : true,
 
@@ -449,4 +449,4 @@ apf.storage.modules.flash = {
         return [];
     }
 };
-// #endif
+});

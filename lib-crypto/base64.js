@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_BASE64
+define([],function(){
 
 apf.crypto.Base64 = (function() {
     
@@ -206,4 +206,4 @@ apf.crypto.UTF8 = {
 
 };
 
-//#endif
+});

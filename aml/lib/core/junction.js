@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCOMMENT || __INC_ALL
+define([],function(){
 
 /**
  * A symbolic link to an AML element. The visibility of this element determines
@@ -31,7 +31,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.junction = function(){
+var Junction = function(){
     this.$init("junction", this.NODE_HIDDEN);
 };
 
@@ -74,4 +74,4 @@ apf.junction = function(){
 
 apf.aml.setElement("junction", apf.junction);
 
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_PERSIST
+define([],function(){
 
 /**
  * Element implementing the persist messaging protocol.
@@ -69,7 +69,7 @@
  * @default_private
  */
 
-apf.persist = function(struct, tagName){
+var Persist = function(struct, tagName){
     this.$init(tagName || "persist", this.NODE_HIDDEN, struct);
     
     var _self = this;
@@ -465,4 +465,4 @@ apf.persist = function(struct, tagName){
 
 apf.aml.setElement("persist", apf.persist);
 
-// #endif
+});

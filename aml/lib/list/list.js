@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLLIST || __AMLSELECT || __AMLSELECT1 || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a skinnable list of options which can be selected.
@@ -410,4 +410,4 @@ apf.aml.setElement("thumbnail", apf.thumbnail);
 apf.aml.setElement("select",    apf.select);
 apf.aml.setElement("select1",   apf.select1);
 apf.aml.setElement("list",      apf.list);
-// #endif
+});

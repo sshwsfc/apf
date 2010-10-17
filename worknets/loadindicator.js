@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLLOADINDICATOR || __INC_ALL
+define([],function(){
 
 /**
  * Element shows a nice animated loader
@@ -49,7 +49,7 @@
  * @since       2.0
  *
  */
-apf.loadindicator = function(struct, tagName){
+var Loadindicator = function(struct, tagName){
     this.$init(tagName || "loadindicator", this.NODE_VISIBLE, struct);
 };
 
@@ -159,4 +159,4 @@ apf.loadindicator = function(struct, tagName){
 }).call(apf.loadindicator.prototype = new apf.Presentation());
 
 apf.aml.setElement("loadindicator", apf.loadindicator);
-// #endif
+});

@@ -19,13 +19,13 @@
  *
  */
 
-// #ifdef __WITH_ALIGNMENT
+define([],function(){
 
 /**
  * @constructor
  * @private
  */
-apf.splitter = function(struct, tagName){
+var Splitter = function(struct, tagName){
     this.$init(tagName || "splitter", this.NODE_VISIBLE, struct);
 };
 
@@ -355,4 +355,4 @@ apf.splitter = function(struct, tagName){
 }).call(apf.splitter.prototype = new apf.Presentation());
 
 apf.aml.setElement("splitter", apf.splitter);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __PARSER_XHTML
+define([],function(){
 
 /**
  * @todo description
@@ -74,4 +74,4 @@ apf.XhtmlHtmlElement = function(struct, tagName){
 apf.XhtmlHtmlElement.prototype = new apf.XhtmlElement();
 
 apf.xhtml.setElement("html", apf.XhtmlHtmlElement);
-// #endif
+});

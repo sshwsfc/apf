@@ -1,5 +1,5 @@
 
-//#endif
+define([],function(){
 
 //#ifdef __WITH_REGISTRY
 /**
@@ -87,4 +87,4 @@ apf.registry.get = function(key, namespace){
 
 apf.Init.run("nameserver");
 
-//#endif
+});

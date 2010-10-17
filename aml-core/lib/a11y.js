@@ -21,7 +21,7 @@
 
 apf.__ALIGNMENT__ = 1 << 29;
 
-// #ifdef __WITH_A11Y
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have
@@ -138,4 +138,4 @@ apf.A11y.ATTR_RELATIONS = {
     "label":"1", "labelledby":{}, "owns":{}, "posinset":1, "setsize":1
 };
 
-// #endif
+});

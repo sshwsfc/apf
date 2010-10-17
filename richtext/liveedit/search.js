@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_SEARCH || __INC_ALL
+define([],function(){
 
-apf.LiveEdit.searchPlugin = function(sName) {
+var LiveEditsearchPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
     this.type        = apf.TOOLBARITEM;
@@ -284,4 +284,4 @@ apf.LiveEdit.searchPlugin = function(sName) {
 apf.LiveEdit.plugin("search",  apf.LiveEdit.searchPlugin);
 apf.LiveEdit.plugin("replace", apf.LiveEdit.searchPlugin);
 
-// #endif
+});

@@ -21,7 +21,7 @@
 
 apf.__CACHE__ = 1 << 2;
 
-// #ifdef __WITH_CACHE
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have caching features. It takes care of
@@ -35,7 +35,7 @@ apf.__CACHE__ = 1 << 2;
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.Cache = function(){
+var Cache = function(){
     /* ********************************************************************
                                         PROPERTIES
     *********************************************************************/
@@ -355,4 +355,4 @@ apf.GuiElement.propHandlers["caching"] = function(value) {
         this.implement(apf.Cache);
 };
 
-// #endif
+});

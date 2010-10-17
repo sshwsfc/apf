@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_AUTH
+define([],function(){
 
 /**
  * @define auth Centralized authentication handling. Not being logged in, after being
@@ -153,7 +153,7 @@
  * @default_private
  */
 
-apf.auth = function(struct, tagName){
+var Auth = function(struct, tagName){
     this.$init(tagName || "auth", this.NODE_HIDDEN, struct);
 
     this.$services    = {};
@@ -618,4 +618,4 @@ apf.aml.setElement("auth", apf.auth);
     };
 
 }).call(apf.auth.prototype = new apf.AmlElement());
-//#endif
+});

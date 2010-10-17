@@ -1,8 +1,8 @@
-// #ifdef __PARSER_XPATH || __SUPPORT_WEBKIT || __SUPPORT_IE && __WITH_PRESENTATION
+define([],function(){
 /**
  * @private
  */
-apf.runXpath = function(){
+var RunXpath = function(){
 
 /**
  *    Workaround for the lack of having an XPath parser on safari.
@@ -621,4 +621,4 @@ apf.CodeCompilation = function(code){
 };
 
 }
-//#endif
+});

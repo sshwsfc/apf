@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_DIRECTIONS || __INC_ALL
+define([],function(){
 
-apf.LiveEdit.directionPlugin = function(sName) {
+var LiveEditdirectionPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
     this.type        = apf.TOOLBARITEM;
@@ -42,4 +42,4 @@ apf.LiveEdit.directionPlugin = function(sName) {
 apf.LiveEdit.plugin("ltr", apf.LiveEdit.directionPlugin);
 apf.LiveEdit.plugin("rtl", apf.LiveEdit.directionPlugin);
 
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_HELP || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("help", function(){
     this.name        = "help";
@@ -40,4 +40,4 @@ apf.LiveEdit.plugin("help", function(){
     };
 });
 
-// #endif
+});

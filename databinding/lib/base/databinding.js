@@ -21,7 +21,7 @@
 
 apf.__DATABINDING__ = 1 << 1;
 
-// #ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * Baseclass adding data binding features to this element. Databinding takes
@@ -1560,4 +1560,4 @@ apf.config.$inheritProperties["noloading"]       = 1;
 
 apf.Init.run("databinding");
 
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLSTYLE || __INC_ALL
+define([],function(){
 
 /**
  * @todo description
@@ -28,7 +28,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.style = function(struct, tagName){
+var Style = function(struct, tagName){
     this.$init(tagName || "style", this.NODE_HIDDEN, struct);
 };
 
@@ -54,4 +54,4 @@ apf.style = function(struct, tagName){
 apf.aml.setElement("style", apf.style);
 apf.xhtml.setElement("style",  apf.style);
 
-// #endif
+});

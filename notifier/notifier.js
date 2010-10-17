@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLNOTIFIER || __INC_ALL
+define([],function(){
 /**
  * Notification element, which shows popups when events occur. Similar
  * to growl on the OSX platform.
@@ -100,7 +100,7 @@
  * 
  * @allowchild event
  */
-apf.notifier = function(struct, tagName){
+var Notifier = function(struct, tagName){
     this.$init(tagName || "notifier", this.NODE_VISIBLE, struct);
 };
 
@@ -407,4 +407,4 @@ apf.notifier = function(struct, tagName){
 
 apf.aml.setElement("notifier", apf.notifier);
 apf.aml.setElement("event", apf.event);
-// #endif
+});

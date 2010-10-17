@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __WITH_AMLNAMEDNODEMAP
+define([],function(){
 //@todo apf3.0
-apf.AmlNamedNodeMap = function(host){
+var AmlNamedNodeMap = function(host){
     this.$host = host;
 };
 
@@ -105,4 +105,4 @@ apf.AmlNamedNodeMap = function(host){
         return x.join(glue);
     }
 }).call(apf.AmlNamedNodeMap.prototype = {}); //apf.isIE < 8 ? {} : []
-// #endif
+});

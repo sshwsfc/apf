@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLTAB || __AMLPAGES || __AMLSWITCH || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a page and several buttons allowing a
@@ -92,4 +92,4 @@ apf.pages.prototype     = apf.tab.prototype;
 apf.aml.setElement("switch", apf["switch"]);
 apf.aml.setElement("pages",  apf.pages);
 apf.aml.setElement("tab",    apf.tab);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_HTML5
+define([],function(){
 
 /**
  *        Storage provider that uses WHAT Working Group features in Firefox 2 
@@ -27,7 +27,7 @@
  *        The WHAT WG storage API is documented at 
  *        http://www.whatwg.org/specs/web-apps/current-work/#scs-client-side
  */
-apf.storage.modules.html5 = {
+var Storagemoduleshtml5 = {
     domain     : (location.hostname == "localhost")
                     ? "localhost.localdomain"
                     : location.hostname,
@@ -229,4 +229,4 @@ apf.storage.modules.html5 = {
             : "__" + namespace + "_" + key;
     }
 };
-// #endif
+});

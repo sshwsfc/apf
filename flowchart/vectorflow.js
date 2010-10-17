@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLVECTORFLOW 
+define([],function(){
 // || __INC_ALL
 
 /**
@@ -36,7 +36,7 @@
  * @inherits apf.MultiSelect
  * @inherits apf.DataAction
  */
-apf.vectorflow = function(struct, tagName){
+var Vectorflow = function(struct, tagName){
     this.$init(tagName || "vectorflow", this.NODE_VISIBLE, struct);
 };
 
@@ -1463,4 +1463,4 @@ apf.vectorflow = function(struct, tagName){
 #endif*/
 
 apf.aml.setElement("vectorflow", apf.vectorflow);
-// #endif
+});

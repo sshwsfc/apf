@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCOLLECTION || __INC_ALL
+define([],function(){
 
 /**
  * Virtual element acting as a parent for a set of child elements 
@@ -68,4 +68,4 @@ apf.docklet.prototype = apf.collection.prototype;
 apf.aml.setElement("collection", apf.collection);
 apf.aml.setElement("docklet", apf.docklet);
 
-// #endif
+});

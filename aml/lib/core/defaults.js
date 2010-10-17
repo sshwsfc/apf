@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLSERVICES || __INC_ALL
+define([],function(){
 
 /**
  *
@@ -27,7 +27,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.defaults = function(struct, tagName){
+var Defaults = function(struct, tagName){
     this.$init(tagName || "services", this.NODE_HIDDEN, struct);
 };
 
@@ -51,4 +51,4 @@ apf.defaults = function(struct, tagName){
 
 apf.aml.setElement("defaults", apf.defaults);
 
-// #endif
+});

@@ -1,4 +1,4 @@
-//#ifdef __WITH_MOUSESCROLL
+define([],function(){
     var wheel = this.$mousewheel = function wheel(e) {
         if (!e)
             e = event;
@@ -72,4 +72,4 @@
 
     window.onmousewheel   =
     document.onmousewheel = wheel; //@todo 2 keer events??
-    //#endif
+    });

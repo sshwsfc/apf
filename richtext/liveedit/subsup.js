@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_SUBSUP || __INC_ALL
+define([],function(){
 
-apf.LiveEdit.subSupCommand = function(sName) {
+var LiveEditsubSupCommand = function(sName) {
     this.name        = sName;
     this.icon        = sName;
     this.type        = apf.TOOLBARITEM;
@@ -48,4 +48,4 @@ apf.LiveEdit.subSupCommand = function(sName) {
 apf.LiveEdit.plugin("sub", apf.LiveEdit.subSupCommand);
 apf.LiveEdit.plugin("sup", apf.LiveEdit.subSupCommand);
 
-// #endif
+});

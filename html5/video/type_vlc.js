@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_VIDEO_VLC && (__AMLVIDEO || __INC_ALL)
+define([],function(){
 
 apf.video.TypeVlcCompat = (function() {
     var iVersion = 0;
@@ -387,4 +387,4 @@ apf.video.TypeVlc.prototype = {
         delete this.htmlElement;
     }
 };
-// #endif
+});

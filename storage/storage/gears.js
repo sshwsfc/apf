@@ -19,12 +19,12 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_GEARS
+define([],function(){
 
 /**
  *  Storage provider that uses Google Gears to store data.
  */
-apf.storage.modules.gears = 
+var Storagemodulesgears = 
 apf.storage.modules["gears.sql"] = {
     //#ifdef __WITH_NAMESERVER
     // instance methods and properties
@@ -371,4 +371,4 @@ apf.storage.modules["gears.sql"] = {
     }
     //#endif
 };
-// #endif
+});

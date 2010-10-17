@@ -19,8 +19,8 @@
  *
  */
 
-//#ifdef __WITH_CONTENTEDITABLE
-apf.ContentEditable.commands = (function(){
+define([],function(){
+var ContentEditablecommands = (function(){
     var STATE = 1;
     var VALUE = 2;
     var ENABL = 3;
@@ -884,4 +884,4 @@ apf.ContentEditable.commands = (function(){
     );
 })();
 
-//#endif
+});

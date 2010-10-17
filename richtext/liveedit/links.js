@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_LINKS || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("link", function(){
     this.name        = "link";
@@ -209,4 +209,4 @@ apf.LiveEdit.plugin("unlink", function(){
     };
 });
 
-// #endif
+});

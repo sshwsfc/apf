@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_SORTING
+define([],function(){
 
 /**
  * Object handling sorting in a similar way as xslt.
@@ -33,7 +33,7 @@
  *
  * @private
  */
-apf.Sort = function(xmlNode){
+var Sort = function(xmlNode){
     var settings = {};
     //order, xpath, type, method, getNodes, dateFormat, dateReplace, sort_dateFmtStr, getValue;
     
@@ -230,4 +230,4 @@ apf.Sort = function(xmlNode){
         this.parseXml(xmlNode);
 };
 
-//#endif
+});

@@ -21,7 +21,7 @@
 
 apf.__RENAME__ = 1 << 10;
 
-// #ifdef __WITH_RENAME
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have the rename features. Rename is triggered by
@@ -436,4 +436,4 @@ apf.Rename.initEditableArea = function(){
 }
 
 
-// #endif
+});

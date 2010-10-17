@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_AMLDOCUMENTFRAGMENT
+define([],function(){
 apf.DOMDocumentFragment = function(isPrototype){
     this.$init(isPrototype);
 };
@@ -28,4 +28,4 @@ apf.DOMDocumentFragment.prototype = new apf.DOMNode();
 apf.DOMDocumentFragment.prototype.nodeName = "#document-fragment";
 apf.DOMDocumentFragment.prototype.nodeType = 
     apf.DOMDocumentFragment.prototype.NODE_DOCUMENT_FRAGMENT;
-// #endif
+});

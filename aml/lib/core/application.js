@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLAPPLICATION || __INC_ALL
+define([],function(){
 
 /**
  * @todo description
@@ -48,4 +48,4 @@ apf.application = function(){
 };
 apf.application.prototype = new apf.AmlElement();
 apf.aml.setElement("application", apf.application);
-// #endif
+});

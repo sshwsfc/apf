@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLGALLERY || __INC_ALL
+define([],function(){
 // #define __WITH_PRESENTATION 1
 
 /**
@@ -34,7 +34,7 @@
  * @inherits apf.Presentation
  */
 
-apf.gallery = function(struct, tagName){
+var Gallery = function(struct, tagName){
     this.$init(tagName || "gallery", this.NODE_VISIBLE, struct);
     
     this.imageheight   = "auto";
@@ -797,4 +797,4 @@ apf.aml.setElement("gallery", apf.gallery);
 
 apf.aml.setElement("url", apf.BindingRule);
 apf.aml.setElement("mediatype", apf.BindingRule);
-//#endif
+});

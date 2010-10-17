@@ -19,14 +19,14 @@
  *
  */
 
-// #ifdef __WITH_SELECTION || __INC_ALL
+define([],function(){
 
 /**
  * @class apf.selection
  * @constructor
  * @author Mike de Boer  (mike AT javeline DOT com)
  */
-apf.selection = function(oWin, oDoc, editor) {
+var Selection = function(oWin, oDoc, editor) {
     /*
      * Initialize the apf.selection class.
      *
@@ -1001,4 +1001,4 @@ apf.selection = function(oWin, oDoc, editor) {
         delete _self;
     };
 };
-// #endif
+});

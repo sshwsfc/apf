@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLVIDEO || __INC_ALL
+define([],function(){
 
 apf.video.TypeQTCompat = (function(){
     var gTagAttrs           = null;
@@ -718,4 +718,4 @@ apf.video.TypeQT.prototype = {
         delete this.htmlElement;
     }
 };
-// #endif
+});

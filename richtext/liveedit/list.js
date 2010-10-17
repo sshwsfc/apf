@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_LIST || __INC_ALL
+define([],function(){
 
-apf.LiveEdit.listPlugin = function(sName) {
+var LiveEditlistPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
     this.type        = apf.TOOLBARITEM;
@@ -130,4 +130,4 @@ apf.LiveEdit.listPlugin = function(sName) {
 apf.LiveEdit.plugin("bullist", apf.LiveEdit.listPlugin);
 apf.LiveEdit.plugin("numlist", apf.LiveEdit.listPlugin);
 
-// #endif
+});

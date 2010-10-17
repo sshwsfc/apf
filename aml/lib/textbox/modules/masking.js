@@ -19,13 +19,13 @@
  *
  */
 
-// #ifdef __ENABLE_TEXTBOX_MASKING && (__AMLTEXTBOX || __INC_ALL)
+define([],function(){
 
 /**
  * @constructor
  * @private
  */
-apf.textbox.masking = function(){
+var Textboxmasking = function(){
     /*
         Special Masking Values:
         - PASSWORD
@@ -439,4 +439,4 @@ apf.textbox.masking = function(){
     }
 };
 
-// #endif
+});

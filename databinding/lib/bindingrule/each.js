@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @binding each Determines the list of elements for which each
@@ -124,7 +124,7 @@
  *   upper-first    Upper case characters are higher.
  *   lower-first    Lower case characters are higher.
  */
-apf.BindingEachRule = function(struct, tagName){
+var BindingEachRule = function(struct, tagName){
     this.$init(tagName, this.NODE_HIDDEN, struct);
     
     var _self = this;
@@ -304,5 +304,4 @@ apf.BindingEachRule = function(struct, tagName){
 }).call(apf.BindingEachRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("each", apf.BindingEachRule);
-// #endif
-
+});

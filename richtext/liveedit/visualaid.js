@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_VISUALAID || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("visualaid", function(){
     this.name        = "visualaid";
@@ -44,4 +44,4 @@ apf.LiveEdit.plugin("visualaid", function(){
     };
 });
 
-// #endif
+});

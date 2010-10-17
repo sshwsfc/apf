@@ -19,14 +19,14 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @attribute {String} target 
  * @attribute {String} action
  * @attribute {Boolean} copy
  */
-apf.BindingDndRule = function(struct, tagName){
+var BindingDndRule = function(struct, tagName){
     this.$init(tagName, this.NODE_HIDDEN, struct);
 };
 
@@ -110,5 +110,4 @@ apf.BindingDndRule = function(struct, tagName){
 
 apf.aml.setElement("drag", apf.BindingDndRule);
 apf.aml.setElement("drop", apf.BindingDndRule);
-// #endif
-
+});

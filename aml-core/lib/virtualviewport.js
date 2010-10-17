@@ -21,7 +21,7 @@
 
 apf.__VIRTUALVIEWPORT__ = 1 << 19;
 
-// #ifdef __WITH_VIRTUALVIEWPORT
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} can have a virtual viewport.
@@ -35,7 +35,7 @@ apf.__VIRTUALVIEWPORT__ = 1 << 19;
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.VirtualViewport = function(){
+var VirtualViewport = function(){
     this.$init(true);
 
     this.$regbase = this.$regbase | apf.__VIRTUALVIEWPORT__;
@@ -760,4 +760,4 @@ apf.VirtualViewport = function(){
     //Init
     this.caching = false; //for now, because the implications are unknown
 };
-// #endif
+});

@@ -20,7 +20,7 @@
  */
 apf.__LIVEEDIT__  = 1 << 23;
 
-// #ifdef __WITH_LIVEEDIT
+define([],function(){
 
 /**
  * Baseclass of an element whose content is editable. This is usually an
@@ -852,4 +852,4 @@ apf.LiveEdit.mousedown = function(oHtml, event){
     }
 }
 
-// #endif
+});

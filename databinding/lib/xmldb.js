@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_XMLDATABASE
+define([],function(){
 
 amlCore.addListener(window, "unload", function(){
     //#ifdef __WITH_XMLDATABASE
@@ -42,7 +42,7 @@ amlCore.addListener(window, "unload", function(){
  *
  * @default_private
  */
-apf.xmldb = new (function(){
+var Xmldb = new (function(){
     this.xmlDocTag    = "a_doc";
     this.xmlIdTag     = "a_id";
     this.xmlListenTag = "a_listen";
@@ -1088,4 +1088,4 @@ apf.xmldb = new (function(){
     };
 });
 
-//#endif
+});

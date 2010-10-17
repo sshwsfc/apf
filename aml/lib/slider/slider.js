@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */ 
-// #ifdef __AMLSLIDER || __AMLRANGE || __INC_ALL
+define([],function(){
 
 /**
  * Element allowing the user to select a value from a range of
@@ -931,4 +931,4 @@ apf.range.prototype = apf.slider.prototype;
 
 apf.aml.setElement("range",  apf.range);
 apf.aml.setElement("slider", apf.slider);
-// #endif
+});

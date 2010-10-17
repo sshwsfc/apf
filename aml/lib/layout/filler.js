@@ -18,9 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLFILLER || __INC_ALL
+define([],function(){
 
-apf.filler = function(struct, tagName){
+var Filler = function(struct, tagName){
     this.$init(tagName || "filler", this.NODE_VISIBLE, struct);
 };
 
@@ -35,4 +35,4 @@ apf.filler = function(struct, tagName){
 
 apf.aml.setElement("filler", apf.filler);
 
-//#endif
+});

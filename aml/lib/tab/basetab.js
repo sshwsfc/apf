@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLBASETAB || __INC_ALL
+define([],function(){
 
 /**
  * Baseclass of a paged element. 
@@ -49,7 +49,7 @@
  *   {Number}   nextId       the number of the the current page.
  *   {apf.page} nextPage     the the current page.   
  */
-apf.BaseTab = function(){
+var BaseTab = function(){
     this.$init(true);
 };
 
@@ -1551,4 +1551,4 @@ apf.BaseTab = function(){
     };
 }).call(apf.BaseTab.prototype = new apf.Presentation());
 
-// #endif
+});

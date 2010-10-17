@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_SCROLLBAR
+define([],function(){
 
 //@todo: fix the stuff with all the uppercase variable and function names...wazzup?
 
@@ -28,7 +28,7 @@
  * @constructor
  * @private
  */
-apf.scrollbar = function(struct, tagName){
+var Scrollbar = function(struct, tagName){
     this.$init(tagName || "scrollbar", this.NODE_VISIBLE, struct);
 };
 
@@ -736,4 +736,4 @@ apf.scrollbar = function(struct, tagName){
     }
 }).call(apf.scrollbar.prototype = new apf.Presentation());
 apf.aml.setElement("scrollbar", apf.scrollbar);
-//#endif
+});

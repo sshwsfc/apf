@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLHBOX || __AMLVBOX || __INC_ALL
+define([],function(){
 
 /**
  * @define vbox Container that stacks it's children vertically.
@@ -825,4 +825,4 @@ apf.hbox.prototype = apf.vbox.prototype;
 
 apf.aml.setElement("hbox", apf.hbox);
 apf.aml.setElement("vbox", apf.vbox);
-// #endif
+});

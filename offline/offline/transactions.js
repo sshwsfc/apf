@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_TRANSACTIONS
+define([],function(){
 
 /**
  * Object recording the state of actiontrackers. When an application goes 
@@ -275,4 +275,4 @@ apf.offline.canTransact = function(){
     
     return false;
 };
-// #endif
+});

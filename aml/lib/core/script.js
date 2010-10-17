@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLSCRIPT || __INC_ALL
+define([],function(){
 
 /**
  * element that loads javascript into the application
@@ -43,7 +43,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.script = function(){
+var Script = function(){
     this.$init("script", this.NODE_HIDDEN);
 };
 
@@ -108,4 +108,4 @@ apf.script = function(){
 
 apf.aml.setElement("script", apf.script);
 
-// #endif
+});

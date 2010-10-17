@@ -19,9 +19,9 @@
  *
  */
 
-//#ifdef __WITH_CONFIG
+define([],function(){
 
-apf.config = new apf.Class().$init();
+var Config = new apf.Class().$init();
 Object.extend(apf.config, {
     //Defaults
     disableRightClick  : false,
@@ -240,4 +240,4 @@ if (apf.history)
     });
 //#endif
 
-//#endif
+});

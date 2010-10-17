@@ -19,9 +19,9 @@
  *
  */
 
-//#ifdef __PARSER_XHTML
+define([],function(){
 
-apf.XhtmlElement = function(struct, tagName){
+var XhtmlElement = function(struct, tagName){
     this.$init(tagName || true, this.NODE_VISIBLE, struct);
     
     this.$xoe                = this.addEventListener;
@@ -151,4 +151,4 @@ apf.Init.addConditional(function(){
 }, null, ["interactive"]);
 
 apf.xhtml.setElement("@default", apf.XhtmlElement);
-//#endif
+});

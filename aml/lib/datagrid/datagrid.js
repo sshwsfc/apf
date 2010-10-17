@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLDATAGRID || __INC_ALL || __AMLPROPEDIT
+define([],function(){
 
 /**
  * Element providing a sortable, selectable grid containing scrollable 
@@ -1377,4 +1377,4 @@ apf.convertIframe = function(iframe, preventSelect){
     
     return doc;
 };
-//#endif
+});

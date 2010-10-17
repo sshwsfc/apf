@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_CONTENTEDITABLE
+define([],function(){
 
 /*
     Adds complex resize/drag behaviour for ContentEditable
@@ -1359,4 +1359,4 @@
     }
 })();
 
-//#endif
+});

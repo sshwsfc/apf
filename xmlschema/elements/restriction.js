@@ -19,8 +19,8 @@
  *
  */
 
-//#ifdef __WITH_XSDRESTRICTION
-apf.XsdRestriction = function(struct, tagName){
+define([],function(){
+var XsdRestriction = function(struct, tagName){
     this.$init(tagName || "restriction", this.NODE_HIDDEN, struct);
 };
 
@@ -41,4 +41,4 @@ apf.XsdRestriction = function(struct, tagName){
 }).call(apf.XsdRestriction.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("restriction", apf.XsdRestriction);
-//#endif
+});

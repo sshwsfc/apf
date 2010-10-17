@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_APPLICATION
+define([],function(){
 
 /**
  * Object handling the offline state of the application resources. This includes
@@ -48,7 +48,7 @@
  * @default_private
  * @todo a later version should also clear models and thus undo state
  */
-apf.offline.application = {
+var Offlineapplication = {
     enabled   : false,
     urls      : [],
     providers : ["deskrun", "gears"],
@@ -339,4 +339,4 @@ apf.offline.application = {
     }
 };
 
-// #endif
+});

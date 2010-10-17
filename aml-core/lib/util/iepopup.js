@@ -1,8 +1,8 @@
-    // #ifdef __WITH_POPUP_IE
+    define([],function(){
     /**
      * @private
      */
-    apf.popup2 = {
+    var Popup2 = {
         cache: {},
         setContent: function(cacheId, content, style, width, height){
             if (!this.popup)
@@ -104,4 +104,4 @@
             this.popup.document.body.onmouseover = null;
         }
     };
-    //#endif
+    });

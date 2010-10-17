@@ -19,11 +19,11 @@
  *
  */
 
-// #ifdef __SUPPORT_IPHONE
+define([],function(){
 /**
  * @private
  */
-apf.runIphone = function() {
+var RunIphone = function() {
     if (!apf.isIphone) return;
 
     $setTimeout(function() {
@@ -347,4 +347,4 @@ apf.runIphone = function() {
     };
 };
 
-// #endif
+});

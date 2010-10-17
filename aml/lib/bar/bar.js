@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLBAR || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a skinnable rectangle which can contain other 
@@ -232,4 +232,4 @@ apf.aml.setElement("toolbar", apf.toolbar);
 apf.aml.setElement("statusbar", apf.statusbar);
 apf.aml.setElement("divider", apf.divider);
 
-// #endif
+});

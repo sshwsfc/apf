@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __PARSER_LM
+define([],function(){
 
 /**
  * @term livemarkup
@@ -2450,4 +2450,4 @@ apf.lm_exec = new (function(){
     var LMENDCACHE;
     // #endif
 })();
-// #endif
+});

@@ -19,13 +19,13 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_GEARS
+define([],function(){
 
 /**
  * Offline provider that uses Google gears.
  * @default_private
  */
-apf.offline.application.gears = {
+var Offlineapplicationgears = {
     localServer : null,
     lastStore   : null,
     cancelID    : null,
@@ -142,4 +142,4 @@ apf.offline.application.gears = {
     // #endif
 };
 
-// #endif
+});

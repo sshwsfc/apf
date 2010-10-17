@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __PARSER_XHTML
+define([],function(){
 apf.XhtmlIgnoreElement = function(struct, tagName){
     this.$init(tagName, this.NODE_VISIBLE, struct);
 };
@@ -30,4 +30,4 @@ apf.xhtml.setElement("script",   apf.XhtmlIgnoreElement);
 apf.xhtml.setElement("noscript", apf.XhtmlIgnoreElement);
 apf.xhtml.setElement("head",     apf.XhtmlIgnoreElement);
 apf.xhtml.setElement("meta",     apf.XhtmlIgnoreElement);
-// #endif
+});

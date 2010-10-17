@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_AIR_FILE
+define([],function(){
 
 // summary: 
 //		Storage provider that uses features in the Adobe AIR runtime to achieve
@@ -302,4 +302,4 @@ apf.storage.modules['air.file'] = {
     }
 };
 
-//#endif
+});

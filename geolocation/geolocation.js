@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_GEOLOCATION
+define([],function(){
 
 /**
  * 
@@ -28,7 +28,7 @@
  * @version     %I%, %G%
  * @since       3.0
  */
-apf.geolocation = (function() {
+var Geolocation = (function() {
     var bb_successCallback,
         bb_errorCallback,
         bb_blackberryTimeout_id = -1,
@@ -238,4 +238,4 @@ apf.geolocation = (function() {
 
     return pub;
 })();
-//#endif
+});

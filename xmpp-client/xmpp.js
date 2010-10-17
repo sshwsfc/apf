@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_XMPP
+define([],function(){
 
 /**
  * Element implementing XMPP IM protocol.
@@ -100,7 +100,7 @@
  * @default_private
  */
 
-apf.xmpp = function(struct, tagName){
+var Xmpp = function(struct, tagName){
     this.$init(tagName || "xmpp", this.NODE_HIDDEN, struct);
 
     this.$serverVars = {};
@@ -2596,4 +2596,4 @@ apf.xmpp = function(struct, tagName){
 
 apf.aml.setElement("xmpp", apf.xmpp);
 
-// #endif
+});

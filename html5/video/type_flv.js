@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLVIDEO || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a Flash video
@@ -509,4 +509,4 @@ apf.video.TypeFlv.prototype = {
         delete this.htmlElement;
     }
 };
-// #endif
+});

@@ -47,9 +47,9 @@
  *               2^53     = 9007199254740992;
  */
 
-// #ifdef __WITH_BIGINT || __WITH_RSA
+define([],function(){
 
-apf.crypto.BigInt = (function() {
+var CryptoBigInt = (function() {
     var biRadixBase = 2;
     var biRadixBits = 16;
     var bitsPerDigit = biRadixBits;
@@ -622,4 +622,4 @@ apf.crypto.BigInt = (function() {
     };
 })();
 
-//#endif
+});

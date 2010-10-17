@@ -19,14 +19,14 @@
  *
  */
 
-// #ifdef __AMLFLOWCHART2
+define([],function(){
 
 /*
  * @author      Lukasz Lipinski
  * @version     %I%, %G%
  */
 
-apf.flowchart = function(struct, tagName){
+var Flowchart = function(struct, tagName){
     this.$init(tagName || "flowchart", this.NODE_VISIBLE, struct);
 };
 
@@ -1210,4 +1210,4 @@ apf.aml.setElement("name",    apf.BindingRule);
 apf.aml.setElement("blockoutput", apf.BindingRule);
 apf.aml.setElement("blockinput",  apf.BindingRule);
 apf.aml.setElement("blocklabel",  apf.BindingRule);
-//#endif
+});

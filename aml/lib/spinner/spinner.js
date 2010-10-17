@@ -18,7 +18,7 @@
  *
  */
 
-// #ifdef __AMLSPINNER || __INC_ALL
+define([],function(){
 /** 
  * This element is used to choosing number by plus/minus buttons.
  * When plus button is clicked longer, number growing up faster. The same
@@ -76,7 +76,7 @@
  * @binding value  Determines the way the value for the element is retrieved 
  * from the bound data.
  */
-apf.spinner = function(struct, tagName){
+var Spinner = function(struct, tagName){
     this.$init(tagName || "spinner", this.NODE_VISIBLE, struct);
     
     this.max     = 64000;
@@ -555,4 +555,4 @@ apf.spinner = function(struct, tagName){
 #endif */
 
 apf.aml.setElement("spinner", apf.spinner);
-// #endif
+});

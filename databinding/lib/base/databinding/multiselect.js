@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_MULTISELECT && __WITH_DATABINDING
+define([],function(){
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} can bind to data 
  * which contains multiple nodes.
@@ -44,7 +44,7 @@
  * @baseclass
  * @default_private
  */
-apf.MultiselectBinding = function(){
+var MultiselectBinding = function(){
     if (!this.setQueryValue)
         this.implement(apf.DataBinding);
 
@@ -1205,4 +1205,4 @@ apf.MultiselectBinding = function(){
     //this.$propHandlers["select"]   = 
     //#endif
 }).call(apf.MultiselectBinding.prototype = new apf.DataBinding());
-// #endif
+});

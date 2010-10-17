@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLPALETTE || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a set of choices to the user which allows
@@ -56,7 +56,7 @@
  *  <a:palette value="[mdlColor::@color]" />
  * </code>
  */
-apf.palette = function(struct, tagName){
+var Palette = function(struct, tagName){
     this.$init(tagName || "palette", this.NODE_VISIBLE, struct);
 };
 
@@ -180,4 +180,4 @@ apf.palette = function(struct, tagName){
 #endif*/
 
 apf.aml.setElement("palette", apf.palette);
-// #endif
+});

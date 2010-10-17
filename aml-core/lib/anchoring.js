@@ -21,7 +21,7 @@
 
 apf.__ANCHORING__ = 1 << 13;
 
-// #ifdef __WITH_ANCHORING
+define([],function(){
 
 //#ifdef __WITH_ANCHORING
 this.percentageMatch = new RegExp();
@@ -58,7 +58,7 @@ this.percentageMatch.compile("([\\-\\d\\.]+)\\%", "g");
  * @version     %I%, %G%
  * @since       0.3
  */
-apf.Anchoring = function(){
+var Anchoring = function(){
     this.$regbase = this.$regbase | apf.__ANCHORING__;
     this.$anchors = [];
 
@@ -496,4 +496,4 @@ apf.Anchoring = function(){
     });
 };
 
-// #endif
+});

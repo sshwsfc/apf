@@ -1,4 +1,4 @@
-//#ifdef __WITH_ELEMENT_FROM_POINT
+define([],function(){
     
     if (!document.elementFromPoint) {
         Document.prototype.elementFromPointRemove = function(el){
@@ -163,4 +163,4 @@
         }
     }
     
-    //#endif
+    });

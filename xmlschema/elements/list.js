@@ -19,8 +19,8 @@
  *
  */
 
-//#ifdef __WITH_XSDLIST
-apf.XsdList = function(struct, tagName){
+define([],function(){
+var XsdList = function(struct, tagName){
     this.$init(tagName || "list", this.NODE_HIDDEN, struct);
 };
 
@@ -29,4 +29,4 @@ apf.XsdList = function(struct, tagName){
 }).call(apf.XsdList.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("list", apf.XsdList);
-//#endif
+});

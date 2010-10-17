@@ -19,9 +19,9 @@
  *
  */
 
-//#ifdef __WITH_DEBUG_WIN
+define([],function(){
 
-apf.getShortestPath = function(p1, p2) {
+var GetShortestPath = function(p1, p2) {
     if (p1.charAt(0) == "/")
         return p1;
     
@@ -1156,4 +1156,4 @@ apf.$debugwin = {
     }
 }
 
-// #endif
+});

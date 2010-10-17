@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_FLOW
+define([],function(){
 
 /**
  * This abstraction is used for creating block elements which can be moved by
@@ -1935,4 +1935,4 @@ apf.flow.removeConnector = function(htmlElement) {
     }
     delete connector;
 };
-//#endif
+});

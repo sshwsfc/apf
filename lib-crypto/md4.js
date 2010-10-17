@@ -19,9 +19,9 @@
  *
  */
 
-// #ifdef __WITH_MD4
+define([],function(){
 
-apf.crypto.MD4 = {
+var CryptoMD4 = {
     /*
      * Configurable variables. You may need to tweak these to be compatible with
      * the server-side, but the defaults work in most cases.
@@ -256,4 +256,4 @@ apf.crypto.MD4 = {
     }
 };
 
-// #endif
+});

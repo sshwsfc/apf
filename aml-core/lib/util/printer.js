@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_PRINTER
+define([],function(){
 
 /**
  * @private
@@ -154,4 +154,4 @@ apf.print = function(strHtml){
     window.print();
 };
 
-// #endif
+});

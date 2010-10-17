@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_TEXTBOX_AUTOCOMPLETE && (__AMLTEXTBOX || __INC_ALL)
+define([],function(){
 
 /**
  * Adds autocomplete to the textbox element
@@ -37,7 +37,7 @@
  * @private
  */
 
-apf.textbox.autocomplete = function(){
+var Textboxautocomplete = function(){
     /*
         missing features:
         - web service based autocomplete
@@ -169,4 +169,4 @@ apf.textbox.autocomplete = function(){
     };
 };
 
-// #endif
+});

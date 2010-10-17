@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_TABLES || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("table", function() {
     this.name       = "table",
@@ -671,4 +671,4 @@ apf.LiveEdit.plugin("tablewizard", function() {
     };
 });
 
-// #endif
+});

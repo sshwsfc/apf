@@ -19,12 +19,12 @@
  *
  */
 
-//#ifdef __WITH_PLANE
+define([],function(){
 /**
  * @todo needs refactor
  * @private
  */
-apf.plane = {
+var Plane = {
     $set    : [],
     $lookup : {},
     $find : function(id){
@@ -187,4 +187,4 @@ apf.plane = {
         };
     }
 };
-//#endif
+});

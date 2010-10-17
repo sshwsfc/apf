@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
 * @define actions  element containing all the action rules for the data 
@@ -48,7 +48,7 @@
  *
  * @default_private
  */
-apf.actions = function(struct, tagName){
+var Actions = function(struct, tagName){
     this.$init(tagName || "actions", this.NODE_HIDDEN, struct);
     
     this.$actions      = new apf.ruleList();
@@ -97,4 +97,4 @@ apf.actions = function(struct, tagName){
 }).call(apf.actions.prototype = new apf.AmlElement());
 
 apf.aml.setElement("actions", apf.actions);
-// #endif
+});

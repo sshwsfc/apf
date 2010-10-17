@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_SYNTAX
+define([],function(){
 
 /**
  * Syntax highlights a code string using html.
@@ -280,4 +280,4 @@ apf.formatXml = function(strXml){
     return lines.join("\n");
 };
 
-//#endif
+});

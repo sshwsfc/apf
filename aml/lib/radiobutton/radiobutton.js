@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLRADIOBUTTON || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a two state button which is one of a grouped set.
@@ -79,7 +79,7 @@
  * @event click Fires when the user presses a mousebutton while over this element and then let's the mousebutton go. 
  * @see baseclass.amlnode.event.afterchange
  */
-apf.radiobutton = function(struct, tagName){
+var Radiobutton = function(struct, tagName){
     this.$init(tagName || "radiobutton", this.NODE_VISIBLE, struct);
     
     /*this.$constructor = apf.radiobutton;
@@ -561,4 +561,4 @@ apf.$group.prototype = new apf.GuiElement();
 
 apf.aml.setElement("group", apf.$group);
 
-// #endif
+});

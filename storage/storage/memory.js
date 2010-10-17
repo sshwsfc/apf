@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_MEMORY
+define([],function(){
 
 /**
  * Storage module using javascript objects to store the data. When the 
@@ -28,7 +28,7 @@
  * features that depend on a storage mechanism to be available.
  * @default_private
  */
-apf.storage.modules.memory = {
+var Storagemodulesmemory = {
     initialized: true,
     store      : {},
     
@@ -301,4 +301,4 @@ apf.storage.modules.memory = {
             + " does not support a storage settings user-interface");
     }
 };
-// #endif
+});

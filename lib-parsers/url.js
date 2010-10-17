@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __PARSER_URL
+define([],function(){
 
 /**
  * Object that represents a URI, broken down to its parts, according to RFC3986.
@@ -115,4 +115,4 @@ apf.url.options = {
     }
 };
 
-//#endif
+});

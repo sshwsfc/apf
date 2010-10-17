@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_WEBDAV
+define([],function(){
 
 /**
  * Element implementing WebDAV remote filesystem protocol.
@@ -1197,4 +1197,4 @@ apf.webdav.STATUS_CODES = {
 //    12152 ERROR_HTTP_INVALID_SERVER_RESPONSE
 };
 
-// #endif
+});

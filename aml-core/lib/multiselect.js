@@ -21,7 +21,7 @@
 
 apf.__MULTISELECT__ = 1 << 8;
 
-// #ifdef __WITH_MULTISELECT
+define([],function(){
 
 /**
  * @term eachnode A each node is a {@link term.datanode data node} that is in the set selected by the 
@@ -119,7 +119,7 @@ apf.__MULTISELECT__ = 1 << 8;
  *  </a:dropdown>
  * </code>
  */
-apf.MultiSelect = function(){
+var MultiSelect = function(){
     this.$init(function(){
         this.$valueList       = [];
         this.$selectedList    = [];
@@ -1900,4 +1900,4 @@ apf.MultiSelectServer = {
 };
 */
 // #endif
-// #endif
+});

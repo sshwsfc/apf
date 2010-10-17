@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_XSDPATTERN
+define([],function(){
 /**
  * Defines the exact sequence of characters that are acceptable
  */
-apf.XsdPattern = function(struct, tagName){
+var XsdPattern = function(struct, tagName){
     this.$init(tagName || "pattern", this.NODE_HIDDEN, struct);
 };
 
@@ -39,4 +39,4 @@ apf.XsdPattern = function(struct, tagName){
 }).call(apf.XsdPattern.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("pattern", apf.XsdPattern);
-//#endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_DETECTOR
+define([],function(){
 
 /**
  * Object detecting if the application has network, the detection moments can
@@ -45,7 +45,7 @@
  *
  * @default_private
  */
-apf.offline.detector = {
+var Offlinedetector = {
     //#ifndef __PACKED
     detectUrl : apf.basePath + "core/lib/offline/network_check.txt",
     /* #else
@@ -135,4 +135,4 @@ apf.offline.detector = {
     }
 };
 
-// #endif
+});

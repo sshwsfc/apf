@@ -19,8 +19,8 @@
  *
  */
 
-// #ifdef __WITH_AMLSELECTION
-apf.AmlSelection = function(doc){
+define([],function(){
+var AmlSelection = function(doc){
     this.$init();
     
     this.$ownerDocument = doc;
@@ -275,4 +275,4 @@ apf.AmlSelection = function(doc){
         return (r = this.$ranges[0]).startContainer.childNodes[r.startOffset];
     }
 }).call(apf.AmlSelection.prototype = new apf.Class());
-// #endif
+});

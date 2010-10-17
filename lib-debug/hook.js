@@ -20,7 +20,7 @@
  */
 
 
-//#ifdef __WITH_WRAP
+define([],function(){
 
 /**
  * @author      Rik Arends
@@ -290,4 +290,4 @@ apf.hookFormat = function(func, pre, format, name, module, forcesync, outputcb) 
     };
 }
 
-//#endif __WITH_WRAP
+});

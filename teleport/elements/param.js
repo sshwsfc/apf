@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __AMLTELEPORT && __TP_RPC
+define([],function(){
 
 /**
  * element specifying an argument of a method in an rpc element.
@@ -37,4 +37,4 @@ apf.param.prototype = new apf.AmlElement();
 apf.param.prototype.$parsePrio = "002";
 apf.aml.setElement("variable", apf.param); //backwards compatibility
 apf.aml.setElement("param", apf.param);
-// #endif
+});

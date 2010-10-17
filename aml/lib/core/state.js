@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-//#ifdef __AMLSTATE || __INC_ALL
+define([],function(){
 
 /**
  * @private
@@ -329,4 +329,4 @@ apf.state = function(struct, tagName){
 }).call(apf.state.prototype = new apf.AmlElement());
 
 apf.aml.setElement("state", apf.state);
-// #endif
+});

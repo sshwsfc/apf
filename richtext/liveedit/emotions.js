@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_EMOTIONS || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("emotions", function() {
     this.name        = "emotions";
@@ -119,4 +119,4 @@ apf.LiveEdit.plugin("emotions", function() {
     };
 });
 
-// #endif
+});

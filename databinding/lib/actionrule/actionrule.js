@@ -19,7 +19,7 @@
  *
  */
  
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @attribute {String} match
@@ -33,7 +33,7 @@
  * @attribute {Boolean} get 
  * @attribute {Boolean} parent
  */
-apf.ActionRule = function(struct, tagName){
+var ActionRule = function(struct, tagName){
     this.$init(tagName || true, this.NODE_HIDDEN, struct);
 };
 
@@ -117,5 +117,4 @@ apf.aml.setElement("copy",   apf.ActionRule);
 apf.aml.setElement("move",   apf.ActionRule);
 apf.aml.setElement("check",  apf.ActionRule);
 apf.aml.setElement("change", apf.ActionRule);
-// #endif
-
+});

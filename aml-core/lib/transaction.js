@@ -21,7 +21,7 @@
 
 apf.__TRANSACTION__ = 1 << 3;
 
-// #ifdef __WITH_TRANSACTION
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have transaction support. A transaction is a 
@@ -109,7 +109,7 @@ apf.__TRANSACTION__ = 1 << 3;
  * @version     %I%, %G%
  * @since       0.8.9
  */
-apf.Transaction = function(){
+var Transaction = function(){
     this.$regbase = this.$regbase | apf.__TRANSACTION__;
 
     this.$addParent          =
@@ -621,4 +621,4 @@ apf.GuiElement.propHandlers["transaction"] = function(value){
     }
 }
 
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLTEXT || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a rectangle containing arbitrary (X)HTML.
@@ -37,7 +37,7 @@
  * @since       0.1
  * @todo Please refactor this object
  */
-apf.text = function(struct, tagName){
+var Text = function(struct, tagName){
     this.$init(tagName || "text", this.NODE_VISIBLE, struct);
     
     this.$nodes = [];
@@ -339,4 +339,4 @@ apf.text = function(struct, tagName){
 }).call(apf.text.prototype = new apf.MultiselectBinding());
 
 apf.aml.setElement("text", apf.text);
-// #endif
+});

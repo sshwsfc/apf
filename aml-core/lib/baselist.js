@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLBASELIST || __INC_ALL
+define([],function(){
 
 /**
  * Baseclass of elements that allows the user to select one or more items
@@ -97,7 +97,7 @@
  *   object:
  *   {String} value the value that was entered.
  */
-apf.BaseList = function(){
+var BaseList = function(){
     this.$init(true);
     
     // #ifdef __WITH_CSS_BINDS
@@ -968,4 +968,4 @@ apf.BaseList = function(){
 }).call(apf.BaseList.prototype = new apf.Presentation());
 #endif*/
 
-// #endif
+});

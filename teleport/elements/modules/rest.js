@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_REST
+define([],function(){
 
 /**
  * Implementation of the Common Gateway Interface (REST) as a module for the RPC
@@ -73,7 +73,7 @@
  *
  * @default_private
  */
-apf.rest = function(){
+var Rest = function(){
     this.supportMulticall = false;
     this.namedArguments   = false;
     this.nocache          = false;
@@ -123,4 +123,4 @@ apf.rest = function(){
     };
 };
 
-// #endif
+});

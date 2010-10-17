@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLTOC || __INC_ALL
+define([],function(){
 
 /**
  * Element acting as the navigational instrument for any
@@ -40,7 +40,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.toc = function(struct, tagName){
+var Toc = function(struct, tagName){
     this.$init(tagName || "toc", this.NODE_VISIBLE, struct);
 };
 
@@ -227,4 +227,4 @@ apf.toc = function(struct, tagName){
 }).call(apf.toc.prototype = new apf.Presentation());
 
 apf.aml.setElement("toc", apf.toc);
-// #endif
+});

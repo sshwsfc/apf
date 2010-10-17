@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_FLASH
+define([],function(){
 /**
  * Helper class that aids in creating and controlling Adobe Flash
  * elements.
@@ -30,7 +30,7 @@
  * @namespace apf
  * @private
  */
-apf.flash = (function(){
+var Flash = (function(){
     /**
      * Flash Player Version Detection, version 1.7
      * Detect Client Browser type
@@ -625,4 +625,4 @@ apf.flash = (function(){
         remote          : remote
     };
 })();
-// #endif
+});

@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_XSDFRACTIONDIGITS
+define([],function(){
 /**
  * Specifies the maximum number of decimal places allowed. Must be equal to or greater than zero
  */
-apf.XsdFractionDigits = function(struct, tagName){
+var XsdFractionDigits = function(struct, tagName){
     this.$init(tagName || "maxinclusive", this.NODE_HIDDEN, struct);
 };
 
@@ -39,4 +39,4 @@ apf.XsdFractionDigits = function(struct, tagName){
 }).call(apf.XsdFractionDigits.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("maxinclusive", apf.XsdFractionDigits);
-//#endif
+});

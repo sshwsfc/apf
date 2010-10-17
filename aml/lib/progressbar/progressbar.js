@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLPROGRESSBAR || __INC_ALL
+define([],function(){
 
 /**
  * Element graphically representing a percentage value which increases
@@ -268,4 +268,4 @@ apf.progress.prototype = apf.progressbar.prototype;
 
 apf.aml.setElement("progress",    apf.progress);
 apf.aml.setElement("progressbar", apf.progressbar);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLIMG || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a picture. This element can read databound resources.
@@ -239,4 +239,4 @@ apf.aml.setElement("preview", apf.preview);
 
 apf.aml.setElement("name", apf.BindingRule);
 apf.aml.setElement("image", apf.BindingRule);
-// #endif
+});

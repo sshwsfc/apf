@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_LIVEEDIT_RICHTEXT || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.richtext = function(){
     this.$state          = apf.ON;
@@ -1485,4 +1485,4 @@ apf.LiveEdit.plugin = function(sName, fExec) {
     };
 };
 
-// #endif
+});

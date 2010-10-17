@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCALENDAR || __INC_ALL
+define([],function(){
 /**
  * Element displaying a calendar, ordered by week. It allows the user to choose 
  * the month and year for which to display the days. Calendar returns a date 
@@ -67,7 +67,7 @@
  * @since       1.0
  *
  */
-apf.calendar = function(struct, tagName){
+var Calendar = function(struct, tagName){
     this.$init(tagName || "calendar", this.NODE_VISIBLE, struct);
     
     /**** Properties and Attributes ****/
@@ -749,4 +749,4 @@ apf.calendar = function(struct, tagName){
 }).call(apf.calendar.prototype = new apf.StandardBinding());
 
 apf.aml.setElement("calendar", apf.calendar);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_CHARMAP || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("charmap", function() {
     this.name        = "charmap";
@@ -146,4 +146,4 @@ apf.LiveEdit.plugin("charmap", function() {
     };
 });
 
-// #endif
+});

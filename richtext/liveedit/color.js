@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_COLOR || __INC_ALL
+define([],function(){
 apf.LiveEdit.colorPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
@@ -195,4 +195,4 @@ apf.LiveEdit.colorPlugin.palette = null;
 apf.LiveEdit.plugin("forecolor", apf.LiveEdit.colorPlugin);
 apf.LiveEdit.plugin("backcolor", apf.LiveEdit.colorPlugin);
 
-// #endif
+});

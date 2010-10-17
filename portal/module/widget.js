@@ -19,13 +19,13 @@
  *
  */
 
-// #ifdef (__AMLPORTAL || __ENABLE_WINDOW_WIDGET) && (__AMLMODALWINDOW || __INC_ALL)
+define([],function(){
 
 /**
  * @private
  * @constructor
  */
-apf.modalwindow.widget = function(){
+var Modalwindowwidget = function(){
     var nX, nY, verdiff, hordiff, cData;
     var _self   = this;
     
@@ -199,4 +199,4 @@ apf.modalwindow.widget = function(){
         this.minheight = this.$getOption("Main", "min-height");
     }
 };
-//#endif
+});

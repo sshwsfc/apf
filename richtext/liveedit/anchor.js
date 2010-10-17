@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_ANCHOR || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("anchor", function() {
     this.name        = "anchor";
@@ -125,4 +125,4 @@ apf.LiveEdit.plugin("anchor", function() {
     };
 });
 
-// #endif
+});

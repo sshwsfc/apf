@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLSERVICES || __INC_ALL
+define([],function(){
 
 /**
  *
@@ -40,4 +40,4 @@ apf.services = function(struct, tagName){
 apf.services.prototype = new apf.AmlElement();
 apf.aml.setElement("services", apf.services);
 
-// #endif
+});

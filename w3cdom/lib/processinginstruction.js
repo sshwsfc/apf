@@ -19,8 +19,8 @@
  *
  */
 
-// #ifdef __WITH_AMLPROCESSINGINSTRUCTION
-apf.AmlProcessingInstruction = function(isPrototype){
+define([],function(){
+var AmlProcessingInstruction = function(isPrototype){
     this.$init(isPrototype);
 };
 
@@ -123,4 +123,4 @@ apf.AmlProcessingInstruction = function(isPrototype){
         this.$propHandlers["calcdata"].call(this, "");
     };
 }).call(apf.AmlProcessingInstruction.prototype = new apf.DOMNode());
-// #endif
+});

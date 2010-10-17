@@ -1,4 +1,4 @@
-//#ifdef __WITH_TASKBAR_FLASHING
+define([],function(){
     /**
      * Flashes the task bar. This can be useful to signal the user that an
      * important event has occured. Only works in internet explorer under
@@ -77,4 +77,4 @@
             }
         }
     };
-    //#endif
+    });

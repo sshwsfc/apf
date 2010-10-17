@@ -19,9 +19,9 @@
  *
  */
 
-//#ifdef __WITH_CONTENTEDITABLE
+define([],function(){
 
-apf.visualSelect = function(selection){
+var VisualSelect = function(selection){
     this.$init();
 
     var _self = this;
@@ -465,4 +465,4 @@ apf.visualSelect = function(selection){
     }
 }).call(apf.visualSelect.prototype = new apf.Class());
 
-//#endif
+});

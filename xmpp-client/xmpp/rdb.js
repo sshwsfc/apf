@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_XMPP_RDB
+define([],function(){
 
 /**
  * Description
@@ -555,4 +555,4 @@ apf.xmpp_rdb.ACTION_BAN     = 0x0004;
 apf.xmpp_rdb.ACTION_GRANT   = 0x0008;
 apf.xmpp_rdb.ACTION_REVOKE  = 0x0010;
 
-// #endif
+});

@@ -14,7 +14,7 @@
  * @author Dave Shapiro <dave AT ohdave DOT com>
  */
 
-// #ifdef __WITH_BARRETT || __WITH_RSA
+define([],function(){
 
 /**
  * A class for performing Barrett modular reduction computations in JavaScript.
@@ -73,4 +73,4 @@ apf.crypto.Barrett.prototype = {
     }
 };
 
-//#endif
+});

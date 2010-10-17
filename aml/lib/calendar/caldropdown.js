@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCALDROPDOWN || __INC_ALL
+define([],function(){
 /**
  * Element displaying a calendar, ordered by week. It allows the user to choose 
  * the month and year for which to display the days. Calendar returns a date 
@@ -84,7 +84,7 @@
  * </code>
  */
 
-apf.caldropdown = function(struct, tagName){
+var Caldropdown = function(struct, tagName){
     this.$animType        = 1;
     this.$animSteps       = 5;
     this.$animSpeed       = 20;
@@ -975,4 +975,4 @@ apf.caldropdown = function(struct, tagName){
 apf.config.$inheritProperties["initial-message"] = 1;
 
 apf.aml.setElement("caldropdown", apf.caldropdown);
-// #endif
+});

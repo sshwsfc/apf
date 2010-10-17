@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCHECKBOX || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a clickable rectangle having two states which
@@ -62,7 +62,7 @@
  *  <a:checkbox value="[mdlCheckbox::@answer]">Caption</a:checkbox>
  * </code>
  */
-apf.checkbox = function(struct, tagName){
+var Checkbox = function(struct, tagName){
     this.$init(tagName || "checkbox", this.NODE_VISIBLE, struct);
 };
 
@@ -262,4 +262,4 @@ apf.checkbox = function(struct, tagName){
 }).call(apf.checkbox.prototype = new apf.BaseButton());
 
 apf.aml.setElement("checkbox", apf.checkbox);
-// #endif
+});

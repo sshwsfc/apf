@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_AMLCDATASECTION
+define([],function(){
 apf.AmlCDATASection = function(isPrototype){
     this.nodeType = this.NODE_CDATA_SECTION;
     this.nodeName = "#cdata-section";
@@ -31,4 +31,4 @@ apf.AmlCDATASection.prototype = new apf.AmlText(true);
 apf.AmlCDATASection.prototype.serialize = function(){
     return "<![CDATA[" + this.nodeValue + "]]>";
 };
-// #endif
+});

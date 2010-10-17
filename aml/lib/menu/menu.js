@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLMENU || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a skinnable menu of items which can be choosen.
@@ -80,7 +80,7 @@
  *
  * @inherits apf.Presentation
  */
-apf.menu = function(struct, tagName){
+var Menu = function(struct, tagName){
     this.$init(tagName || "menu", this.NODE_VISIBLE, struct);
     
     this.animate = apf.enableAnim;
@@ -547,4 +547,4 @@ apf.menu = function(struct, tagName){
 }).call(apf.menu.prototype = new apf.Presentation());
 
 apf.aml.setElement("menu", apf.menu);
-// #endif
+});

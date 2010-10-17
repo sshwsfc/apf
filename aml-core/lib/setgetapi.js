@@ -1,7 +1,7 @@
 add to prototype of guielement
     /**** Convenience functions for gui nodes ****/
 
-    //#ifdef __WITH_CONVENIENCE_API
+    define([],function(){
 
     /**** Geometry ****/
 
@@ -119,4 +119,4 @@ add to prototype of guielement
         return this;
     };
 
-    //#endif
+    });

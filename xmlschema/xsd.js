@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __PARSER_XSD
+define([],function(){
 
 /**
  * Object creating the XML Schema namespace for the aml parser.
@@ -375,4 +375,4 @@ apf.xsd.checkType = function(type, xmlNode){
     }
 };
 
-//#endif
+});

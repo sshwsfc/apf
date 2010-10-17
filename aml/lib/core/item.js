@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLITEM || __INC_ALL
+define([],function(){
 
 /**
  * Item of a menu displaying a clickable area.
@@ -47,7 +47,7 @@
  *   {XMLElement} xmlContext the xml data node that was selected in the opener at the time of showing the context menu.
  *   {AMLElement} opener the element that was clicked upon when showing the context menu.
  */
-apf.item  = function(struct, tagName){
+var Item  = function(struct, tagName){
     this.$init(tagName || "item", this.NODE_VISIBLE, struct);
 };
 
@@ -646,4 +646,4 @@ apf.item  = function(struct, tagName){
 //apf.aml.setElement("radio", apf.radio);
 //apf.aml.setElement("check", apf.check);
 apf.aml.setElement("item",  apf.item);
-// #endif
+});

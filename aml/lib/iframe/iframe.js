@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLiframe || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying the rendered contents of an URL.
@@ -65,7 +65,7 @@
  *    value  = "[mdliframe::@url]" />
  * </code>
  */
-apf.iframe = function(struct, tagName){
+var Iframe = function(struct, tagName){
     this.$init(tagName || "iframe", this.NODE_VISIBLE, struct);
 };
 (function(){
@@ -196,4 +196,4 @@ apf.iframe = function(struct, tagName){
 }).call(apf.iframe.prototype = new apf.GuiElement());
 
 apf.aml.setElement("iframe", apf.iframe);
-// #endif
+});

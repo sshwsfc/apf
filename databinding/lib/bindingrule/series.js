@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @attribute {String} formula 
@@ -28,7 +28,7 @@
  * @attribute {String} split
  * @attribute {String} css
  */
-apf.BindingSeriesRule = function(struct, tagName){
+var BindingSeriesRule = function(struct, tagName){
     this.$init(tagName || "series", this.NODE_HIDDEN, struct);
 };
 
@@ -54,5 +54,4 @@ apf.BindingSeriesRule = function(struct, tagName){
 }).call(apf.BindingSeriesRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("series", apf.BindingSeriesRule);
-// #endif
-
+});

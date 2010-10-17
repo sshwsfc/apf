@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_STATE
+define([],function(){
 
 /**
  * Object recording the state of all elements. If the realtime attribute is
@@ -45,7 +45,7 @@
  * @default_private
  * @todo optimize by not getting the default values from the aml
  */
-apf.offline.state = {
+var Offlinestate = {
     enabled   : false,
     states    : {},
     realtime  : true,
@@ -229,8 +229,7 @@ apf.offline.state = {
         });
     }
 };
-// #endif
-
+});
     
 var setProp = this.$_setProperty;
 Class.prototype.$_setProperty = function(){

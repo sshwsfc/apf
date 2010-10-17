@@ -18,9 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __WITH_DRAW
+define([],function(){
 //#ifdef __ENABLE_DRAW_VML
-apf.draw.vml = {
+var Drawvml = {
    //----------------------------------------------------------------------
     
     // initialization
@@ -457,4 +457,4 @@ apf.draw.vml = {
            
 };
 //#endif
-//#endif
+});

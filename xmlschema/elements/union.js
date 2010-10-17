@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_XSDUNION
+define([],function(){
 /*
   <xs:simpleType name="SizeType">
     <xs:union memberTypes="DressSizeType">
@@ -40,7 +40,7 @@
     </xs:restriction>
   </xs:simpleType>
 */
-apf.XsdUnion = function(struct, tagName){
+var XsdUnion = function(struct, tagName){
     this.$init(tagName || "union", this.NODE_HIDDEN, struct);
 };
 
@@ -64,4 +64,4 @@ apf.XsdUnion = function(struct, tagName){
 }).call(apf.XsdUnion.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("union", apf.XsdUnion);
-//#endif
+});

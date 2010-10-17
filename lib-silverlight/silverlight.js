@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_SILVERLIGHT
+define([],function(){
 /**
  * Helper class that aids in creating and controlling Microsoft Silverlight
  * elements (XAML stuff).
@@ -30,7 +30,7 @@
  * @namespace apf
  * @private
  */
-apf.silverlight = (function() {
+var Silverlight = (function() {
     /**
      * {Number} silverlightCount:
      *
@@ -724,4 +724,4 @@ apf.silverlight = (function() {
         isAvailable             : isAvailable
     };
 })();
-// #endif
+});

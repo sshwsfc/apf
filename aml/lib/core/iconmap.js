@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLICONMAP || __INC_ALL
+define([],function(){
 
 /**
  * element that provides a means to get icons from a
@@ -57,7 +57,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.iconmap = function(){
+var Iconmap = function(){
     this.$init("iconmap", this.NODE_HIDDEN);
 };
 
@@ -87,4 +87,4 @@ apf.iconmap = function(){
 
 apf.aml.setElement("iconmap", apf.iconmap);
 
-// #endif
+});

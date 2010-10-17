@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCOMMENT || __INC_ALL
+define([],function(){
 
 /**
  * all elements within the comment tag are ignored by the parser.
@@ -35,4 +35,4 @@ apf.comment = function(){
 apf.comment.prototype = new apf.AmlComment();
 apf.aml.setElement("comment", apf.comment);
 
-// #endif
+});

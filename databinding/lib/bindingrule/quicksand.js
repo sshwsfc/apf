@@ -19,12 +19,12 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @todo docs
  */
-apf.BindingQuicksandRule = function(struct, tagName){
+var BindingQuicksandRule = function(struct, tagName){
     this.$init(tagName, this.NODE_HIDDEN, struct);
 };
 
@@ -299,5 +299,4 @@ apf.BindingQuicksandRule = function(struct, tagName){
 }).call(apf.BindingQuicksandRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("quicksand", apf.BindingQuicksandRule);
-// #endif
-
+});

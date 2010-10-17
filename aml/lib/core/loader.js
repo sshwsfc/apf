@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLLOADER || __INC_ALL
+define([],function(){
 
 /**
  * @todo description
@@ -64,4 +64,4 @@ apf.loader.prototype = new apf.AmlElement();
 
 apf.aml.setElement("loader", apf.loader);
 
-// #endif
+});

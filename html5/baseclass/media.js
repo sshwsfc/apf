@@ -21,7 +21,7 @@
 
 apf.__MEDIA__ = 1 << 20;
 
-// #ifdef __WITH_MEDIA
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have media node features and dynamics.
@@ -567,4 +567,4 @@ apf.Media.HAVE_CURRENT_DATA = 3;
 apf.Media.HAVE_FUTURE_DATA  = 4;
 apf.Media.HAVE_ENOUGH_DATA  = 5;
 
-// #endif
+});

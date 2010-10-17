@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_XMPP_MUC
+define([],function(){
 
 /**
  * Interface implementing a Multi User Chat service for the apf.xmpp object.
@@ -501,4 +501,4 @@ apf.xmpp_muc.ACTION_BAN     = 0x0004;
 apf.xmpp_muc.ACTION_GRANT   = 0x0008;
 apf.xmpp_muc.ACTION_REVOKE  = 0x0010;
 
-// #endif
+});

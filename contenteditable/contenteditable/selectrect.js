@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_CONTENTEDITABLE
+define([],function(){
 /**
  * @private
  */
-apf.selectrect = function (){
+var Selectrect = function (){
     var active;
     var p1    = document.body.appendChild(document.createElement("div")),
         p2    = document.body.appendChild(document.createElement("div")),
@@ -152,4 +152,4 @@ apf.selectrect = function (){
         document.documentElement.style.cursor = "";
     };
 };
-//#endif
+});

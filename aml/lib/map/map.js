@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLMAP || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a Google Map with all option customizable through attributes
@@ -69,7 +69,7 @@
  *
  * @event loaded Fires after the the javascript libraries from Google have been loaded and the map is drawn
  */
-apf.map = function(struct, tagName){
+var Map = function(struct, tagName){
     this.$init(tagName || "map", this.NODE_VISIBLE, struct);
 };
 
@@ -583,4 +583,4 @@ apf.map = function(struct, tagName){
 
 apf.aml.setElement("map", apf.map);
 
-// #endif
+});

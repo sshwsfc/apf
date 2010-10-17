@@ -19,8 +19,8 @@
  *
  */
 
-// #ifdef __WITH_AMLTEXT
-apf.AmlText = function(isPrototype){
+define([],function(){
+var AmlText = function(isPrototype){
     this.$init(isPrototype);
 };
 
@@ -113,4 +113,4 @@ apf.AmlText = function(isPrototype){
               pHtmlNode.ownerDocument.createTextNode(nodeValue));
     }, true);
 }).call(apf.AmlText.prototype = new apf.AmlCharacterData());
-// #endif
+});

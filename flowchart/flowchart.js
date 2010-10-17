@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLFLOWCHART || __INC_ALL
+define([],function(){
 /**
  * Element with which you can add and remove graphical blocks and create 
  * connections between them. Block could be rotated, flipped, resized, 
@@ -164,7 +164,7 @@
  * @author      Lukasz Lipinski
  * @version     %I%, %G%
  */
-apf.flowchart = function(struct, tagName){
+var Flowchart = function(struct, tagName){
     this.$init(tagName || "flowchart", this.NODE_VISIBLE, struct);
 };
 
@@ -1345,4 +1345,4 @@ apf.aml.setElement("ref",         apf.BindingRule);
 apf.aml.setElement("blockoutput", apf.BindingRule);
 apf.aml.setElement("blockinput",  apf.BindingRule);
 apf.aml.setElement("blocklabel",  apf.BindingRule);
-//#endif
+});

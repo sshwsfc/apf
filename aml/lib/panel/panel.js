@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLFRAME || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a frame with a caption, containing other elements. This
@@ -155,4 +155,4 @@ apf.aml.setElement("panel", apf.panel);
 apf.aml.setElement("fieldset", apf.fieldset);
 apf.aml.setElement("frame", apf.frame);
 
-// #endif
+});

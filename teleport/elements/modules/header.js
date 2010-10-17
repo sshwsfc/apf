@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_HEADER
+define([],function(){
 
 /**
  * Implementation of an RPC protocol which encodes the variable information in 
@@ -67,7 +67,7 @@
  *
  * @default_private
  */
-apf.header = function(){
+var Header = function(){
     this.supportMulticall = false;
     this.method           = "GET";
     this.vartype          = "header";
@@ -98,4 +98,4 @@ apf.header = function(){
     };
 };
 
-// #endif
+});

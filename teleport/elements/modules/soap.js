@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_SOAP
+define([],function(){
 
 /**
  * Implementation of the SOAP RPC protocol.
@@ -66,7 +66,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.soap = function(){
+var Soap = function(){
     this.supportMulticall = false;
     this.method           = "POST";
     this.useXML           = true;
@@ -316,4 +316,4 @@ apf.soap = function(){
     });
 };
 
-// #endif
+});

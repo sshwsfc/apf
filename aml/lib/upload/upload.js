@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLUPLOAD || __INC_ALL
+define([],function(){
 
 /**
  * Element allowing the user to upload a file to a server. This element does 
@@ -801,4 +801,4 @@ apf.upload.files = function(oUpload, model) {
 };
 
 apf.aml.setElement("upload", apf.upload);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_FONTS || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("fonts", function() {
     this.name        = "fonts";
@@ -243,4 +243,4 @@ apf.LiveEdit.plugin("fontsize", function() {
     };
 });
 
-// #endif
+});

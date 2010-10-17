@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCOLORPICKER || __INC_ALL
+define([],function(){
 
 /**
  * Element giving the user a visual choice of several colors presented in a
@@ -60,7 +60,7 @@
  *  <a:colorpicker value="[mdlColor::@color]" />
  * </code>
  */
-apf.colorpicker = function(struct, tagName){
+var Colorpicker = function(struct, tagName){
     this.$init(tagName || "colorpicker", this.NODE_VISIBLE, struct);
 };
 
@@ -376,4 +376,4 @@ apf.colorpicker = function(struct, tagName){
 
 apf.aml.setElement("colorpicker", apf.colorpicker);
 
-// #endif
+});

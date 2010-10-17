@@ -19,7 +19,7 @@
  *
  */
 apf.__CONTENTEDITABLE__  = 1 << 24;
-// #ifdef __WITH_CONTENTEDITABLE
+define([],function(){
 
 apf.addEventListener("load", function(){
     var lastShift;
@@ -540,4 +540,4 @@ apf.ContentEditable.$renameSkinChange = function(e){
 apf.XhtmlElement.prototype.implement(apf.ContentEditable);
 
 apf.config.$inheritProperties["editable"] = 2;
-// #endif
+});

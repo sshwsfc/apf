@@ -1,4 +1,4 @@
-//#ifdef __PROFILER
+define([],function(){
 /**
  * $Id$
  * Profiler class
@@ -592,4 +592,4 @@ var Profiler_functionTemplate = function() {
         return ret;
     };
 };
-//#endif
+});

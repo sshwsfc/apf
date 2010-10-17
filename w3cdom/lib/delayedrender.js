@@ -21,7 +21,7 @@
 
 apf.__DELAYEDRENDER__ = 1 << 11
 
-// #ifdef __WITH_DELAYEDRENDER
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have delayed
@@ -65,7 +65,7 @@ apf.__DELAYEDRENDER__ = 1 << 11
  * @version     %I%, %G%
  * @since       0.8.9
  */
-apf.DelayedRender = function(){
+var DelayedRender = function(){
     this.$regbase   = this.$regbase | apf.__DELAYEDRENDER__;
     this.$rendered  = false;
     
@@ -141,4 +141,4 @@ apf.GuiElement.propHandlers["render"] = function(value) {
 
 apf.config.$inheritProperties["render-delay"] = 1;
 
-// #endif
+});

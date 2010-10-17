@@ -1,4 +1,4 @@
-    //#ifdef __WITH_WINDOW_FOCUS
+    define([],function(){
     var lastFocusElement;
     this.addEventListener("focus", function(e){
         if (!apf.document.activeElement && lastFocusParent && !apf.isIphone) {
@@ -26,4 +26,4 @@
     this.getLastActiveElement = function(){
         return apf.activeElement || lastFocusElement;
     }
-    //#endif
+    });

@@ -19,13 +19,13 @@
  *
  */
 
-// #ifdef __WITH_TWEEN
+define([],function(){
 
 /**
  * The animation library that is used for the animations inside elements
  * @default_private
  */
-apf.tween = (function(apf) {
+var Tween = (function(apf) {
 
 var modules = {
         //Animation Modules
@@ -979,4 +979,4 @@ return {
 
 })(apf);
 
-// #endif
+});

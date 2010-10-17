@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLVIDEO || __INC_ALL
+define([],function(){
 
 apf.video.TypeWmpCompat = (function() {
     var hasWMP = false;
@@ -389,4 +389,4 @@ apf.video.TypeWmp.prototype = {
         delete this.htmlElement;
     }
 };
-// #endif
+});

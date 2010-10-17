@@ -19,14 +19,14 @@
  *
  */
 
-//#ifdef __WITH_ACTIONTRACKER || __WITH_DATAACTION
+define([],function(){
 /**
  * Default actions, that are known to the actiontracker
  * @todo test if the .extra speed impact matters
  * @todo ifdef the undo sections to only be there when the actiontracker is enabled
  * @private
  */
-apf.actiontracker.actions = {
+var Actiontrackeractions = {
     "setTextNode" : function(undoObj, undo){
         var q = undoObj.args;
 
@@ -258,4 +258,4 @@ apf.actiontracker.actions = {
     }
 };
 
-//#endif
+});

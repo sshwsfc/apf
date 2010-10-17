@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_XSDMAXLENGTH
+define([],function(){
 /**
  * Specifies the maximum number of characters or list items allowed. Must be equal to or greater than zero
  */
-apf.XsdMaxLength = function(struct, tagName){
+var XsdMaxLength = function(struct, tagName){
     this.$init(tagName || "maxlength", this.NODE_HIDDEN, struct);
 };
 
@@ -39,4 +39,4 @@ apf.XsdMaxLength = function(struct, tagName){
 }).call(apf.XsdMaxLength.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("maxlength", apf.XsdMaxLength);
-//#endif
+});

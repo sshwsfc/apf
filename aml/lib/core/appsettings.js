@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_APPSETTINGS
+define([],function(){
 
 /**
  * Element specifying the settings of the application.
@@ -90,7 +90,7 @@
  * @allowchild auth, authentication, offline, printer, defaults
  * @todo describe defaults
  */
-apf.appsettings = function(struct, tagName){
+var Appsettings = function(struct, tagName){
     this.$init(tagName || "appsettings", this.NODE_HIDDEN, struct);
 };
 
@@ -168,4 +168,4 @@ apf.appsettings = function(struct, tagName){
 }).call(apf.appsettings.prototype = new apf.AmlElement());
 
 apf.aml.setElement("appsettings", apf.appsettings);
-//#endif
+});

@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_XSDENUMERATION
+define([],function(){
 /**
  * Defines a list of acceptable values
  */
-apf.XsdEnumeration = function(struct, tagName){
+var XsdEnumeration = function(struct, tagName){
     this.$init(tagName || "enumeration", this.NODE_HIDDEN, struct);
 };
 
@@ -50,4 +50,4 @@ apf.XsdEnumeration = function(struct, tagName){
 }).call(apf.XsdEnumeration.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("enumeration", apf.XsdEnumeration);
-//#endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_IMAGE || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("image", function(){
     this.name        = "image";
@@ -146,4 +146,4 @@ apf.LiveEdit.plugin("imagespecial", function() {
     };
 });
 
-// #endif
+});

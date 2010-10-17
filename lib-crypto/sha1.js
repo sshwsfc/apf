@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_SHA1
+define([],function(){
 
 (function(global) {
 
@@ -176,4 +176,4 @@ global.SHA1 = function(str) {
 
 })(apf.crypto);
 
-// #endif
+});

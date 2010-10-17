@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLBASETREE || __INC_ALL
+define([],function(){
 
 /**
  * Baseclass of elements that allows the user to select one or more items
@@ -39,7 +39,7 @@
  * @default_private
  *
  */
-apf.BaseTree = function(){
+var BaseTree = function(){
     this.$init(true);
     
     // #ifdef __WITH_CSS_BINDS
@@ -1215,4 +1215,4 @@ apf.BaseTree = function(){
 }).call(apf.BaseTree.prototype = new apf.Presentation());
 #endif*/
 
-// #endif
+});

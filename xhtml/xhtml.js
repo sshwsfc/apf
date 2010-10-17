@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __PARSER_XHTML
+define([],function(){
 
 /**
  * Object creating the XHTML namespace for the aml parser.
@@ -31,35 +31,8 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.xhtml = new apf.AmlNamespace();
+var Xhtml = new apf.AmlNamespace();
 apf.setNamespace("http://www.w3.org/1999/xhtml", apf.xhtml);
 //#endif
 
-/*
-/**
- * Returns the first text or cdata child of an {@link term.datanode data node}.
- *
- * @param {XMLElement} x the xml node to search.
- * @return {XMLNode} the found xml node, or null.
- * /
-apf.getTextNode = function(x){
-    for (var i = 0, l = x.childNodes.length; i < l; ++i) {
-        if (x.childNodes[i].nodeType == 3 || x.childNodes[i].nodeType == 4)
-            return x.childNodes[i];
-    }
-    return false;
-};
-
-if (apf.getTextNode(x)) {
-    var data = {
-        amlNode  : x,
-        htmlNode : o
-    }
-
-    // #ifdef __WITH_LANG_SUPPORT
-    apf.language.addElement(apf.getTextNode(x)
-        .nodeValue.replace(/^\$(.*)\$$/, "$1"), data);
-    // #endif
-}
-
-*/
+});

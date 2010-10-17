@@ -19,12 +19,12 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @todo docs
  */
-apf.BindingColorRule = function(struct, tagName){
+var BindingColorRule = function(struct, tagName){
     this.$init(tagName, this.NODE_HIDDEN, struct);
 };
 
@@ -63,5 +63,4 @@ apf.BindingColorRule = function(struct, tagName){
 }).call(apf.BindingColorRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("color", apf.BindingColorRule);
-// #endif
-
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLVIDEO || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a Silverlight video
@@ -464,4 +464,4 @@ apf.video.TypeSilverlight.prototype = {
         delete this.htmlElement;
     }
 };
-// #endif
+});

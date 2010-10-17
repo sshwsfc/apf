@@ -19,13 +19,13 @@
  *
  */
 
-// #ifdef __WITH_STORAGE_AIR
+define([],function(){
 
 // summary: 
 //		Storage provider that uses features in the Adobe AIR runtime to achieve
 //		permanent storage
 			
-apf.storage.modules.air = {
+var Storagemodulesair = {
     init: function(){
         this.ByteArray = window.runtime.flash.utils.ByteArray;
         this.EncryptedLocalStore = window.runtime.flash.data.EncryptedLocalStore;
@@ -283,4 +283,4 @@ apf.storage.modules.air = {
     }
 };
 
-//#endif
+});

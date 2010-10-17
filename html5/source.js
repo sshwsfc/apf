@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLSOURCE || __INC_ALL
+define([],function(){
 
 /**
  * Element 
@@ -33,7 +33,7 @@
  * @version     %I%, %G%
  * @since       3.0
  */
-apf.source = function(struct, tagName){
+var Source = function(struct, tagName){
     this.$init(tagName || "source", this.NODE_HIDDEN, struct);
 };
 
@@ -48,4 +48,4 @@ apf.source = function(struct, tagName){
 
 apf.aml.setElement("source", apf.source);
 
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_YQL
+define([],function(){
 
 /**
  * Implementation of the Yahoo! Query Language as a module for the RPC
@@ -114,4 +114,4 @@ apf.yql.PUBLIC  = "http://query.yahooapis.com/v1/public/yql";
 apf.yql.PRIVATE = "http://query.yahooapis.com/v1/yql";
 apf.yql.FORMATS = {"xml":1, "json":1};
 
-// #endif
+});

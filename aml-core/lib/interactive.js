@@ -21,7 +21,7 @@
 
 apf.__INTERACTIVE__ = 1 << 21;
 
-//#ifdef __WITH_INTERACTIVE
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have interactive features, making an
@@ -79,7 +79,7 @@ apf.__INTERACTIVE__ = 1 << 21;
  * @see element.appsettings.attribute.resize-outline
  * @see element.appsettings.attribute.drag-outline
  */
-apf.Interactive = function(){
+var Interactive = function(){
     var nX, nY, rX, rY, startPos, lastCursor = null, l, t, r, b, lMax, tMax, lMin,
         tMin, w, h, we, no, ea, so, rszborder, rszcorner, marginBox,
         verdiff, hordiff, _self = this, posAbs, oX, oY, overThreshold,
@@ -846,4 +846,4 @@ apf.GuiElement.propHandlers["draggable"] = function(value){
 
 apf.Init.run("interactive");
 
-// #endif
+});

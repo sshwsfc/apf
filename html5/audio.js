@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLAUDIO || __INC_ALL
+define([],function(){
 
 /**
  * Element that is able to play an audio file or remote stream
@@ -404,4 +404,4 @@ apf.audio.TypeInterface = {
     }
 };
 
-// #endif
+});

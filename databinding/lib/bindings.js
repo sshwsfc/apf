@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -267,5 +267,4 @@ apf.ruleList.prototype = {
 }
 
 apf.aml.setElement("bindings", apf.bindings);
-// #endif
-
+});

@@ -19,9 +19,9 @@
  *
  */
  
-//#ifdef __WITH_VECTOR
+define([],function(){
 
-apf.vector =  new (function(){
+var Vector =  new (function(){
 
     var pe = apf.lm.parseExpression, pf = parseFloat, c = {}, style_short = {
         'scale-x':'sx','scale-width':'sx','scalex':'sx','scalewidth':'sx',
@@ -796,4 +796,4 @@ apf.vector =  new (function(){
     })();
  });
 
- //#endif 
+ });

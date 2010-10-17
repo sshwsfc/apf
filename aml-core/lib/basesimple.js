@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLBASESIMPLE || __INC_ALL
+define([],function(){
 
 /**
  * Baseclass of a simple element. This are usually displaying elements 
@@ -34,7 +34,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.BaseSimple = function(){
+var BaseSimple = function(){
     this.$init(true);
 };
 
@@ -52,4 +52,4 @@ apf.BaseSimple = function(){
 }).call(apf.BaseSimple.prototype = new apf.Presentation());
 #endif */
 
-//#endif
+});

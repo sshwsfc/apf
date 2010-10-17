@@ -20,7 +20,7 @@
  */
 
 
-//#ifdef __WITH_ASYNC
+define([],function(){
 
 /**
  * @author      Fabian Jakobs
@@ -115,4 +115,4 @@ apf.asyncChain = function(funcs) {
     next();
 }
 
-//#endif __WITH_ASYNC
+});

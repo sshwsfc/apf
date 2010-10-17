@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLDROPDOWN || __INC_ALL
+define([],function(){
 
 /**
  * Element allowing a user to select a value from a list, which is 
@@ -93,7 +93,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.dropdown = function(struct, tagName){
+var Dropdown = function(struct, tagName){
     this.$init(tagName || "dropdown", this.NODE_VISIBLE, struct);
 };
 
@@ -451,4 +451,4 @@ apf.dropdown = function(struct, tagName){
 apf.config.$inheritProperties["initial-message"] = 1;
 
 apf.aml.setElement("dropdown", apf.dropdown);
-// #endif
+});

@@ -19,11 +19,11 @@
  *
  */
 
-//#ifdef __WITH_CONTENTEDITABLE
+define([],function(){
 /**
  * @private
  */
-apf.visualConnect = function (sel){
+var VisualConnect = function (sel){
     /* 
      * modes: 
      * draw     : mode to create a new connection
@@ -928,4 +928,4 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
     }
     
 }).call(connectEdit.prototype = new apf.Class());
-//#endif
+});

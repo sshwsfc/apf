@@ -1,4 +1,4 @@
-//#ifdef __ENABLE_BUTTON_ACTIONS
+define([],function(){
 apf.submit.action   =
 apf.trigger.actions =
 apf.reset.actions   =
@@ -269,4 +269,4 @@ apf.button.actions  = {
         //#endif
     }
 };
-//#endif
+});

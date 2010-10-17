@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __DEBUG
+define([],function(){
 
 /**
  * Returns a string giving information on a javascript object.
@@ -279,4 +279,4 @@ if (self.navigator && navigator.userAgent.indexOf("Opera") != -1) {
     });
 }
 
-// #endif
+});

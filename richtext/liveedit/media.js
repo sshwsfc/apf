@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __ENABLE_EDITOR_MEDIA || __INC_ALL
+define([],function(){
 
 apf.LiveEdit.plugin("media", function(){
     this.name        = "media";
@@ -40,4 +40,4 @@ apf.LiveEdit.plugin("media", function(){
     };
 });
 
-// #endif
+});

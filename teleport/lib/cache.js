@@ -1,4 +1,4 @@
-    //#ifdef __WITH_STORAGE && __WITH_HTTP_CACHE
+    define([],function(){
     var namespace = apf.config.name + ".apf.http";
 
     /**
@@ -47,4 +47,4 @@
         apf.storage.remove("cache_" + this.name,
             apf.config.name + ".apf.http");
     };
-    //#endif
+    });

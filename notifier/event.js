@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLEVENT || __AMLNOTIFIER || __INC_ALL
+define([],function(){
 
 /**
  * Displays a popup element with a message with optionally an icon at the
@@ -29,7 +29,7 @@
  *
  * @event click Fires when the user clicks on the representation of this event.
  */
-apf.event = function(struct, tagName){
+var Event = function(struct, tagName){
     this.$init(tagName || "event", this.NODE_HIDDEN, struct);
 };
 
@@ -56,4 +56,4 @@ apf.event = function(struct, tagName){
 }).call(apf.event.prototype = new apf.AmlElement());
 
 apf.aml.setElement("event", apf.event);
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE_MODEL
+define([],function(){
 
 /**
  * Object dealing with the storing the state of models for use offline. In
@@ -35,7 +35,7 @@
  *
  * @default_private
  */
-apf.offline.models = {
+var Offlinemodels = {
     enabled   : false,
     timer     : null,
     models    : {},
@@ -179,4 +179,4 @@ apf.offline.models = {
     }
 };
 
-// #endif
+});

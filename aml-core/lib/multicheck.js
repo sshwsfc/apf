@@ -21,7 +21,7 @@
 
 apf.__MULTICHECK__ = 1 << 22;
 
-// #ifdef __WITH_MULTICHECK
+define([],function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have checkable items.
@@ -34,7 +34,7 @@ apf.__MULTICHECK__ = 1 << 22;
  *
  * @todo type detection, errors (see functions in multiselect)
  */
-apf.MultiCheck = function(){
+var MultiCheck = function(){
     this.$regbase    = this.$regbase | apf.__MULTICHECK__;
 
     /**** Properties ****/
@@ -455,4 +455,4 @@ apf.MultiCheck = function(){
     //#endif
 };
 
-//#endif
+});

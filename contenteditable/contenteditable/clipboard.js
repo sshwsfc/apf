@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_CLIPBOARD
+define([],function(){
 
 apf.clipboard = new apf.Class().$init();
 apf.clipboard.store = null;
@@ -75,4 +75,4 @@ apf.clipboard.pasteSelection = function(amlNode, selected){
 };
 //#endif
 
-//#endif
+});

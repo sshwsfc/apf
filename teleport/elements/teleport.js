@@ -19,8 +19,8 @@
  *
  */
 
-// #ifdef __AMLTELEPORT || __INC_ALL
+define([],function(){
 
 apf.aml.setElement("teleport", apf.AmlElement);
 
-// #endif
+});

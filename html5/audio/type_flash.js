@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-// #ifdef __AMLAUDIO || __INC_ALL
+define([],function(){
 
 /**
  * Element displaying a Flash audio
@@ -379,4 +379,4 @@ apf.audio.TypeFlash.prototype = {
         }
     }
 };
-// #endif
+});

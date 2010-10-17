@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLSLIDESHOW || __INC_ALL
+define([],function(){
 /** 
  * This element is used for viewing images. It's possible to add thumbnail and 
  * description to each of them. You can select a displayed image in several ways.
@@ -104,7 +104,7 @@
  * @binding title    Determines the image description text.
  * @binding thumb    Determines the url to thumbnail file.
  */
-apf.slideshow = function(struct, tagName){
+var Slideshow = function(struct, tagName){
     this.$init(tagName || "slideshow", this.NODE_VISIBLE, struct);
     
     this.title            = "number";
@@ -1347,4 +1347,4 @@ apf.aml.setElement("slideshow", apf.slideshow);
 apf.aml.setElement("src",   apf.BindingRule);
 apf.aml.setElement("title", apf.BindingRule);
 apf.aml.setElement("thumb", apf.BindingRule);
-// #endif
+});

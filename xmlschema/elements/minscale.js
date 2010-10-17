@@ -19,8 +19,8 @@
  *
  */
 
-//#ifdef __WITH_XSDMINSCALE
-apf.XsdMinScale = function(struct, tagName){
+define([],function(){
+var XsdMinScale = function(struct, tagName){
     this.$init(tagName || "minscale", this.NODE_HIDDEN, struct);
 };
 
@@ -34,4 +34,4 @@ apf.XsdMinScale = function(struct, tagName){
 }).call(apf.XsdMinScale.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("minscale", apf.XsdMinScale);
-//#endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_DATABINDING
+define([],function(){
 
 /**
  * @attribute {String}  icon
@@ -32,7 +32,7 @@
  * @attribute {String}  css
  * @attribute {Boolean} tree
  */
-apf.BindingColumnRule = function(struct, tagName){
+var BindingColumnRule = function(struct, tagName){
     this.$init(tagName, this.NODE_HIDDEN, struct);
     
     this.$className = "col" + this.$uniqueId;
@@ -524,5 +524,4 @@ apf.BindingColumnRule = function(struct, tagName){
 }).call(apf.BindingColumnRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("column", apf.BindingColumnRule);
-// #endif
-
+});

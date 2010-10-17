@@ -1,12 +1,11 @@
     //this should happen at document.load
-    //#ifdef __WITH_FOCUS
+    define([],function(){
     //Set the default selected element
     if (!apf.document.activeElement && (!apf.config.allowBlur 
       || apf.document.documentElement 
       && apf.document.documentElement.editable))
         apf.window.focusDefault();
-    //#endif
-
+    });
     /**
      * Constant for specifying that a widget is using only the keyboard to receive focus.
      * @type {Number}

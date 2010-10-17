@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __AMLTELEPORT && __TP_RPC
+define([],function(){
 
 /**
  * element specifying a method available within the rpc element.
@@ -57,7 +57,7 @@
  *
  * @allowchild variable
  */
-apf.method = function(struct, tagName){
+var Method = function(struct, tagName){
     this.$init(tagName || "method", this.NODE_HIDDEN, struct);
 
     this.async             = true;
@@ -102,4 +102,4 @@ apf.method = function(struct, tagName){
 }).call(apf.method.prototype = new apf.AmlElement());
 
 apf.aml.setElement("method", apf.method);
-// #endif
+});

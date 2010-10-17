@@ -19,12 +19,12 @@
  *
  */
 
-// #ifdef __WITH_AMLRANGE
+define([],function(){
 /**
  * HTML5 Range object
  * @todo copy docs from http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html
  */
-apf.AmlRange = function(doc){
+var AmlRange = function(doc){
     this.$init();
 
     this.$ownerDocument = 
@@ -418,4 +418,4 @@ apf.AmlRange = function(doc){
         }
     }
 }).call(apf.AmlRange.prototype = new apf.Class());
-// #endif
+});

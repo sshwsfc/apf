@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __TP_RPC_RDB
+define([],function(){
 // #define __WITH_RDB 1
 
 /**
@@ -76,7 +76,7 @@
  *
  * @default_private
  */
-apf.rdb = function(){
+var Rdb = function(){
     this.supportMulticall = false;
     this.namedArguments   = true;
 
@@ -250,4 +250,4 @@ apf.rdb = function(){
     };
 };
 
-// #endif
+});

@@ -19,7 +19,7 @@
  *
  */
 
-//#ifdef __WITH_MODEL
+define([],function(){
 
 /**
  * Element functioning as the central access point for xml data. Data can be
@@ -101,7 +101,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.model = function(struct, tagName){
+var Model = function(struct, tagName){
     this.$init(tagName || "model", this.NODE_HIDDEN, struct);
     
     this.$amlNodes = {};
@@ -1199,4 +1199,4 @@ apf.model = function(struct, tagName){
 
 apf.aml.setElement("model", apf.model);
 
-//#endif
+});

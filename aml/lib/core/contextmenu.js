@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __AMLCONTEXTMENU || __INC_ALL
+define([],function(){
 
 /**
  * element specifying which menu is shown when a
@@ -41,7 +41,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.contextmenu = function(){
+var Contextmenu = function(){
     this.$init("contextmenu", this.NODE_HIDDEN);
 };
 
@@ -160,8 +160,7 @@ apf.aml.setElement("contextmenu", apf.contextmenu);
             e.cancelBubble = true;
         }
     });
-    //#endif
-    
+    });    
     
 GuiElement.propHandlers = {
     //#ifdef __AMLCONTEXTMENU
