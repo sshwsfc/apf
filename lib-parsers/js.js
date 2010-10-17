@@ -64,25 +64,34 @@ define(function(){
         if(!l) return s.join('');
 	}
     
-    function store(t, s, l){
-        if(!s) s = [];
+    function store(t, s, w, l){
+        if(!s) s = ['(function(){var z = [\n'], s.count = 0;
+        if(!w) w = [];
         if(!l) l = 0;
         var d = 0;
+        
         for (var n = t; n!=null; n = n.dn, d++) {
         	s.push(Array(l+1).join(' '),'{t:',n.t,
         			',v:"',n.v.replace(/\\/g,"\\\\").replace(/\"/g,'\\"').replace(/\r?\n/g,'\\n').replace(/\t/g,'\\t'),
-        			'",ws:"',n.ws.replace(/\\/g,"\\\\").replace(/\"/g,'\\"').replace(/\r?\n/g,"\\n").replace(/\t/g,'\\t'),'"');
-            if ( n.t == 2 && n.ch){
-            	s.push(",ch:\n");
-            	store( n.ch, s, l+1);
-            }
-            if(n.dn)
-            	s.push(",dn:\n");
-            else 
-            	s.push('}');
+        			'",ws:"',n.ws.replace(/\\/g,"\\\\").replace(/\"/g,'\\"').replace(/\r?\n/g,"\\n").replace(/\t/g,'\\t'),'"},\n');
+        	
+        	var c = s.count;
+            if (n.t == 2 && n.ch){
+        		w.push("z["+c+"].ch=z["+(c+1)+"]",",z["+(c+1)+"].pa=z["+c+"];\n");
+        		s.count++;
+            	store( n.ch, s, w, l+1);
+            }else s.count++;
+            
+        	if( n.dn )
+        		w.push("z["+c+"].dn=z["+s.count+"]",",z["+(s.count)+"].up=z["+c+"];\n");
         }
-        s.push(Array(d).join('}'));
-        if(!l) return s.join('');
+        
+        if(!l){
+        	s.push(']');
+        	// now lets wire all that shit up
+        	
+        	return s.join('')+"\n"+"\nreturn z[0];})()";;
+        }
     }    
     
     function match(t1, t2){
@@ -134,7 +143,7 @@ define(function(){
     
     function find(where, what, deep){
      	var args = what.split("#");
-     	var set = where;
+     	var set = where.constructor == Array?where:[where];
     	for(var i = 0;i<args.length;i++){
     		var nw = parse(args[i]);
     		var set2 = [];
@@ -146,8 +155,16 @@ define(function(){
     	return set;
     }
     
-    function parse(str, needcomment){
-        var root = {ws:"",v:""},     // parse tree root node
+    function replace(where, what, deep, cb){
+    	var set = find(where,what,deep);
+    	for(var i = 0;i<set.length;i++)
+    		cb(set[i]);
+    	return set.length!=0;
+    }
+    
+    function parse(str, opts){
+    	if(!opts)opts = {};
+        var root = {t:0,ws:"",v:""},     // parse tree root node
             n = root,
         	b = 0,      // block output
             type = 0,   // token type
@@ -171,7 +188,7 @@ define(function(){
                         	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                         break;                
                     case 7: //Comment
-                    	if(needcomment)
+                    	if(opts.needcomment)
                     		n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                 		mode_tok = tok;
                         b = [tok];
@@ -203,6 +220,13 @@ define(function(){
                     case 9: // white space
                     	ws += tok;
                         break;
+                    case 5:
+                    	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
+                    	if(opts.dict && parseFloat(tok)!=tok && tok!='toString' && tok!='valueOf' && tok != 'hasOwnProperty'){
+                    		var d = opts.dict;
+                    		(d[tok] || (d[tok] = [])).push(n);
+                    	}
+                        break;
                     default: // word
                     	n = n.dn = {t:type,  p:pos, ws:ws, v:tok, pa:n.pa, up:n}, ws = "";
                         break;
@@ -220,7 +244,7 @@ define(function(){
                     case 7: //Comment
                         if (tok == '*/' && mode_tok == '/*') {
                             mode_tok = 0;
-                            if(needcomment)
+                            if(opts.needcomment)
                             	n.v = b.join('');
                             else
                             	ws += b.join('');
@@ -239,7 +263,7 @@ define(function(){
                         lines[lines.length] = pos;
                         if (mode_tok == '//'){
                             mode_tok = 0;
-                            if(needcomment)
+                            if(opts.needcomment)
                             	n.v = b.join('');
                             else
                             	ws += b.join('');
@@ -250,7 +274,7 @@ define(function(){
             if(type<9)last_tok = tok;
         });
         if(mode_tok && mode_tok == '//'){
-            if(needcomment)
+            if(opts.needcomment)
             	n.v = b.join('');
             else
             	ws += b.join('');
@@ -272,5 +296,5 @@ define(function(){
         return root;
     };
     
-    return { parse: parse, store:store, find: find, dump: dump, serialize: serialize, line: lineLookup };
+    return { parse: parse, store:store, find: find, replace:replace, dump: dump, serialize: serialize, line: lineLookup };
 });

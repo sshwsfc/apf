@@ -1,10 +1,7 @@
-var dump = require("./lib-debug/dump");
-var log = require("./lib-debug/log");
-var jsparse = require("./lib-parsers/js");
-var fs = require('fs');
 
 function getFileList(dir,match, dont, out){
 	if(!out) out = [];
+	var fs = require('fs')
 	var names = fs.readdirSync(dir);
 	for(var i = 0;i<names.length;i++){
 		var n = names[i];
@@ -22,42 +19,62 @@ function getFileList(dir,match, dont, out){
 	return out;
 }
 
-var file = fs.readFileSync("./lib-xml/lib/util/xml2json.js").toString().replace(/\r?\n/g,"\n");
-var node = jsparse.parse(file);
 
-var out = jsparse.store(node);
+define(["./lib-debug/dump","./lib-debug/log","./lib-parsers/js"], 	
+	function(dump,log,jsparse) {
+	
+	var file = require('fs').readFileSync("./lib-xml/lib/util/xml2json.js").toString().replace(/\r?\n/g,"\n");
+	var node = jsparse.parse(file);
 
-var list = getFileList(".", /\.js$/, /\_old/);
+	var out = jsparse.store(node);
+	
+	var list = getFileList(".", /\.js$/, /\_old/);
+//	var list = getFileList(".", /\img.js$/, /\_old/);
 
-var dict = {};
-var opts = {dict:dict};
-// lets now parse each file
-console.log("Loading...");
-for(var i = 0;i<list.length;i++){
-	var f = list[i] = {name:list[i]};
-	//console.log(n.name)
-	f.data = fs.readFileSync(f.name).toString().replace(/\r?\n/g,"\n");
-	f.node = jsparse.parse( f.data, opts );
-	f.check = jsparse.serialize(f.node);
-	if(f.data != f.check){
-		console.log(f.check);
+	// lets now parse each file
+	for(var i = 0;i<list.length;i++){
+		var n = list[i] = {name:list[i]};
+		console.log("Reading:"+n.name)
+		n.data = require('fs').readFileSync(n.name).toString().replace(/\r?\n/g,"\n");
+		n.node = jsparse.parse( n.data );
+		n.check = jsparse.serialize(n.node);
+		if(n.data != n.check){
+			//var node = jsparse.find(n.node,"this.$resize = function(){",2);
+			//console.log(jsparse.dump(n.node));
+			console.log(diffString(n.data, n.check));
+			/*console.log('\n\n\n\n------------------------------------------------------------\n\n\n\n\n')
+			console.log(n.data);
+			console.log('\n\n\n\n------------------------------------------------------------\n\n\n\n\n')
+			console.log(n.check);
+			console.log('\n\n\n\n------------------------------------------------------------\n\n\n\n\n')
+			console.log("FAIL");*/
+			return;
+		}
+	}
+	return;
+	// alright so we can read/write parse trees fast. 
+	// lets now read a list of 'all' .js files in this sourcetree.
+	// then we are going to parse all these source files and generate a cache dump
+		
+	require('fs').writeFileSync("./dumped.js", "module.exports = "+out);
+	var node = require('./dumped.js');
+
+	var out = jsparse.serialize(node);
+	if(out!=file){
+		console.log("FAIL");
 		return;
 	}
-}
-console.log("Done.");
-
-// lets see which files are not nice modules yet
-for(var i = 0;i<list.length;i++){
-	var f = list[i];
-//		var r = jsparse.find(n.node, "define([],function(){", 2);
 	
-	if( jsparse.replace(f.node, "require.def",2, function(n){
-		console.log(f.name+" Replacing: "+n.v);
-		n.v = "define";
-	}));
-//			fs.writeFileSync(f.name, jsparse.serialize(f.node));
-}
+	var nodes = node.find( "define([],function(){#return{#{/\\w+/}:");
+	var nodes = jsparse.find(node, "{/apf\\..*/} =" , 2);
+    
+	for(var i = 0;i<nodes.length;i++){
+		console.log(nodes[i].token);
+		nodes[i].token = nodes[i].token.toUpperCase();
+	}
 
+	console.log(jsparse.serialize(node));
+});
 
 
 /*
@@ -69,7 +86,7 @@ for(var i = 0;i<list.length;i++){
  *
  * More Info:
  *  http://ejohn.org/projects/javascript-diff-algorithm/
- 
+ */
 
 function escape(s) {
     var n = s;
@@ -219,5 +236,5 @@ function diff( o, n ) {
   }
   
   return { o: o, n: n };
-}*/
+}
 
