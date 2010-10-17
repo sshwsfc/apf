@@ -51,9 +51,8 @@ for(var i = 0;i<list.length;i++){
 	var f = list[i];
 //		var r = jsparse.find(n.node, "define([],function(){", 2);
 	
-	if( jsparse.replace(f.node, "require.def",2, function(n){
-		console.log(f.name+" Replacing: "+n.v);
-		n.v = "define";
+	if( jsparse.replace(f.node, "define()",2, function(n){
+		console.log(f.name)
 	}))
 		fs.writeFileSync(f.name, jsparse.serialize(f.node));
 }
