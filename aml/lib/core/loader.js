@@ -19,7 +19,8 @@
  *
  */
 
-define([], function(){
+define(["optional!aml", "w3cdom/element", "lib-oop"], 
+    function(aml, AmlElement, oop){
 
 /**
  * @todo description
@@ -28,8 +29,8 @@ define([], function(){
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.loader = function(){
-    this.$init("loader", this.NODE_HIDDEN);
+var Loader = function(){
+    AmlElement.call(this, "loader", this.NODE_HIDDEN);
     
     this.show = function(){
         this.$ext.style.display = "block";
@@ -60,8 +61,11 @@ apf.loader = function(){
     });
 };
 
-apf.loader.prototype = new apf.AmlElement();
+//Inherit
+oop.inherits(Loader, AmlElement);
 
-apf.aml.setElement("loader", apf.loader);
+aml && aml.setElement("loader", Loader);
+
+return Loader;
 
 });

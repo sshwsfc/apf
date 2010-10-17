@@ -19,8 +19,6 @@
  *
  */
 
-define([], function(){
-
 /**
  * Element displaying a frame with a caption, containing other elements. This
  * element is called a fieldset in html.
@@ -47,14 +45,6 @@ define([], function(){
  */
 apf.panel    = function(struct, tagName){
     this.$init(tagName || "panel", this.NODE_VISIBLE, struct);
-};
-
-apf.fieldset = function(struct, tagName){
-    this.$init(tagName || "fieldset", this.NODE_VISIBLE, struct);
-};
-
-apf.frame    = function(struct, tagName){
-    this.$init(tagName || "submit", this.NODE_VISIBLE, struct);
 };
 
 (function(){
@@ -146,13 +136,6 @@ apf.frame    = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.frame.prototype = new apf.Presentation());
-
-apf.panel.prototype    =
-apf.fieldset.prototype = apf.frame.prototype;
+}).call(apf.panel.prototype = new apf.Presentation());
 
 apf.aml.setElement("panel", apf.panel);
-apf.aml.setElement("fieldset", apf.fieldset);
-apf.aml.setElement("frame", apf.frame);
-
-});

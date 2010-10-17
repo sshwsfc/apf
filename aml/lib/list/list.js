@@ -18,7 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+
+define(["aml-core/baselist", "optional!aml-core/rename", "optional!aml", "lib-oop"], 
+    function(BaseList, Rename, aml, oop){
 
 /**
  * Element displaying a skinnable list of options which can be selected.
@@ -77,67 +79,19 @@ define([], function(){
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.list      = function(struct, tagName){
-    this.$init(tagName || "list", this.NODE_VISIBLE, struct);
+var List = function(struct, tagName){
+     BaseList.call(this, tagName || "list", this.NODE_VISIBLE, struct);
 };
 
-/**
- * Example:
- * A small product search application using a list to display results.
- * <code>
- *  <a:bar>
- *      <h1>Search for a product</h1>
- *      <a:textbox id="txtSearch" selectfocus="true" />
- *      <a:button onclick="search()" default="true">Search</a:button>
- *  </a:bar>
- * 
- *  <a:model id="mdlSearch">
- *      <data>
- *          <item title="Title 1" src="siteimg/slideshow_img/img1_small.jpg" descr="Descr 1"></item>
- *          <item title="Title 2" src="siteimg/slideshow_img/img2_small.jpg" descr="Descr 2"></item>
- *      </data>
- *  </a:model>
- * 
- *  <a:thumbnail 
- *    model         = "mdlSearch"
- *    autoselect    = "false" 
- *    width         = "400"
- *    height        = "400"
- *    caching       = "false" 
- *    empty-message = "No products found">
- *      <a:bindings>
- *          <a:caption match="[@title]" />
- *          <a:image match="[@src]" />
- *          <a:each match="[item]" />
- *      </a:bindings>
- *  </a:thumbnail>
- * 
- *  <a:script>
- *      function search(){
- *          mdlSearch.$loadFrom("http://localhost/search.php?keyword=" + txtSearch.getValue());
- *      }
- *  </a:script>
- * </code>
- */
-apf.thumbnail = function(struct, tagName){
-    this.$init(tagName || "thumbnail", this.NODE_VISIBLE, struct);
-};
+//Inherit
+oop.inherits(List, BaseList);
 
-apf.select    = function(struct, tagName){
-    this.$init(tagName || "select", this.NODE_VISIBLE, struct);
-};
-
-apf.select1   = function(struct, tagName){
-    this.$init(tagName || "selectl", this.NODE_VISIBLE, struct);
-};
+//Inherite
+if (Rename)
+    oop.decorate(List, Rename);
 
 (function(){
     this.morePos = "end";
-    
-    // #ifdef __WITH_RENAME
-    if (!apf.isIphone)
-        this.implement(apf.Rename);
-    // #endif
     
     // #ifdef __WITH_RENAME
     this.$getCaptionElement = function(){
@@ -400,14 +354,9 @@ apf.select1   = function(struct, tagName){
         amlCore.destroyHtmlNode(this.oDrag);
         this.oDrag = null;
     };
-}).call(apf.list.prototype = new apf.BaseList());
+}).call(List.prototype);
 
-apf.thumbnail.prototype =
-apf.select.prototype    =
-apf.select1.prototype   = apf.list.prototype;
+aml && aml.setElement("list", List);
 
-apf.aml.setElement("thumbnail", apf.thumbnail);
-apf.aml.setElement("select",    apf.select);
-apf.aml.setElement("select1",   apf.select1);
-apf.aml.setElement("list",      apf.list);
+return List;
 });

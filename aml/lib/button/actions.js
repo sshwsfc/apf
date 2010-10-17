@@ -1,8 +1,6 @@
-define([], function(){
-apf.submit.action   =
-apf.trigger.actions =
-apf.reset.actions   =
-apf.button.actions  = {
+define(["aml/button/button"], function(Button){
+    
+Button.actions = {
     // #ifdef __WITH_ACTIONTRACKER
     "undo" : function(action){
         var tracker;
@@ -269,4 +267,5 @@ apf.button.actions  = {
         //#endif
     }
 };
+
 });

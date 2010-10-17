@@ -18,12 +18,10 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["w3cdom/element", "optional!aml", "lib-oop"], 
+    function(AmlElement, aml, oop){
 
-/**
- * @private
- */
-apf.StateServer = {
+var StateServer = {
     states: {},
     groups: {},
     locs  : {},
@@ -44,22 +42,22 @@ apf.StateServer = {
         if (!this.groups[name]) {
             this.groups[name] = [];
 
-            var pState = new apf.state({
+            var pState = new State({
                 id : name,
             });
             pState.parentNode = pNode;
             //pState.implement(apf.DOMNode);
             //pState.name   = name;
             pState.toggle = function(){
-                for (var next = 0, i = 0; i < apf.StateServer.groups[name].length; i++) {
-                    if (apf.StateServer.groups[name][i].active) {
+                for (var next = 0, i = 0; i < StateServer.groups[name].length; i++) {
+                    if (StateServer.groups[name][i].active) {
                         next = i + 1;
                         break;
                     }
                 }
 
-                apf.StateServer.groups[name][
-                    (next == apf.StateServer.groups[name].length) ? 0 : next
+                StateServer.groups[name][
+                    (next == StateServer.groups[name].length) ? 0 : next
                   ].activate();
             }
 
@@ -169,13 +167,16 @@ apf.StateServer = {
  * @version     %I%, %G%
  * @since       0.9
  */
-apf.state = function(struct, tagName){
-    this.$init(tagName || "state", this.NODE_HIDDEN, struct);
+var State = function(struct, tagName){
+    AmlElement.call(this, tagName || "state", this.NODE_HIDDEN, struct);
     
     this.$signalElements = [];
     this.$groupAdded     = {};
     this.$locationAdded  = '';
 };
+
+//Inherit
+oop.inherits(State, AmlElement);
 
 (function(){
     /**** Properties and Attributes ****/
@@ -190,10 +191,10 @@ apf.state = function(struct, tagName){
         //Activate State
         if (util.isTrue(value)) {
             if (this.group) {
-                var nodes = apf.StateServer.groups[this.group];
+                var nodes = StateServer.groups[this.group];
                 if (!nodes) {
-                    apf.StateServer.addGroup(this.group, this);
-                    nodes = apf.StateServer.groups[this.group];
+                    StateServer.addGroup(this.group, this);
+                    nodes = StateServer.groups[this.group];
                 }
                 
                 for (var i = 0; i < nodes.length; i++) {
@@ -228,7 +229,7 @@ apf.state = function(struct, tagName){
                     self[this.group].setProperty(attr[i].nodeName,
                         attr[i].nodeValue);
                 }
-                apf.StateServer.groups[this.group].pState.dispatchEvent("change");
+                StateServer.groups[this.group].pState.dispatchEvent("change");
             }
 
             this.dispatchEvent("activate");
@@ -288,28 +289,28 @@ apf.state = function(struct, tagName){
 
     this.$propHandlers["group"] = function(value){  
         if (value) {
-            apf.StateServer.addGroup(value, this);
+            StateServer.addGroup(value, this);
             this.$groupAdded = {'value' : value, elState : this};
         }
         else {
-            apf.StateServer.removeGroup(this.$groupAdded.value, this.$groupAdded.elState);
+            StateServer.removeGroup(this.$groupAdded.value, this.$groupAdded.elState);
             this.$groupAdded     = {};
         }
     }
 
     this.$propHandlers["location"] = function(value){
         if (value) {
-            apf.StateServer.locs[value] = this;
+            StateServer.locs[value] = this;
             this.$locationAdded = value;
         }
         else {
-            delete apf.StateServer.locs[this.$locationAdded];
+            delete StateServer.locs[this.$locationAdded];
             this.$locationAdded = '';
         }
     }
     
     this.addEventListener("DOMNodeInsertedIntoDocument", function(e){
-        apf.StateServer.addState(this);
+        StateServer.addState(this);
 
         //Properties initialization
         var attr = this.attributes;
@@ -322,11 +323,13 @@ apf.state = function(struct, tagName){
 
     this.addEventListener("DOMNodeRemovedFromDocument", function(){
         this.$signalElements = null;
-        apf.StateServer.removeState(this);
+        StateServer.removeState(this);
         if (this.group)
-            apf.StateServer.removeGroup(this.group, this);
+            StateServer.removeGroup(this.group, this);
     });
-}).call(apf.state.prototype = new apf.AmlElement());
+}).call(State.prototype);
 
-apf.aml.setElement("state", apf.state);
+aml && aml.setElement("state", State);
+
+return State;
 });

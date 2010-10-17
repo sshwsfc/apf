@@ -19,8 +19,6 @@
  *
  */
 
-define([], function(){
-
 /**
  * Element graphically representing a percentage value which increases
  * automatically with time. This element is most often used to show the progress
@@ -65,9 +63,6 @@ define([], function(){
  *  <a:progressbar value="[mdlProgress::@progress]" />
  * </code>
  */
-apf.progress    = function(struct, tagName){
-    this.$init(tagName || "progress", this.NODE_VISIBLE, struct);
-};
 apf.progressbar = function(struct, tagName){
     this.$init(tagName || "progressbar", this.NODE_VISIBLE, struct);
 };
@@ -264,8 +259,4 @@ apf.progressbar = function(struct, tagName){
 }).call(apf.progressbar.prototype = new apf.Presentation());
 #endif */
 
-apf.progress.prototype = apf.progressbar.prototype;
-
-apf.aml.setElement("progress",    apf.progress);
 apf.aml.setElement("progressbar", apf.progressbar);
-});

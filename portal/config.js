@@ -19,8 +19,8 @@
  *
  */
 
-define(["optional!aml", "w3cdom/element", "lib-oop"], 
-    function(aml, AmlElement, oop){
+define(["optional!aml", "portal/body"], 
+    function(aml, Body){
 
 /**
  * @todo description
@@ -29,30 +29,13 @@ define(["optional!aml", "w3cdom/element", "lib-oop"],
  * @version     %I%, %G%
  * @since       0.4
  */
-var Application = function(){
-    this.$init("application", this.NODE_HIDDEN);
-    
-    if (!apf.isO3) {    
-        this.$int        = document.body;
-        this.$tabList    = []; //Prevents documentElement from being focussed
-        this.$focussable = apf.KEYBOARD;
-        this.focussable  = true;
-        this.visible     = true;
-        this.$isWindowContainer = true;
-        this.focus = function(){ this.dispatchEvent("focus"); };
-        this.blur  = function(){ this.dispatchEvent("blur"); };
-    
-        //#ifdef __WITH_FOCUS
-        apf.window.$addFocus(this);
-        //#endif
-    }
+var Config = function (struct, tagName){
+    Body.call(this, struct, tagName || "config");
 };
+Config.prototype = Button.prototype;
+aml && aml.setElement("config",  Config);
 
-//Inherit
-oop.inherits(Application, AmlElement);
+return Config;
 
-aml && aml.setElement("application", Application);
-
-return Application;
-
-});
+    }
+);

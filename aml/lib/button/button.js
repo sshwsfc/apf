@@ -19,8 +19,8 @@
  *
  */
 
-define(["aml-core/base/basebutton", "optional!aml", "lib-oop"], 
-    function(aml, BaseButton, oop){
+define(["aml-core/basebutton", "optional!aml", "lib-oop"], 
+    function(BaseButton, aml, oop){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the

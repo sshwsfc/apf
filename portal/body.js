@@ -19,8 +19,8 @@
  *
  */
 
-define(["optional!aml", "w3cdom/element", "lib-oop"], 
-    function(aml, AmlElement, oop){
+define(["aml-core/presentation", "optional!aml", "lib-oop"], 
+    function(Presentation, aml, oop){
 
 /**
  * @todo description
@@ -29,30 +29,25 @@ define(["optional!aml", "w3cdom/element", "lib-oop"],
  * @version     %I%, %G%
  * @since       0.4
  */
-var Application = function(){
-    this.$init("application", this.NODE_HIDDEN);
-    
-    if (!apf.isO3) {    
-        this.$int        = document.body;
-        this.$tabList    = []; //Prevents documentElement from being focussed
-        this.$focussable = apf.KEYBOARD;
-        this.focussable  = true;
-        this.visible     = true;
-        this.$isWindowContainer = true;
-        this.focus = function(){ this.dispatchEvent("focus"); };
-        this.blur  = function(){ this.dispatchEvent("blur"); };
-    
-        //#ifdef __WITH_FOCUS
-        apf.window.$addFocus(this);
-        //#endif
-    }
+var Body = function(){
+    Presentation.call(this, "body", this.NODE_VISIBLE);
 };
 
 //Inherit
-oop.inherits(Application, AmlElement);
+oop.inherits(Body, Presentation);
 
-aml && aml.setElement("application", Application);
+(function(){
+    this.focussable = false;
+    this.$canLeechSkin = true;
+    
+    this.$draw = function(){
+        //Build Main Skin
+        this.$ext = this.$int = this.$getExternal(this.$isLeechingSkin
+            ? this.localName 
+            : "main");
+    };
+}).call(Body.prototype);
 
-return Application;
+aml && aml.setElement("body", Body);
 
 });

@@ -19,7 +19,8 @@
  *
  */
 
-define([], function(){
+define(["aml-core/basesimple", "optional!aml", "lib-oop"], 
+    function(BaseSimple, aml, oop){
 
 /**
  * Element displaying a picture. This element can read databound resources.
@@ -80,13 +81,12 @@ define([], function(){
  *    height = "300" />
  * </code>
  */
-apf.img = function(struct, tagName){
+var Img = function(struct, tagName){
     this.$init(tagName || "img", this.NODE_VISIBLE, struct);
 };
 
-apf.preview = function(struct, tagName){
-    this.$init(tagName || "preview", this.NODE_VISIBLE, struct);
-};
+//Inherit
+oop.inherits(Img, BaseSimple);
 
 (function(){
     //#ifdef __WITH_CONVENIENCE_API
@@ -230,13 +230,9 @@ apf.preview = function(struct, tagName){
         this.oImg.style.top = ((this.$ext.offsetHeight - apf.getHeightDiff(this.$ext) 
             - this.oImg.offsetHeight) / 2) + "px";
     }
-}).call(apf.img.prototype = new apf.BaseSimple());
+}).call(Img.prototype);
 
-apf.preview.prototype = apf.img.prototype;
+apf.aml.setElement("img", Img);
 
-apf.aml.setElement("img", apf.img);
-apf.aml.setElement("preview", apf.preview);
-
-apf.aml.setElement("name", apf.BindingRule);
-apf.aml.setElement("image", apf.BindingRule);
+return Img;
 });

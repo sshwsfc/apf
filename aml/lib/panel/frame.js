@@ -19,42 +19,30 @@
  *
  */
 
-define([], function(){
+define(["optional!aml", "aml/panel/panel"], 
+    function(aml, Panel){
 
 /**
- * @todo description
+ * Element displaying a clickable rectangle that visually confirms to the
+ * user when the area is clicked and then executes a command.
+ *
+ * @constructor
+ * @define button, frame, trigger, frame
+ * @addnode elements
  *
  * @author      Ruben Daniels (ruben AT ajax DOT org)
  * @version     %I%, %G%
  * @since       0.4
+ *
+ * @inherits apf.BaseButton
  */
-
-// #ifdef __AMLPORTAL
-apf.body = function(){
-    this.$init("body", this.NODE_VISIBLE);
+var Frame = function (struct, tagName){
+    Panel.call(this, struct, tagName || "frame");
 };
-// #endif
+Frame.prototype = Panel.prototype;
+aml && aml.setElement("frame",  Frame);
 
-apf.AmlConfig = function(){
-    this.$init("config", this.NODE_VISIBLE);
-};
+return Frame;
 
-(function(){
-    this.focussable = false;
-    this.$canLeechSkin = true;
-    
-    this.$draw = function(){
-        //Build Main Skin
-        this.$ext = this.$int = this.$getExternal(this.$isLeechingSkin
-            ? this.localName 
-            : "main");
-    };
-// #ifdef __AMLPORTAL
-}).call(apf.body.prototype = new apf.Presentation());
-apf.AmlConfig.prototype = apf.body.prototype;
-apf.aml.setElement("body", apf.body);
-/* #else
-}).call(apf.AmlConfig.prototype = new apf.Presentation());
-#endif*/
-apf.aml.setElement("config", apf.AmlConfig);
-});
+    }
+);

@@ -19,7 +19,13 @@
  *
  */
 
-define([], function(){
+define([
+    "aml-core/base/basetree", 
+    "optional!databinding/dataaction", 
+    "optional!databinding/bindingrule", 
+    "optional!aml", 
+    "lib-oop"], 
+    function(BaseTree, BindingRule, DataAction, aml, oop){
 
 /**
  * Element providing a sortable, selectable grid containing scrollable 
@@ -58,8 +64,8 @@ define([], function(){
  * @binding invalidmsg  Determines the error message that is shown when a cell is not valid.
  * @binding description Determines the text that is displayed under the expanded row.
  */
-apf.datagrid = function(struct, tagName){
-    this.$init(tagName || "datagrid", this.NODE_VISIBLE, struct);
+var Datagrid = function(struct, tagName){
+    BaseTree.call(this, tagName || "datagrid", this.NODE_VISIBLE, struct);
     
     this.$headings       = [],
     this.$cssRules       = []; //@todo Needs to be reset;
@@ -72,18 +78,18 @@ apf.datagrid = function(struct, tagName){
     // #endif
 };
 
+//Inherit
+oop.inherits(Datagrid, BaseTree);
+
+//Decorate
+oop.decorate(Datagrid, DataAction);
+
 (function(){
     var HAS_CHILD = 1 << 1,
         IS_CLOSED = 1 << 2,
         IS_LAST   = 1 << 3,
         IS_ROOT   = 1 << 4,
         treeState = this.$treeState;
-
-    //#ifdef __WITH_DATAACTION
-    this.implement(
-        apf.DataAction
-    );
-    //#endif
 
     /*this.$init(function() {
         this.addEventListener("keydown", keyHandler, true);
@@ -1220,161 +1226,16 @@ apf.datagrid = function(struct, tagName){
         apf.layout.activateRules(this.$container);
         //#endif
     };
-}).call(apf.datagrid.prototype = new apf.BaseTree());
+}).call(Datagrid.prototype);
 
-apf.aml.setElement("datagrid",    apf.datagrid);
-//apf.aml.setElement("column",      apf.BindingRule);
-apf.aml.setElement("description", apf.BindingRule);
-apf.aml.setElement("color",       apf.BindingRule);
-apf.aml.setElement("contents",    apf.BindingRule);
+aml && aml.setElement("datagrid", Datagrid);
 
-//#endif
+if (BindingRule) {
+    aml && aml.setElement("description", BindingRule);
+    aml && aml.setElement("color",       BindingRule);
+    aml && aml.setElement("contents",    BindingRule);
+}
 
-// #ifdef __WITH_CONVERTIFRAME
-/**
- * @private
- */
-//@todo this is all broken. needs to be fixed before apf3.0
-apf.convertIframe = function(iframe, preventSelect){
-    var win = iframe.contentWindow;
-    var doc = win.document;
-    var pos;
+return Datagrid;
 
-    if (!apf.isIE)
-        apf.importClass(apf.runNonIe, true, win);
-        
-    //Load Browser Specific Code
-    // #ifdef __SUPPORT_WEBKIT
-    if (this.isSafari) 
-        this.importClass(apf.runSafari, true, win);
-    // #endif
-    // #ifdef __SUPPORT_OPERA
-    if (this.isOpera) 
-        this.importClass(apf.runOpera, true, win);
-    // #endif
-    // #ifdef __SUPPORT_GECKO
-    if (this.isGecko || !this.isIE && !this.isSafari && !this.isOpera)
-        this.importClass(apf.runGecko, true, win);
-    // #endif
-    
-    doc.onkeydown = function(e){
-        if (!e) e = win.event;
-
-        if (document.onkeydown) 
-            return document.onkeydown.call(document, e);
-        //return false;
-    };
-    
-    doc.onmousedown = function(e){
-        if (!e) e = win.event;
-
-        if (!pos)
-            pos = apf.getAbsolutePosition(iframe);
-
-        var q = {
-            offsetX       : e.offsetX,
-            offsetY       : e.offsetY,
-            x             : e.x + pos[0],
-            y             : e.y + pos[1],
-            button        : e.button,
-            clientX       : e.x + pos[0],
-            clientY       : e.y + pos[1],
-            srcElement    : iframe,
-            target        : iframe,
-            targetElement : iframe
-        }
-        
-        if (document.body.onmousedown)
-            document.body.onmousedown(q);
-        if (document.onmousedown)
-            document.onmousedown(q);
-        
-        if (preventSelect && !apf.isIE)
-            return false;
-    };
-    
-    if (preventSelect) {
-        doc.onselectstart = function(e){
-            return false;
-        };
-    }
-    
-    doc.onmouseup = function(e){
-        if (!e) e = win.event;
-        if (document.body.onmouseup)
-            document.body.onmouseup(e);
-        if (document.onmouseup)
-            document.onmouseup(e);
-    };
-    
-    doc.onclick = function(e){
-        if (!e) e = win.event;
-        if (document.body.onclick)
-            document.body.onclick(e);
-        if (document.onclick)
-            document.onclick(e);
-    };
-    
-    //all these events should actually be piped to the events of the container....
-    doc.documentElement.oncontextmenu = function(e){
-        if (!e) e = win.event;
-        if (!pos)
-            pos = apf.getAbsolutePosition(iframe);
-        
-        var q = {
-            offsetX       : e.offsetX,
-            offsetY       : e.offsetY,
-            x             : e.x + pos[0],
-            y             : e.y + pos[1],
-            button        : e.button,
-            clientX       : e.x + pos[0],
-            clientY       : e.y + pos[1],
-            srcElement    : e.srcElement,
-            target        : e.target,
-            targetElement : e.targetElement
-        };
-
-        //if(this.host && this.host.oncontextmenu) this.host.oncontextmenu(q);
-        if (document.body.oncontextmenu)
-            document.body.oncontextmenu(q);
-        if (document.oncontextmenu)
-            document.oncontextmenu(q);
-        
-        return false;
-    };
-
-    doc.documentElement.onmouseover = function(e){
-        pos = apf.getAbsolutePosition(iframe);
-    };
-
-    doc.documentElement.onmousemove = function(e){
-        if (!e) e = win.event;
-        if (!pos)
-            pos = apf.getAbsolutePosition(iframe);
-    
-        var q = {
-            offsetX       : e.offsetX,
-            offsetY       : e.offsetY,
-            x             : e.x + pos[0],
-            y             : e.y + pos[1],
-            button        : e.button,
-            clientX       : e.x + pos[0],
-            clientY       : e.y + pos[1],
-            srcElement    : e.srcElement,
-            target        : e.target,
-            targetElement : e.targetElement
-        }
-
-        if (iframe.onmousemove)
-            iframe.onmousemove(q);
-        if (document.body.onmousemove)
-            document.body.onmousemove(q);
-        if (document.onmousemove)
-            document.onmousemove(q);
-        
-        return e.returnValue;
-    };
-    
-    return doc;
-};
 });

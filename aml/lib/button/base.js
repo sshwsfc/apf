@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/base/basebutton"], 
+define(["aml-core/basebutton"], 
     function(BaseButton){
 
 return (function() {

@@ -19,25 +19,18 @@
  *
  */
 
-define(["optional!aml", "w3cdom/comment", "lib-oop"], 
-    function(aml, AmlComment, oop){
+define(["optional!aml", "aml/img/img"], 
+    function(aml, Img){
 
 /**
- * all elements within the comment tag are ignored by the parser.
- *
- * @author      Ruben Daniels (ruben AT ajax DOT org)
- * @version     %I%, %G%
- * @since       0.4
  */
-var Comment = function(){
-    AmlComment.call(this, "comment", this.NODE_HIDDEN);
+var Preview = function (struct, tagName){
+    Img.call(this, struct, tagName || "preview");
 };
+Preview.prototype = Img.prototype;
+aml && aml.setElement("preview",  Preview);
 
-//Inherit
-oop.inherits(Comment, AmlComment);
+return Preview;
 
-aml && aml.setElement("comment", Comment);
-
-return Comment;
-
-});
+    }
+);

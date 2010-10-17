@@ -18,7 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+
+define(["aml-core/guielement", "optional!aml", "lib-oop"], 
+    function(GuiElement, aml, oop){
 
 /**
  * @define vbox Container that stacks it's children vertically.
@@ -49,12 +51,12 @@ define([], function(){
  * @version     %I%, %G%
  * @since       0.9
  */
-apf.hbox = function(struct, tagName){
-    this.$init(tagName || "hbox", this.NODE_VISIBLE, struct);
+Hbox = function(struct, tagName){
+    GuiElement.call(this, tagName || "hbox", this.NODE_VISIBLE, struct);
 };
-apf.vbox = function(struct, tagName){
-    this.$init(tagName || "vbox", this.NODE_VISIBLE, struct);
-};
+
+//Inherit
+oop.inherits(Hbox, GuiElement);
 
 (function(){
     /**** Properties and Attributes ****/
@@ -819,10 +821,10 @@ apf.vbox = function(struct, tagName){
         if (!apf.hasFlexibleBox && !this.$vbox && !this.height && this.align == "stretch")
             myHeightHandler.call(this, {});
     };
-}).call(apf.vbox.prototype = new apf.GuiElement());
+}).call(Hbox);
 
-apf.hbox.prototype = apf.vbox.prototype;
+apf.aml.setElement("hbox", Hbox);
 
-apf.aml.setElement("hbox", apf.hbox);
-apf.aml.setElement("vbox", apf.vbox);
+return Hbox;
+
 });

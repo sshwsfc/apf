@@ -19,8 +19,6 @@
  *
  */
 
-define([], function(){
-
 /**
  * Virtual element acting as a parent for a set of child elements 
  * but only draws it's children. It doesn't have any representation itself.
@@ -37,10 +35,6 @@ define([], function(){
  */
 apf.collection = function(struct, tagName){
     this.$init(tagName || "collection", this.NODE_HIDDEN, struct);
-};
-
-apf.docklet = function(struct, tagName){
-    this.$init(tagName || "docklet", this.NODE_HIDDEN, struct);
 };
 
 (function(){
@@ -63,9 +57,4 @@ apf.docklet = function(struct, tagName){
     });
 }).call(apf.collection.prototype = new apf.AmlElement());
 
-apf.docklet.prototype = apf.collection.prototype;
-
 apf.aml.setElement("collection", apf.collection);
-apf.aml.setElement("docklet", apf.docklet);
-
-});
