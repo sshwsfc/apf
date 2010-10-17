@@ -18,7 +18,8 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */ 
-define([], function(){
+
+//#ifdef SLIDER
 
 /**
  * Element allowing the user to select a value from a range of
@@ -107,10 +108,6 @@ define([], function(){
  *    value = "[mdlSlider::@value]" />
  * </code>
  */
-apf.range  = function(struct, tagName){
-    this.$init(tagName || "range", this.NODE_VISIBLE, struct);
-};
-
 apf.slider = function(struct, tagName){
     this.$init(tagName || "slider", this.NODE_VISIBLE, struct);
 };
@@ -927,8 +924,6 @@ apf.slider = function(struct, tagName){
 }).call(apf.slider.prototype = new apf.Presentation());
 #endif*/
 
-apf.range.prototype = apf.slider.prototype;
-
-apf.aml.setElement("range",  apf.range);
 apf.aml.setElement("slider", apf.slider);
-});
+
+//#endif

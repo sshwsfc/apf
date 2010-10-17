@@ -18,7 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+
+define(["aml-core/upload/upload", "lib-oop/class", "lib-oop"], 
+    function(Upload, Class, oop){
 
 /**
  * Element displaying a Flash uploader
@@ -34,7 +36,7 @@ define([], function(){
  * @since       3.0
  */
 
-apf.upload.flash = function(oUpload) {
+Upload.flash = function(oUpload) {
     this.oUpload = oUpload;
     // #ifndef __PACKAGED
     this.DEFAULT_SWF_PATH = (apf.config.resourcePath || apf.basePath)
@@ -46,7 +48,10 @@ apf.upload.flash = function(oUpload) {
     this.$playerId = apf.flash.addPlayer(this);
 };
 
-apf.upload.flash.isSupported = function() {
+//Inherit
+oop.inherits(Upload.flash, Class);
+
+Upload.flash.isSupported = function() {
     return apf.flash.isAvailable("9.0.0");
 };
 
@@ -123,7 +128,7 @@ apf.upload.flash.isSupported = function() {
                 //Function to execute when a file is uploaded or failed with an error.
                 var httpStatus = o.response && o.response.error ? 500 : 200;
 
-                file.status = httpStatus == 500 ? apf.upload.FAILED : apf.upload.DONE;
+                file.status = httpStatus == 500 ? Upload.FAILED : Upload.DONE;
                 file.loaded = httpStatus == 500 ? 0 : file.size;
                 this.oUpload.$progress(file);
                 this.oUpload.$fileDone(file, {
@@ -134,7 +139,7 @@ apf.upload.flash.isSupported = function() {
                 // Is error status
                 if (httpStatus >= 400) {
                     this.oUpload.dispatchEvent("error", {
-                        code    : apf.upload.ERROR_CODES.HTTP_ERROR,
+                        code    : Upload.ERROR_CODES.HTTP_ERROR,
                         message : "HTTP Error: " + o.response.error + ", " + o.response.text,
                         file    : file,
                         status  : httpStatus
@@ -233,5 +238,9 @@ apf.upload.flash.isSupported = function() {
     this.removeFile = function(file) {
         apf.flash.remote(this.$player, "fileRemove", file.id);
     };
-}).call(apf.upload.flash.prototype = new apf.Class());
+}).call(Upload.flash.prototype);
+
+
+return Upload.flash;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+//#ifdef TAB
 
 /**
  * Element displaying a page and several buttons allowing a
@@ -56,19 +56,6 @@ define([], function(){
  *
  * @inherits apf.BaseTab
  */
-
-apf["switch"] = function(struct, tagName){
-    this.$hasButtons = false;
-    this.$init(tagName || "switch", this.NODE_VISIBLE, struct);
-};
-
-apf.pages     = function(struct, tagName){
-    this.$hasButtons = false;
-    this.$init(tagName || "pages", this.NODE_VISIBLE, struct);
-    
-    this.$focussable = false;
-};
-
 apf.tab       = function(struct, tagName){
     this.$hasButtons = true;
     this.$init(tagName || "tab", this.NODE_VISIBLE, struct);
@@ -86,10 +73,6 @@ apf.tab       = function(struct, tagName){
     };
 }).call(apf.tab.prototype = new apf.BaseTab());
 
-apf["switch"].prototype =
-apf.pages.prototype     = apf.tab.prototype;
-
-apf.aml.setElement("switch", apf["switch"]);
-apf.aml.setElement("pages",  apf.pages);
 apf.aml.setElement("tab",    apf.tab);
-});
+
+//#endif

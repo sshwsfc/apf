@@ -18,7 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+
+define(["aml-core/upload/upload", "lib-oop/class", "lib-oop"], 
+    function(Upload, Class, oop){
 
 /**
  * Element displaying a HTML5 uploader
@@ -34,11 +36,14 @@ define([], function(){
  * @since       3.0
  */
 
-apf.upload.html5 = function(oUpload) {
+Upload.html5 = function(oUpload) {
     this.oUpload = oUpload;
 };
 
-apf.upload.html5.isSupported = function() {
+//Inherit
+oop.inherits(Upload.html5, Class);
+
+Upload.html5.isSupported = function() {
     return apf.hasXhrBinary;
 };
 
@@ -175,7 +180,7 @@ apf.upload.html5.isSupported = function() {
             }
             catch (ex) {
                 _self.oUpload.dispatchEvent("error", {
-                    code    : apf.upload.ERROR_CODES.HTTP_ERROR,
+                    code    : Upload.ERROR_CODES.HTTP_ERROR,
                     message : ex.message,
                     file    : file
                 });
@@ -183,8 +188,8 @@ apf.upload.html5.isSupported = function() {
         }
 
         // File upload finished
-        if (file.status & apf.upload.DONE || file.status & apf.upload.FAILED
-          || this.oUpload.state & apf.upload.STOPPED) {
+        if (file.status & Upload.DONE || file.status & Upload.FAILED
+          || this.oUpload.state & Upload.STOPPED) {
             return;
         }
 
@@ -208,7 +213,7 @@ apf.upload.html5.isSupported = function() {
             }
             var bError = (httpStatus >= 400 || httpStatus == 0);
 
-            file.status = bError ? apf.upload.FAILED : apf.upload.DONE;
+            file.status = bError ? Upload.FAILED : Upload.DONE;
             file.loaded = bError ? 0 : file.size;
             _self.oUpload.$progress(file);
             _self.oUpload.$fileDone(file, {
@@ -221,7 +226,7 @@ apf.upload.html5.isSupported = function() {
                 apf.console.error("File upload failed " + httpStatus + " with message " + xhr.responseText);
 
                 _self.oUpload.dispatchEvent("error", {
-                    code    : apf.upload.ERROR_CODES.HTTP_ERROR,
+                    code    : Upload.ERROR_CODES.HTTP_ERROR,
                     message : "HTTP Error: " + xhr.responseText,
                     file    : file,
                     status  : httpStatus
@@ -250,5 +255,8 @@ apf.upload.html5.isSupported = function() {
         else
             xhr.send(nativeFile);
     };
-}).call(apf.upload.html5.prototype = new apf.Class());
+}).call(Upload.html5.prototype);
+
+return Upload.html5;
+
 });

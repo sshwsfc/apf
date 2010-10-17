@@ -18,7 +18,14 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+
+define([
+    "aml-core/guielement", 
+    "optional!databinding/dataaction", 
+    "optional!aml-core/validation", 
+    "optional!aml", 
+    "lib-oop"], 
+    function(GuiElement, DataAction, Validation, aml, oop){
 
 /**
  * Element allowing the user to upload a file to a server. This element does 
@@ -53,8 +60,8 @@ define([], function(){
  *
  * @attribute {Number}  state        the current state of the element.
  *   Possible values:
- *   apf.upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
- *   apf.upload.STARTED   Upload process is running
+ *   Upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
+ *   Upload.STARTED   Upload process is running
  * @attribute {Number}  chunksize    the size of each chunk of data that is uploaded via the html5 upload control.
  * @attribute {Number}  maxfilesize  the maximum file size of a single file.
  * @attribute {Boolean} multiple     whether the user can select multiple files from the browse dialog.
@@ -77,13 +84,13 @@ define([], function(){
  *   object:
  *   {Number} code      the type of error.
  *     Possible values:
- *     apf.upload.ERROR_CODES.GENERIC_ERROR        Generic error for example if an exception is thrown inside Silverlight.
- *     apf.upload.ERROR_CODES.HTTP_ERROR           HTTP transport error. For example if the server produces a HTTP status other than 200.
- *     apf.upload.ERROR_CODES.IO_ERROR             Generic I/O error. For exampe if it wasn't possible to open the file stream on local machine.
- *     apf.upload.ERROR_CODES.SECURITY_ERROR       Generic I/O error. For exampe if it wasn't possible to open the file stream on local machine.
- *     apf.upload.ERROR_CODES.INIT_ERROR           Initialization error. Will be triggered if no runtime was initialized.
- *     apf.upload.ERROR_CODES.FILE_SIZE_ERROR      File size error. If the user selects a file that is to large it will be blocked and an error of this type will be triggered.
- *     apf.upload.ERROR_CODES.FILE_EXTENSION_ERROR File extension error. If the user selects a file that isn't valid according to the filters setting.
+ *     Upload.ERROR_CODES.GENERIC_ERROR        Generic error for example if an exception is thrown inside Silverlight.
+ *     Upload.ERROR_CODES.HTTP_ERROR           HTTP transport error. For example if the server produces a HTTP status other than 200.
+ *     Upload.ERROR_CODES.IO_ERROR             Generic I/O error. For exampe if it wasn't possible to open the file stream on local machine.
+ *     Upload.ERROR_CODES.SECURITY_ERROR       Generic I/O error. For exampe if it wasn't possible to open the file stream on local machine.
+ *     Upload.ERROR_CODES.INIT_ERROR           Initialization error. Will be triggered if no runtime was initialized.
+ *     Upload.ERROR_CODES.FILE_SIZE_ERROR      File size error. If the user selects a file that is to large it will be blocked and an error of this type will be triggered.
+ *     Upload.ERROR_CODES.FILE_EXTENSION_ERROR File extension error. If the user selects a file that isn't valid according to the filters setting.
  *   {String} message   the description of the error.
  *   {Object}  file     the file that was being uploaded when the error occurred.
  *     Properties:
@@ -96,12 +103,12 @@ define([], function(){
  *     {Number}  size             the size of this file in bytes.
  *     {String}  status           the upload status of this file.
  *       Possible values:
- *       apf.upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
- *       apf.upload.STARTED   Upload process is running
- *       apf.upload.QUEUED    File is queued for upload
- *       apf.upload.UPLOADING File is being uploaded
- *       apf.upload.FAILED    File has failed to be uploaded
- *       apf.upload.DONE      File has been uploaded successfully
+ *       Upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
+ *       Upload.STARTED   Upload process is running
+ *       Upload.QUEUED    File is queued for upload
+ *       Upload.UPLOADING File is being uploaded
+ *       Upload.FAILED    File has failed to be uploaded
+ *       Upload.DONE      File has been uploaded successfully
  *     {Number} loaded           the number of bytes uploaded.
  *
  * @event uploaded Fires after the entire queue is uploaded.
@@ -117,12 +124,12 @@ define([], function(){
  *     {Number}  size             the size of this file in bytes.
  *     {String}  status           the upload status of this file.
  *       Possible values:
- *       apf.upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
- *       apf.upload.STARTED   Upload process is running
- *       apf.upload.QUEUED    File is queued for upload
- *       apf.upload.UPLOADING File is being uploaded
- *       apf.upload.FAILED    File has failed to be uploaded
- *       apf.upload.DONE      File has been uploaded successfully
+ *       Upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
+ *       Upload.STARTED   Upload process is running
+ *       Upload.QUEUED    File is queued for upload
+ *       Upload.UPLOADING File is being uploaded
+ *       Upload.FAILED    File has failed to be uploaded
+ *       Upload.DONE      File has been uploaded successfully
  *     {Number} loaded           the number of bytes uploaded.
  *
  * @event queue Fires after the user selected files, put in the queue and are ready for upload.
@@ -138,12 +145,12 @@ define([], function(){
  *     {Number}  size             the size of this file in bytes.
  *     {String}  status           the upload status of this file.
  *       Possible values:
- *       apf.upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
- *       apf.upload.STARTED   Upload process is running
- *       apf.upload.QUEUED    File is queued for upload
- *       apf.upload.UPLOADING File is being uploaded
- *       apf.upload.FAILED    File has failed to be uploaded
- *       apf.upload.DONE      File has been uploaded successfully
+ *       Upload.STOPPED   Inital state of the queue and also the state ones it's finished all it's uploads.
+ *       Upload.STARTED   Upload process is running
+ *       Upload.QUEUED    File is queued for upload
+ *       Upload.UPLOADING File is being uploaded
+ *       Upload.FAILED    File has failed to be uploaded
+ *       Upload.DONE      File has been uploaded successfully
  *     {Number} loaded           the number of bytes uploaded.
  *
  * @constructor
@@ -166,14 +173,14 @@ define([], function(){
  *
  * @todo get server side information to update the progressbar.
  */
-apf.upload = function(struct, tagName){
-    this.$init(tagName || "upload", this.NODE_HIDDEN, struct);
+var Upload = function(struct, tagName){
+    GuiElement.call(this, tagName || "upload", this.NODE_HIDDEN, struct);
 
     var o,
         i = 0,
         a = ["html5", "flash", "html4"];
     for (; i < 4 && !this.$method; ++i) {
-        o = apf.upload[a[i]];
+        o = Upload[a[i]];
         if (typeof o != "undefined" && o.isSupported())
             this.$method = new o(this);
     }
@@ -184,14 +191,22 @@ apf.upload = function(struct, tagName){
     }
 };
 
-apf.upload.STOPPED   = 0x0001; // Inital state of the queue and also the state ones it's finished all it's uploads.
-apf.upload.STARTED   = 0x0002; // Upload process is running
-apf.upload.QUEUED    = 0x0004; // File is queued for upload
-apf.upload.UPLOADING = 0x0008; // File is being uploaded
-apf.upload.FAILED    = 0x0010; // File has failed to be uploaded
-apf.upload.DONE      = 0x0020; // File has been uploaded successfully
+//Inherit
+oop.inherits(Upload, GuiElement);
+
+if (DataAction)
+    oop.decorate(DataAction);
+if (Validation)
+    oop.decorate(Validation);
+
+Upload.STOPPED   = 0x0001; // Inital state of the queue and also the state ones it's finished all it's uploads.
+Upload.STARTED   = 0x0002; // Upload process is running
+Upload.QUEUED    = 0x0004; // File is queued for upload
+Upload.UPLOADING = 0x0008; // File is being uploaded
+Upload.FAILED    = 0x0010; // File has failed to be uploaded
+Upload.DONE      = 0x0020; // File has been uploaded successfully
 // Error constants used by the Error event:
-apf.upload.ERROR_CODES = {
+Upload.ERROR_CODES = {
     // Generic error for example if an exception is thrown inside Silverlight.
     GENERIC_ERROR        : -100,
     // HTTP transport error. For example if the server produces a HTTP status other than 200.
@@ -211,15 +226,6 @@ apf.upload.ERROR_CODES = {
 };
 
 (function(constants){
-    this.implement(
-        //#ifdef __WITH_DATAACTION
-        apf.DataAction
-        //#endif
-        //#ifdef __WITH_VALIDATION
-        ,apf.Validation
-        //#endif
-    );
-
     this.state        = constants.STOPPED;
     this.size = this.loaded = this.uploaded = this.failed = this.queued 
         = this.percent = this.bitrate = this.chunksize = this.total = 0;
@@ -654,9 +660,9 @@ apf.upload.ERROR_CODES = {
             }
         });
     });
-}).call(apf.upload.prototype = new apf.GuiElement(), apf.upload);
+}).call(Upload.prototype, Upload);
 
-apf.upload.files = function(oUpload, model) {
+Upload.files = function(oUpload, model) {
     if (typeof model == "string") {
         //#ifdef __WITH_NAMESERVER
         var sModel = model;
@@ -800,5 +806,7 @@ apf.upload.files = function(oUpload, model) {
     };
 };
 
-apf.aml.setElement("upload", apf.upload);
+aml && aml.setElement("upload", Upload);
+
+return Upload;
 });

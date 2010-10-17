@@ -19,12 +19,9 @@
  *
  */
 
-define([], function(){
+//#ifdef WINDOW
 
-/**
- * @private
- */
-apf.WinServer = {
+var WinServer = {
     count : 9000,
     wins  : [],
 
@@ -139,15 +136,7 @@ apf.WinServer = {
  *   {Boolean} edit       whether the window is in the edit state.
  *   {Boolean} closed     whether the window is closed.
  */
-apf.toolwindow  = function(struct, tagName){
-    this.$init(tagName || "toolwindow", this.NODE_VISIBLE, struct);
-};
-
 apf.modalwindow = function(struct, tagName){
-    this.$init(tagName || "modalwindow", this.NODE_VISIBLE, struct);
-};
-
-apf.AmlWindow = function(struct, tagName){
     this.$init(tagName || "window", this.NODE_VISIBLE, struct);
 };
 
@@ -299,7 +288,7 @@ apf.AmlWindow = function(struct, tagName){
     //#endif
 
     this.bringToFront = function(){
-        apf.WinServer.setTop(this);
+        WinServer.setTop(this);
         return this;
     };
 
@@ -583,7 +572,7 @@ apf.AmlWindow = function(struct, tagName){
     
                 //because of some issue I don't understand oExt.onmousedown is not called
                 if (!_self.$isWidget && (!_self.aData || !_self.dockable || _self.aData.hidden == 3))
-                    apf.WinServer.setTop(_self);
+                    WinServer.setTop(_self);
     
                 if (_self.$lastState.maximized)
                     return false;
@@ -607,7 +596,7 @@ apf.AmlWindow = function(struct, tagName){
             
             //Set ZIndex on oExt mousedown
             if (!_self.$isWidget && (!_self.aData || !_self.dockable || _self.aData.hidden == 3))
-                apf.WinServer.setTop(_self);
+                WinServer.setTop(_self);
 
             if (!_self.$lastState.normal)
                 return false;
@@ -628,7 +617,7 @@ apf.AmlWindow = function(struct, tagName){
     };
 
     this.$loadAml = function(x){
-        apf.WinServer.setTop(this);
+        WinServer.setTop(this);
 
         this.$int = this.$getLayoutNode("main", "container", this.$ext);
 
@@ -747,11 +736,8 @@ apf.AmlWindow = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.modalwindow.prototype = new apf.Presentation());
+}).call(apf.window.prototype = new apf.Presentation());
 
-apf.AmlWindow.prototype = apf.toolwindow.prototype = apf.modalwindow.prototype;
+apf.aml.setElement("window", apf.modalwindow);
 
-apf.aml.setElement("toolwindow",  apf.toolwindow);
-apf.aml.setElement("modalwindow", apf.modalwindow);
-apf.aml.setElement("window",      apf.modalwindow);
-});
+//#endif

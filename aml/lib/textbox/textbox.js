@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+//#ifdef TEXTBOX
 
 //@todo DOCUMENT the modules too
 
@@ -74,29 +74,6 @@ define([], function(){
  */
 apf.input    = function(struct, tagName){
     this.$init(tagName || "input", this.NODE_VISIBLE, struct);
-};
-
-apf.secret   = function(struct, tagName){
-    this.$init(tagName || "secret", this.NODE_VISIBLE, struct);
-};
-
-apf.password = function(struct, tagName){
-    this.$init(tagName || "password", this.NODE_VISIBLE, struct);
-};
-
-apf.textarea = function(struct, tagName){
-    this.$init(tagName || "textarea", this.NODE_VISIBLE, struct);
-    
-    this.multiline = true;
-};
-
-// HTML5 email element
-apf.email    = function(struct, tagName){
-    this.$init(tagName || "email", this.NODE_VISIBLE, struct);
-};
-
-apf.textbox  = function(struct, tagName){
-    this.$init(tagName || "textbox", this.NODE_VISIBLE, struct);
 };
 
 (function(){
@@ -789,15 +766,6 @@ apf.textbox  = function(struct, tagName){
 apf.config.$inheritProperties["initial-message"] = 1;
 apf.config.$inheritProperties["realtime"]        = 1;
 
-apf.input.prototype    =
-apf.secret.prototype   =
-apf.password.prototype =
-apf.textarea.prototype =
-apf.email.prototype    = apf.textbox.prototype;
-
 apf.aml.setElement("input",    apf.input);
-apf.aml.setElement("secret",   apf.secret);
-apf.aml.setElement("password", apf.password);
-apf.aml.setElement("textarea", apf.textarea);
-apf.aml.setElement("textbox",  apf.textbox);
-});
+
+//#endif

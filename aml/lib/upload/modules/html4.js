@@ -18,7 +18,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+
+define(["aml-core/upload/upload", "lib-oop/class", "lib-oop"], 
+    function(Upload, Class, oop){
 
 /**
  * Element displaying a HTML4 uploader
@@ -34,11 +36,14 @@ define([], function(){
  * @since       3.0
  */
 
-apf.upload.html4 = function(oUpload) {
+Upload.html4 = function(oUpload) {
     this.oUpload = oUpload;
 };
 
-apf.upload.html4.isSupported = function() {
+//Inherit
+oop.inherits(Upload.html4, Class);
+
+Upload.html4.isSupported = function() {
     return true;
 };
 
@@ -115,7 +120,7 @@ apf.upload.html4.isSupported = function() {
                 catch (ex) {
                     // Probably a permission denied error
                     _self.dispatchEvent("error", {
-                        code    : apf.upload.ERROR_CODES.SECURITY_ERROR,
+                        code    : Upload.ERROR_CODES.SECURITY_ERROR,
                         message : "Security error.",
                         file    : file
                     });
@@ -132,7 +137,7 @@ apf.upload.html4.isSupported = function() {
 
                 // Assume no error
                 if (result != "") {
-                    file.status  = apf.upload.DONE;
+                    file.status  = Upload.DONE;
                     file.loaded  = 1025;
                     file.percent = 100;
 
@@ -223,7 +228,7 @@ apf.upload.html4.isSupported = function() {
     };
 
     this.upload = function(file) {
-        var u = apf.upload;
+        var u = Upload;
         // File upload finished
         if (file.status & u.DONE || file.status & u.FAILED || this.oUpload.state & u.STOPPED)
             return;
@@ -256,5 +261,8 @@ apf.upload.html4.isSupported = function() {
         if (file.input)
             file.input.parentNode.removeChild(file.input);
     };
-}).call(apf.upload.html4.prototype = new apf.Class());
+}).call(Upload.html4.prototype);
+
+return Upload.html4;
+
 });

@@ -45,7 +45,7 @@ var BaseClass = Presentation || DataBinding;
  *
  * @inherits apf.DataBinding
  */
-var PropGrid    = function(struct, tagName){
+var PropGrid = function(struct, tagName){
     BaseClass.call(this, tagName || "propgrid", this.NODE_VISIBLE, struct);
     
     //this.$headings       = [],
@@ -66,7 +66,7 @@ oop.inherits(Datagrid, BaseClass);
 //Decorate
 if (DataAction)
     oop.decorate(Datagrid, DataAction);
-if (DataAction)
+if (Cache)
     oop.decorate(Datagrid, Cache);
     
 (function(){
