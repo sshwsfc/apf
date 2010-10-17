@@ -43,11 +43,11 @@ define(function(){
         if(t)
         for (var n = t; n!=null; n = n.dn) {
             if ( n.t == 2){
-                s.push(Array(l).join('----'), n.type, " ", n.v, "\n");
+                s.push(Array(l+1).join('----')," ", n.t, " ", n.v, "\n");
                 dump( n.ch, s, l+1);
             }
             else if(n.t!=3)
-                s.push(Array(l).join('----'), n.type, " ", n.v, "\n");
+                s.push(Array(l+1).join('----')," ", n.t, " ", n.v, "\n");
         }
         if(!l) return s.join('');
     }
@@ -96,7 +96,7 @@ define(function(){
     
     function match(t1, t2){
 		for(var n1 = t1, n2 = t2; (n1 && n2); n1 = n1.dn, n2 = n2.dn){
-			if(n2.v == '{' && n2.ch && n2.ch.type==8){
+			if(n2.v == '{' && n2.ch && n2.ch.t==8){
 				if(!n2.rx) 
 					n2.rx = new RegExp(n2.ch.v.slice(1,-1));
 				
@@ -108,7 +108,7 @@ define(function(){
 			} else {
     			if(n1.v != n2.v)
     				break;
-    			if(n2.type == 2){ // we (should)have children
+    			if(n2.t == 2){ // we (should)have children
     				if(n2.ch){
     					var m = match( n1.ch, n2.ch);
     					if(!m) break;
@@ -123,6 +123,7 @@ define(function(){
     }
     
     function scan(t1, t2, deep, results, l){
+
     	if(!results) results = [];
     	if(!l) l = 0;
     	
@@ -131,7 +132,7 @@ define(function(){
         	
     		if(m)
     			results.push(m);
-    		if(n.type == 2 && deep){
+    		if(n.t == 2 && deep){
         		if(deep!=1 || 
         		  !(n.v=='{' && n.up/*(*/ && n.up.up/*)*/ && n.up.up.up/*function*/ && 
         		  (n.up.up.up.v=='function' || (n.up.up.up.up && n.up.up.up.up.v=='function'))))
@@ -154,6 +155,26 @@ define(function(){
     	}
     	return set;
     }
+
+    function matchrx(t, rx, deep, results){
+    	for(var n = t;n;n = n.dn){
+    		if(n.v.match(rx))
+    			results.push(n);
+			if(n.t == 2 && n.ch && deep){
+				matchrx(n.ch, whatrx,results, deep);
+			}
+		}
+    }
+    
+    function findrx(where, rx, deep){
+    	var set = where.constructor == Array?where:[where];
+		var results = [];
+    	for(var i = 0;i<set.length;i++){
+    		matchrx(set[i], rx, deep, results);
+    	}
+    	return results;
+    }
+
     
     function replace(where, what, deep, cb){
     	var set = find(where,what,deep);
@@ -296,5 +317,5 @@ define(function(){
         return root;
     };
     
-    return { parse: parse, store:store, find: find, replace:replace, dump: dump, serialize: serialize, line: lineLookup };
+    return { parse: parse, store:store, find: find, findrx:findrx, replace:replace, dump: dump, serialize: serialize, line: lineLookup };
 });
