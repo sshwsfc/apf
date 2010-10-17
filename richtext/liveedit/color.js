@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 apf.LiveEdit.colorPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;

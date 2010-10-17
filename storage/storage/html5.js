@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  *        Storage provider that uses WHAT Working Group features in Firefox 2 
@@ -229,4 +229,7 @@ var Storagemoduleshtml5 = {
             : "__" + namespace + "_" + key;
     }
 };
+
+return Storagemoduleshtml5;
+
 });

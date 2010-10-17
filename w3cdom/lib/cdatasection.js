@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 apf.AmlCDATASection = function(isPrototype){
     this.nodeType = this.NODE_CDATA_SECTION;
     this.nodeName = "#cdata-section";

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var LiveEditpasteDialog = function(sName) {
     this.name        = sName;
@@ -321,5 +321,8 @@ apf.LiveEdit.plugin("pasteword", function() {
         return false;
     };
 });
+
+
+return LiveEditpasteDialog;
 
 });

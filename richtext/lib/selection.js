@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @class apf.selection
@@ -1001,4 +1001,7 @@ var Selection = function(oWin, oDoc, editor) {
         delete _self;
     };
 };
+
+return Selection;
+
 });

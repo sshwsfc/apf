@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying a skinnable menu of items which can be choosen.
@@ -547,4 +547,7 @@ var Menu = function(struct, tagName){
 }).call(apf.menu.prototype = new apf.Presentation());
 
 apf.aml.setElement("menu", apf.menu);
+
+return Menu;
+
 });

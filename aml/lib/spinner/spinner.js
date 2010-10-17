@@ -18,7 +18,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /** 
  * This element is used to choosing number by plus/minus buttons.
  * When plus button is clicked longer, number growing up faster. The same
@@ -555,4 +555,7 @@ var Spinner = function(struct, tagName){
 #endif */
 
 apf.aml.setElement("spinner", apf.spinner);
+
+return Spinner;
+
 });

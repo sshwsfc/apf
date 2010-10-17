@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /*
  * Copyright (C) 2005 - Stephen Griffin, i-code.co.uk

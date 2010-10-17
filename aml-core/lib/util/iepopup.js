@@ -1,4 +1,4 @@
-    define([],function(){
+    define([], function(){
     /**
      * @private
      */
@@ -104,4 +104,7 @@
             this.popup.document.body.onmouseover = null;
         }
     };
-    });
+    
+return Popup2;
+
+});

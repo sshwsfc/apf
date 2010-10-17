@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Adds multilingual support for aml applications. Reads language symbols from
@@ -247,5 +247,8 @@ var Language = {
         delete this.bindings[amlNode.$uniqueId];
     }
 };
+
+
+return Language;
 
 });

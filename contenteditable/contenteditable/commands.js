@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var ContentEditablecommands = (function(){
     var STATE = 1;
     var VALUE = 2;
@@ -883,5 +883,8 @@ var ContentEditablecommands = (function(){
         commands
     );
 })();
+
+
+return ContentEditablecommands;
 
 });

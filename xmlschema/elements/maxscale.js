@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XsdMaxScale = function(struct, tagName){
     this.$init(tagName || "maxscale", this.NODE_HIDDEN, struct);
 };
@@ -34,4 +34,7 @@ var XsdMaxScale = function(struct, tagName){
 }).call(apf.XsdMaxScale.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("maxscale", apf.XsdMaxScale);
+
+return XsdMaxScale;
+
 });

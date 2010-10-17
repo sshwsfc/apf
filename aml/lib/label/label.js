@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying a text in the user interface, usually specifying
@@ -151,4 +151,7 @@ var Label = function(struct, tagName){
 }).call(apf.label.prototype = new apf.BaseSimple());
 
 apf.aml.setElement("label", apf.label);
+
+return Label;
+
 });

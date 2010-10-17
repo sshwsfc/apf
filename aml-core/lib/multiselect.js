@@ -21,7 +21,7 @@
 
 apf.__MULTISELECT__ = 1 << 8;
 
-define([],function(){
+define([], function(){
 
 /**
  * @term eachnode A each node is a {@link term.datanode data node} that is in the set selected by the 
@@ -1900,4 +1900,7 @@ apf.MultiSelectServer = {
 };
 */
 // #endif
+
+return MultiSelect;
+
 });

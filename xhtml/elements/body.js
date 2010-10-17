@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XhtmlBodyElement = function(struct, tagName){
     this.$init(tagName || "body", this.NODE_VISIBLE, struct);
 };
@@ -50,4 +50,7 @@ apf.Init.addConditional(function(){
 }, null, ["interactive"]);
 
 apf.xhtml.setElement("body", apf.XhtmlBodyElement);
+
+return XhtmlBodyElement;
+
 });

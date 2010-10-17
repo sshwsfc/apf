@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * A page in a pageable element. (i.e. a page in {@link element.tab})
@@ -528,5 +528,8 @@ var Page = function(struct, tagName){
 }).call(apf.page.prototype = new apf.Presentation());
 
 apf.aml.setElement("page", apf.page);
+
+
+return Page;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @term smartbinding Smartbinding is a type of bidirectional databinding where 
@@ -855,4 +855,7 @@ var Smartbinding = function(struct, tagName){
 }).call(apf.smartbinding.prototype = new apf.AmlElement());
 
 apf.aml.setElement("smartbinding", apf.smartbinding);
+
+return Smartbinding;
+
 });

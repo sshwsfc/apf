@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 apf.AmlTextRectangle = function(host){
     var _self = this;
     function handler(){

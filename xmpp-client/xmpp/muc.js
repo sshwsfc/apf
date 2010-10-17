@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Interface implementing a Multi User Chat service for the apf.xmpp object.

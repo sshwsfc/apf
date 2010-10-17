@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Default actions, that are known to the actiontracker
  * @todo test if the .extra speed impact matters
@@ -257,5 +257,8 @@ var Actiontrackeractions = {
             //apf.xmldb.notifyQueued();
     }
 };
+
+
+return Actiontrackeractions;
 
 });

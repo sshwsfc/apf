@@ -19,7 +19,7 @@
  *
  */
  
-define([],function(){
+define([], function(){
 
 /**
  * @attribute {String} match
@@ -117,4 +117,7 @@ apf.aml.setElement("copy",   apf.ActionRule);
 apf.aml.setElement("move",   apf.ActionRule);
 apf.aml.setElement("check",  apf.ActionRule);
 apf.aml.setElement("change", apf.ActionRule);
+
+return ActionRule;
+
 });

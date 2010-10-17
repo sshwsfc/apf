@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var LiveEditdateTimePlugin = function(sName) {
     this.name        = sName;
@@ -76,5 +76,8 @@ var LiveEditdateTimePlugin = function(sName) {
 
 apf.LiveEdit.plugin("insertdate", apf.LiveEdit.dateTimePlugin);
 apf.LiveEdit.plugin("inserttime", apf.LiveEdit.dateTimePlugin);
+
+
+return LiveEditdateTimePlugin;
 
 });

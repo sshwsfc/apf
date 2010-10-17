@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var HAS_CHILD = 1 << 1,
     IS_CLOSED = 1 << 2,
@@ -1463,4 +1463,7 @@ var Markupedit = function(struct, tagName){
 }).call(apf.markupedit.prototype = new apf.MultiSelect());
 
 apf.aml.setElement("markupedit", apf.markupedit);
+
+return Markupedit;
+
 });

@@ -1,4 +1,4 @@
-        define([],function(){
+        define([], function(){
         for (var i, l2, a, m, n, o, v, p = location.href.split(/[?&]/), l = p.length, k = 1; k < l; k++) {
             if (m = p[k].match(/(.*?)(\..*?|\[.*?\])?=([^#]*)/)) {
                 n = decodeURI(m[1]).toLowerCase(), o = this._GET;

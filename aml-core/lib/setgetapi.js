@@ -1,7 +1,7 @@
 add to prototype of guielement
     /**** Convenience functions for gui nodes ****/
 
-    define([],function(){
+    define([], function(){
 
     /**** Geometry ****/
 

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * The animation library that is used for the animations inside elements
@@ -978,5 +978,8 @@ return {
 };
 
 })(apf);
+
+
+return Tween;
 
 });

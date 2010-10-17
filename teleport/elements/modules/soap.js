@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of the SOAP RPC protocol.
@@ -315,5 +315,8 @@ var Soap = function(){
         this.nsURL  = this["soap-xmlns"] || this.nsURL;
     });
 };
+
+
+return Soap;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XhtmlSkipChildrenElement = function(struct, tagName){
     this.$init(tagName, this.NODE_VISIBLE, struct);
 };
@@ -56,4 +56,7 @@ apf.xhtml.setElement("embed", apf.XhtmlSkipChildrenElement);
 apf.xhtml.setElement("table", apf.XhtmlSkipChildrenElement);
 
 apf.xhtml.setElement("pre", apf.XhtmlSkipChildrenElement);
+
+return XhtmlSkipChildrenElement;
+
 });

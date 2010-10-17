@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var LiveEditsearchPlugin = function(sName) {
     this.name        = sName;
@@ -283,5 +283,8 @@ var LiveEditsearchPlugin = function(sName) {
 
 apf.LiveEdit.plugin("search",  apf.LiveEdit.searchPlugin);
 apf.LiveEdit.plugin("replace", apf.LiveEdit.searchPlugin);
+
+
+return LiveEditsearchPlugin;
 
 });

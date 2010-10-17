@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * 
@@ -238,4 +238,7 @@ var Geolocation = (function() {
 
     return pub;
 })();
+
+return Geolocation;
+
 });

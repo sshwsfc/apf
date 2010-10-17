@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Offline provider that uses Google gears.
@@ -141,5 +141,8 @@ var Offlineapplicationgears = {
     }
     // #endif
 };
+
+
+return Offlineapplicationgears;
 
 });

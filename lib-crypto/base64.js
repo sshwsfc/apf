@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.crypto.Base64 = (function() {
     

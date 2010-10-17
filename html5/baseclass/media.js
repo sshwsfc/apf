@@ -21,7 +21,7 @@
 
 apf.__MEDIA__ = 1 << 20;
 
-define([],function(){
+define([], function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have media node features and dynamics.

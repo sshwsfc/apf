@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XsdSimpleType = function(struct, tagName){
     this.$init(tagName || "simpletype", this.NODE_HIDDEN, struct);
     
@@ -58,4 +58,7 @@ var XsdSimpleType = function(struct, tagName){
 }).call(apf.XsdSimpleType.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("simpletype", apf.XsdSimpleType);
+
+return XsdSimpleType;
+
 });

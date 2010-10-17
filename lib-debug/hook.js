@@ -20,7 +20,7 @@
  */
 
 
-define([],function(){
+define([], function(){
 
 /**
  * @author      Rik Arends

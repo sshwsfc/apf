@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var LiveEditlistPlugin = function(sName) {
     this.name        = sName;
@@ -129,5 +129,8 @@ var LiveEditlistPlugin = function(sName) {
 
 apf.LiveEdit.plugin("bullist", apf.LiveEdit.listPlugin);
 apf.LiveEdit.plugin("numlist", apf.LiveEdit.listPlugin);
+
+
+return LiveEditlistPlugin;
 
 });

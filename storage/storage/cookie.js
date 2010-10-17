@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Storage module using browsers cookies objects to store the data. 
@@ -301,4 +301,7 @@ var Storagemodulescookie = {
             + " does not support a storage settings user-interface");
     }
 };
+
+return Storagemodulescookie;
+
 });

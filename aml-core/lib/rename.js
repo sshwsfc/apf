@@ -21,7 +21,7 @@
 
 apf.__RENAME__ = 1 << 10;
 
-define([],function(){
+define([], function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have the rename features. Rename is triggered by

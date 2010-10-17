@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.LiveEdit.plugin("charmap", function() {
     this.name        = "charmap";

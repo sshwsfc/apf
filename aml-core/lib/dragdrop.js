@@ -21,7 +21,7 @@
 
 apf.__DRAGDROP__ = 1 << 5;
 
-define([],function(){
+define([], function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have drag&drop 

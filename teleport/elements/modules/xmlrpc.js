@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of the XML-RPC protocol as a module for the RPC
@@ -339,5 +339,8 @@ var Xmlrpc = function(){
         return true;
     };
 };
+
+
+return Xmlrpc;
 
 });

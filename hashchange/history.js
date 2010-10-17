@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of hash change listener. The 'hash' is the part of the
@@ -271,5 +271,8 @@ var History = {
         this.page = page;
     }
 };
+
+
+return History;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @todo description
@@ -53,5 +53,8 @@ var Style = function(struct, tagName){
 
 apf.aml.setElement("style", apf.style);
 apf.xhtml.setElement("style",  apf.style);
+
+
+return Style;
 
 });

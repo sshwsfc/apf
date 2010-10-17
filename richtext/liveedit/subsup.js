@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var LiveEditsubSupCommand = function(sName) {
     this.name        = sName;
@@ -47,5 +47,8 @@ var LiveEditsubSupCommand = function(sName) {
 }
 apf.LiveEdit.plugin("sub", apf.LiveEdit.subSupCommand);
 apf.LiveEdit.plugin("sup", apf.LiveEdit.subSupCommand);
+
+
+return LiveEditsubSupCommand;
 
 });

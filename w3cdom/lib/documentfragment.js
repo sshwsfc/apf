@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 apf.DOMDocumentFragment = function(isPrototype){
     this.$init(isPrototype);
 };

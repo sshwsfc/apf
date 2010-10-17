@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var AmlComment = function(isPrototype){
     this.nodeType = this.NODE_COMMENT;
     this.nodeName = "#comment";
@@ -40,4 +40,7 @@ var AmlComment = function(isPrototype){
         });
     }
 }).call(apf.AmlComment.prototype = new apf.AmlCharacterData());
+
+return AmlComment;
+
 });

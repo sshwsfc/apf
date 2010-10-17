@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of the Yahoo! Query Language as a module for the RPC

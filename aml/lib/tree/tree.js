@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying data in a list where each item in the list can contain
@@ -421,4 +421,7 @@ var Tree = function(struct, tagName){
 apf.aml.setElement("tree", apf.tree);
 
 apf.aml.setElement("checked", apf.BindingRule);
+
+return Tree;
+
 });

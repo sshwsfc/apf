@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  *
@@ -50,5 +50,8 @@ var Defaults = function(struct, tagName){
 }).call(apf.defaults.prototype = new apf.AmlElement());
 
 apf.aml.setElement("defaults", apf.defaults);
+
+
+return Defaults;
 
 });

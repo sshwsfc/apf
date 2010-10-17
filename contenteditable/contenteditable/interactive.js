@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /*
     Adds complex resize/drag behaviour for ContentEditable

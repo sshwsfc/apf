@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Storage module using javascript objects to store the data. When the 
@@ -301,4 +301,7 @@ var Storagemodulesmemory = {
             + " does not support a storage settings user-interface");
     }
 };
+
+return Storagemodulesmemory;
+
 });

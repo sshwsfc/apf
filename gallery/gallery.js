@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 // #define __WITH_PRESENTATION 1
 
 /**
@@ -797,4 +797,7 @@ apf.aml.setElement("gallery", apf.gallery);
 
 apf.aml.setElement("url", apf.BindingRule);
 apf.aml.setElement("mediatype", apf.BindingRule);
+
+return Gallery;
+
 });

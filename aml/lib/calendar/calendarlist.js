@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  *
  * @inherits apf.DataAction
@@ -417,4 +417,7 @@ var Calendarlist      = function(struct, tagName){
 apf.aml.setElement("calendarlist", apf.calendarlist);
 apf.aml.setElement("date",         apf.BindingRule);
 apf.aml.setElement("duration",     apf.BindingRule);
+
+return Calendarlist;
+
 });

@@ -1,5 +1,5 @@
 
-define([],function(){
+define([], function(){
 
 //#ifdef __WITH_REGISTRY
 /**

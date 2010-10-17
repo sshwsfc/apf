@@ -21,7 +21,7 @@
 
 apf.__VALIDATION__ = 1 << 6;
 
-define([],function(){
+define([], function(){
 
 //if checkequal then notnull = true
 apf.validator = {

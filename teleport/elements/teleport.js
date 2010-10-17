@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.aml.setElement("teleport", apf.AmlElement);
 

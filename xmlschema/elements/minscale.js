@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XsdMinScale = function(struct, tagName){
     this.$init(tagName || "minscale", this.NODE_HIDDEN, struct);
 };
@@ -34,4 +34,7 @@ var XsdMinScale = function(struct, tagName){
 }).call(apf.XsdMinScale.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("minscale", apf.XsdMinScale);
+
+return XsdMinScale;
+
 });

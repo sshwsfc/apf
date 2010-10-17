@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * element that provides a means to get icons from a
@@ -86,5 +86,8 @@ var Iconmap = function(){
 }).call(apf.iconmap.prototype = new apf.AmlElement());
 
 apf.aml.setElement("iconmap", apf.iconmap);
+
+
+return Iconmap;
 
 });

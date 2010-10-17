@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var AmlConfiguration = function(isPrototype){
     this.parameterNames = [];
 
@@ -35,4 +35,7 @@ var AmlConfiguration = function(isPrototype){
         return this.parameterNames.indexOf(name) > -1;
     };
 }).call(apf.AmlConfiguration.prototype = new apf.Class());
+
+return AmlConfiguration;
+
 });

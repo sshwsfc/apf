@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Any child element of this element is placed in a table. The size of the 
@@ -467,4 +467,7 @@ var Table = function(struct, tagName){
 }).call(apf.table.prototype = new apf.GuiElement());
 
 apf.aml.setElement("table", apf.table);
+
+return Table;
+
 });

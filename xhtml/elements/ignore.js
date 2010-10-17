@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 apf.XhtmlIgnoreElement = function(struct, tagName){
     this.$init(tagName, this.NODE_VISIBLE, struct);
 };

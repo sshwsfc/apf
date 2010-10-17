@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displays a chart.
@@ -350,4 +350,7 @@ apf.aml.setElement("axis", apf.Axis);
         this.$redraw();
      });
 }).call(apf.Axis.prototype = new apf.AmlElement());
+
+return Axis;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Helper class that aids in creating and controlling Adobe Flash
  * elements.
@@ -625,4 +625,7 @@ var Flash = (function(){
         remote          : remote
     };
 })();
+
+return Flash;
+
 });

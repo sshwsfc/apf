@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @private
@@ -199,4 +199,7 @@ var Modalwindowwidget = function(){
         this.minheight = this.$getOption("Main", "min-height");
     }
 };
+
+return Modalwindowwidget;
+
 });

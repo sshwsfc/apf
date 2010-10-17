@@ -1,4 +1,4 @@
-define([],function(){
+define([], function(){
     var wheel = this.$mousewheel = function wheel(e) {
         if (!e)
             e = event;

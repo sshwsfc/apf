@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element implementing XMPP IM protocol.
@@ -2595,5 +2595,8 @@ var Xmpp = function(struct, tagName){
 }).call(apf.xmpp.prototype = new apf.Teleport());
 
 apf.aml.setElement("xmpp", apf.xmpp);
+
+
+return Xmpp;
 
 });

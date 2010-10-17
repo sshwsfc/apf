@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * element specifying which menu is shown when a
@@ -160,7 +160,10 @@ apf.aml.setElement("contextmenu", apf.contextmenu);
             e.cancelBubble = true;
         }
     });
-    });    
+    
+return Contextmenu;
+
+});    
     
 GuiElement.propHandlers = {
     //#ifdef __AMLCONTEXTMENU

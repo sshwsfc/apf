@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of the JSON-RPC protocol as a module for the RPC
@@ -103,5 +103,8 @@ var Jsonrpc = function(){
         return obj.result;
     };
 };
+
+
+return Jsonrpc;
 
 });

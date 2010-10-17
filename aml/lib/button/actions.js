@@ -1,4 +1,4 @@
-define([],function(){
+define([], function(){
 apf.submit.action   =
 apf.trigger.actions =
 apf.reset.actions   =

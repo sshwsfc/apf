@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element allowing a user to select a value from a list, which is 
@@ -451,4 +451,7 @@ var Dropdown = function(struct, tagName){
 apf.config.$inheritProperties["initial-message"] = 1;
 
 apf.aml.setElement("dropdown", apf.dropdown);
+
+return Dropdown;
+
 });

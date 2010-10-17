@@ -47,7 +47,7 @@
  *               2^53     = 9007199254740992;
  */
 
-define([],function(){
+define([], function(){
 
 var CryptoBigInt = (function() {
     var biRadixBase = 2;
@@ -621,5 +621,8 @@ var CryptoBigInt = (function() {
         moduloByRadixPower: biModuloByRadixPower
     };
 })();
+
+
+return CryptoBigInt;
 
 });

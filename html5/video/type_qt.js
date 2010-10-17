@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.video.TypeQTCompat = (function(){
     var gTagAttrs           = null;

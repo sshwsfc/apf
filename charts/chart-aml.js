@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displays a chart.
@@ -275,5 +275,8 @@ apf.aml.setElement("chart", apf.Chart);
         window.clearInterval(this.$animTimer);
     };
 }).call(apf.Chart.prototype = new apf.Presentation());
+
+
+return Chart;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var AmlText = function(isPrototype){
     this.$init(isPrototype);
 };
@@ -113,4 +113,7 @@ var AmlText = function(isPrototype){
               pHtmlNode.ownerDocument.createTextNode(nodeValue));
     }, true);
 }).call(apf.AmlText.prototype = new apf.AmlCharacterData());
+
+return AmlText;
+
 });

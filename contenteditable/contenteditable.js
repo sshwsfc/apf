@@ -19,7 +19,7 @@
  *
  */
 apf.__CONTENTEDITABLE__  = 1 << 24;
-define([],function(){
+define([], function(){
 
 apf.addEventListener("load", function(){
     var lastShift;

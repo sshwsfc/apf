@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object that represents a URI, broken down to its parts, according to RFC3986.

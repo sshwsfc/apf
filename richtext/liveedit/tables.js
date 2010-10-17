@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.LiveEdit.plugin("table", function() {
     this.name       = "table",

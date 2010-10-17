@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.clipboard = new apf.Class().$init();
 apf.clipboard.store = null;

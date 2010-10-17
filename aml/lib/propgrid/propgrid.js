@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 //@todo There is a lot of dead code in here (also in the skin) remove it
 

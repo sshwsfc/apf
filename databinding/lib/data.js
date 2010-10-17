@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @term datainstruction Data instructions offer a single and consistent way for

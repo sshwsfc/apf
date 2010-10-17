@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element specifying the settings of the application.
@@ -168,4 +168,7 @@ var Appsettings = function(struct, tagName){
 }).call(apf.appsettings.prototype = new apf.AmlElement());
 
 apf.aml.setElement("appsettings", apf.appsettings);
+
+return Appsettings;
+
 });

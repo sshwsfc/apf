@@ -1,4 +1,4 @@
-define([],function(){
+define([], function(){
 /**
  * Provides a way to record user actions, store them and play them back.
  * @experimental

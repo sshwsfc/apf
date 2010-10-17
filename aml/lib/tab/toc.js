@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element acting as the navigational instrument for any
@@ -227,4 +227,7 @@ var Toc = function(struct, tagName){
 }).call(apf.toc.prototype = new apf.Presentation());
 
 apf.aml.setElement("toc", apf.toc);
+
+return Toc;
+
 });

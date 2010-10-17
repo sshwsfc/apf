@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * The parser of the HyperText Markup Language.
  * @private
@@ -361,5 +361,8 @@ var HtmlCleaner = (function() {
         }
     };
 })();
+
+
+return HtmlCleaner;
 
 });

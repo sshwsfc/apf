@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /** 
  * This element is used for viewing images. It's possible to add thumbnail and 
  * description to each of them. You can select a displayed image in several ways.
@@ -1347,4 +1347,7 @@ apf.aml.setElement("slideshow", apf.slideshow);
 apf.aml.setElement("src",   apf.BindingRule);
 apf.aml.setElement("title", apf.BindingRule);
 apf.aml.setElement("thumb", apf.BindingRule);
+
+return Slideshow;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @todo docs
@@ -41,4 +41,7 @@ var BindingLoadRule = function(struct, tagName){
 
 apf.aml.setElement("load", apf.BindingLoadRule);
 apf.aml.setElement("insert", apf.BindingLoadRule);
+
+return BindingLoadRule;
+
 });

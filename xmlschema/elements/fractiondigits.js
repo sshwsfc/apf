@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Specifies the maximum number of decimal places allowed. Must be equal to or greater than zero
  */
@@ -39,4 +39,7 @@ var XsdFractionDigits = function(struct, tagName){
 }).call(apf.XsdFractionDigits.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("maxinclusive", apf.XsdFractionDigits);
+
+return XsdFractionDigits;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 apf.XsdSchema = function(struct, tagName){
     this.$init(true);
 };

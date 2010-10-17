@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Helper class that aids in creating and controlling Ajax O3 instances
  *

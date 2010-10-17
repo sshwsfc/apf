@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element showing an error message when the attached element 
@@ -182,4 +182,7 @@ var Errorbox = function(struct, tagName){
 }).call(apf.errorbox.prototype = new apf.Presentation());
 
 apf.aml.setElement("errorbox", apf.errorbox);
+
+return Errorbox;
+
 });

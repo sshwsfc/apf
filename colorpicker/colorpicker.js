@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element giving the user a visual choice of several colors presented in a
@@ -375,5 +375,8 @@ var Colorpicker = function(struct, tagName){
 }).call(apf.colorpicker.prototype = new apf.GuiElement());
 
 apf.aml.setElement("colorpicker", apf.colorpicker);
+
+
+return Colorpicker;
 
 });

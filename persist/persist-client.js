@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element implementing the persist messaging protocol.
@@ -464,5 +464,8 @@ var Persist = function(struct, tagName){
 }).call(apf.persist.prototype = new apf.Teleport());
 
 apf.aml.setElement("persist", apf.persist);
+
+
+return Persist;
 
 });

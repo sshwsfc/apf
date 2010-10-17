@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying a two state button which is one of a grouped set.
@@ -560,5 +560,8 @@ apf.$group = function(struct, tagName){
 apf.$group.prototype = new apf.GuiElement();
 
 apf.aml.setElement("group", apf.$group);
+
+
+return Radiobutton;
 
 });

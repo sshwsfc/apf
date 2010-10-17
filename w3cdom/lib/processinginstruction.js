@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var AmlProcessingInstruction = function(isPrototype){
     this.$init(isPrototype);
 };
@@ -123,4 +123,7 @@ var AmlProcessingInstruction = function(isPrototype){
         this.$propHandlers["calcdata"].call(this, "");
     };
 }).call(apf.AmlProcessingInstruction.prototype = new apf.DOMNode());
+
+return AmlProcessingInstruction;
+
 });

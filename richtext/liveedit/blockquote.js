@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.LiveEdit.plugin("blockquote", function(){
     this.name        = "blockquote";

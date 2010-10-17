@@ -21,7 +21,7 @@
 
 apf.__DATABINDING__ = 1 << 1;
 
-define([],function(){
+define([], function(){
 
 /**
  * Baseclass adding data binding features to this element. Databinding takes

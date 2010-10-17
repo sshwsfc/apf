@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var XhtmlOptionElement = function(struct, tagName){
     this.$init(tagName || "option", this.NODE_VISIBLE, struct);
@@ -37,4 +37,7 @@ var XhtmlOptionElement = function(struct, tagName){
 }).call(apf.XhtmlOptionElement.prototype = new apf.AmlElement());
 
 apf.xhtml.setElement("option", apf.XhtmlOptionElement);
+
+return XhtmlOptionElement;
+
 });

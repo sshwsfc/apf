@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @constructor
@@ -438,5 +438,8 @@ var Textboxmasking = function(){
         return myvalue.length; // always return -a- value...
     }
 };
+
+
+return Textboxmasking;
 
 });

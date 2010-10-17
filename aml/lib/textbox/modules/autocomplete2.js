@@ -1,4 +1,4 @@
-define([],function(){
+define([], function(){
 
 this.$btndown = function(oHtml, e){
     this.$setStyleClass(oHtml, "down");

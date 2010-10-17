@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Defines the exact sequence of characters that are acceptable
  */
@@ -39,4 +39,7 @@ var XsdPattern = function(struct, tagName){
 }).call(apf.XsdPattern.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("pattern", apf.XsdPattern);
+
+return XsdPattern;
+
 });

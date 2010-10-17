@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Element with which you can add and remove graphical blocks and create 
  * connections between them. Block could be rotated, flipped, resized, 
@@ -1345,4 +1345,7 @@ apf.aml.setElement("ref",         apf.BindingRule);
 apf.aml.setElement("blockoutput", apf.BindingRule);
 apf.aml.setElement("blockinput",  apf.BindingRule);
 apf.aml.setElement("blocklabel",  apf.BindingRule);
+
+return Flowchart;
+
 });

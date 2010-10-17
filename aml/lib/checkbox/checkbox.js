@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying a clickable rectangle having two states which
@@ -262,4 +262,7 @@ var Checkbox = function(struct, tagName){
 }).call(apf.checkbox.prototype = new apf.BaseButton());
 
 apf.aml.setElement("checkbox", apf.checkbox);
+
+return Checkbox;
+
 });

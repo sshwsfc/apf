@@ -21,7 +21,7 @@
 
 apf.__ALIGNMENT__ = 1 << 29;
 
-define([],function(){
+define([], function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have

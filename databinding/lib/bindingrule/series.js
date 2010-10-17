@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @attribute {String} formula 
@@ -54,4 +54,7 @@ var BindingSeriesRule = function(struct, tagName){
 }).call(apf.BindingSeriesRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("series", apf.BindingSeriesRule);
+
+return BindingSeriesRule;
+
 });

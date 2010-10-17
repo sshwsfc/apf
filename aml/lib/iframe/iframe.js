@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying the rendered contents of an URL.
@@ -196,4 +196,7 @@ var Iframe = function(struct, tagName){
 }).call(apf.iframe.prototype = new apf.GuiElement());
 
 apf.aml.setElement("iframe", apf.iframe);
+
+return Iframe;
+
 });

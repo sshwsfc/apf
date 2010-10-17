@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Baseclass of elements that allows the user to select one or more items
@@ -1214,5 +1214,8 @@ var BaseTree = function(){
 #else 
 }).call(apf.BaseTree.prototype = new apf.Presentation());
 #endif*/
+
+
+return BaseTree;
 
 });

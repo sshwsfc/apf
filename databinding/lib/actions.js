@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
 * @define actions  element containing all the action rules for the data 
@@ -97,4 +97,7 @@ var Actions = function(struct, tagName){
 }).call(apf.actions.prototype = new apf.AmlElement());
 
 apf.aml.setElement("actions", apf.actions);
+
+return Actions;
+
 });

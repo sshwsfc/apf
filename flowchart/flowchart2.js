@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /*
  * @author      Lukasz Lipinski
@@ -1210,4 +1210,7 @@ apf.aml.setElement("name",    apf.BindingRule);
 apf.aml.setElement("blockoutput", apf.BindingRule);
 apf.aml.setElement("blockinput",  apf.BindingRule);
 apf.aml.setElement("blocklabel",  apf.BindingRule);
+
+return Flowchart;
+
 });

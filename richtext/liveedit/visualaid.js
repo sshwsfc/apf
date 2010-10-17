@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.LiveEdit.plugin("visualaid", function(){
     this.name        = "visualaid";

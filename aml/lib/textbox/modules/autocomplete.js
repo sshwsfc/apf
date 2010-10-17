@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Adds autocomplete to the textbox element
@@ -168,5 +168,8 @@ var Textboxautocomplete = function(){
         this.oContainer.style.display = "none";
     };
 };
+
+
+return Textboxautocomplete;
 
 });

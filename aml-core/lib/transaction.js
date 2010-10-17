@@ -21,7 +21,7 @@
 
 apf.__TRANSACTION__ = 1 << 3;
 
-define([],function(){
+define([], function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have transaction support. A transaction is a 
@@ -620,5 +620,8 @@ apf.GuiElement.propHandlers["transaction"] = function(value){
             this.autoshow = true;
     }
 }
+
+
+return Transaction;
 
 });

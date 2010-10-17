@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @todo docs
@@ -63,4 +63,7 @@ var BindingColorRule = function(struct, tagName){
 }).call(apf.BindingColorRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("color", apf.BindingColorRule);
+
+return BindingColorRule;
+
 });

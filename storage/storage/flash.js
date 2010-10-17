@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 // summary:
 //        Storage provider that uses features in Flash to achieve permanent
@@ -449,4 +449,7 @@ var Storagemodulesflash = {
         return [];
     }
 };
+
+return Storagemodulesflash;
+
 });

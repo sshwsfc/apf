@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * element specifying the skin of an application.
@@ -265,5 +265,8 @@ apf.aml.setElement("skin", apf.skin);
         }*/
     });
 }).call(apf.skin.prototype = new apf.AmlElement());
+
+
+return Skin;
 
 });

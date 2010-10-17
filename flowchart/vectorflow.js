@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 // || __INC_ALL
 
 /**
@@ -1463,4 +1463,7 @@ var Vectorflow = function(struct, tagName){
 #endif*/
 
 apf.aml.setElement("vectorflow", apf.vectorflow);
+
+return Vectorflow;
+
 });

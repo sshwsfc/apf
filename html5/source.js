@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element 
@@ -47,5 +47,8 @@ var Source = function(struct, tagName){
 }).call(apf.source.prototype = new apf.AmlElement());
 
 apf.aml.setElement("source", apf.source);
+
+
+return Source;
 
 });

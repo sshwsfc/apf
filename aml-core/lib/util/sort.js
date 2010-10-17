@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object handling sorting in a similar way as xslt.
@@ -229,5 +229,8 @@ var Sort = function(xmlNode){
     if (xmlNode) 
         this.parseXml(xmlNode);
 };
+
+
+return Sort;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Element displaying a Rich Text Editor, like M$ Office Word in a browser
  * window. Even though this Editor does not offer the same amount of features
@@ -574,4 +574,7 @@ var Editor = function(struct, tagName){
 #endif */
 
 apf.aml.setElement("editor", apf.editor);
+
+return Editor;
+
 });

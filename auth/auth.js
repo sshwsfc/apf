@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @define auth Centralized authentication handling. Not being logged in, after being
@@ -618,4 +618,7 @@ apf.aml.setElement("auth", apf.auth);
     };
 
 }).call(apf.auth.prototype = new apf.AmlElement());
+
+return Auth;
+
 });

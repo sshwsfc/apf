@@ -1,4 +1,4 @@
-    define([],function(){
+    define([], function(){
 
     var timer, state = "", last = "";
     this.$focusfix = function(){
@@ -130,4 +130,7 @@ var SanitizeTextbox = function(oTxt){
             apf.window.$blurfix();
     };
 };
+
+return SanitizeTextbox;
+
 });

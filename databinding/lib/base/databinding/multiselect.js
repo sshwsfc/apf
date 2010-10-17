@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} can bind to data 
  * which contains multiple nodes.
@@ -1205,4 +1205,7 @@ var MultiselectBinding = function(){
     //this.$propHandlers["select"]   = 
     //#endif
 }).call(apf.MultiselectBinding.prototype = new apf.DataBinding());
+
+return MultiselectBinding;
+
 });

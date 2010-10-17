@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @binding each Determines the list of elements for which each
@@ -304,4 +304,7 @@ var BindingEachRule = function(struct, tagName){
 }).call(apf.BindingEachRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("each", apf.BindingEachRule);
+
+return BindingEachRule;
+
 });

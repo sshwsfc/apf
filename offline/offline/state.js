@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object recording the state of all elements. If the realtime attribute is
@@ -229,6 +229,9 @@ var Offlinestate = {
         });
     }
 };
+
+return Offlinestate;
+
 });
     
 var setProp = this.$_setProperty;

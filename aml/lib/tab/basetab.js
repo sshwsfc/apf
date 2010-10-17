@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Baseclass of a paged element. 
@@ -1550,5 +1550,8 @@ var BaseTab = function(){
         // #endif
     };
 }).call(apf.BaseTab.prototype = new apf.Presentation());
+
+
+return BaseTab;
 
 });

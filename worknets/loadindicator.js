@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element shows a nice animated loader
@@ -159,4 +159,7 @@ var Loadindicator = function(struct, tagName){
 }).call(apf.loadindicator.prototype = new apf.Presentation());
 
 apf.aml.setElement("loadindicator", apf.loadindicator);
+
+return Loadindicator;
+
 });

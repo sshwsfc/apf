@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Stores javascript structures based on a name and a namespace. This object
  * is used by {@link element.offline apf offline support} as well as the 
@@ -241,4 +241,7 @@ var Storage = {
     removeMultiple: function(keys, namespace){}
     // #endif
 };
+
+return Storage;
+
 });

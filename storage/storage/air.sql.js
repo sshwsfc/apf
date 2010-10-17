@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 // summary: 
 //		Storage provider that uses features in the Adobe AIR runtime to achieve

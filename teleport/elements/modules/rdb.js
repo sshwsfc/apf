@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 // #define __WITH_RDB 1
 
 /**
@@ -249,5 +249,8 @@ var Rdb = function(){
         return false;
     };
 };
+
+
+return Rdb;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Defines a list of acceptable values
  */
@@ -183,4 +183,7 @@ apf.aml.setElement("include", apf.XiInclude);
         }));
     }
 }).call(apf.XiInclude.prototype = new apf.AmlElement());
+
+return XiInclude;
+
 });

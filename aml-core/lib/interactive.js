@@ -21,7 +21,7 @@
 
 apf.__INTERACTIVE__ = 1 << 21;
 
-define([],function(){
+define([], function(){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have interactive features, making an
@@ -845,5 +845,8 @@ apf.GuiElement.propHandlers["draggable"] = function(value){
 };
 
 apf.Init.run("interactive");
+
+
+return Interactive;
 
 });

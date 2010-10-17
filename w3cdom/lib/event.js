@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Implementation of W3C event object. An instance of this class is passed as
  * the first argument of any event handler. Per event it will contain different

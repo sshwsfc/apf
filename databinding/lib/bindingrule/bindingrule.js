@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -247,4 +247,7 @@ apf.aml.setElement("src",        apf.BindingRule);
 apf.aml.setElement("collapsed",  apf.BindingRule);
 apf.aml.setElement("expanded",  apf.BindingRule);
 apf.aml.setElement("empty",      apf.BindingRule);
+
+return BindingRule;
+
 });

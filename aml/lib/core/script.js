@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * element that loads javascript into the application
@@ -107,5 +107,8 @@ var Script = function(){
 }).call(apf.script.prototype = new apf.AmlElement());
 
 apf.aml.setElement("script", apf.script);
+
+
+return Script;
 
 });

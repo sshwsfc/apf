@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of an RPC protocol which encodes the data in a serialized 
@@ -179,5 +179,8 @@ var Jphp = function(){
         return true;
     };
 };
+
+
+return Jphp;
 
 });

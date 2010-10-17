@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object detecting if the application has network, the detection moments can
@@ -134,5 +134,8 @@ var Offlinedetector = {
         //#endif
     }
 };
+
+
+return Offlinedetector;
 
 });

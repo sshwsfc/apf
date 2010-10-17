@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 //@todo apf3.0
 var AmlNamedNodeMap = function(host){
     this.$host = host;
@@ -105,4 +105,7 @@ var AmlNamedNodeMap = function(host){
         return x.join(glue);
     }
 }).call(apf.AmlNamedNodeMap.prototype = {}); //apf.isIE < 8 ? {} : []
+
+return AmlNamedNodeMap;
+
 });

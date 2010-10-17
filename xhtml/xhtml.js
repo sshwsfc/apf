@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object creating the XHTML namespace for the aml parser.
@@ -34,5 +34,8 @@ define([],function(){
 var Xhtml = new apf.AmlNamespace();
 apf.setNamespace("http://www.w3.org/1999/xhtml", apf.xhtml);
 //#endif
+
+
+return Xhtml;
 
 });

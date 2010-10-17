@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 //@todo: fix the stuff with all the uppercase variable and function names...wazzup?
 
@@ -736,4 +736,7 @@ var Scrollbar = function(struct, tagName){
     }
 }).call(apf.scrollbar.prototype = new apf.Presentation());
 apf.aml.setElement("scrollbar", apf.scrollbar);
+
+return Scrollbar;
+
 });

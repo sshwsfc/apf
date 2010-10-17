@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Displays a popup element with a message with optionally an icon at the
@@ -56,4 +56,7 @@ var Event = function(struct, tagName){
 }).call(apf.event.prototype = new apf.AmlElement());
 
 apf.aml.setElement("event", apf.event);
+
+return Event;
+
 });

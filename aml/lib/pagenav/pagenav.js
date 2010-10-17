@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * This elements displays buttons which can be used to navigate between some
@@ -243,4 +243,7 @@ var Pagenav = function(struct, tagName){
 apf.aml.setElement("pagenav",   apf.pagenav);
 apf.aml.setElement("total",   apf.BindingRule);
 apf.aml.setElement("current", apf.BindingRule);
+
+return Pagenav;
+
 });

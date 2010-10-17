@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * @private
  */
@@ -152,4 +152,7 @@ var Selectrect = function (){
         document.documentElement.style.cursor = "";
     };
 };
+
+return Selectrect;
+
 });

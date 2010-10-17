@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element functioning as the central access point for xml data. Data can be
@@ -1198,5 +1198,8 @@ var Model = function(struct, tagName){
 }).call(apf.model.prototype = new apf.AmlElement());
 
 apf.aml.setElement("model", apf.model);
+
+
+return Model;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XhtmlInputElement = function(struct, tagName){
     this.$init(tagName || "input", this.NODE_VISIBLE, struct);
 };
@@ -55,4 +55,7 @@ var XhtmlInputElement = function(struct, tagName){
 }).call(apf.XhtmlInputElement.prototype = new apf.AmlElement());
 
 apf.xhtml.setElement("input", apf.XhtmlInputElement);
+
+return XhtmlInputElement;
+
 });

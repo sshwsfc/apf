@@ -1,5 +1,5 @@
     //this should happen at document.load
-    define([],function(){
+    define([], function(){
     //Set the default selected element
     if (!apf.document.activeElement && (!apf.config.allowBlur 
       || apf.document.documentElement 

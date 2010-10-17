@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of the Common Gateway Interface (CGI) as a module for the RPC
@@ -211,5 +211,8 @@ var Cgi = function(){
         return false;
     };
 };
+
+
+return Cgi;
 
 });

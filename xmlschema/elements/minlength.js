@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Specifies the minimum number of characters or list items allowed. Must be equal to or greater than zero
  */
@@ -40,4 +40,7 @@ var XsdMinLength = function(struct, tagName){
 }).call(apf.XsdMinLength.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("minlength", apf.XsdMinLength);
+
+return XsdMinLength;
+
 });

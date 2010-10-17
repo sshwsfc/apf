@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 amlCore.addListener(window, "unload", function(){
     //#ifdef __WITH_XMLDATABASE
@@ -1087,5 +1087,8 @@ var Xmldb = new (function(){
         return docId;
     };
 });
+
+
+return Xmldb;
 
 });

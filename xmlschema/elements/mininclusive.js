@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Specifies the lower bounds for numeric values (the value must be greater than or equal to this value)
  */
@@ -38,4 +38,7 @@ var XsdMinInclusive = function(struct, tagName){
 }).call(apf.XsdMinInclusive.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("mininclusive", apf.XsdMinInclusive);
+
+return XsdMinInclusive;
+
 });

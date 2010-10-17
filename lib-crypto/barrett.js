@@ -14,7 +14,7 @@
  * @author Dave Shapiro <dave AT ohdave DOT com>
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * A class for performing Barrett modular reduction computations in JavaScript.

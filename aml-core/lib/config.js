@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var Config = new apf.Class().$init();
 Object.extend(apf.config, {
@@ -239,5 +239,8 @@ if (apf.history)
         apf.history.init(apf.config.defaultPage, "page");
     });
 //#endif
+
+
+return Config;
 
 });

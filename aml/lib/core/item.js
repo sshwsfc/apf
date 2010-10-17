@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Item of a menu displaying a clickable area.
@@ -646,4 +646,7 @@ var Item  = function(struct, tagName){
 //apf.aml.setElement("radio", apf.radio);
 //apf.aml.setElement("check", apf.check);
 apf.aml.setElement("item",  apf.item);
+
+return Item;
+
 });

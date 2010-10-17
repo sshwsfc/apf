@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @attribute {String}  icon
@@ -524,4 +524,7 @@ var BindingColumnRule = function(struct, tagName){
 }).call(apf.BindingColumnRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("column", apf.BindingColumnRule);
+
+return BindingColumnRule;
+
 });

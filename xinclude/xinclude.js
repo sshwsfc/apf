@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object creating the XML Include namespace for the aml parser.
@@ -35,4 +35,7 @@ define([],function(){
  */
 var Xinclude = new apf.AmlNamespace();
 apf.setNamespace("http://www.w3.org/2001/XInclude", apf.xinclude);
+
+return Xinclude;
+
 });

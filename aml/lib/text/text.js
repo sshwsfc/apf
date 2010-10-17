@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying a rectangle containing arbitrary (X)HTML.
@@ -339,4 +339,7 @@ var Text = function(struct, tagName){
 }).call(apf.text.prototype = new apf.MultiselectBinding());
 
 apf.aml.setElement("text", apf.text);
+
+return Text;
+
 });

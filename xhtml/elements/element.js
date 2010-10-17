@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var XhtmlElement = function(struct, tagName){
     this.$init(tagName || true, this.NODE_VISIBLE, struct);
@@ -151,4 +151,7 @@ apf.Init.addConditional(function(){
 }, null, ["interactive"]);
 
 apf.xhtml.setElement("@default", apf.XhtmlElement);
+
+return XhtmlElement;
+
 });

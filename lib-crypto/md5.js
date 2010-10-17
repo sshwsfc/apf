@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var CryptoMD5 = {
     /*
@@ -246,5 +246,8 @@ var CryptoMD5 = {
         return str.join("");
     }
 };
+
+
+return CryptoMD5;
 
 });

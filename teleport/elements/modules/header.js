@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Implementation of an RPC protocol which encodes the variable information in 
@@ -97,5 +97,8 @@ var Header = function(){
         return "";
     };
 };
+
+
+return Header;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var XmlDiff = function (doc1, doc2){
     /*var domParser = new apf.DOMParser();
@@ -919,5 +919,8 @@ var XmlDiff = function (doc1, doc2){
         
     //#endif
 }
+
+
+return XmlDiff;
 
 });

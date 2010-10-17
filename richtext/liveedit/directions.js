@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var LiveEditdirectionPlugin = function(sName) {
     this.name        = sName;
@@ -41,5 +41,8 @@ var LiveEditdirectionPlugin = function(sName) {
 
 apf.LiveEdit.plugin("ltr", apf.LiveEdit.directionPlugin);
 apf.LiveEdit.plugin("rtl", apf.LiveEdit.directionPlugin);
+
+
+return LiveEditdirectionPlugin;
 
 });

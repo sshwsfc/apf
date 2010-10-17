@@ -19,7 +19,7 @@
  *
  */
  
-define([],function(){
+define([], function(){
 
 apf.chart_draw = {
     // #ifdef __ENABLE_CHART_AXIS2D

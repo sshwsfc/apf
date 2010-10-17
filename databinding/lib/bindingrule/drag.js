@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @attribute {String} target 
@@ -110,4 +110,7 @@ var BindingDndRule = function(struct, tagName){
 
 apf.aml.setElement("drag", apf.BindingDndRule);
 apf.aml.setElement("drop", apf.BindingDndRule);
+
+return BindingDndRule;
+
 });

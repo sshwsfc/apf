@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * @private
  */
@@ -346,5 +346,8 @@ var RunIphone = function() {
         }
     };
 };
+
+
+return RunIphone;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /*
   <xs:simpleType name="SizeType">
     <xs:union memberTypes="DressSizeType">
@@ -64,4 +64,7 @@ var XsdUnion = function(struct, tagName){
 }).call(apf.XsdUnion.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("union", apf.XsdUnion);
+
+return XsdUnion;
+
 });

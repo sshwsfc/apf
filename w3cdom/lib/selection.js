@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var AmlSelection = function(doc){
     this.$init();
     
@@ -275,4 +275,7 @@ var AmlSelection = function(doc){
         return (r = this.$ranges[0]).startContainer.childNodes[r.startOffset];
     }
 }).call(apf.AmlSelection.prototype = new apf.Class());
+
+return AmlSelection;
+
 });

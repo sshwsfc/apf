@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displays a chart.
@@ -580,4 +580,7 @@ addEventListener("DOMNodeInsertedIntoDocument", function( e ){
 		}
     });
 }).call(apf.Graph.prototype = new apf.AmlElement());
+
+return Graph;
+
 });

@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Baseclass of a simple element. This are usually displaying elements 
@@ -51,5 +51,8 @@ var BaseSimple = function(){
 /* #else
 }).call(apf.BaseSimple.prototype = new apf.Presentation());
 #endif */
+
+
+return BaseSimple;
 
 });

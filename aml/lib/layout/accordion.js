@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * The Accordion is component that allows you to provide multiple vertical or 
@@ -638,4 +638,7 @@ var Accordion = function(struct, tagName){
 }).call(apf.accordion.prototype = new apf.Presentation());
 
 apf.aml.setElement("accordion", apf.accordion);
+
+return Accordion;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @todo docs
@@ -299,4 +299,7 @@ var BindingQuicksandRule = function(struct, tagName){
 }).call(apf.BindingQuicksandRule.prototype = new apf.BindingRule());
 
 apf.aml.setElement("quicksand", apf.BindingQuicksandRule);
+
+return BindingQuicksandRule;
+
 });

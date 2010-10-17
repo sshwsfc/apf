@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 var XsdList = function(struct, tagName){
     this.$init(tagName || "list", this.NODE_HIDDEN, struct);
 };
@@ -29,4 +29,7 @@ var XsdList = function(struct, tagName){
 }).call(apf.XsdList.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("list", apf.XsdList);
+
+return XsdList;
+
 });

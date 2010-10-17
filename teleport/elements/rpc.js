@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([],function(){
+define([], function(){
 
 /**
  * Baseclass for rpc in teleport. Modules are available for
@@ -643,5 +643,8 @@ var Rpc = function(struct, tagName){
 apf.config.$inheritProperties["baseurl"] = 1;
 
 apf.aml.setElement("rpc", apf.rpc);
+
+
+return Rpc;
 
 });

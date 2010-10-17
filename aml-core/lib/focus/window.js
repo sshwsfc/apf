@@ -1,4 +1,4 @@
-    define([],function(){
+    define([], function(){
     var lastFocusElement;
     this.addEventListener("focus", function(e){
         if (!apf.document.activeElement && lastFocusParent && !apf.isIphone) {

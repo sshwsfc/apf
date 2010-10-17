@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element implementing a Roster service for the apf.xmpp object.
@@ -412,5 +412,8 @@ var Xmpp_roster = function(model, modelContent, res) {
         return sJID.replace(/[\"\s\&\\\:<>]+/g, "").replace(/\//g, "_").toLowerCase();
     };
 };
+
+
+return Xmpp_roster;
 
 });

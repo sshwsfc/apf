@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * element specifying a method available within the rpc element.
@@ -102,4 +102,7 @@ var Method = function(struct, tagName){
 }).call(apf.method.prototype = new apf.AmlElement());
 
 apf.aml.setElement("method", apf.method);
+
+return Method;
+
 });

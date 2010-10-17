@@ -20,7 +20,7 @@
  */
 apf.__LIVEEDIT__  = 1 << 23;
 
-define([],function(){
+define([], function(){
 
 /**
  * Baseclass of an element whose content is editable. This is usually an

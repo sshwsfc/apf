@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var Color = {
 /*
@@ -227,5 +227,8 @@ var Color = {
         return this.RGBToHex(this.HSBToRGB(hsb));
     }
 };
+
+
+return Color;
 
 });

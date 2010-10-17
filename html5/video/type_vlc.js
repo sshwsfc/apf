@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.video.TypeVlcCompat = (function() {
     var iVersion = 0;

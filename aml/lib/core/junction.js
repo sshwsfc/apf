@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * A symbolic link to an AML element. The visibility of this element determines
@@ -73,5 +73,8 @@ var Junction = function(){
 }).call(apf.junction.prototype = new apf.AmlElement());
 
 apf.aml.setElement("junction", apf.junction);
+
+
+return Junction;
 
 });

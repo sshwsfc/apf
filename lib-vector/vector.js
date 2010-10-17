@@ -19,7 +19,7 @@
  *
  */
  
-define([],function(){
+define([], function(){
 
 var Vector =  new (function(){
 
@@ -796,4 +796,7 @@ var Vector =  new (function(){
     })();
  });
 
- });
+ 
+return Vector;
+
+});

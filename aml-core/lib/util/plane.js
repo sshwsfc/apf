@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * @todo needs refactor
  * @private
@@ -187,4 +187,7 @@ var Plane = {
         };
     }
 };
+
+return Plane;
+
 });

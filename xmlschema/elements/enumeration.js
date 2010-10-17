@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Defines a list of acceptable values
  */
@@ -50,4 +50,7 @@ var XsdEnumeration = function(struct, tagName){
 }).call(apf.XsdEnumeration.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("enumeration", apf.XsdEnumeration);
+
+return XsdEnumeration;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Element displaying a Google Map with all option customizable through attributes
@@ -582,5 +582,8 @@ var Map = function(struct, tagName){
 }).call(apf.map.prototype = new apf.GuiElement());
 
 apf.aml.setElement("map", apf.map);
+
+
+return Map;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object handling the offline state of the application resources. This includes
@@ -338,5 +338,8 @@ var Offlineapplication = {
         this.refresh(callback);
     }
 };
+
+
+return Offlineapplication;
 
 });

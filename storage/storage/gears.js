@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  *  Storage provider that uses Google Gears to store data.
@@ -371,4 +371,7 @@ apf.storage.modules["gears.sql"] = {
     }
     //#endif
 };
+
+return Storagemodulesgears;
+
 });

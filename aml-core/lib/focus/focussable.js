@@ -21,7 +21,7 @@
 
 apf.__FOCUSSABLE__ = 1 << 26;
 
-define([],function(){
+define([], function(){
 var Focussable = function(){
     this.$regbase = this.$regbase | apf.__FOCUSSABLE__;
     if (this.disabled == undefined)
@@ -135,6 +135,9 @@ var Focussable = function(){
         }
     };
 
+
+
+return Focussable;
 
 });
 GuiElement.propHandlers = {

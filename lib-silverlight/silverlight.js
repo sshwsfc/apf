@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Helper class that aids in creating and controlling Microsoft Silverlight
  * elements (XAML stuff).
@@ -724,4 +724,7 @@ var Silverlight = (function() {
         isAvailable             : isAvailable
     };
 })();
+
+return Silverlight;
+
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * @constructor
@@ -355,4 +355,7 @@ var Splitter = function(struct, tagName){
 }).call(apf.splitter.prototype = new apf.Presentation());
 
 apf.aml.setElement("splitter", apf.splitter);
+
+return Splitter;
+
 });

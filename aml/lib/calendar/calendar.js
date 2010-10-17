@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Element displaying a calendar, ordered by week. It allows the user to choose 
  * the month and year for which to display the days. Calendar returns a date 
@@ -749,4 +749,7 @@ var Calendar = function(struct, tagName){
 }).call(apf.calendar.prototype = new apf.StandardBinding());
 
 apf.aml.setElement("calendar", apf.calendar);
+
+return Calendar;
+
 });

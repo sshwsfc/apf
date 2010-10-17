@@ -1,4 +1,4 @@
-    define([],function(){
+    define([], function(){
     var namespace = apf.config.name + ".apf.http";
 
     /**

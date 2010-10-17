@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 apf.video.TypeWmpCompat = (function() {
     var hasWMP = false;

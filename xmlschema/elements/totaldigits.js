@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 /**
  * Specifies the exact number of digits allowed. Must be greater than zero
  */
@@ -39,4 +39,7 @@ var XsdTotalDigits = function(struct, tagName){
 }).call(apf.XsdTotalDigits.prototype = new apf.XsdElement());
 
 apf.xsd.setElement("totaldigits", apf.XsdTotalDigits);
+
+return XsdTotalDigits;
+
 });

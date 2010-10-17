@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 /**
  * Object handling queuing of actions that can only be executed whilst online.
@@ -194,5 +194,8 @@ var Offlinequeue = {
         return commInfo;
     }
 };
+
+
+return Offlinequeue;
 
 });

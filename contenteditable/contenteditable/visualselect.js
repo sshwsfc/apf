@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var VisualSelect = function(selection){
     this.$init();
@@ -464,5 +464,8 @@ var VisualSelect = function(selection){
         }
     }
 }).call(apf.visualSelect.prototype = new apf.Class());
+
+
+return VisualSelect;
 
 });

@@ -21,7 +21,7 @@
 
 apf.__ANCHORING__ = 1 << 13;
 
-define([],function(){
+define([], function(){
 
 //#ifdef __WITH_ANCHORING
 this.percentageMatch = new RegExp();
@@ -495,5 +495,8 @@ var Anchoring = function(){
         this.$disableAnchoring();
     });
 };
+
+
+return Anchoring;
 
 });

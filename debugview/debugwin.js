@@ -19,7 +19,7 @@
  *
  */
 
-define([],function(){
+define([], function(){
 
 var GetShortestPath = function(p1, p2) {
     if (p1.charAt(0) == "/")
@@ -1155,5 +1155,8 @@ apf.$debugwin = {
         this.show();
     }
 }
+
+
+return GetShortestPath;
 
 });
