@@ -19,7 +19,7 @@
  *
  */
 
-require.def(function(){
+define(function(){
 	var dump = function( o, opt, s, d, r ){
 		if(!s)s = [], r = [], d = 0; 
 		opt = opt || {};
