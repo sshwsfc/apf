@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["aml-core/base/basebutton"], 
+define(["aml-core/base/basebutton"], 
     function(BaseButton){
 
 return (function() {

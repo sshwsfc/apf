@@ -19,7 +19,7 @@
  *
  */
 
-require.def(function(){
+define(function(){
         
 var sNodes           = null, 
     aNodes           = null,

@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "w3cdom/node",
     "lib-oop"], 
     function(DOMNode, oop){

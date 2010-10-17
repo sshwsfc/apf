@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "w3cdom/node", 
     "w3cdom/configuration", 
     "optional!lib-parsers/xpath", 

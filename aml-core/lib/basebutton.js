@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "optional!databinding/base/standard", 
     "aml-core/skin/skin",
     "optional!aml-core/childvalue",

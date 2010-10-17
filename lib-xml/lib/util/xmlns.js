@@ -1,4 +1,4 @@
-require.def(
+define(
     "lib-xml/xmlns", 
     ["envdetect/features"], 
     function(feat){

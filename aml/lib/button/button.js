@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["aml-core/base/basebutton", "optional!aml", "lib-oop"], 
+define(["aml-core/base/basebutton", "optional!aml", "lib-oop"], 
     function(aml, BaseButton, oop){
 
 /**

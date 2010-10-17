@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["lib-xml"], function(getXmlDom){
+define(["lib-xml"], function(getXmlDom){
 
 return {
     /**

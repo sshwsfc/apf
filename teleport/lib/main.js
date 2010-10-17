@@ -21,7 +21,7 @@
 
 // #ifdef __TP_HTTP
 
-require.def(["lib-xmlhttp"], 
+define(["lib-xmlhttp"], 
     function(XMLHttpRequest){
 
 /**

@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["optional!aml", "aml/button/button"], 
+define(["optional!aml", "aml/button/button"], 
     function(aml, Button){
 
 /**

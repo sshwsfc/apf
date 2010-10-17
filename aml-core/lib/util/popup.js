@@ -25,7 +25,7 @@ aml-core/focus
 lib-css/position
 */
 
-require.def([
+define([
     "aml-core", 
     "aml-core/focus",
     "envdetect/features", 

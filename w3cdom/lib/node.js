@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "lib-oop/class",
     "lib-oop"], 
     function(Class, oop){

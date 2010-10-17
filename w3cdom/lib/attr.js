@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["w3cdom/node", "lib-oop"], 
+define(["w3cdom/node", "lib-oop"], 
     function(DOMNode, oop){
 
 var AmlAttr = function(ownerElement, name, value){

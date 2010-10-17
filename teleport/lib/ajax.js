@@ -1,4 +1,4 @@
-require.def(["teleport"], function(teleport){
+define(["teleport"], function(teleport){
     /**
      * Sends and retrieves data from remote locations over http.
      * Example:

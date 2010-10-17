@@ -4,7 +4,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-require.def(function(){
+define(function(){
     function namespace(){
         this.elements = {};
         this.processingInstructions = {};

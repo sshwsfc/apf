@@ -1,7 +1,7 @@
 /**
  * Compatibility layer for Internet Explorer.
  */
-require.def(function(){
+define(function(){
         
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xmlParser = new ActiveXObject("microsoft.XMLDOM");

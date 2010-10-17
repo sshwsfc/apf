@@ -1,4 +1,4 @@
-if (apf.hasRequireJS) require.def("apf/elements/dbg/v8websocketdebughost",
+if (apf.hasRequireJS) define("apf/elements/dbg/v8websocketdebughost",
     ["debug/WSV8DebuggerService",
      "debug/V8Debugger",
      "apf/elements/dbg/v8debugger"],

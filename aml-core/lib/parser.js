@@ -1,4 +1,4 @@
-require.def(["debug/console"], function(console){
+define(["debug/console"], function(console){
 
 return {
     amlParts : [],

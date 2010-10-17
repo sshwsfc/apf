@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "envdetect/features", 
     "aml-core/util/uniquehtml"], 
     function(features, uniqueHtml){

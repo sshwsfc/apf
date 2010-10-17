@@ -1,4 +1,4 @@
-require.def(
+define(
     function(){
 
 function pickRecentProgID(idList){

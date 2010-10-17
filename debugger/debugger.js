@@ -1,4 +1,4 @@
-if (apf.hasRequireJS) require.def("apf/elements/debugger",
+if (apf.hasRequireJS) define("apf/elements/debugger",
     [], function() {
 
 apf.dbg = function(struct, tagName){

@@ -39,7 +39,7 @@ var box2d = new (function(){
     
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\common\b2Settings.js)SIZE(2591)TIME(1273141915906)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -118,7 +118,7 @@ b2Settings.b2Assert = function(a)
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\common\math\b2Vec2.js)SIZE(2850)TIME(1273141915906)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -256,7 +256,7 @@ b2Vec2.Make = function(x_, y_)
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\common\math\b2Mat22.js)SIZE(3131)TIME(1273141915906)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -393,7 +393,7 @@ b2Mat22.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\common\math\b2Math.js)SIZE(5056)TIME(1273141915906)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -618,7 +618,7 @@ b2Math.tempMat = new b2Mat22();
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2AABB.js)SIZE(1593)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -670,7 +670,7 @@ b2AABB.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2Bound.js)SIZE(1466)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -720,7 +720,7 @@ b2Bound.prototype = {
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2BoundValues.js)SIZE(1149)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -758,7 +758,7 @@ b2BoundValues.prototype = {
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2Pair.js)SIZE(2185)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -825,7 +825,7 @@ b2Pair.e_pairFinal = 0x0004;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2PairCallback.js)SIZE(1380)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -866,7 +866,7 @@ b2PairCallback.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2BufferedPair.js)SIZE(1020)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -899,7 +899,7 @@ b2BufferedPair.prototype = {
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2PairManager.js)SIZE(10927)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -1292,7 +1292,7 @@ b2PairManager.EqualsPair = function(pair1, pair2)
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2BroadPhase.js)SIZE(26260)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -2197,7 +2197,7 @@ b2BroadPhase.BinarySearch = function(bounds, count, value)
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2Collision.js)SIZE(22890)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -2942,7 +2942,7 @@ b2Collision.b2TestOverlap = function(a, b)
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\Features.js)SIZE(2049)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3010,7 +3010,7 @@ Features.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2ContactID.js)SIZE(1749)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3069,7 +3069,7 @@ b2ContactID.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2ContactPoint.js)SIZE(1285)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3451,7 +3451,7 @@ b2Distance.g_GJK_Iterations = 0;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2Manifold.js)SIZE(1283)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3492,7 +3492,7 @@ b2Manifold.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2OBB.js)SIZE(1238)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3533,7 +3533,7 @@ b2OBB.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\b2Proxy.js)SIZE(1489)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3580,7 +3580,7 @@ b2Proxy.prototype = {
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\ClipVertex.js)SIZE(1152)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -3968,7 +3968,7 @@ b2Shape.PolyCentroid = function(vs, count, out)
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\shapes\b2ShapeDef.js)SIZE(2948)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -4084,7 +4084,7 @@ b2ShapeDef.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\shapes\b2BoxDef.js)SIZE(1501)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -4140,7 +4140,7 @@ objectExtend(b2BoxDef.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\shapes\b2CircleDef.js)SIZE(1494)TIME(1273141915921)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -4401,7 +4401,7 @@ objectExtend(b2CircleShape.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\shapes\b2MassData.js)SIZE(1135)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -4444,7 +4444,7 @@ b2MassData.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\collision\shapes\b2PolyDef.js)SIZE(1769)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -5008,7 +5008,7 @@ b2PolyShape.tAbsR = new b2Mat22();
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2Body.js)SIZE(11856)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -5484,7 +5484,7 @@ b2Body.e_destroyFlag = 0x0020;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2BodyDef.js)SIZE(1921)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -5560,7 +5560,7 @@ b2BodyDef.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2CollisionFilter.js)SIZE(1472)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -5609,7 +5609,7 @@ b2CollisionFilter.b2_defaultFilter = new b2CollisionFilter;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2Island.js)SIZE(10836)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -5947,7 +5947,7 @@ b2Island.m_positionIterationCount = 0;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2TimeStep.js)SIZE(1028)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -5981,7 +5981,7 @@ b2TimeStep.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2ContactNode.js)SIZE(1059)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -6021,7 +6021,7 @@ b2ContactNode.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2Contact.js)SIZE(5796)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -6229,7 +6229,7 @@ b2Contact.s_initialized = false;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2ContactConstraint.js)SIZE(1426)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -6281,7 +6281,7 @@ b2ContactConstraint.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2ContactConstraintPoint.js)SIZE(1363)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -6328,7 +6328,7 @@ b2ContactConstraintPoint.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2ContactRegister.js)SIZE(1059)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -6365,7 +6365,7 @@ b2ContactRegister.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2ContactSolver.js)SIZE(18377)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -6909,7 +6909,7 @@ b2ContactSolver.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2CircleContact.js)SIZE(2915)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -7018,7 +7018,7 @@ b2CircleContact.Destroy = function(contact, allocator){
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2Conservative.js)SIZE(6608)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -7253,7 +7253,7 @@ b2Conservative.Conservative = function(shape1, shape2){
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2NullContact.js)SIZE(1994)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -7325,7 +7325,7 @@ objectExtend(b2NullContact.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2PolyAndCircleContact.js)SIZE(2966)TIME(1273141915937)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -7435,7 +7435,7 @@ b2PolyAndCircleContact.Destroy = function(contact, allocator){
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\contacts\b2PolyContact.js)SIZE(4859)TIME(1273141915953)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -7605,7 +7605,7 @@ b2PolyContact.Destroy = function(contact, allocator){
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2ContactManager.js)SIZE(7405)TIME(1273141915953)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -7949,7 +7949,7 @@ objectExtend(b2ContactManager.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2World.js)SIZE(12663)TIME(1273141915953)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -8478,7 +8478,7 @@ b2World.s_enableWarmStarting = 1;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\b2WorldListener.js)SIZE(1881)TIME(1273141915953)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -8537,7 +8537,7 @@ b2WorldListener.b2_destroyBody = 1;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2JointNode.js)SIZE(1052)TIME(1273141915953)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -8577,7 +8577,7 @@ b2JointNode.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2Joint.js)SIZE(4643)TIME(1273141916000)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -8784,7 +8784,7 @@ b2Joint.e_equalLimits = 3;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2JointDef.js)SIZE(1222)TIME(1273141916000)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -8831,7 +8831,7 @@ b2JointDef.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2DistanceJoint.js)SIZE(10832)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9102,7 +9102,7 @@ objectExtend(b2DistanceJoint.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2DistanceJointDef.js)SIZE(1590)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9158,7 +9158,7 @@ objectExtend(b2DistanceJointDef.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2Jacobian.js)SIZE(1758)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9214,7 +9214,7 @@ b2Jacobian.prototype =
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2GearJoint.js)SIZE(9813)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9528,7 +9528,7 @@ objectExtend(b2GearJoint.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2GearJointDef.js)SIZE(1776)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9585,7 +9585,7 @@ objectExtend(b2GearJointDef.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2MouseJoint.js)SIZE(7644)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9826,7 +9826,7 @@ objectExtend(b2MouseJoint.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2MouseJointDef.js)SIZE(1612)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -9886,7 +9886,7 @@ objectExtend(b2MouseJointDef.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2PrismaticJoint.js)SIZE(28264)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -10569,7 +10569,7 @@ objectExtend(b2PrismaticJoint.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2PrismaticJointDef.js)SIZE(1749)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -10632,7 +10632,7 @@ objectExtend(b2PrismaticJointDef.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2PulleyJoint.js)SIZE(21849)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -11257,7 +11257,7 @@ b2PulleyJoint.b2_minPulleyLength = b2Settings.b2_lengthUnitsPerMeter;
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2PulleyJointDef.js)SIZE(2374)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -11334,7 +11334,7 @@ objectExtend(b2PulleyJointDef.prototype,
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2RevoluteJoint.js)SIZE(17846)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied
@@ -11832,7 +11832,7 @@ b2RevoluteJoint.tImpulse = new b2Vec2();
 
 /*FILEHEAD(/C:\temp\boxjs\js\box2d\dynamics\joints\b2RevoluteJointDef.js)SIZE(1674)TIME(1273141916015)*/
 
-﻿/*
+/*
 * Copyright (c) 2006-2007 Erin Catto http:
 *
 * This software is provided 'as-is', without any express or implied

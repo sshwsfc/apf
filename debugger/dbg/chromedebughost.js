@@ -1,4 +1,4 @@
-if (apf.hasRequireJS) require.def("apf/elements/dbg/chromedebughost",
+if (apf.hasRequireJS) define("apf/elements/dbg/chromedebughost",
     ["debug/ChromeDebugMessageStream", 
      "debug/WSChromeDebugMessageStream", 
      "debug/DevToolsService", 

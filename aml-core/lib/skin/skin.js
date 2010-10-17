@@ -21,7 +21,7 @@
 
 require("aml-core").__SKIN__ = 1 << 9;
 
-require.def([
+define([
     "aml-core",
     "aml-core/guielement",
     "aml-core/skin/main",

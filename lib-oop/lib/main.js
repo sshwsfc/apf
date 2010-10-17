@@ -1,4 +1,4 @@
-require.def(function() {
+define(function() {
     var oop = {};
     
     oop.inherits = function(ctor, superCtor) {

@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["lib-oop/class"], function(Class){
+define(["lib-oop/class"], function(Class){
 
 var classCount = 0;
 

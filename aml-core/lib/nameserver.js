@@ -19,7 +19,7 @@
  *
  */
 
-require.def(["ecmaext"]
+define(["ecmaext"]
     function(ecma){
 
 return {

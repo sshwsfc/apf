@@ -1,4 +1,4 @@
-require.def(["lib-xml"], function(getXmlDom){
+define(["lib-xml"], function(getXmlDom){
 
 /**
  * Integrates nodes as children of a parent. Optionally attributes are

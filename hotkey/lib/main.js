@@ -1,4 +1,4 @@
-require.def(
+define(
     ["aml-core", "lib-oop/class", "envdetect/features"],
     function(amlCore, Class, features){
 
@@ -41,29 +41,29 @@ var HotKeyManager = new Class();
     };
 
     var macUnicode = {
-        "meta"     : "\u2318", // ⌘
+        "meta"     : "\u2318", //
         "command"  : "\u2318",
-        "alt"      : "\u2325", // ⌥
+        "alt"      : "\u2325", //
         "option"   : "\u2325",
-        "shift"    : "\u21E7", // ⇧
-        "esc"      : "\u238B", // ⎋
-        "control"  : "\u2303", // ⌃
-        "backspace": "\u232B", // ⌫
-        "del"      : "\u2326", // ⌦
-        "enter"    : "\u21A9"  // ↩
+        "shift"    : "\u21E7", //
+        "esc"      : "\u238B", //
+        "control"  : "\u2303", //
+        "backspace": "\u232B", //
+        "del"      : "\u2326", //
+        "enter"    : "\u21A9"  //
     };
     
     var macUnicodeHtml = {
-        "meta"     : "&#8984;", // ⌘
+        "meta"     : "&#8984;", //
         "command"  : "&#8984;",
-        "alt"      : "&#8997;", // ⌥
+        "alt"      : "&#8997;", //
         "option"   : "&#8997;",
-        "shift"    : "&#8679;", // ⇧
-        "esc"      : "&#9099;", // ⎋
-        "control"  : "&#2303;", // ⌃ TODO
-        "backspace": "&#232B;", // ⌫ TODO
-        "del"      : "&#2326;", // ⌦ TODO
-        "enter"    : "&#21A9;"  // ↩ TODO
+        "shift"    : "&#8679;", //
+        "esc"      : "&#9099;", // 
+        "control"  : "&#2303;", //TODO
+        "backspace": "&#232B;", //TODO
+        "del"      : "&#2326;", //TODO
+        "enter"    : "&#21A9;"  //TODO
     };
 
     // hash to store the hotkeys in

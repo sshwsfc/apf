@@ -1,4 +1,4 @@
-require.def(function(){
+define(function(){
         
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xml = document.body.appendChild(document.createElement("xml"));

@@ -265,7 +265,7 @@ apf.xmpp = function(struct, tagName){
      *                                        sent and received from Multi User
      *                                        Chats will be synchronized to.
      * @attribute {String}   [rdb-host]       Name of the Virtual Host of the Remote
-     *                                        DataBinding service of a Jabber server.
+     *                                        DataBinding service of a Jabber server.
      *                                        Defaults to the domain that is parsed
      *                                        from {@link element.xmpp.url}.
      * @attribute {String}   [rdb-model]      Name of the model where Remote

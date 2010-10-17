@@ -1,4 +1,4 @@
-require.def([
+define([
     "envdetect",
     "envdetect/features"],
     function(env, features){

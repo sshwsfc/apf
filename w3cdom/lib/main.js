@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "w3cdom/node",
     "w3cdom/element",
     "w3cdom/attr",

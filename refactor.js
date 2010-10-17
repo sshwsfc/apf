@@ -54,8 +54,8 @@ for(var i = 0;i<list.length;i++){
 	if( jsparse.replace(f.node, "require.def",2, function(n){
 		console.log(f.name+" Replacing: "+n.v);
 		n.v = "define";
-	}));
-//			fs.writeFileSync(f.name, jsparse.serialize(f.node));
+	}))
+		fs.writeFileSync(f.name, jsparse.serialize(f.node));
 }
 
 

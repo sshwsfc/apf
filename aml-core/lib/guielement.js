@@ -21,7 +21,7 @@
 
 require("aml-core").__GUIELEMENT__ = 1 << 15;
 
-require.def([
+define([
     "aml-core",
     "w3cdom/element",
     "optional!aml-core/anchoring",

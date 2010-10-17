@@ -19,7 +19,7 @@
  *
  */
 
-require.def(function(){
+define(function(){
     
 function destroy(){
     //@todo

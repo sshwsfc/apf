@@ -19,7 +19,7 @@
  *
  */
 
-require.def([
+define([
     "lib-css",
     "envdetect",
     "envdetect/features"],

@@ -1,4 +1,4 @@
-require.def(function(){
+define(function(){
         
 var uniqueHtmlIds = 0;
 return {

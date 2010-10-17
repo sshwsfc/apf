@@ -1,4 +1,4 @@
-require.def(["envdetect"], function(env){
+define(["envdetect"], function(env){
     return new (function(){
         //Set Compatibility
         this.TAGNAME                   = env.isIE ? "baseName" : "localName";

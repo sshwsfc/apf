@@ -39,7 +39,7 @@
 if (!apf.hasRequireJS)
     apf.aml.setElement("codeeditor", apf.textbox);
 else
-    require.def("apf/elements/codeeditor",
+    define("apf/elements/codeeditor",
         ["ace/Editor", "ace/VirtualRenderer", "ace/Document", "ace/UndoManager", "ace/Range"],
         function(Editor, VirtualRenderer, Document, UndoManager, Range) {
 
