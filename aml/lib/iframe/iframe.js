@@ -71,19 +71,12 @@ var Iframe = function(struct, tagName){
 
 oop.inherit(Iframe, GuiElement);
 
+oop.decorate(Iframe, DataAction);
+
+oop.decorate(Iframe, StandardBinding);
+
 (function(){
     
-        // #ifdef __WITH_XFORMS
-        //apf.XForms,
-        // #endif
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Iframe, DataAction);
-        //#endif
-        // #ifdef __WITH_DATABINDING
-        ,oop.decorate(Iframe, StandardBinding);
-        // #endif
-    ;
-
     /**
      * @attribute {String} src   the url to be displayed in this element
      * @attribute {String} value alias for the 'url' attribute

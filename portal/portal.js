@@ -93,19 +93,17 @@ define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect
  * @binding column    Determines the column in which the docklet is created.
  * @binding caption   Determines the caption of the docklet.
  */
-apf.portal = function(struct, tagName){
-    this.$init(tagName || "portal", this.NODE_VISIBLE, struct);
+var Portal = function(struct, tagName){
+    MultiSelect.call(this, tagName || "portal", this.NODE_VISIBLE, struct);
     
     this.$columns   = [];
 };
 
+oop.inherit(Portal, MultiSelect);
+
+oop.decorate(Portal, DataAction);
+
 (function(){
-    
-        //apf.Cache,
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Portal, DataAction);
-        //#endif
-    ;
 
     this.$focussable     = false;
     this.buttons         = "edit|min|close";
@@ -662,9 +660,9 @@ aml && aml.setElement("traverse",  BindingRule);
 /**
  * @constructor
  */
-apf.portal.Docklet = function(){}
-apf.portal.Docklet.prototype = new apf.Class();
-apf.portal.Docklet.prototype.create = function(xmlSettings, oWidget, oPortal){
+Portal.Docklet = function(){}
+Portal.Docklet.prototype = new apf.Class();
+Portal.Docklet.prototype.create = function(xmlSettings, oWidget, oPortal){
     this.xmlSettings = xmlSettings
     this.oWidget = oWidget;
 

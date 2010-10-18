@@ -109,20 +109,14 @@ var BaseList = function(){
 
 oop.inherits(BaseList, MultiSelect);
 
+oop.decorate(BaseList, Cache);
+
+oop.decorate(BaseList, DataAction);
+
 (function() {
     //#ifdef __WITH_CACHE || __WITH_DATAACTION
     
-        //#ifdef __WITH_CACHE
-        oop.decorate(BaseList, Cache);
-        //#endif
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(BaseList, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //apf.XForms,
-        //#endif
-        oop.decorate(BaseList, K);
-    ;
+
     //#endif
 
     /**** Properties and Attributes ****/
@@ -164,7 +158,7 @@ oop.inherits(BaseList, MultiSelect);
     this.$propHandlers["mode"] = function(value){
         if ("check|radio".indexOf(value) > -1) {
             if (!this.hasFeature(apf.__MULTICHECK__))
-                this.implement(apf.MultiCheck);
+                oop.decorate(BaseList, MultiCheck);
             
             this.addEventListener("afterrename", $afterRenameMode); //what does this do?
             

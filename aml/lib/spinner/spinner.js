@@ -89,17 +89,10 @@ var Spinner = function(struct, tagName){
 
 oop.inherit(Spinner, StandardBinding);
 
+oop.decorate(Spinner, DataAction);
 
 (function() {
     
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Spinner, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
-
     this.$supportedProperties.push("width", "value", "max", "min", "caption", "realtime");
 
     this.$booleanProperties["realtime"] = true;

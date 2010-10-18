@@ -53,6 +53,7 @@ var Item  = function(struct, tagName){
 
 oop.inherit(Item, Presentation);
 
+oop.decorate(Item, ChildValue);
 
 (function(){
     this.$focussable    = false;
@@ -61,8 +62,6 @@ oop.inherit(Item, Presentation);
 
     this.checked  = false;
     this.selected = false;
-
-    oop.decorate(Item, ChildValue);;
 
     /**** Properties and Attributes ****/
     

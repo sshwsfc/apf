@@ -69,12 +69,10 @@ var Calendarlist      = function(struct, tagName){
 
 oop.inherit(Calendarlist, BaseList);
 
+oop.decorate(Calendarlist, Rename);;
+
 
 (function() {
-    // #ifdef __WITH_RENAME
-    if (!apf.isIphone)
-        oop.decorate(Calendarlist, Rename);;
-    // #endif
     
     // #ifdef __WITH_RENAME
     this.$getCaptionElement = function() {

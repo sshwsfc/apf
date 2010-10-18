@@ -66,15 +66,12 @@ var Label = function(struct, tagName){
 
 oop.inherit(Label, BaseSimple);
 
+oop.decorate(Label, DataAction);
+
+oop.decorate(Label, ChildValue);
 
 (function(){
     
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Label, DataAction);
-        //#endif
-        oop.decorate(Label, ChildValue);
-    ;
-
     var _self = this;
     
     this.$focussable = false;

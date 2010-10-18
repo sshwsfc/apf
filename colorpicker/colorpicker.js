@@ -66,19 +66,12 @@ var Colorpicker = function(struct, tagName){
 
 oop.inherit(Colorpicker, GuiElement);
 
+oop.decorate(Colorpicker, StandardBinding);
+
+oop.decorate(Colorpicker, DataAction);
+
 
 (function(){
-    
-        // #ifdef __WITH_DATABINDING
-        oop.decorate(Colorpicker, StandardBinding);
-        // #endif
-        //#ifdef __WITH_DATAACTION
-        ,oop.decorate(Colorpicker, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-       // ,apf.XForms
-        //#endif
-    ;
     //Options
     this.$focussable = true; // This object can get the focus
 

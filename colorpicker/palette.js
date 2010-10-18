@@ -62,16 +62,10 @@ var Palette = function(struct, tagName){
 
 oop.inherit(Palette, StandardBinding);
 
+oop.decorate(Palette, DataAction);
+
 
 (function(){
-    
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Palette, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
     /**** Properties and Attributes ****/
     
     this.$focussable = true; // This object can get the focus

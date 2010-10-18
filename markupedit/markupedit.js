@@ -55,20 +55,14 @@ var Markupedit = function(struct, tagName){
 
 oop.inherit(Markupedit, MultiSelect);
 
+oop.decorate(Markupedit, DataAction);
+
+oop.decorate(Markupedit, Cache);
+
+oop.decorate(Markupedit, Rename);
+
 
 (function(){
-    
-        //#ifdef __WITH_XFORMS
-        //apf.XForms,
-        //#endif
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Markupedit, DataAction);
-        //#endif
-        //#ifdef __WITH_CACHE
-        oop.decorate(Markupedit, Cache);
-        //#endif
-        oop.decorate(Markupedit, Rename);
-    ;
 
     this.$isTreeArch  = true; // Tree Architecture for loading Data
     this.$focussable  = true; // This object can get the focus

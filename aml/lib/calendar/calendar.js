@@ -114,17 +114,11 @@ var Calendar = function(struct, tagName){
 
 oop.inherit(Calendar, StandardBinding);
 
+oop.decorate(Calendar, DataAction);
+
 
 (function() {
     
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Calendar, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
-
     this.$supportedProperties.push("output-format", "default");
 
     /**

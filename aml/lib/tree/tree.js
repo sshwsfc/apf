@@ -145,7 +145,7 @@ oop.inherit(Tree, BaseTree);
     this.$propHandlers["mode"] = function(value){
         if ("check|radio".indexOf(value) > -1) {
             if (!this.hasFeature(apf.__MULTICHECK__))
-                oop.decorate(Tree, MultiCheck);;
+                oop.decorate(Tree, MultiCheck);
             
             this.addEventListener("afterrename", $afterRenameMode); //what does this do?
             

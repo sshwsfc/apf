@@ -170,18 +170,15 @@ var Flowchart = function(struct, tagName){
 
 oop.inherit(Flowchart, BaseList);
 
+oop.decorate(Flowchart, DataAction);
+
+oop.decorate(Flowchart, Cache);
+
+oop.decorate(Flowchart, Rename);
+
 
 (function() {
     
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Flowchart, DataAction);
-        //#endif
-        //#ifdef __WITH_CACHE
-        oop.decorate(Flowchart, Cache);
-        //#endif
-        oop.decorate(Flowchart, Rename);
-    ;
-
     this.objCanvas    = null;
     this.nodes        = [];
     this.snap         = false;

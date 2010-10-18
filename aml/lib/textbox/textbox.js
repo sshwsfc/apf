@@ -77,16 +77,10 @@ var Input    = function(struct, tagName){
 };
 
 oop.inherits(Input, StandardBinding)
+    
+oop.decorate(Textbox, DataAction);
 
 (function(){
-    
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Textbox, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
 
     this.$focussable       = true; // This object can get the focus
     this.$masking          = false;

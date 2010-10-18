@@ -51,25 +51,15 @@ var BaseTree = function(){
 
 oop.inherits(BaseTree, MultiSelect);
 
+oop.decorate(BaseTree, Rename);
+
+oop.decorate(BaseTree, DataAction);
+
+oop.decorate(BaseTree, Cache);
+
 (function() {
     //#ifdef __WITH_RENAME || __WITH_DATAACTION || __WITH_CACHE
     
-        //#ifdef __WITH_XFORMS
-        //apf.XForms,
-        //#endif
-        //#ifdef __WITH_RENAME
-        oop.decorate(BaseTree, Rename);
-        //#endif
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(BaseTree, DataAction);
-        //#endif
-        //#ifdef __WITH_CACHE
-        oop.decorate(BaseTree, Cache);
-        //#endif
-        oop.decorate(BaseTree, K);
-    ;
-    //#endif
-
     /**** Properties and Attributes ****/
 
     //Options

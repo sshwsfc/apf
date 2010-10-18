@@ -40,19 +40,15 @@ var BaseSimple = function(){
 
 oop.inherits(BaseSimple, StandardBinding);
 
+oop.decorate(BaseSimple, DataAction);
+
 (function() {
-    //#ifdef __WITH_DATAACTION
-    oop.decorate(BaseSimple, DataAction);;
-    //#endif
     
     this.getValue = function(){
         return this.value;
     };
-// #ifdef __WITH_DATABINDING
+    
 }).call(BaseSimple.prototype);
-/* #else
-}).call(apf.BaseSimple.prototype = new apf.Presentation());
-#endif */
 
 
 return BaseSimple;

@@ -92,9 +92,9 @@ var Radiobutton = function(struct, tagName){
 
 oop.inherit(Radiobutton, Presentation);
 
+oop.decorate(Radiobutton, ChildValue);
 
 (function(){
-    oop.decorate(Radiobutton, ChildValue);;
     this.$childProperty = "label";
     
     this.$focussable = true; // This object can get the focus

@@ -114,16 +114,10 @@ var Slider = function(struct, tagName){
 
 oop.inherit(Slider, StandardBinding);
 
+oop.decorate(Slider, DataAction);
+
 
 (function(){
-    
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Slider, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
 
     this.$focussable = true; // This object can get the focus
 

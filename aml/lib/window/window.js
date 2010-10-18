@@ -136,14 +136,16 @@ var WinServer = {
  *   {Boolean} edit       whether the window is in the edit state.
  *   {Boolean} closed     whether the window is closed.
  */
-var Modalwindow = function(struct, tagName){
-    this.$init(tagName || "window", this.NODE_VISIBLE, struct);
+var Window = function(struct, tagName){
+	Presentation.call(this, tagName || "window", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Window, Presentation);
+
+oop.decorate(Window, BaseStateButtons);
 
 (function(){
     
-        oop.decorate(Window, BaseStateButtons);
-    ;
 
     this.$isWindowContainer = true;
     this.collapsedHeight   = 30;

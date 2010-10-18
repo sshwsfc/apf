@@ -65,17 +65,16 @@ define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
  * @since       1.0
  */
 
-apf.video = function(struct, tagName){
-    this.$init(tagName || "video", this.NODE_VISIBLE, struct);
+var Video = function(struct, tagName){
+	Media.call(this, tagName || "video", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Video, Media);
+
+oop.decorate(Video, DataAction);
 
 (function(){
     
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Video, DataAction);
-        //#endif
-    ;
-
     this.$booleanProperties["fullscreen"] = true;
 
     var oldStyle = null; //will hold old style of the media elements' parentNode on fullscreen

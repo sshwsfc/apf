@@ -182,14 +182,9 @@ var Slideshow = function(struct, tagName){
 
 oop.inherit(Slideshow, MultiselectBinding);
 
+oop.decorate(Slideshow, DataAction);
 
 (function() {
-    
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Slideshow, DataAction);
-        //#endif
-        //,apf.Cache
-    ;
 
     this.$supportedProperties.push("model", "thumbheight", "title", "loadmsg",
                                    "defaultthumb", "defaulttitle",

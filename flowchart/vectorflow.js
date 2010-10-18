@@ -42,6 +42,7 @@ var Vectorflow = function(struct, tagName){
 
 oop.inherit(Vectorflow, MultiSelect);
 
+oop.decorate(Vectorflow, DataAction);;
 
 (function(){
     this.self = this;
@@ -51,10 +52,6 @@ oop.inherit(Vectorflow, MultiSelect);
     };
     
     this.$selectionLayers = ["selection_outline", "selection_resize", "selection_lineConnect"];
-
-    //#ifdef __WITH_DATAACTION
-    oop.decorate(Vectorflow, DataAction);;
-    //#endif
     
     //Options
     this.$focussable   = true; // This object can get the focus.

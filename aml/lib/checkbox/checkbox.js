@@ -68,17 +68,10 @@ var Checkbox = function(struct, tagName){
 
 oop.inherit(Checkbox, BaseButton);
 
+oop.decorate(Checkbox, DataAction);
 
 (function() {
     
-        //#ifdef __WITH_XFORMS
-        //apf.XForms
-        //#endif
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Checkbox, DataAction);
-        //#endif
-    ;
-
     //Options
     this.$focussable = true; // This object can get the focus
     this.checked     = false;

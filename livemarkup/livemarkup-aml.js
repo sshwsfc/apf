@@ -34,6 +34,10 @@ var LiveMarkupPi = function(){
 };
 
 oop.inherit(LiveMarkupPi, AmlProcessingInstruction);
+
+oop.decorate(LiveMarkupPi, StandardBinding);;
+
+
 /*
     @todo optimize the pi, possible with this code:
     var div, doc = this.ownerDocument, domParser = doc.$domParser, 
@@ -52,8 +56,6 @@ oop.inherit(LiveMarkupPi, AmlProcessingInstruction);
 */
 (function(){
     this.mainBind = "data";
-    
-    oop.decorate(LiveMarkupPi, StandardBinding);;
 
     this.getDocument = function(){
         return this.$data && this.$data.ownerDocument;

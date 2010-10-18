@@ -75,19 +75,12 @@ var Map = function(struct, tagName){
 
 oop.inherit(Map, GuiElement);
 
+oop.decorate(Map, StandardBinding);
+
+oop.decorate(Map, DataAction);
 
 (function(){
     
-        // #ifdef __WITH_DATABINDING
-        oop.decorate(Map, StandardBinding);
-        // #endif
-        //#ifdef __WITH_DATAACTION
-        ,oop.decorate(Map, DataAction);
-        //#endif
-        //#ifdef __WITH_XFORMS
-       // ,apf.XForms
-        //#endif
-    ;
     //Options
     this.$focussable           = true; // This object can get the focus
     this.$hasMaptypeControl    = true;

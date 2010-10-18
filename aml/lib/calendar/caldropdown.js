@@ -132,22 +132,15 @@ var Caldropdown = function(struct, tagName){
                         {name : "December",  number : 31}]
     };
     
-    this.$init(tagName || "caldropdown", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "caldropdown", this.NODE_VISIBLE, struct);
 };
+
+oop.inherit(Caldropdown, StandardBinding);
+
+oop.decorate(Caldropdown, DataAction);
 
 (function() {
     
-        //#ifdef __WITH_DATAACTION
-        oop.decorate(Caldropdown, DataAction);
-        //#endif
-        //#ifdef __WITH_DATABINDING
-        //,apf.StandardBinding
-        //#endif
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
-
     this.$supportedProperties.push("initial-message", "output-format",
                                    "default", "caption-format", "value");
 

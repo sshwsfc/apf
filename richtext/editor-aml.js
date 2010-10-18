@@ -69,15 +69,10 @@ var Editor = function(struct, tagName){
 
 oop.inherit(Editor, StandardBinding);
 
+oop.decorate(Editor, LiveEdit);
 
 (function() {
-    
-        oop.decorate(Editor, LiveEdit);
-        //#ifdef __WITH_XFORMS
-        //,apf.XForms
-        //#endif
-    ;
-    
+
     this.value  = "";
     this.$value = "";
 

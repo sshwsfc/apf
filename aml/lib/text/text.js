@@ -45,15 +45,12 @@ var Text = function(struct, tagName){
 
 oop.inherit(Text, MultiselectBinding);
 
+oop.decorate(Text, Cache);
+
+oop.decorate(Text, ChildValue);
 
 (function(){
     
-        // #ifdef __WITH_CACHE
-        oop.decorate(Text, Cache);
-        // #endif
-        oop.decorate(Text, ChildValue);
-    ;
-
     this.$focussable       = true; // This object can't get the focus
     this.focussable        = false;
     this.textselect        = true;
