@@ -47,7 +47,7 @@ apf.Init.addConditional(function(){
 
     //#ifdef __WITH_CONTENTEDITABLE
     prot.implement(
-        apf.ContentEditable
+        ContentEditable
     );
     //#endif
 }, null, ["interactive"]);

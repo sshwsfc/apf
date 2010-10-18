@@ -116,7 +116,7 @@ define([], function(){
  * @version     %I%, %G%
  * @since       3.0
  */
-apf.lm = new (function(){
+var LiveMarkup = new (function(){
 
     var statement_lut = { // all js statements to see its NOT an expression
             "var": 1, "for": 1, "while": 1, "do": 1, "if": 1, "else": 1,
@@ -1578,7 +1578,7 @@ apf.lm = new (function(){
         // lets see if we need to fetch precompiled cachemarker
         var c, f, is_single_prop;
         if(istr.charAt(0)=="~" && (c=istr.match(lmcache_rx))){
-            if(c=apf.lm_exec[c[1]]) return c;
+            if(c=LiveMarkupExec[c[1]]) return c;
             alert("ERROR, undefined live markup cache marker found:"+istr);
             return {type:2,str:istr};
         }
@@ -1728,11 +1728,11 @@ apf.lm = new (function(){
         }
 
         if (cfg.nothrow) {
-            f = apf.lm_exec.compile(o.join(""));
+            f = LiveMarkupExec.compile(o.join(""));
         }
         else {
             try {
-                f = apf.lm_exec.compile(o.join(""));
+                f = LiveMarkupExec.compile(o.join(""));
             }
             catch(e){
                 if (!apf.isIE) {
@@ -1892,11 +1892,11 @@ apf.lm = new (function(){
 
         var f;
         if (cfg.nothrow) {
-            f = apf.lm_exec.compile(o.join(""));
+            f = LiveMarkupExec.compile(o.join(""));
         }
         else {
             try{
-                f = apf.lm_exec.compile(o.join(""));
+                f = LiveMarkupExec.compile(o.join(""));
             }
             catch(e){
                 handleError(e,last_line);
@@ -1910,7 +1910,7 @@ apf.lm = new (function(){
     };
 
     this.setWarnLevel = function(lvl){
-        apf.lm_exec.setWarnLevel(lvl);
+        LiveMarkupExec.setWarnLevel(lvl);
     };
     
     this.parseExpression = function(istr, cfg){
@@ -1943,8 +1943,8 @@ apf.lm = new (function(){
     
 })();
 
-// apf lm_exec makes sure there is no scope pollution for eval'ed live markup.
-apf.lm_exec = new (function(){
+// LiveMarkupExec makes sure there is no scope pollution for eval'ed live markup.
+var LiveMarkupExec = new (function(){
     //#ifdef __WITH_NAMESERVER
     var wlvl = 1; // 0: no warnings 1: language/models missing, 2:nodes missing, 3:all failed xpaths
 
@@ -2445,9 +2445,12 @@ apf.lm_exec = new (function(){
     // replace
     d.replace(/var_LMBEGINCACHE;[\s\S]*var_LMBEGINCACHE;/,"code");
     _async(_n,_c,_a,_w,_f,this,
-    _async(_n,_c,_a,_w,apf.lm_exec.c342,this,
+    _async(_n,_c,_a,_w,LiveMarkupExec.c342,this,
     LIVEMARKUP END CACHE*/
     var LMENDCACHE;
     // #endif
 })();
+
+return LiveMarkup;
+
 });

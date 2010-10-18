@@ -19,7 +19,12 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+define([
+    "aml-core/amlelement", 
+    "optional!contenteditable/contenteditable", 
+    "optional!xhtml", 
+    "lib-oop"], 
+    function(DOMElement, ContentEditable, xhtml, oop){
 
 var XhtmlElement = function(struct, tagName){
     DOMElement.call(this, tagName || true, this.NODE_VISIBLE, struct);
@@ -36,6 +41,8 @@ var XhtmlElement = function(struct, tagName){
 
 oop.inherit(XhtmlElement, DOMElement);
 
+if (ContentEditable)
+    oop.decorate(XhtmlElement, ContentEditable);
 
 (function(){
     var excludedEvents = {
@@ -127,6 +134,7 @@ oop.inherit(XhtmlElement, DOMElement);
     //#endif
 }).call(XhtmlElement.prototype);
 
+//@todo refactor
 apf.Init.addConditional(function(){
     if (apf.isO3) return;
     var prot = apf.XhtmlElement.prototype;
@@ -153,7 +161,7 @@ apf.Init.addConditional(function(){
     #endif */
 }, null, ["interactive"]);
 
-apf.xhtml.setElement("@default", apf.XhtmlElement);
+xhtml && xhtml.setElement("@default", apf.XhtmlElement);
 
 return XhtmlElement;
 
