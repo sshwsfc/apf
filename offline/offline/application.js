@@ -195,7 +195,7 @@ var Offlineapplication = {
                     if (state == apf.TIMEOUT)
                         return extra.tpModule.retryTimeout(extra, state, apf.offline);
 
-                    if (state == apf.OFFLINE)
+                    if (state == LiveEdit.OFFLINE)
                         return;
 
                     if (state == apf.ERROR)

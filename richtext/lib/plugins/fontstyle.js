@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("fontstyle", function() {
+LiveEdit.plugin("fontstyle", function() {
     this.name         = "fontstyle";
     this.icon         = "fontstyle";
-    this.type         = apf.TOOLBARITEM;
-    this.subType      = apf.TOOLBARPANEL;
+    this.type         = LiveEdit.TOOLBARITEM;
+    this.subType      = LiveEdit.TOOLBARPANEL;
     this.hook         = "ontoolbar";
     this.buttonNode   = null;
-    this.state        = apf.OFF;
+    this.state        = LiveEdit.OFF;
 
     var panelBody, oStyles = null, oEditor = null;
 
@@ -250,11 +251,11 @@ apf.LiveEdit.plugin("fontstyle", function() {
         if (o) {
             if (this.stylePreview.innerHTML != o.caption)
                 this.stylePreview.innerHTML = o.caption;
-            this.state = apf.ON;
+            this.state = LiveEdit.ON;
         }
         else {
             this.stylePreview.innerHTML = "Style";
-            this.state = apf.OFF;
+            this.state = LiveEdit.OFF;
         }
 
         return this.state;
@@ -290,14 +291,14 @@ apf.LiveEdit.plugin("fontstyle", function() {
 
 //##############################################################################
 
-apf.LiveEdit.plugin("blockformat", function() {
+LiveEdit.plugin("blockformat", function() {
     this.name         = "blockformat";
     this.icon         = "blockformat";
-    this.type         = apf.TOOLBARITEM;
-    this.subType      = apf.TOOLBARPANEL;
+    this.type         = LiveEdit.TOOLBARITEM;
+    this.subType      = LiveEdit.TOOLBARPANEL;
     this.hook         = "ontoolbar";
     this.buttonNode   = null;
-    this.state        = apf.OFF;
+    this.state        = LiveEdit.OFF;
     this.node         = null;
 
     var panelBody, oEditor,
@@ -384,12 +385,12 @@ apf.LiveEdit.plugin("blockformat", function() {
             var sBlock = blocksMap[tagName];
             if (this.blockPreview.innerHTML != sBlock)
                 this.blockPreview.innerHTML = sBlock;
-            this.state = apf.ON;
+            this.state = LiveEdit.ON;
             this.node  = oNode;
         }
         else {
             this.blockPreview.innerHTML = "Normal";
-            this.state = apf.OFF;
+            this.state = LiveEdit.OFF;
             this.node  = null;
         }
         return this.state;
@@ -410,7 +411,7 @@ apf.LiveEdit.plugin("blockformat", function() {
             sel.set();
             oEditor.$visualFocus();
             var s = sel.getContent();
-            if (sBlock == "normal" && this.queryState(oEditor) == apf.ON) {
+            if (sBlock == "normal" && this.queryState(oEditor) == LiveEdit.ON) {
                 // revert style to NORMAL, i.e. no style at all.
                 /*sel.selectNode(this.node);
                 sel.setContent(this.node.innerHTML);*/
@@ -441,7 +442,7 @@ apf.LiveEdit.plugin("blockformat", function() {
                     p.removeChild(this.node);
                 }
                 
-                this.state = apf.OFF;
+                this.state = LiveEdit.OFF;
                 this.node  = null;
                 this.blockPreview.innerHTML = "Normal";
             }

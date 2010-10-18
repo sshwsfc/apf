@@ -74,7 +74,7 @@ var Offlinequeue = {
             apf.console.warn(strWarn);
             //#endif
             
-            callback(null, apf.OFFLINE, Object.extend({
+            callback(null, LiveEdit.OFFLINE, Object.extend({
                 offline : true
                 //#ifdef __DEBUG
                 , message : strWarn

@@ -19,7 +19,9 @@
  *
  */
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+define(["aml-core/standardbinding", "optional!aml", "lib-oop"],
+    function(StandardBinding, aml, oop){
+
 /**
  * Element displaying a Rich Text Editor, like M$ Office Word in a browser
  * window. Even though this Editor does not offer the same amount of features
@@ -279,7 +281,7 @@ oop.decorate(Editor, LiveEdit);
 
         this.setProperty("state", (this.$pluginsActive == "code")
             ? apf.DISABLED
-            : apf.OFF);
+            : LiveEdit.OFF);
 
         this.$setStyleClass(this.$ext, this.$baseCSSname + "Focus");
 

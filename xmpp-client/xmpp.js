@@ -1125,7 +1125,7 @@ oop.inherit(Xmpp, Teleport);
                 }
                 //#ifdef __DEBUG
                 else if (!_self.$isPoll)
-                    onError.call(_self, constants.ERROR_REG, null, apf.OFFLINE);
+                    onError.call(_self, constants.ERROR_REG, null, LiveEdit.OFFLINE);
                 //#endif
             }, _self.$isPoll
             ? createStreamElement.call(this, null, sIq)
@@ -1329,7 +1329,7 @@ oop.inherit(Xmpp, Teleport);
             }
             //#ifdef __DEBUG
             else if (!this.$isPoll)
-                onError.call(this, constants.ERROR_AUTH, null, apf.OFFLINE);
+                onError.call(this, constants.ERROR_AUTH, null, LiveEdit.OFFLINE);
             //#endif
         }
     }
@@ -1396,7 +1396,7 @@ oop.inherit(Xmpp, Teleport);
             }
             //#ifdef __DEBUG
             else if (!this.$isPoll)
-                onError.call(this, constants.ERROR_AUTH, null, apf.OFFLINE);
+                onError.call(this, constants.ERROR_AUTH, null, LiveEdit.OFFLINE);
             //#endif
         }
 
@@ -1729,7 +1729,7 @@ oop.inherit(Xmpp, Teleport);
         }
         //#ifdef __DEBUG
         else if (!this.$isPoll)
-            onError.call(this, constants.ERROR_CONN, null, apf.OFFLINE);
+            onError.call(this, constants.ERROR_CONN, null, LiveEdit.OFFLINE);
         //#endif
     }
 
@@ -2135,7 +2135,7 @@ oop.inherit(Xmpp, Teleport);
                 _self.$doXmlRequest(function(oXml) {
                         if (!oXml || !oXml.nodeType) {
                             return !_self.$isPoll
-                                ? onError.call(_self, constants.ERROR_CONN, null, apf.OFFLINE)
+                                ? onError.call(_self, constants.ERROR_CONN, null, LiveEdit.OFFLINE)
                                 : null;
                         }
                         _self.$listen();

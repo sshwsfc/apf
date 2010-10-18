@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("link", function(){
+LiveEdit.plugin("link", function(){
     this.name        = "link";
     this.icon        = "link";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+shift+l";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var panelBody;
 
@@ -169,14 +170,14 @@ apf.LiveEdit.plugin("link", function(){
     };
 });
 
-apf.LiveEdit.plugin("unlink", function(){
+LiveEdit.plugin("unlink", function(){
     this.name        = "unlink";
     this.icon        = "unlink";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+shift+l";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
         if (this.queryState(editor) == apf.DISABLED)
@@ -203,7 +204,7 @@ apf.LiveEdit.plugin("unlink", function(){
         //if (!editor.$selection)
         //    console.dir(editor);
         if (editor.$selection.getSelectedNode().tagName == "A")
-            return apf.OFF;
+            return LiveEdit.OFF;
 
         return apf.DISABLED;
     };

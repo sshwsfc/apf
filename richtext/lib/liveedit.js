@@ -20,7 +20,10 @@
  */
 apf.__LIVEEDIT__  = 1 << 23;
 
-define([], function(){
+define([
+    "optional!aml-core/validation",
+    "optional!databinding/dataaction"], 
+    function(Validation, DataAction){
 
 /**
  * Baseclass of an element whose content is editable. This is usually an
@@ -37,15 +40,13 @@ define([], function(){
  * @version     %I%, %G%
  * @since       3.0
  */
-apf.LiveEdit = function() {
+var LiveEdit = function() {
     this.$regbase = this.$regbase | apf.__LIVEEDIT__;
 
-    //#ifdef __WITH_DATAACTION
-    this.implement(apf.DataAction || apf.K);
-    //#endif
-    //#ifdef __WITH_VALIDATION
-    this.implement(apf.Validation || apf.K);
-    //#endif
+    if (DataAction)
+        oop.decorate(this, DataAction);
+    if (Validation)    
+        oop.decorate(this, Validation);
 
     this.$activeDocument = document;
     this.$selection      = null;
@@ -233,7 +234,7 @@ apf.LiveEdit = function() {
 
         this.setProperty("state", (this.$pluginsActive == "code")
             ? apf.DISABLED
-            : apf.OFF);
+            : LiveEdit.OFF);
 
         if (this.$lastActiveNode && this.$lastActiveNode.parentNode
           || typeof e.shiftKey == "boolean") {
@@ -835,13 +836,13 @@ apf.LiveEdit = function() {
     };
     
     // #ifdef __ENABLE_LIVEEDIT_RICHTEXT || __INC_ALL
-    apf.LiveEdit.richtext.call(this);
+    LiveEdit.richtext.call(this);
     // #endif
 };
 
 apf.config.$inheritProperties["liveedit"] = 2;
 
-apf.LiveEdit.mousedown = function(oHtml, event){
+LiveEdit.mousedown = function(oHtml, event){
     if (oHtml.$ext) {
         var amlNode = apf.findHost(oHtml.$ext);
         var lm      = amlNode.ownerDocument.$parentNode;
@@ -851,5 +852,7 @@ apf.LiveEdit.mousedown = function(oHtml, event){
         amlCore.stopPropagation(event);
     }
 }
+
+return LiveEdit;
 
 });

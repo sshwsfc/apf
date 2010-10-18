@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("media", function(){
+LiveEdit.plugin("media", function(){
     this.name        = "media";
     this.icon        = "media";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+m";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
         // @todo: implement this plugin

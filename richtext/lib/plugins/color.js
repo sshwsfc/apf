@@ -19,30 +19,32 @@
  *
  */
 
-define([], function(){
-apf.LiveEdit.colorPlugin = function(sName) {
+define(["richtext/liveedit"], 
+    function(LiveEdit){
+
+var ColorPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.buttonNode  = null;
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
     this.colspan     = 18;
 
     var panelBody;
 
     var colorAtoms = ["00", "33", "66", "99", "CC", "FF"];
     function generatePalette() {
-        apf.LiveEdit.colorPlugin.palette = [];
+        LiveEdit.colorPlugin.palette = [];
         var r, g, b, iCol;
         for (r = 0; r < colorAtoms.length; r++) {
             for (g = 0; g < colorAtoms.length; g++) {
                 iCol = (r % 3) * 6 + g;
                 for (b = 0; b < colorAtoms.length; b++) {
-                    if (!apf.LiveEdit.colorPlugin.palette[iCol])
-                        apf.LiveEdit.colorPlugin.palette[iCol] = [];
-                    apf.LiveEdit.colorPlugin.palette[iCol][(r < 3 ? 0 : 6) + b] = {
+                    if (!LiveEdit.colorPlugin.palette[iCol])
+                        LiveEdit.colorPlugin.palette[iCol] = [];
+                    LiveEdit.colorPlugin.palette[iCol][(r < 3 ? 0 : 6) + b] = {
                         red  : colorAtoms[r],
                         green: colorAtoms[g],
                         blue : colorAtoms[b]
@@ -156,7 +158,7 @@ apf.LiveEdit.colorPlugin = function(sName) {
     };
 
     this.createPanelBody = function() {
-        if (!apf.LiveEdit.colorPlugin.palette)
+        if (!LiveEdit.colorPlugin.palette)
             generatePalette();
 
         panelBody = document.body.appendChild(document.createElement("div"));
@@ -164,7 +166,7 @@ apf.LiveEdit.colorPlugin = function(sName) {
         panelBody.style.display = "none";
         var aHtml = [];
 
-        var row, col, colorCode, palette = apf.LiveEdit.colorPlugin.palette;
+        var row, col, colorCode, palette = LiveEdit.colorPlugin.palette;
         for (row = 0; row < palette[0].length; row++) {
             aHtml.push('<div class="editor_panelrow">');
             for (col= 0; col < palette.length; col++) {
@@ -190,9 +192,9 @@ apf.LiveEdit.colorPlugin = function(sName) {
         delete this.colorPreview;
     };
 };
-apf.LiveEdit.colorPlugin.palette = null;
+ColorPlugin.palette = null;
 
-apf.LiveEdit.plugin("forecolor", apf.LiveEdit.colorPlugin);
-apf.LiveEdit.plugin("backcolor", apf.LiveEdit.colorPlugin);
+LiveEdit.plugin("forecolor", ColorPlugin);
+LiveEdit.plugin("backcolor", ColorPlugin);
 
 });

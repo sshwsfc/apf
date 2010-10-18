@@ -19,36 +19,49 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-var LiveEditsubSupCommand = function(sName) {
-    this.name        = sName;
-    this.icon        = sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+LiveEdit.plugin("print", function(){
+    this.name        = "print";
+    this.icon        = "print";
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
-    this.keyBinding  = sName == "sub" ? "ctrl+alt+s" : "ctrl+shift+s";
-    this.state       = apf.OFF;
+    this.keyBinding  = "ctrl+p";
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        var other = this.name == "sub" ? "Superscript" : "Subscript";
-        if (editor.$queryCommandState(other) == apf.ON)
-            editor.$execCommand(other);
-        editor.$execCommand(this.name == "sub" ? "Subscript" : "Superscript");
+        if (apf.print)
+            apf.print(editor.getValue());
 
         editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 
-    this.queryState = function(editor) {
-        return editor.$queryCommandState(this.name == "sub"
-            ? "Subscript"
-            : "Superscript");
+    this.queryState = function() {
+        return this.state;
     };
-}
-apf.LiveEdit.plugin("sub", apf.LiveEdit.subSupCommand);
-apf.LiveEdit.plugin("sup", apf.LiveEdit.subSupCommand);
+});
 
+LiveEdit.plugin("preview", function(){
+    this.name        = "preview";
+    this.icon        = "preview";
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
+    this.hook        = "ontoolbar";
+    this.keyBinding  = "ctrl+shift+p";
+    this.state       = LiveEdit.OFF;
 
-return LiveEditsubSupCommand;
+    this.execute = function(editor) {
+        if (apf.printer)
+            apf.printer.preview(editor.getValue()).show();
+
+        editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
+    };
+
+    this.queryState = function() {
+        return this.state;
+    };
+});
 
 });

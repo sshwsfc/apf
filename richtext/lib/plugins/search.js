@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-var LiveEditsearchPlugin = function(sName) {
+var SearchPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.keyBinding  = this.name == "search" ? "ctrl+f" : "ctrl+shift+f";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var panelBody;
 
@@ -281,10 +282,9 @@ var LiveEditsearchPlugin = function(sName) {
     };
 };
 
-apf.LiveEdit.plugin("search",  apf.LiveEdit.searchPlugin);
-apf.LiveEdit.plugin("replace", apf.LiveEdit.searchPlugin);
+LiveEdit.plugin("search",  SearchPlugin);
+LiveEdit.plugin("replace", SearchPlugin);
 
-
-return LiveEditsearchPlugin;
+return SearchPlugin;
 
 });

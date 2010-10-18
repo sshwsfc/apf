@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("table", function() {
+LiveEdit.plugin("table", function() {
     this.name       = "table",
     this.icon       = "table",
-    this.type       = apf.TOOLBARITEM,
-    this.subType    = apf.TOOLBARPANEL,
+    this.type       = LiveEdit.TOOLBARITEM,
+    this.subType    = LiveEdit.TOOLBARPANEL,
     this.hook       = "ontoolbar",
     this.keyBinding = "ctrl+alt+shift+t",
-    this.state      = apf.OFF;
+    this.state      = LiveEdit.OFF;
 
     var panelBody, oTableCont, oTableSel, oTable, oStatus, oTablePos,
         iCurrentX   = 0,
@@ -233,12 +234,12 @@ apf.LiveEdit.plugin("table", function() {
     };
 });
 
-apf.LiveEdit.plugin("tablewizard", function() {
+LiveEdit.plugin("tablewizard", function() {
     this.name        = "tablewizard";
     this.icon        = "tablewizard";
     this.type        = apf.CONTEXTPANEL;
     this.hook        = "context";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
     this.oTable      = null;
     this.oRow        = null;
     this.oCell       = null;
@@ -246,7 +247,7 @@ apf.LiveEdit.plugin("tablewizard", function() {
     var activeNode, oDoc, _self = this;
 
     this.execute = function(editor, e) {
-        if (this.queryState(editor) != apf.ON)
+        if (this.queryState(editor) != LiveEdit.ON)
             return;
         // get the active table, row and cell nodes:
         this.oTable = this.oRow = this.oCell = null;
@@ -285,12 +286,12 @@ apf.LiveEdit.plugin("tablewizard", function() {
             if (oNode.tagName == "TABLE" || oNode.tagName == "TBODY"
               || oNode.tagName == "TR" || oNode.tagName == "TD") {
                 activeNode = oNode;
-                return apf.ON;
+                return LiveEdit.ON;
             }
             oNode = oNode.parentNode;
         }
 
-        return apf.OFF;
+        return LiveEdit.OFF;
     };
 
     function addRows(td_elm, tr_elm, rowspan) {

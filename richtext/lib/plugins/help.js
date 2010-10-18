@@ -19,30 +19,26 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-var LiveEditdirectionPlugin = function(sName) {
-    this.name        = sName;
-    this.icon        = sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+LiveEdit.plugin("help", function(){
+    this.name        = "help";
+    this.icon        = "help";
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
-    this.state       = apf.OFF;
+    this.keyBinding  = "ctrl+h";
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        // @todo: implement this baby
+        // @todo: implement this plugin
         editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 
     this.queryState = function(editor) {
         return this.state;
     };
-};
-
-apf.LiveEdit.plugin("ltr", apf.LiveEdit.directionPlugin);
-apf.LiveEdit.plugin("rtl", apf.LiveEdit.directionPlugin);
-
-
-return LiveEditdirectionPlugin;
+});
 
 });

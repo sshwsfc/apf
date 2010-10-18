@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("image", function(){
+LiveEdit.plugin("image", function(){
     this.name        = "image";
     this.icon        = "image";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+alt+i";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var panelBody;
 
@@ -116,14 +117,14 @@ apf.LiveEdit.plugin("image", function(){
     };
 });
 
-apf.LiveEdit.plugin("imagespecial", function() {
+LiveEdit.plugin("imagespecial", function() {
     this.name        = "imagespecial";
     this.icon        = "image";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+alt+j";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var winHandle;
 

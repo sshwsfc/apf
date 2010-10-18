@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-var LiveEditlistPlugin = function(sName) {
+var ListPlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = sName == "bullist" ? "ctrl+shift+u" : "ctrl+shift+o";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var emptyRegex = apf.isIE
         ? /^(&nbsp;)?<DIV[^>]*_apf_placeholder(="1">&nbsp;)?<\/DIV>$/gi
@@ -122,15 +123,14 @@ var LiveEditlistPlugin = function(sName) {
             ? "InsertUnorderedList"
             : "InsertOrderedList");
         if (state == apf.DISABLED)
-            return apf.OFF;
+            return LiveEdit.OFF;
         return state;
     };
 };
 
-apf.LiveEdit.plugin("bullist", apf.LiveEdit.listPlugin);
-apf.LiveEdit.plugin("numlist", apf.LiveEdit.listPlugin);
+LiveEdit.plugin("bullist", ListPlugin);
+LiveEdit.plugin("numlist", ListPlugin);
 
-
-return LiveEditlistPlugin;
+return ListPlugin;
 
 });

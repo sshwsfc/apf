@@ -19,14 +19,15 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("spell", function(){
+LiveEdit.plugin("spell", function(){
     this.name        = "spell";
     this.icon        = "spell";
     this.type        = apf.TEXTMACRO;
     this.hook        = "typing";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var engine, lastVal,
         crtLang  = null,
@@ -95,7 +96,7 @@ apf.LiveEdit.plugin("spell", function(){
      * Revision: 1
      * ToDo: better suggestion (at least one that make more sense)
      */
-     BJSpell = apf.LiveEdit.spell = function(){
+     BJSpell = LiveEdit.spell = function(){
         /**
          * Every BJSpell call is a dictionary based singleton.
          * new BJSpell("en_US") === BJSpell("en_US")

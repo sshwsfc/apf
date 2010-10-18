@@ -19,10 +19,11 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.richtext = function(){
-    this.$state          = apf.ON;
+LiveEdit.richtext = function(){
+    this.$state          = LiveEdit.ON;
     this.$buttons        = {};
     this.$classToolbar   = "editor_Toolbar";
     this.$plugins        = {};
@@ -351,9 +352,9 @@ apf.LiveEdit.richtext = function(){
             return false;
         if (typeof e.shift != "undefined")
            e.shiftKey = e.shift;
-        var pList = this.$plugins["bullist"].queryState(this) == apf.ON
+        var pList = this.$plugins["bullist"].queryState(this) == LiveEdit.ON
             ? this.$plugins["bullist"]
-            : this.$plugins["numlist"].queryState(this) == apf.ON
+            : this.$plugins["numlist"].queryState(this) == LiveEdit.ON
                 ? this.$plugins["numlist"]
                 : null;
         if (!pList) return false;
@@ -379,11 +380,11 @@ apf.LiveEdit.richtext = function(){
                 return apf.DISABLED;
             else
                 return this.$activeDocument.queryCommandState(name)
-                    ? apf.ON
-                    : apf.OFF;
+                    ? LiveEdit.ON
+                    : LiveEdit.OFF;
         }
         catch (e) {
-            return apf.OFF;
+            return LiveEdit.OFF;
         }
     };
 
@@ -448,14 +449,14 @@ apf.LiveEdit.richtext = function(){
         var bNoSel = (name == "selectall");
         if (apf.isIE) {
             if ((name == "insertunorderedlist" || name == "insertorderedlist")
-              && this.$queryCommandState(name) == apf.OFF) {
+              && this.$queryCommandState(name) == LiveEdit.OFF) {
                 bNoSel = true;
             }
             else if (name == "outdent") {
                 bNoSel = true;
                 if (this.$plugins["bullist"] && this.$plugins["numlist"]) {
-                    if (this.$plugins["bullist"].queryState(this) != apf.OFF
-                     && this.$plugins["numlist"].queryState(this) != apf.OFF)
+                    if (this.$plugins["bullist"].queryState(this) != LiveEdit.OFF
+                     && this.$plugins["numlist"].queryState(this) != LiveEdit.OFF)
                         bNoSel = false;
                 }
                 var oNode = this.$selection.getSelectedNode();
@@ -507,14 +508,14 @@ apf.LiveEdit.richtext = function(){
      * Add a plugin to the collection IF an implementation actually exists.
      *
      * @param {String} sPlugin The plugin identifier/ name
-     * @type  {apf.LiveEdit.plugin}
+     * @type  {LiveEdit.plugin}
      */
     this.$addPlugin = function(sPlugin) {
         if (this.$plugins[sPlugin])
             return this.$plugins[sPlugin];
-        if (!apf.LiveEdit.plugin[sPlugin]) return null;
+        if (!LiveEdit.plugin[sPlugin]) return null;
         // yay, plugin does exist, so we can instantiate it for the editor
-        var plugin = new apf.LiveEdit.plugin[sPlugin](sPlugin);
+        var plugin = new LiveEdit.plugin[sPlugin](sPlugin);
         // add it to main plugin collection
         this.$plugins[plugin.name] = plugin;
 
@@ -651,8 +652,8 @@ apf.LiveEdit.richtext = function(){
                 buttonEnable.call(oButton);
 
             var btnState = (oButton.selected)
-                ? apf.ON
-                : apf.OFF;
+                ? LiveEdit.ON
+                : LiveEdit.OFF;
 
             if (state != btnState) {
                 this.$buttonClick({
@@ -721,7 +722,7 @@ apf.LiveEdit.richtext = function(){
             if (this.disabled)
                 buttonEnable.call(oButton);
 
-            if (e.state == apf.ON) {
+            if (e.state == LiveEdit.ON) {
                 apf.setStyleClass(oButton, "editor_selected");
                 oButton.selected = true;
             }
@@ -829,7 +830,7 @@ apf.LiveEdit.richtext = function(){
                         plugin = plugin || plugins[item];
                         if (!plugin)
                             continue;
-                        if (!(plugin.type & apf.TOOLBARITEM))
+                        if (!(plugin.type & LiveEdit.TOOLBARITEM))
                             continue;
 
                         this.$docklet.$getLayoutNode(sButton, "label", oButton)
@@ -942,7 +943,7 @@ apf.LiveEdit.richtext = function(){
                 setTimeout(function(){wasVisible = true;});
             }
             
-            this.setProperty("state", apf.OFF);
+            this.setProperty("state", LiveEdit.OFF);
             
             if (apf.hasContentEditable)
                 oHtml.contentEditable = true;
@@ -1023,9 +1024,9 @@ apf.LiveEdit.richtext = function(){
             this.addEventListener("keyup",   keyupHandler, true);
         }
         //@todo apf3.0 get this from portal.js
-        else if (!this.$docklet && !(apf.LiveEdit.toolwin = this.$docklet)) {
+        else if (!this.$docklet && !(LiveEdit.toolwin = this.$docklet)) {
             var _self     = this;
-            this.$docklet = apf.LiveEdit.toolwin =
+            this.$docklet = LiveEdit.toolwin =
                 new apf.modalwindow({
                     htmlNode   : document.body,
                     skinset    : apf.getInheritedAttribute(this.parentNode, "skinset"),
@@ -1092,7 +1093,7 @@ apf.LiveEdit.richtext = function(){
      * Make an instance of apf.popup (identified with a pointer to the cached
      * DOM node - sCacheId) visible to the user.
      *
-     * @param {apf.LiveEdit.plugin} oPlugin  The plugin instance
+     * @param {LiveEdit.plugin} oPlugin  The plugin instance
      * @param {String}            sCacheId Pointer to the cached DOM node
      * @param {DOMElement}        oRef     Button node to show popup below to
      * @param {Number}            iWidth   New width of the popup
@@ -1103,7 +1104,7 @@ apf.LiveEdit.richtext = function(){
         if (apf.popup.last && apf.popup.last != sCacheId) {
             var o = apf.lookup(apf.popup.last);
             if (o) {
-                o.state = apf.OFF;
+                o.state = LiveEdit.OFF;
                 this.$notifyPlugin(o.name, o.state);
             }
         }
@@ -1113,8 +1114,8 @@ apf.LiveEdit.richtext = function(){
         if (this.$visualFocus)
             this.$visualFocus();
 
-        oPlugin.state = apf.ON;
-        this.$notifyPlugin(oPlugin.name, apf.ON);
+        oPlugin.state = LiveEdit.ON;
+        this.$notifyPlugin(oPlugin.name, LiveEdit.ON);
 
         if (apf.popup.isShowing(sCacheId))
             return;
@@ -1153,15 +1154,15 @@ apf.LiveEdit.richtext = function(){
      */
     this.$translate = function(key, bIsPlugin) {
         // #ifdef __DEBUG
-        if ((!bIsPlugin && !apf.LiveEdit.i18n[this.language][key])
-          || (bIsPlugin && !apf.LiveEdit.i18n[this.language]["plugins"][key]))
+        if ((!bIsPlugin && !LiveEdit.i18n[this.language][key])
+          || (bIsPlugin && !LiveEdit.i18n[this.language]["plugins"][key]))
             apf.console.error("Translation does not exist"
                 + (bIsPlugin ? " for plugin" : "") + ": " + key);
         // #endif
 
         return bIsPlugin
-            ? apf.LiveEdit.i18n[this.language]["plugins"][key]
-            : apf.LiveEdit.i18n[this.language][key];
+            ? LiveEdit.i18n[this.language]["plugins"][key]
+            : LiveEdit.i18n[this.language][key];
     };
 
     /**
@@ -1256,17 +1257,17 @@ apf.LiveEdit.richtext = function(){
     };
 
     this.language = "en_GB";//"nl_NL";
-    this.state    = apf.OFF;
+    this.state    = LiveEdit.OFF;
 };
 
-apf.ON       = 1;
-apf.OFF      = 0;
-apf.DISABLED = -1;
-apf.VISIBLE  = 2;
-apf.HIDDEN   = 3;
-apf.SELECTED = 4;
+LiveEdit.ON       = 1;
+LiveEdit.OFF      = 0;
+LiveEdit.DISABLED = -1;
+LiveEdit.VISIBLE  = 2;
+LiveEdit.HIDDEN   = 3;
+LiveEdit.SELECTED = 4;
 
-apf.LiveEdit.i18n = {
+LiveEdit.i18n = {
     "en_GB": {
         "cancel": "Cancel",
         "insert": "Insert",
@@ -1399,11 +1400,11 @@ apf.LiveEdit.i18n = {
     }
 };
 
-apf.TOOLBARITEM   = 0x0001;//"toolbaritem";
-apf.TOOLBARBUTTON = 0x0002;//"toolbarbutton";
-apf.TOOLBARPANEL  = 0x0004;//"toolbarpanel";
-apf.TEXTMACRO     = 0x0008;//"textmacro";
-apf.CMDMACRO      = 0x0010;//"commandmacro";
+LiveEdit.TOOLBARITEM   = 0x0001;//"toolbaritem";
+LiveEdit.TOOLBARBUTTON = 0x0002;//"toolbarbutton";
+LiveEdit.TOOLBARPANEL  = 0x0004;//"toolbarpanel";
+LiveEdit.TEXTMACRO     = 0x0008;//"textmacro";
+LiveEdit.CMDMACRO      = 0x0010;//"commandmacro";
 
 /**
  * @class plugin
@@ -1414,7 +1415,7 @@ apf.CMDMACRO      = 0x0010;//"commandmacro";
  *
  * Example plugin:
  * <code language=javascript>
- * apf.LiveEdit.plugin("sample", function() {
+ * LiveEdit.plugin("sample", function() {
  *     this.name    = "SamplePluginName";
  *     this.type    = "PluginType";
  *     this.subType = "PluginSubType";
@@ -1428,8 +1429,8 @@ apf.CMDMACRO      = 0x0010;//"commandmacro";
  * });
  * </code>
  */
-apf.LiveEdit.plugin = function(sName, fExec) {
-    apf.LiveEdit.plugin[sName] = function() {
+LiveEdit.plugin = function(sName, fExec) {
+    LiveEdit.plugin[sName] = function() {
         this.$uniqueId = apf.all.push(this) - 1;
 
         /**
@@ -1484,5 +1485,7 @@ apf.LiveEdit.plugin = function(sName, fExec) {
         fExec.apply(this, arguments);
     };
 };
+
+return LiveEdit.richtext;
 
 });

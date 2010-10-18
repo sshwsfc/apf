@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("fonts", function() {
+LiveEdit.plugin("fonts", function() {
     this.name        = "fonts";
     this.icon        = "fonts";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.buttonNode  = null;
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
     this.colspan     = 1;
     this.fontNames   = {};
 
@@ -129,14 +130,14 @@ apf.LiveEdit.plugin("fonts", function() {
     };
 });
 
-apf.LiveEdit.plugin("fontsize", function() {
+LiveEdit.plugin("fontsize", function() {
     this.name        = "fontsize";
     this.icon        = "fontsize";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.buttonNode  = null;
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var panelBody;
 

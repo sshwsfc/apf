@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("code", function() {
+LiveEdit.plugin("code", function() {
     this.name        = "code";
     this.icon        = "code";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+shift+h";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
     this.noDisable   = true;
     this.regex       = null;
 
@@ -60,7 +61,7 @@ apf.LiveEdit.plugin("code", function() {
             editor.$pluginsActive = null;
             
             oCont.style.display = "none";
-            editor.setProperty("state", apf.OFF);
+            editor.setProperty("state", LiveEdit.OFF);
             
             propagateChange();
             
@@ -323,7 +324,7 @@ apf.LiveEdit.plugin("code", function() {
     this.queryState = function(editor) {
         if (editor.$pluginsActive == this.name)
             return apf.SELECTED;
-        return apf.OFF;
+        return LiveEdit.OFF;
     };
 
     this.destroy = function() {

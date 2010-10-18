@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("anchor", function() {
+LiveEdit.plugin("anchor", function() {
     this.name        = "anchor";
     this.icon        = "anchor";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+shift+a";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     this.editor      = null;
 
@@ -68,7 +69,7 @@ apf.LiveEdit.plugin("anchor", function() {
         // @todo: for webkit compat, we need to insert images instead of inline an elements
         var oNode = this.editor.$selection.getSelectedNode();
         if (oNode.tagName == "A" && oNode.getAttribute("name"))
-            return apf.ON;
+            return LiveEdit.ON;
 
         return this.state;
     };

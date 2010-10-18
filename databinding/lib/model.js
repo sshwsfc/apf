@@ -78,7 +78,7 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  *     apf.SUCCESS  the request was successfull
  *     apf.TIMEOUT  the request has timed out.
  *     apf.ERROR    an error has occurred while making the request.
- *     apf.OFFLINE  the request was made while the application was offline.
+ *     LiveEdit.OFFLINE  the request was made while the application was offline.
  *   {mixed}          userdata  data that the caller wanted to be available in the callback of the http request.
  *   {XMLHttpRequest} http      the object that executed the actual http request.
  *   {String}         url       the url that was requested.
@@ -751,7 +751,7 @@ oop.inherit(Model, AmlElement);
             _self.dispatchEvent("afterretrieve");
 
             //#ifdef __WITH_OFFLINE_MODELS
-            if (state == apf.OFFLINE) {
+            if (state == LiveEdit.OFFLINE) {
                 apf.offline.models.addToInitQueue(this);
                 return false;
             }

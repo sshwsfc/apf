@@ -19,19 +19,24 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("help", function(){
-    this.name        = "help";
-    this.icon        = "help";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+LiveEdit.plugin("hr", function(){
+    this.name        = "hr";
+    this.icon        = "hr";
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = "ctrl+h";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        // @todo: implement this plugin
+        if (apf.isGecko || apf.isIE)
+            editor.$insertHtml("<hr />", true);
+        else
+            editor.$execCommand("InsertHorizontalRule");
+
         editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 

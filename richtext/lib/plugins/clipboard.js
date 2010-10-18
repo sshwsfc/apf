@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-var LiveEditpasteDialog = function(sName) {
+var PasteDialog = function(sName) {
     this.name        = sName;
     this.icon        = sName == "pasteworddialog" ? "pasteword" : sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARPANEL;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARPANEL;
     this.hook        = "ontoolbar";
     this.keyBinding  = sName == "pastetext" ? "ctrl+shift+v" : "ctrl+shift+w";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     var panelBody;
 
@@ -145,16 +146,16 @@ var LiveEditpasteDialog = function(sName) {
     };
 };
 
-apf.LiveEdit.plugin("pasteworddialog", apf.LiveEdit.pasteDialog);
-apf.LiveEdit.plugin("pastetext", apf.LiveEdit.pasteDialog);
+LiveEdit.plugin("pasteworddialog", PasteDialog);
+LiveEdit.plugin("pastetext", PasteDialog);
 
-apf.LiveEdit.plugin("pasteword", function() {
+LiveEdit.plugin("pasteword", function() {
     this.name        = "pasteword";
     this.icon        = "pasteword";
     this.type        = apf.CMDMACRO;
     this.hook        = "onpaste";
     this.keyBinding  = "ctrl+shift+v";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
     
     this.parse = function(sContent) {
         var bull   = String.fromCharCode(8226),
@@ -321,8 +322,5 @@ apf.LiveEdit.plugin("pasteword", function() {
         return false;
     };
 });
-
-
-return LiveEditpasteDialog;
 
 });

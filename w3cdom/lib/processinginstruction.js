@@ -61,7 +61,7 @@ oop.inherits(AmlProcessingInstruction, DOMNode);
     this.$inheritProperties   = {};
     
     //#ifdef __WITH_LIVEEDIT
-    apf.LiveEdit && oop.decorate(AmlProcessingInstruction, LiveEdit);;
+    LiveEdit && oop.decorate(AmlProcessingInstruction, LiveEdit);;
     //#endif
     
     this.$setValue = function(value){
@@ -102,7 +102,7 @@ oop.inherits(AmlProcessingInstruction, DOMNode);
         // #ifdef __WITH_LIVEEDIT
         this.liveedit = util.isTrue(apf.getInheritedAttribute(this, "liveedit"));
         if (this.liveedit) {
-            //this.implement(apf.LiveEdit);
+            //this.implement(LiveEdit);
             this.$inheritProperties["liveedit"] = 2;
             this.$propHandlers["liveedit"].call(this, this.liveedit);
         }

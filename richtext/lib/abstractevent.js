@@ -25,7 +25,7 @@ define([], function(){
  * @constructor
  * @private
  */
-apf.AbstractEvent = function(event, win) {
+var AbstractEvent = function(event, win) {
     win = win || window;
     var doc = win.document;
     event = event || win.event;
@@ -105,7 +105,7 @@ apf.AbstractEvent = function(event, win) {
     };
 };
 
-apf.AbstractEvent.KEYS = {
+AbstractEvent.KEYS = {
     'enter'    : 13,
     'up'       : 38,
     'down'     : 40,
@@ -126,8 +126,10 @@ apf.AbstractEvent.KEYS = {
     }
 };
 
-apf.AbstractEvent.stop = function(event) {
+AbstractEvent.stop = function(event) {
     return (new apf.AbstractEvent(event)).stop();
 };
+
+return AbstractEvent;
 
 });

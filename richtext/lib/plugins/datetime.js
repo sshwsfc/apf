@@ -19,16 +19,17 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-var LiveEditdateTimePlugin = function(sName) {
+var DateTimePlugin = function(sName) {
     this.name        = sName;
     this.icon        = sName;
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
     this.keyBinding  = sName == "insertdate" ? "ctrl+shift+d" : "ctrl+shift+t";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
     this.i18n        = { //default English (en_GB)
         date_format  :"%Y-%m-%d",
         time_format  :"%H:%M:%S",
@@ -74,10 +75,10 @@ var LiveEditdateTimePlugin = function(sName) {
     };
 };
 
-apf.LiveEdit.plugin("insertdate", apf.LiveEdit.dateTimePlugin);
-apf.LiveEdit.plugin("inserttime", apf.LiveEdit.dateTimePlugin);
+LiveEdit.plugin("insertdate", DateTimePlugin);
+LiveEdit.plugin("inserttime", DateTimePlugin);
 
 
-return LiveEditdateTimePlugin;
+return DateTimePlugin;
 
 });

@@ -19,29 +19,31 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("visualaid", function(){
-    this.name        = "visualaid";
-    this.icon        = "visualaid";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+var DirectionPlugin = function(sName) {
+    this.name        = sName;
+    this.icon        = sName;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
-    this.keyBinding  = "ctrl+shift+v";
-    this.state       = apf.OFF;
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        var state = this.queryState(editor);
-        editor.$activeDocument.body.className = (state == apf.ON) ? "" : "visualAid";
-        editor.$notifyButton(this.name);
-
-        apf.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
+        // @todo: implement this baby
+        editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 
     this.queryState = function(editor) {
-        this.state = apf[editor.$activeDocument.body.className == "visualAid" ? "ON" : "OFF"];
         return this.state;
     };
-});
+};
+
+LiveEdit.plugin("ltr", DirectionPlugin);
+LiveEdit.plugin("rtl", DirectionPlugin);
+
+
+return DirectionPlugin;
 
 });

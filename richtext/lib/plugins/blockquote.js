@@ -19,28 +19,27 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("hr", function(){
-    this.name        = "hr";
-    this.icon        = "hr";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+LiveEdit.plugin("blockquote", function(){
+    this.name        = "blockquote";
+    this.icon        = "blockquote";
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
-    this.keyBinding  = "ctrl+h";
-    this.state       = apf.OFF;
+    this.keyBinding  = "ctrl+shift+b";
+    this.buttonBuilt = false;
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        if (apf.isGecko || apf.isIE)
-            editor.$insertHtml("<hr />", true);
-        else
-            editor.$execCommand("InsertHorizontalRule");
+        editor.$execCommand("FormatBlock", "BLOCKQUOTE");
 
         editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 
     this.queryState = function(editor) {
-        return this.state;
+        return editor.$queryCommandState("FormatBlock");
     };
 });
 

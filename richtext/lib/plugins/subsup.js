@@ -19,48 +19,36 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("print", function(){
-    this.name        = "print";
-    this.icon        = "print";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+var SubSupCommand = function(sName) {
+    this.name        = sName;
+    this.icon        = sName;
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
-    this.keyBinding  = "ctrl+p";
-    this.state       = apf.OFF;
+    this.keyBinding  = sName == "sub" ? "ctrl+alt+s" : "ctrl+shift+s";
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        if (apf.print)
-            apf.print(editor.getValue());
+        var other = this.name == "sub" ? "Superscript" : "Subscript";
+        if (editor.$queryCommandState(other) == LiveEdit.ON)
+            editor.$execCommand(other);
+        editor.$execCommand(this.name == "sub" ? "Subscript" : "Superscript");
 
         editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 
-    this.queryState = function() {
-        return this.state;
+    this.queryState = function(editor) {
+        return editor.$queryCommandState(this.name == "sub"
+            ? "Subscript"
+            : "Superscript");
     };
-});
+}
+LiveEdit.plugin("sub", SubSupCommand);
+LiveEdit.plugin("sup", SubSupCommand);
 
-apf.LiveEdit.plugin("preview", function(){
-    this.name        = "preview";
-    this.icon        = "preview";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
-    this.hook        = "ontoolbar";
-    this.keyBinding  = "ctrl+shift+p";
-    this.state       = apf.OFF;
-
-    this.execute = function(editor) {
-        if (apf.printer)
-            apf.printer.preview(editor.getValue()).show();
-
-        editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
-    };
-
-    this.queryState = function() {
-        return this.state;
-    };
-});
+return SubSupCommand;
 
 });

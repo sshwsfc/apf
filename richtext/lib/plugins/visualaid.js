@@ -19,26 +19,29 @@
  *
  */
 
-define([], function(){
+define(["richtext/liveedit"], 
+    function(LiveEdit){
 
-apf.LiveEdit.plugin("blockquote", function(){
-    this.name        = "blockquote";
-    this.icon        = "blockquote";
-    this.type        = apf.TOOLBARITEM;
-    this.subType     = apf.TOOLBARBUTTON;
+LiveEdit.plugin("visualaid", function(){
+    this.name        = "visualaid";
+    this.icon        = "visualaid";
+    this.type        = LiveEdit.TOOLBARITEM;
+    this.subType     = LiveEdit.TOOLBARBUTTON;
     this.hook        = "ontoolbar";
-    this.keyBinding  = "ctrl+shift+b";
-    this.buttonBuilt = false;
-    this.state       = apf.OFF;
+    this.keyBinding  = "ctrl+shift+v";
+    this.state       = LiveEdit.OFF;
 
     this.execute = function(editor) {
-        editor.$execCommand("FormatBlock", "BLOCKQUOTE");
+        var state = this.queryState(editor);
+        editor.$activeDocument.body.className = (state == LiveEdit.ON) ? "" : "visualAid";
+        editor.$notifyButton(this.name);
 
-        editor.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
+        apf.dispatchEvent("pluginexecute", {name: this.name, plugin: this});
     };
 
     this.queryState = function(editor) {
-        return editor.$queryCommandState("FormatBlock");
+        this.state = apf[editor.$activeDocument.body.className == "visualAid" ? "ON" : "OFF"];
+        return this.state;
     };
 });
 
