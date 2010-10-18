@@ -19,16 +19,25 @@
  *
  */
 
-define([], function(){
-apf.AmlCDATASection = function(isPrototype){
+define([
+    "w3cdom/text",
+    "lib-oop"], 
+    function(DOMText, oop){
+    
+var DOMCDATASection = function(isPrototype){
     this.nodeType = this.NODE_CDATA_SECTION;
     this.nodeName = "#cdata-section";
     
-    this.$init(isPrototype);
+    DOMText.call(this);
 };
 
-apf.AmlCDATASection.prototype = new apf.AmlText(true);
-apf.AmlCDATASection.prototype.serialize = function(){
+//Inherit
+oop.inherits(DOMCDATASection, DOMText);
+
+DOMCDATASection.prototype.serialize = function(){
     return "<![CDATA[" + this.nodeValue + "]]>";
 };
+
+return DOMCDATASection;
+
 });

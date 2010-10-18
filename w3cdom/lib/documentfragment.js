@@ -19,13 +19,22 @@
  *
  */
 
-define([], function(){
-apf.DOMDocumentFragment = function(isPrototype){
+define([
+    "w3cdom/node",
+    "lib-oop"], 
+    function(DOMNode, oop){
+        
+var DOMDocumentFragment = function(isPrototype){
     this.$init(isPrototype);
 };
 
-apf.DOMDocumentFragment.prototype = new apf.DOMNode();
-apf.DOMDocumentFragment.prototype.nodeName = "#document-fragment";
-apf.DOMDocumentFragment.prototype.nodeType = 
-    apf.DOMDocumentFragment.prototype.NODE_DOCUMENT_FRAGMENT;
+//Inherit
+oop.inherits(DOMCharacterData, DOMNode);
+
+DOMDocumentFragment.prototype.nodeName = "#document-fragment";
+DOMDocumentFragment.prototype.nodeType = 
+    DOMDocumentFragment.prototype.NODE_DOCUMENT_FRAGMENT;
+
+return DOMDocumentFragment;
+
 });

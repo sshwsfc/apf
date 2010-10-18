@@ -20,6 +20,7 @@
  */
 
 define([], function(){
+    
 /**
  * Implementation of W3C event object. An instance of this class is passed as
  * the first argument of any event handler. Per event it will contain different
@@ -27,7 +28,7 @@ define([], function(){
  * @constructor
  * @default_private
  */
-apf.AmlEvent = function(name, data){
+var DOMEvent = function(name, data){
     this.name = name;
     
     var prop;
@@ -35,7 +36,7 @@ apf.AmlEvent = function(name, data){
         this[prop] = data[prop];
 };
 
-apf.AmlEvent.prototype = {
+DOMEvent.prototype = {
     // #ifdef __WITH_EVENT_BUBBLING
     bubbles : false,
     cancelBubble : false,
@@ -65,4 +66,7 @@ apf.AmlEvent.prototype = {
         // #endif
     }
 };
+
+return DOMEvent;
+
 });

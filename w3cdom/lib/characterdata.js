@@ -19,13 +19,17 @@
  *
  */
 
-define([], function(){
+define([
+    "w3cdom/node",
+    "lib-oop"], 
+    function(DOMNode, oop){
+    
 //@todo apf3.0 The functions seem to not set nodeValue...
-apf.AmlCharacterData = function(){
+var DOMCharacterData = function(){
     this.data = "";
     this.length = 0;
     
-    this.$init(true);
+    DOMNode.call(this);
     
     this.appendData = function(sValue){
         this.dispatchEvent("DOMCharacterDataModified", {
@@ -57,5 +61,8 @@ apf.AmlCharacterData = function(){
     
     this.substringData = function(nOffset, nCount){};
 }
-apf.AmlCharacterData.prototype = new apf.DOMNode();
+
+//Inherit
+oop.inherits(DOMCharacterData, DOMNode);
+
 });

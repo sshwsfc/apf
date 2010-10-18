@@ -19,6 +19,7 @@
  *
  */
 
+//@todo needs refactor
 define([], function(){
 
 // Only add setZeroTimeout to the window object, and hide everything
@@ -62,7 +63,7 @@ apf.setZeroTimeout = setTimeout;
 /**
  *
  */
-apf.queue = {
+var Queue = {
     //@todo apf3.0
     q : {},
     
@@ -102,5 +103,7 @@ apf.queue = {
         }
     }
 };
+
+return Queue;
 
 });

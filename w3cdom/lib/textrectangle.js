@@ -19,8 +19,12 @@
  *
  */
 
-define([], function(){
-apf.AmlTextRectangle = function(host){
+define([
+    "lib-oop/class",
+    "lib-oop"], 
+    function(Class, oop){
+    
+var DOMTextRectangle = function(host){
     var _self = this;
     function handler(){
         var pos = _self.getAbsolutePosition(_self.$ext);
@@ -37,5 +41,10 @@ apf.AmlTextRectangle = function(host){
 
     handler.call(host);
 };
-apf.AmlTextRectangle.prototype = new apf.Class();
+
+//Inherit
+oop.inherits(DOMTextRectangle, Class);
+
+return DOMTextRectangle;
+
 });
