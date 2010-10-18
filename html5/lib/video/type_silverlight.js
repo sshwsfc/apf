@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["html5/video"], function(Video){
 
 /**
  * Element displaying a Silverlight video
@@ -34,11 +34,11 @@ define([], function(){
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.video.TypeSilverlight = function(oVideo, node, options) {
+Video.TypeSilverlight = function(oVideo, node, options) {
     this.oVideo         = oVideo;
-    if (!apf.video.TypeSilverlight.INITED) {
+    if (!Video.TypeSilverlight.INITED) {
         apf.silverlight.startup();
-        apf.video.TypeSilverlight.INITED = true;
+        Video.TypeSilverlight.INITED = true;
     }
 
     // #ifndef __PACKAGED
@@ -109,7 +109,7 @@ apf.video.TypeSilverlight = function(oVideo, node, options) {
         context:       this
     });
 
-    //Object.extend(this, apf.video.TypeInterface);
+    //Object.extend(this, Video.TypeInterface);
     //#ifdef __WITH_LAYOUT
     apf.layout.setRules(this.oVideo.$ext, this.oVideo.$uniqueId + "_silverlight",
         "apf.all[" + this.oVideo.$uniqueId + "].player.resizePlayer()");
@@ -117,13 +117,13 @@ apf.video.TypeSilverlight = function(oVideo, node, options) {
     //#endif
 };
 
-apf.video.TypeSilverlight.isSupported = function(){
+Video.TypeSilverlight.isSupported = function(){
     return apf.silverlight.isAvailable("1.0");
 };
 
-apf.video.TypeSilverlight.INITED = false;
+Video.TypeSilverlight.INITED = false;
 
-apf.video.TypeSilverlight.prototype = {
+Video.TypeSilverlight.prototype = {
     /**
      * Play a WMV movie. Does a call to the XAML Silverlight player to load or
      * load & play the video, depending on the 'autoPlay' flag (TRUE for play).
@@ -369,7 +369,7 @@ apf.video.TypeSilverlight.prototype = {
         var _self = this;
         this.pollTimer = $setTimeout(function() {
             if (_self.oVideo && !_self.oVideo.ready && _self.video.CanSeek)
-                _self.oVideo.setProperty("readyState", apf.Media.HAVE_ENOUGH_DATA);
+                _self.oVideo.setProperty("readyState", Media.HAVE_ENOUGH_DATA);
             _self.oVideo.$changeHook({
                 type        : "change",
                 playheadTime: Math.round(_self.video.Position.Seconds * 1000)
@@ -464,4 +464,7 @@ apf.video.TypeSilverlight.prototype = {
         delete this.htmlElement;
     }
 };
+
+return Video.TypeSilverlight;
+
 });

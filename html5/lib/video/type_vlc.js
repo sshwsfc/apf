@@ -19,9 +19,9 @@
  *
  */
 
-define([], function(){
+define(["html5/video"], function(Video){
 
-apf.video.TypeVlcCompat = (function() {
+Video.TypeVlcCompat = (function() {
     var iVersion = 0;
 
     function getVersion() {
@@ -113,7 +113,7 @@ apf.video.TypeVlcCompat = (function() {
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.video.TypeVlc = function(oVideo, node, options) {
+Video.TypeVlc = function(oVideo, node, options) {
     this.oVideo      = oVideo;
     this.name        = "VLC_" + this.oVideo.$uniqueId;
     this.htmlElement = node;
@@ -123,7 +123,7 @@ apf.video.TypeVlc = function(oVideo, node, options) {
     this.videoPath   = options.src;
 
     this.player    = this.pollTimer = null;
-    Object.extend(this, apf.video.TypeInterface);
+    Object.extend(this, Video.TypeInterface);
 
     this.setOptions(options);
     var _self = this;
@@ -132,11 +132,11 @@ apf.video.TypeVlc = function(oVideo, node, options) {
     }, 1);
 };
 
-apf.video.TypeVlc.isSupported = function(){
-    return apf.video.TypeVlcCompat.isAvailable();
+Video.TypeVlc.isSupported = function(){
+    return Video.TypeVlcCompat.isAvailable();
 };
 
-apf.video.TypeVlc.prototype = {
+Video.TypeVlc.prototype = {
     /**
      * Play a Quicktime movie. Does a call to the embedded QT object to load or
      * load & play the video, depending on the 'autoPlay' flag (TRUE for play).
@@ -258,7 +258,7 @@ apf.video.TypeVlc.prototype = {
 
         var playerId = this.name + "_Player";
 
-        this.htmlElement.innerHTML = apf.video.TypeVlcCompat.getHtml(playerId,
+        this.htmlElement.innerHTML = Video.TypeVlcCompat.getHtml(playerId,
             "100%", "100%", {
                 //MRL        : "",
                 ShowDisplay: "True",
@@ -318,7 +318,7 @@ apf.video.TypeVlc.prototype = {
                 case 3:   //PLAYING - The current media clip is playing.
                     this.oVideo.$stateChangeHook({type: "stateChange", state: "playing"});
                     if (!this.oVideo.ready) {
-                        this.oVideo.setProperty("readyState", apf.Media.HAVE_ENOUGH_DATA);
+                        this.oVideo.setProperty("readyState", Media.HAVE_ENOUGH_DATA);
                         // @todo for now, set the downloadprogress to a maximum
                         this.oVideo.$progressHook({bytesLoaded: 100, totalBytes: 100});
                     }
@@ -387,4 +387,7 @@ apf.video.TypeVlc.prototype = {
         delete this.htmlElement;
     }
 };
+
+return Video.TypeVlcCompat;
+
 });

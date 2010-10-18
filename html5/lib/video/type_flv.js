@@ -18,7 +18,8 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+ 
+define(["html5/video"], function(Video){
 
 /**
  * Element displaying a Flash video
@@ -33,7 +34,7 @@ define([], function(){
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.video.TypeFlv = function(oVideo, node, options) {
+Video.TypeFlv = function(oVideo, node, options) {
     this.oVideo              = oVideo;
     // #ifndef __PACKAGED
     this.DEFAULT_SWF_PATH    = (apf.config.resourcePath || apf.basePath) + "elements/video/FAVideo.swf";
@@ -62,16 +63,16 @@ apf.video.TypeFlv = function(oVideo, node, options) {
 
     // Initialize player
     this.player = null;
-    Object.extend(this, apf.video.TypeInterface);
+    Object.extend(this, Video.TypeInterface);
 
     this.initProperties().setOptions(options).createPlayer();
 }
 
-apf.video.TypeFlv.isSupported = function() {
+Video.TypeFlv.isSupported = function() {
     return apf.flash.isAvailable();
 };
 
-apf.video.TypeFlv.prototype = {
+Video.TypeFlv.prototype = {
     /**
      * Play an FLV. Does a call to the flash player to load or load & play the
      * video, depending on the 'autoPlay' flag (TRUE for play).
@@ -509,4 +510,7 @@ apf.video.TypeFlv.prototype = {
         delete this.htmlElement;
     }
 };
+
+return Video.TypeFlv;
+
 });

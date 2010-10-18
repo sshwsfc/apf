@@ -19,7 +19,8 @@
  *
  */
 
-define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
+define(["html5/media", "optional!databinding/dataaction", "optional!aml", "lib-oop"], 
+    function(Media, DataAction, aml, oop){
 
 /**
  * Element that is able to play a video file or remote stream
@@ -54,7 +55,7 @@ define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
  * @return {Video} Returns a new video
  * @type {Video}
  * @inherits apf.Presentation
- * @inherits apf.Media
+ * @inherits Media
  * @constructor
  * @allowchild text, source, nomedia
  * @addnode elements:video
@@ -71,10 +72,10 @@ var Video = function(struct, tagName){
 
 oop.inherit(Video, Media);
 
-oop.decorate(Video, DataAction);
+if (DataAction)
+    oop.decorate(Video, DataAction);
 
 (function(){
-    
     this.$booleanProperties["fullscreen"] = true;
 
     var oldStyle = null; //will hold old style of the media elements' parentNode on fullscreen
@@ -213,7 +214,7 @@ oop.decorate(Video, DataAction);
     this.loadMedia = function() {
         if (this.player) {
             this.setProperty('currentSrc',   this.src);
-            this.setProperty('networkState', apf.Media.NETWORK_LOADING);
+            this.setProperty('networkState', Media.NETWORK_LOADING);
             this.player.load(this.src);
         }
 
@@ -311,15 +312,15 @@ oop.decorate(Video, DataAction);
                 playerType = "TypeVlc";
 
             if (playerType == "TypeWmp") {
-                if (!apf.isIE && typeof apf.video.TypeVlc != "undefined"
-                  && apf.video.TypeVlc.isSupported())
+                if (!apf.isIE && typeof Video.TypeVlc != "undefined"
+                  && Video.TypeVlc.isSupported())
                     playerType = "TypeVlc";
                 else if (apf.isMac)
                     playerType = "TypeQT";
             }
 
-            if (playerType && apf.video[playerType] &&
-              apf.video[playerType].isSupported()) {
+            if (playerType && Video[playerType] &&
+              Video[playerType].isSupported()) {
                 this.$lastMimeType = i;
                 return playerType;
             }
@@ -336,7 +337,7 @@ oop.decorate(Video, DataAction);
      */
     this.$isSupported = function(sType) {
         sType = sType || this.playerType;
-        return (apf.video[sType] && apf.video[sType].isSupported());
+        return (Video[sType] && Video[sType].isSupported());
     };
 
     /**
@@ -345,7 +346,7 @@ oop.decorate(Video, DataAction);
      * @type {Object}
      */
     this.$initPlayer = function() {
-        this.player = new apf.video[this.playerType](this, this.$ext, {
+        this.player = new Video[this.playerType](this, this.$ext, {
             src         : this.src.splitSafe(",")[this.$lastMimeType] || this.src,
             width       : this.width,
             height      : this.height,
@@ -413,7 +414,7 @@ oop.decorate(Video, DataAction);
         this.setProperty('totalBytes', e.totalBytes);
         var iDiff = Math.abs(e.bytesLoaded - e.totalBytes);
         if (iDiff <= 20)
-            this.setProperty('readyState', apf.Media.HAVE_ENOUGH_DATA);
+            this.setProperty('readyState', Media.HAVE_ENOUGH_DATA);
     };
 
     /**
@@ -427,10 +428,10 @@ oop.decorate(Video, DataAction);
     this.$stateChangeHook = function(e) {
         //loading, playing, seeking, paused, stopped, connectionError
         if (e.state == "loading") {
-            this.setProperty('networkState', this.networkState = apf.Media.NETWORK_LOADING);
+            this.setProperty('networkState', this.networkState = Media.NETWORK_LOADING);
         }
         else if (e.state == "connectionError") {
-            this.$propHandlers["readyState"].call(this, this.networkState = apf.Media.HAVE_NOTHING);
+            this.$propHandlers["readyState"].call(this, this.networkState = Media.HAVE_NOTHING);
         }
         else if (e.state == "playing" || e.state == "paused") {
             if (e.state == "playing")
@@ -486,8 +487,8 @@ oop.decorate(Video, DataAction);
      * @type {Object}
      */
     this.$readyHook = function(e) {
-        this.setProperty('networkState', apf.Media.NETWORK_LOADED);
-        this.setProperty('readyState',   apf.Media.HAVE_FUTURE_DATA);
+        this.setProperty('networkState', Media.NETWORK_LOADED);
+        this.setProperty('readyState',   Media.HAVE_FUTURE_DATA);
         this.setProperty('duration', this.player.getTotalTime());
         this.seeking  = false;
         this.seekable = true;
@@ -503,7 +504,7 @@ oop.decorate(Video, DataAction);
      * @type {void}
      */
     this.$metadataHook = function(e) {
-        this.oVideo.setProperty('readyState', apf.Media.HAVE_METADATA);
+        this.oVideo.setProperty('readyState', Media.HAVE_METADATA);
     };
 
     /**
@@ -559,7 +560,7 @@ oop.decorate(Video, DataAction);
 
 aml && aml.setElement("video", Video);
 
-apf.video.TypeInterface = {
+Video.TypeInterface = {
     properties: ["src", "width", "height", "volume", "showControls",
         "autoPlay", "totalTime", "mimeType"],
 

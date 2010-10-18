@@ -21,7 +21,14 @@
 
 apf.__MEDIA__ = 1 << 20;
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define([
+    "optional!databinding/standard", 
+    "aml-core/presentation", 
+    "optional!aml", 
+    "lib-oop"], 
+    function(StandardBinding, Presentation, aml, oop){
+
+var BaseClass = StandardBinding || Presentation;
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have media node features and dynamics.
@@ -40,9 +47,11 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.Media = function(){
-    this.$init(true);
+Media = function(){
+    BaseClass.call(this);
 };
+
+oop.inherits(Media, BaseClass);
 
 (function() {
     this.$regbase = this.$regbase | apf.__MEDIA__;
@@ -74,7 +83,7 @@ apf.Media = function(){
     this.$propHandlers["readyState"] = function(value){ //in seconds
         if (this.readyState !== value)
             this.readyState = value;
-        if (value == apf.Media.HAVE_NOTHING) {
+        if (value == Media.HAVE_NOTHING) {
             // #ifdef __DEBUG
             apf.console.error("Unable to open medium with URL '" + this.src
                 + "'. Please check if the URL you entered as src is pointing to \
@@ -90,11 +99,11 @@ apf.Media = function(){
               }) === false)
                 throw oError;
         }
-        else if (value == apf.Media.HAVE_CURRENT_DATA)
+        else if (value == Media.HAVE_CURRENT_DATA)
             this.dispatchEvent("havecurrentdata");
-        else if (value == apf.Media.HAVE_FUTURE_DATA)
+        else if (value == Media.HAVE_FUTURE_DATA)
             this.dispatchEvent("havefuturedata");
-        else if (value == apf.Media.HAVE_ENOUGH_DATA) {
+        else if (value == Media.HAVE_ENOUGH_DATA) {
             this.dispatchEvent("haveenoughdata");
             this.setProperty("ready", true);
         }
@@ -231,7 +240,7 @@ apf.Media = function(){
                 + "cause the medium to not load and/ or play.", "media");
         // #endif
 
-        if (this.src != this.currentSrc && this.networkState !== apf.Media.LOADING) {
+        if (this.src != this.currentSrc && this.networkState !== Media.LOADING) {
             var type = this.$guessType(this.src);
             if (type == this.type) {
                 reset.call(this);
@@ -279,8 +288,8 @@ apf.Media = function(){
     });
 
     function reset() {
-        this.setProperty("networkState",  apf.Media.NETWORK_EMPTY);
-        //this.setProperty("readyState",   apf.Media.HAVE_NOTHING);
+        this.setProperty("networkState",  Media.NETWORK_EMPTY);
+        //this.setProperty("readyState",   Media.HAVE_NOTHING);
         this.setProperty("ready",         false);
         //this.setProperty("buffered",      {start: 0, end: 0, length: 0});
         //this.setProperty("bufferedBytes", {start: 0, end: 0, length: 0});
@@ -336,7 +345,7 @@ apf.Media = function(){
 
     // network state
     this.src = this.currentSrc = null;
-    this.networkState       = apf.Media.NETWORK_EMPTY; //default state
+    this.networkState       = Media.NETWORK_EMPTY; //default state
     this.bufferingRate      = 0;
     this.bufferingThrottled = false;
     //TimeRanges container {start: Function(idx):Float, end: Function(idx):Float, length: n}
@@ -351,7 +360,7 @@ apf.Media = function(){
     };
 
     // ready state
-    this.readyState = apf.Media.HAVE_NOTHING;
+    this.readyState = Media.HAVE_NOTHING;
     this.seeking    = false;
 
     // playback state
@@ -534,37 +543,20 @@ apf.Media = function(){
         this.$removeSource(node);
     });
 
-// #ifdef __WITH_DATABINDING
 }).call(Media.prototype);
-/* #else
-}).call(apf.Media.prototype = new apf.Presentation());
-#endif*/
-
-apf.nomedia = function(struct, tagName) {
-    this.$init(tagName || "nomedia", this.NODE_HIDDEN, struct);
-};
-
-(function() {
-    this.addEventListener("DOMNodeInsertedIntoDocument", function() {
-        this.parentNode.notSupported =
-            apf.getXmlString(this.$aml).replace(/<\/?a:nomedia[^>]*>/g, "");
-    });
-}).call(Nomedia.prototype);
-
-aml && aml.setElement("nomedia", Nomedia);
 
 // network state (.networkState)
-apf.Media.NETWORK_EMPTY   = 0;
-apf.Media.NETWORK_IDLE    = 1;
-apf.Media.NETWORK_LOADING = 2;
-apf.Media.NETWORK_LOADED  = 3;
+Media.NETWORK_EMPTY   = 0;
+Media.NETWORK_IDLE    = 1;
+Media.NETWORK_LOADING = 2;
+Media.NETWORK_LOADED  = 3;
 
 // ready state (.readyState)
-apf.Media.HAVE_NOTHING      = 0;
-apf.Media.HAVE_METADATA     = 1;
-apf.Media.HAVE_SOME_DATA    = 2; //wtf??
-apf.Media.HAVE_CURRENT_DATA = 3;
-apf.Media.HAVE_FUTURE_DATA  = 4;
-apf.Media.HAVE_ENOUGH_DATA  = 5;
+Media.HAVE_NOTHING      = 0;
+Media.HAVE_METADATA     = 1;
+Media.HAVE_SOME_DATA    = 2; //wtf??
+Media.HAVE_CURRENT_DATA = 3;
+Media.HAVE_FUTURE_DATA  = 4;
+Media.HAVE_ENOUGH_DATA  = 5;
 
 });

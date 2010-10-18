@@ -18,73 +18,74 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+ 
+define(["html5/audio"], function(Audio){
 
 /**
- * Element displaying an &lt;video&gt; element
+ * Element displaying an &lt;audio&gt; element
  *
- * @classDescription This class creates a &lt;video&gt; element
- * @return {TypeNative} Returns a new &lt;video&gt; element
+ * @classDescription This class creates a &lt;audio&gt; element
+ * @return {TypeNative} Returns a new &lt;audio&gt; element
  * @type {TypeNative}
  * @constructor
- * @addnode elements:video
+ * @addnode elements:audio
  *
  * @author      Mike de Boer
  * @version     %I%, %G%
  * @since       1.0
  */
 
-apf.video.TypeNative = function(oVideo, oNode, options) {
-    this.oVideo = oVideo;
+Audio.TypeNative = function(oAudio, oNode, options) {
+    this.oAudio = oAudio;
 
     this.inited = false;
 
     // Div name, flash name, and container name
-    this.divName      = oVideo.$uniqueId;
+    this.divName      = oAudio.$uniqueId;
     this.htmlElement  = oNode;
-    this.name         = "soundmgr_" + oVideo.$uniqueId;
+    this.name         = "soundmgr_" + oAudio.$uniqueId;
 
     // Audio props
-    this.videoPath    = options.src;
+    this.audioPath    = options.src;
     this.paused       = false;
 
     // Initialize player
     this.player       = null;
-    Object.extend(this, apf.video.TypeInterface);
+    Object.extend(this, Audio.TypeInterface);
 
     this.setOptions(options).createPlayer();
 };
 
-apf.video.TypeNative.isSupported = function() {
-    return apf.hasVideo;
+Audio.TypeNative.isSupported = function() {
+    return apf.hasAudio;
 };
 
-apf.video.TypeNative.prototype = {
+Audio.TypeNative.prototype = {
     /**
-     * Load an video file.
+     * Load an audio file.
      *
-     * @param {String} videoPath Path to the ogg file. If the videoPath is null,
-     *                           and the ogg is playing, it will act as a play/pause toggle.
-     * @param {Number} totalTime Optional totalTime to override the ogg's built in totalTime
+     * @param {String} audioPath Path to the mp3 file. If the audioPath is null,
+     *                           and the mp3 is playing, it will act as a play/pause toggle.
+     * @param {Number} totalTime Optional totalTime to override the mp3's built in totalTime
      */
-    load: function(videoPath, totalTime) {
+    load: function(audioPath, totalTime) {
         if (totalTime != null)
             this.setTotalTime(totalTime);
-        if (videoPath != null)
-            this.videoPath = videoPath;
-        if (this.videoPath == null && !this.firstLoad)
-            return this.oVideo.$errorHook({type:"error", error:"SoundManager::play - No videoPath has been set."});
+        if (audioPath != null)
+            this.audioPath = audioPath;
+        if (this.audioPath == null && !this.firstLoad)
+            return this.oAudio.$errorHook({type:"error", error:"SoundManager::play - No audioPath has been set."});
 
-        if (videoPath == null && this.firstLoad && !this.autoLoad) // Allow play(null) to toggle playback
-            videoPath = this.videoPath;
+        if (audioPath == null && this.firstLoad && !this.autoLoad) // Allow play(null) to toggle playback
+            audioPath = this.audioPath;
         this.firstLoad = false;
         this.setVolume(this.volume);
-        //    .callMethod("loadSound", this.videoPath, true, this.autoPlay);
+        //    .callMethod("loadSound", this.audioPath, true, this.autoPlay);
         return this;
     },
 
     /**
-     * Play and/ or resume a video that has been loaded already
+     * Play and/ or resume a audio that has been loaded already
      *
      * @type {Object}
      */
@@ -95,9 +96,10 @@ apf.video.TypeNative.prototype = {
     },
 
     /**
-     * Toggle the pause state of the video.
+     * Toggle the pause state of the audio.
      *
-     * @param {Boolean} pauseState The pause state. Setting pause state to true will pause the video.
+     * @param {Boolean} pauseState The pause state. Setting pause state to true
+     *                             will pause the audio.
      * @type {Object}
      */
     pause: function() {
@@ -105,7 +107,7 @@ apf.video.TypeNative.prototype = {
     },
 
     /**
-     * Stop playback of the video.
+     * Stop playback of the audio.
      *
      * @type {Object}
      */
@@ -114,7 +116,7 @@ apf.video.TypeNative.prototype = {
     },
 
     /**
-     * Seek the video to a specific position.
+     * Seek the audio to a specific position.
      *
      * @param {Number} seconds The number of seconds to seek the playhead to.
      * @type {Object}
@@ -154,7 +156,7 @@ apf.video.TypeNative.prototype = {
     },
 
     /**
-     * Retrieve the total playtime of the video, in seconds.
+     * Retrieve the total playtime of the audio, in seconds.
      *
      * @type {Number}
      */
@@ -163,7 +165,7 @@ apf.video.TypeNative.prototype = {
     },
 
     /**
-     * Determines the total time of the video.  The total time is automatically determined
+     * Determines the total time of the audio.  The total time is automatically determined
      * by the player, unless the user overrides it.
      *
      * @default null
@@ -179,14 +181,14 @@ apf.video.TypeNative.prototype = {
      * javascript interface, it passes through to this function.
      * Events dispatched by SoundManager instances:
      *    > init: The player is initialized
-     *    > ready: The video is ready
-     *    > progress: The video is downloading. Properties: bytesLoaded, totalBytes
-     *    > playHeadUpdate: The video playhead has moved.  Properties: playheadTime, totalTime
-     *    > stateChange: The state of the video has changed. Properties: state
+     *    > ready: The audio is ready
+     *    > progress: The audio is downloading. Properties: bytesLoaded, totalBytes
+     *    > playHeadUpdate: The audio playhead has moved.  Properties: playheadTime, totalTime
+     *    > stateChange: The state of the audio has changed. Properties: state
      *    > change: The player has changed.
      *    > complete: Playback is complete.
-     *    > metaData: The video has returned meta-data. Properties: infoObject
-     *    > cuePoint: The video has passed a cuePoint. Properties: infoObject
+     *    > metaData: The audio has returned meta-data. Properties: infoObject
+     *    > cuePoint: The audio has passed a cuePoint. Properties: infoObject
      *    > error: An error has occurred.  Properties: error
      *
      * @param {Object} eventName
@@ -198,7 +200,7 @@ apf.video.TypeNative.prototype = {
             case "progress":
                 this.bytesLoaded = evtObj.bytesLoaded;
                 this.totalBytes  = evtObj.totalBytes;
-                this.oVideo.$progressHook({
+                this.oAudio.$progressHook({
                     type       : "progress",
                     bytesLoaded: this.bytesLoaded,
                     totalBytes : this.totalBytes
@@ -207,13 +209,13 @@ apf.video.TypeNative.prototype = {
             case "playheadUpdate":
                 this.playheadTime = evtObj.playheadTime;
                 this.totalTime    = evtObj.totalTime;
-                this.oVideo.$changeHook({
+                this.oAudio.$changeHook({
                     type        : "change",
                     playheadTime: this.playheadTime,
                     totalTime   : this.totalTime
                 });
                 if (evtObj.waveData || evtObj.peakData || evtObj.eqData)
-                    this.oVideo.$metadataHook({
+                    this.oAudio.$metadataHook({
                         type    : "metadata",
                         waveData: evtObj.waveData,
                         peakData: evtObj.peakData,
@@ -222,31 +224,31 @@ apf.video.TypeNative.prototype = {
                 break;
             case "stateChange":
                 this.state = evtObj.state;
-                this.oVideo.$stateChangeHook({type:"stateChange", state:this.state});
+                this.oAudio.$stateChangeHook({type:"stateChange", state:this.state});
                 break;
             case "change":
-                this.oVideo.$changeHook({type:"change"});
+                this.oAudio.$changeHook({type:"change"});
                 break;
             case "complete":
-                this.oVideo.$completeHook({type:"complete"});
+                this.oAudio.$completeHook({type:"complete"});
                 break;
             case "ready":
                 if (this.paused && this.autoPlay)
                     this.paused = false;
-                this.oVideo.$readyHook({type:"ready"});
+                this.oAudio.$readyHook({type:"ready"});
                 break;
             case "metaData":
-                this.oVideo.$metadataHook({type:"metaData", infoObject:evtObj});
+                this.oAudio.$metadataHook({type:"metaData", infoObject:evtObj});
                 break;
             case "cuePoint":
-                this.oVideo.$cuePointHook({type:"cuePoint", infoObject:evtObj});
+                this.oAudio.$cuePointHook({type:"cuePoint", infoObject:evtObj});
                 break;
             case "init":
                 this.inited = true;
-                this.oVideo.$initHook(Object.extend(evtObj, apf.flash.getSandbox(evtObj.sandboxType)));
+                this.oAudio.$initHook(Object.extend(evtObj, apf.flash.getSandbox(evtObj.sandboxType)));
                 break;
             case "id3":
-                this.oVideo.$metadataHook({
+                this.oAudio.$metadataHook({
                     type: 'metadata',
                     id3Data: evtObj
                 });
@@ -267,8 +269,12 @@ apf.video.TypeNative.prototype = {
         if (div == null) return this;
 
         // place the HTML node outside of the viewport
-        var a = this.player = document.createElement("video");
-        a.setAttribute("src", this.videoPath);
+        div.style.position = "absolute";
+        div.style.width    = "1px";
+        div.style.height   = "1px";
+        div.style.left     = "-2000px";
+        var a = this.player = document.createElement("audio");
+        a.setAttribute("src", this.audioPath);
         a.setAttribute("volume", this.volume);
         if (this.autoPlay)
             a.setAttribute("autoplay", "true");
@@ -277,14 +283,14 @@ apf.video.TypeNative.prototype = {
         var _self = this,
             timeHandler;
         a.addEventListener("canplay", function() {
-            _self.oVideo.$readyHook({type:"ready"});
+            _self.oAudio.$readyHook({type:"ready"});
         }, false);
         a.addEventListener("timeupdate", timeHandler = function(e) {
             //console.dir(e);
             //console.log("playing: ", _self.player.currentTime, _self.player.duration);
             _self.playheadTime = parseInt(_self.player.currentTime || 0) * 1000;
             _self.totalTime    = parseInt(_self.player.duration) * 1000;
-            _self.oVideo.$changeHook({
+            _self.oAudio.$changeHook({
                 type        : "change",
                 playheadTime: _self.playheadTime,
                 totalTime   : _self.totalTime
@@ -292,7 +298,7 @@ apf.video.TypeNative.prototype = {
         }, false);
         a.addEventListener("duration", timeHandler, false);
         a.addEventListener("volumechange", function() {
-            _self.oVideo.$changeHook({
+            _self.oAudio.$changeHook({
                 type   : "change",
                 volume : _self.player.muted ? 0 : parseInt(_self.player.volume) * 100
             });
@@ -300,18 +306,18 @@ apf.video.TypeNative.prototype = {
         a.addEventListener("progress", function(e) {
             _self.bytesLoaded = e.loaded;
             _self.totalBytes  = e.total;
-            _self.oVideo.$progressHook({
+            _self.oAudio.$progressHook({
                 type       : "progress",
                 bytesLoaded: _self.bytesLoaded,
                 totalBytes : _self.totalBytes
             });
         }, false);
         a.addEventListener("ended", function() {
-            _self.oVideo.$completeHook({type:"complete"});
+            _self.oAudio.$completeHook({type:"complete"});
         }, false);
         a.addEventListener("error", function(e) {
             throw new Error(apf.formatErrorString(0, _self, "Audio playback",
-                e.message, _self.oVideo));
+                e.message, _self.oAudio));
         }, false);
 
         a.load();
@@ -326,4 +332,7 @@ apf.video.TypeNative.prototype = {
         this.player = null;
     }
 };
+
+return Audio.TypeNative;
+
 });

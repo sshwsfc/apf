@@ -19,7 +19,8 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], 
+    function(AmlElement, aml, oop){
 
 /**
  * Element 
@@ -39,7 +40,6 @@ var Source = function(struct, tagName){
 
 oop.inherit(Source, AmlElement);
 
-
 (function(){
     this.$supportedProperties.push("src", "type");
 
@@ -50,7 +50,6 @@ oop.inherit(Source, AmlElement);
 }).call(Source.prototype);
 
 aml && aml.setElement("source", Source);
-
 
 return Source;
 

@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+define(["html5/audio"], function(Audio){
 
 /**
  * Element displaying a Flash audio
@@ -34,7 +34,7 @@ define([], function(){
  * @since       1.0
  */
 
-apf.audio.TypeFlash = function(oAudio, oNode, options) {
+Audio.TypeFlash = function(oAudio, oNode, options) {
     this.oAudio              = oAudio;
     this.isNine              = apf.flash.isAvailable('9.0.0');
 
@@ -67,7 +67,7 @@ apf.audio.TypeFlash = function(oAudio, oNode, options) {
 
     // Initialize player
     this.player = null;
-    Object.extend(this, apf.audio.TypeInterface);
+    Object.extend(this, Audio.TypeInterface);
 
     this.delayCalls = [];
 
@@ -85,11 +85,11 @@ apf.audio.TypeFlash = function(oAudio, oNode, options) {
     this.setOptions(options).createPlayer();
 }
 
-apf.audio.TypeFlash.isSupported = function() {
+Audio.TypeFlash.isSupported = function() {
     return apf.flash.isAvailable();
 };
 
-apf.audio.TypeFlash.prototype = {
+Audio.TypeFlash.prototype = {
     properties: ["volume", "autoPlay", "autoLoad", "playHeadTime",
                  "totalTime", "bufferTime", "playheadUpdateInterval"],
     /**
@@ -379,4 +379,7 @@ apf.audio.TypeFlash.prototype = {
         }
     }
 };
+
+return Audio.TypeFlash;
+
 });

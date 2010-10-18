@@ -19,9 +19,9 @@
  *
  */
 
-define([], function(){
+define(["html5/video"], function(Video){
 
-apf.video.TypeQTCompat = (function(){
+Video.TypeQTCompat = (function(){
     var gTagAttrs           = null;
     var gQTBehaviorID       = "qt_event_source";
     var gQTEventsEnabled    = true;
@@ -401,7 +401,7 @@ apf.video.TypeQTCompat = (function(){
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.video.TypeQT = function(oVideo, node, options) {
+Video.TypeQT = function(oVideo, node, options) {
     this.oVideo      = oVideo;
     this.name        = "QT_" + this.oVideo.$uniqueId;
     this.htmlElement = node;
@@ -423,7 +423,7 @@ apf.video.TypeQT = function(oVideo, node, options) {
     this.videoPath   = options.src;
 
     this.player = null;
-    Object.extend(this, apf.video.TypeInterface);
+    Object.extend(this, Video.TypeInterface);
 
     this.setOptions(options);
     var _self = this;
@@ -432,12 +432,12 @@ apf.video.TypeQT = function(oVideo, node, options) {
     }, 1);
 }
 
-apf.video.TypeQT.isSupported = function() {
+Video.TypeQT.isSupported = function() {
     // QuickTime 7.2.1 is the least we'd expect, no?
-    return apf.video.TypeQTCompat.isAvailable();
+    return Video.TypeQTCompat.isAvailable();
 }
 
-apf.video.TypeQT.prototype = {
+Video.TypeQT.prototype = {
     /**
      * Play a Quicktime movie. Does a call to the embedded QT object to load or
      * load & play the video, depending on the 'autoPlay' flag (TRUE for play).
@@ -556,7 +556,7 @@ apf.video.TypeQT.prototype = {
             this.player = null;
         }
 
-        this.htmlElement.innerHTML = apf.video.TypeQTCompat.generateOBJECTText(
+        this.htmlElement.innerHTML = Video.TypeQTCompat.generateOBJECTText(
                 this.videoPath, "100%", "100%", "",
                 "autoplay",            apf.isIE ? "false" : this.autoPlay.toString(), //Not unloading of plugin, bad bad bad hack by Ruben
                 "controller",          this.showControls.toString(),
@@ -657,7 +657,7 @@ apf.video.TypeQT.prototype = {
             //    break;
             case "qt_load":
             case "qt_canplaythrough":
-                this.oVideo.setProperty("readyState", apf.Media.HAVE_ENOUGH_DATA);
+                this.oVideo.setProperty("readyState", Media.HAVE_ENOUGH_DATA);
                 if (this.autoPlay && apf.isIE) //Not unloading of plugin, bad bad bad hack by Ruben
                     this.player.Play();
                 break;
@@ -718,4 +718,7 @@ apf.video.TypeQT.prototype = {
         delete this.htmlElement;
     }
 };
+
+return Video.TypeQTCompat;
+
 });

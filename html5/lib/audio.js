@@ -19,7 +19,8 @@
  *
  */
 
-define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
+define(["html5/media", "optional!aml", "lib-oop"], 
+    function(Media, aml, oop){
 
 /**
  * Element that is able to play an audio file or remote stream
@@ -35,7 +36,7 @@ define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
  * 
  * @return {Audio} Returns a new audio
  * @type {Audio}
- * @inherits apf.Media
+ * @inherits Media
  * @constructor
  * @allowchild {text}
  * @addnode elements:audio
@@ -46,9 +47,11 @@ define(["aml-core/media", "optional!aml", "lib-oop"], function(Media, aml, oop){
  * @version     %I%, %G%
  * @since       1.0
  */
-apf.audio = function(struct, tagName){
-    this.$init(tagName || "audio", this.NODE_VISIBLE, struct);
+var Audio = function(struct, tagName){
+    Media.call(this, tagName || "audio", this.NODE_VISIBLE, struct);
 };
+
+oop.inherits(Audio, Media);
 
 (function() {
     this.$supportedProperties.push("waveform", "peak", "EQ", "ID3");
@@ -65,7 +68,7 @@ apf.audio = function(struct, tagName){
         if (!this.player) return this;
 
         this.setProperty("currentSrc",   this.src);
-        this.setProperty("networkState", apf.Media.NETWORK_LOADING);
+        this.setProperty("networkState", Media.NETWORK_LOADING);
         this.player.load(this.src);
         return this;
     };
@@ -153,8 +156,8 @@ apf.audio = function(struct, tagName){
      */
     this.$isSupported = function(playerType) {
         playerType = playerType || this.playerType;
-        return (apf.audio[playerType]
-            && apf.audio[playerType].isSupported());
+        return (Audio[playerType]
+            && Audio[playerType].isSupported());
     };
 
     /**
@@ -163,7 +166,7 @@ apf.audio = function(struct, tagName){
      * @type {Object}
      */
     this.$initPlayer = function() {
-        this.player = new apf.audio[this.playerType](this, this.$ext, {
+        this.player = new Audio[this.playerType](this, this.$ext, {
             src         : this.src,
             width       : this.width,
             height      : this.height,
@@ -243,7 +246,7 @@ apf.audio = function(struct, tagName){
         this.setProperty("totalBytes", e.totalBytes);
         var iDiff = Math.abs(e.bytesLoaded - e.totalBytes);
         if (iDiff <= 20)
-            this.setProperty("readyState", apf.Media.HAVE_ENOUGH_DATA);
+            this.setProperty("readyState", Media.HAVE_ENOUGH_DATA);
     };
 
     /**
@@ -257,7 +260,7 @@ apf.audio = function(struct, tagName){
     this.$stateChangeHook = function(e) {
         //for audio, we only use this for connection errors: connectionError
         if (e.state == "connectionError") {
-            this.networkState = apf.Media.HAVE_NOTHING;
+            this.networkState = Media.HAVE_NOTHING;
             //this.setProperty("readyState", this.networkState);
             this.$propHandlers["readyState"].call(this, this.networkState);
         }
@@ -306,8 +309,8 @@ apf.audio = function(struct, tagName){
      * @type {Object}
      */
     this.$readyHook = function(e) {
-        this.setProperty("networkState", apf.Media.NETWORK_LOADED);
-        this.setProperty("readyState",   apf.Media.HAVE_FUTURE_DATA);
+        this.setProperty("networkState", Media.NETWORK_LOADED);
+        this.setProperty("readyState",   Media.HAVE_FUTURE_DATA);
         this.setProperty("duration",     this.player.getTotalTime());
         this.seeking  = false;
         this.seekable = true;
@@ -325,7 +328,7 @@ apf.audio = function(struct, tagName){
      * @type {void}
      */
     this.$metadataHook = function(e) {
-        this.oVideo.setProperty("readyState", apf.Media.HAVE_METADATA);
+        this.oVideo.setProperty("readyState", Media.HAVE_METADATA);
         if (e.waveData)
             this.setProperty("waveform", e.waveData);
         if (e.peakData)
@@ -371,7 +374,7 @@ apf.audio = function(struct, tagName){
 
 aml && aml.setElement("audio", Audio);
 
-apf.audio.TypeInterface = {
+Audio.TypeInterface = {
     properties: ["src", "volume", "showControls", "autoPlay", "totalTime", "mimeType"],
 
     /**
