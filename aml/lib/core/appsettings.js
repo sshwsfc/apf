@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * Element specifying the settings of the application.
@@ -91,10 +91,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @todo describe defaults
  */
 var Appsettings = function(struct, tagName){
-    AmlElement.call(this, tagName || "appsettings", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "appsettings", this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(Appsettings, AmlElement);
+oop.inherit(Appsettings, DOMElement);
 
 
 (function(){

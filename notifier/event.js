@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * Displays a popup element with a message with optionally an icon at the
@@ -30,10 +30,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @event click Fires when the user clicks on the representation of this event.
  */
 var Event = function(struct, tagName){
-    AmlElement.call(this, tagName || "event", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "event", this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(Event, AmlElement);
+oop.inherit(Event, DOMElement);
 
 
 (function() {

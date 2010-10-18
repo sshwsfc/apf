@@ -24,7 +24,7 @@ apf.XhtmlIgnoreElement = function(struct, tagName){
     this.$init(tagName, this.NODE_VISIBLE, struct);
 };
 
-apf.XhtmlIgnoreElement.prototype = new apf.AmlElement();
+apf.XhtmlIgnoreElement.prototype = new apf.DOMElement();
 
 apf.xhtml.setElement("script",   apf.XhtmlIgnoreElement);
 apf.xhtml.setElement("noscript", apf.XhtmlIgnoreElement);

@@ -2,13 +2,13 @@ define([
     "w3cdom/element", 
     "optional!aml", 
     "lib-oop"], 
-    function(AmlElement, aml, oop){
+    function(DOMElement, aml, oop){
         
 var NoMedia = function(struct, tagName) {
-    AmlElement.call(this, tagName || "nomedia", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "nomedia", this.NODE_HIDDEN, struct);
 };
 
-oop.inherits(NoMedia, AmlElement);
+oop.inherits(NoMedia, DOMElement);
 
 (function() {
     this.addEventListener("DOMNodeInsertedIntoDocument", function() {

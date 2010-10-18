@@ -20,7 +20,7 @@
  */
 
 define(["w3cdom/element", "optional!aml", "lib-oop"], 
-    function(AmlElement, aml, oop){
+    function(DOMElement, aml, oop){
 
 /**
  *
@@ -29,7 +29,7 @@ define(["w3cdom/element", "optional!aml", "lib-oop"],
  * @since       0.4
  */
 var Services = function(struct, tagName){
-	AmlElement.call(this, tagName || "services", this.NODE_VISIBLE, struct);
+	DOMElement.call(this, tagName || "services", this.NODE_VISIBLE, struct);
     
     this.addEventListener("DOMNodeInsertedIntoDocument", function(aml){
         var pNode = this.parentNode;
@@ -38,7 +38,7 @@ var Services = function(struct, tagName){
     });
 };
 
-oop.inherit(Services, AmlElement);
+oop.inherit(Services, DOMElement);
 
 aml && aml.setElement("services", Services);
 

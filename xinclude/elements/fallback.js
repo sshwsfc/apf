@@ -27,7 +27,7 @@ apf.XiFallback = function(struct, tagName){
     this.$init(tagName || "fallback", this.NODE_HIDDEN, struct);
 };
 
-apf.XiFallback.prototype = new apf.AmlElement();
+apf.XiFallback.prototype = new apf.DOMElement();
 apf.XiFallback.prototype.$parsePrio = "002";
 
 apf.xinclude.setElement("fallback", apf.XiFallback);

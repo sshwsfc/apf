@@ -19,14 +19,15 @@
  *
  */
 
-define([], function(){
+define(["databinding/databinding", "lib-oop"], 
+    function(DataBinding){
 
 /**
  * @constructor
  * @private
  * @baseclass
  */
-apf.StandardBinding = function(){
+var StandardBinding = function(){
     this.$init(true);
     
     //#ifdef __WITH_VALIDATION
@@ -179,7 +180,9 @@ apf.StandardBinding = function(){
         }
     });
 };
-apf.StandardBinding.prototype = new apf.DataBinding();
 
-apf.Init.run("standardbinding");
+oop.inherits(StandardBinding, DataBinding);
+
+return StandardBinding;
+
 });

@@ -19,13 +19,13 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 var XhtmlOptionElement = function(struct, tagName){
-    AmlElement.call(this, tagName || "option", this.NODE_VISIBLE, struct);
+    DOMElement.call(this, tagName || "option", this.NODE_VISIBLE, struct);
 };
 
-oop.inherit(XhtmlOptionElement, AmlElement);
+oop.inherit(XhtmlOptionElement, DOMElement);
 
 
 (function(){

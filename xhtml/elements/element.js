@@ -19,10 +19,10 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 var XhtmlElement = function(struct, tagName){
-    AmlElement.call(this, tagName || true, this.NODE_VISIBLE, struct);
+    DOMElement.call(this, tagName || true, this.NODE_VISIBLE, struct);
     
     this.$xoe                = this.addEventListener;
     this.addEventListener    = this.$xae;
@@ -34,7 +34,7 @@ var XhtmlElement = function(struct, tagName){
     }
 };
 
-oop.inherit(XhtmlElement, AmlElement);
+oop.inherit(XhtmlElement, DOMElement);
 
 
 (function(){
@@ -64,7 +64,7 @@ oop.inherit(XhtmlElement, AmlElement);
     };
     
     this.$xre = function(type, fn) {
-        apf.AmlElement.prototype.removeEventListener.apply(this, arguments);
+        apf.DOMElement.prototype.removeEventListener.apply(this, arguments);
         
         //#ifdef __WITH_CONTENTEDITABLE
         if (this.editable && "contextmenu|keydown|keypress|keyup".indexOf(type) > -1)

@@ -976,7 +976,7 @@ apf.actiontracker = function(struct, tagName){
         this.$execstack[0].undoObj.saveChange(this.$execstack[0].undo, this, callback);
     };
     //#endif
-}).call(apf.actiontracker.prototype = new apf.AmlElement());
+}).call(apf.actiontracker.prototype = new apf.DOMElement());
 
 apf.aml.setElement("actiontracker", apf.actiontracker);
 

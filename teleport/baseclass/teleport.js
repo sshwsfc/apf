@@ -215,7 +215,7 @@ apf.__TELEPORT__ = 1 << 28;
         if (this.id)
             apf.$asyncObjects[this.id] = 1;
     });
-}).call(apf.Teleport.prototype = new apf.AmlElement());
+}).call(apf.Teleport.prototype = new apf.DOMElement());
 
 //#ifdef __DEBUG
 apf.teleportLog = function(extra){

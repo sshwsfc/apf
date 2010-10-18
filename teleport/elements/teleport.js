@@ -21,6 +21,6 @@
 
 define([], function(){
 
-apf.aml.setElement("teleport", apf.AmlElement);
+apf.aml.setElement("teleport", apf.DOMElement);
 
 });

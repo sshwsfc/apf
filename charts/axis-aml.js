@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * Element displays a chart.
@@ -37,11 +37,11 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  */
 
  var Axis     = function(struct, tagName){
-    AmlElement.call(this, tagName || "axis", this.NODE_VISIBLE, struct);
+    DOMElement.call(this, tagName || "axis", this.NODE_VISIBLE, struct);
     this.$subpos = {left:0,right:0,width:1,height:1};
 };
 
-oop.inherit(Axis, AmlElement);
+oop.inherit(Axis, DOMElement);
 
 
 aml && aml.setElement("axis", Axis);

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * @define auth Centralized authentication handling. Not being logged in, after being
@@ -154,7 +154,7 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  */
 
 var Auth = function(struct, tagName){
-    AmlElement.call(this, tagName || "auth", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "auth", this.NODE_HIDDEN, struct);
 
     this.$services    = {};
     this.$cache       = {};
@@ -162,7 +162,7 @@ var Auth = function(struct, tagName){
     this.$credentials = null;
 };
 
-oop.inherit(Auth, AmlElement);
+oop.inherit(Auth, DOMElement);
 
 
 aml && aml.setElement("auth", Auth);

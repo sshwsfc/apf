@@ -19,7 +19,8 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], 
+    sfunction(DOMElement, aml, oop){
 
 /**
  * Element allowing data synchronization between multiple clients using the same
@@ -141,8 +142,8 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @todo Think about wrapping multiple messages in a single call
  * @todo Make RDB support different encoding protocols (think REX)
  */
-apf.remote = function(struct, tagName){
-    this.$init(tagName || "remote", this.NODE_HIDDEN, struct);
+var Remote = function(struct, tagName){
+    DOMElement.call(this, tagName || "remote", this.NODE_HIDDEN, struct);
 
 //    this.lookup              = {};
 //    this.select              = [];
@@ -152,9 +153,9 @@ apf.remote = function(struct, tagName){
     this.pendingTerminations = {};
 };
 
-apf.remote.SESSION_INITED     = 0x0001; //Session has not started yet.
-apf.remote.SESSION_STARTED    = 0x0002; //Session is started
-apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
+Remote.SESSION_INITED     = 0x0001; //Session has not started yet.
+Remote.SESSION_STARTED    = 0x0002; //Session is started
+Remote.SESSION_TERMINATED = 0x0004; //Session is terminated
 
 (function(){
     //#ifdef __WITH_OFFLINE
@@ -197,7 +198,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
             var uri, oSession;
             for (uri in _self.$sessions) {
                 oSession = _self.$sessions[uri];
-                if (oSession.state == apf.remote.SESSION_STARTED)
+                if (oSession.state == Remote.SESSION_STARTED)
                     continue;
 
                 this.join(uri, function(uri, iTime) {
@@ -210,7 +211,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
             var uri, oSession;
             for (uri in _self.$sessions) {
                 oSession       = _self.$sessions[uri];
-                oSession.state = apf.remote.SESSION_TERMINATED;
+                oSession.state = Remote.SESSION_TERMINATED;
             }
         });
 
@@ -322,10 +323,10 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
 
         var oSession = this.$sessions[uri];
         if (this.transport && this.transport.isConnected() 
-          && oSession.state != apf.remote.SESSION_TERMINATED)
+          && oSession.state != Remote.SESSION_TERMINATED)
             this.transport.leave(uri);
 
-        oSession.state = apf.remote.SESSION_TERMINATED;
+        oSession.state = Remote.SESSION_TERMINATED;
 
         delete this.$sessions[uri];
     };
@@ -337,7 +338,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
             uri   : uri,
             model : model,
             xpath : xpath,
-            state : apf.remote.SESSION_INITED
+            state : Remote.SESSION_INITED
         }
     };
 
@@ -351,7 +352,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
             return false;
         }
 
-        oSession.state = apf.remote.SESSION_STARTED;
+        oSession.state = Remote.SESSION_STARTED;
         if (basetime && !oSession.basetime)
             oSession.basetime = basetime;
 
@@ -592,5 +593,7 @@ apf.remote.SESSION_TERMINATED = 0x0004; //Session is terminated
 }).call(Remote.prototype);
 
 aml && aml.setElement("remote", Remote);
+
+return Remote;
 
 });

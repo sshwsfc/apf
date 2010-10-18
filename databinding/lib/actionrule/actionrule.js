@@ -19,7 +19,7 @@
  *
  */
  
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * @attribute {String} match
@@ -34,10 +34,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @attribute {Boolean} parent
  */
 var ActionRule = function(struct, tagName){
-    AmlElement.call(this, tagName || true, this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || true, this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(ActionRule, AmlElement);
+oop.inherit(ActionRule, DOMElement);
 
 
 (function(){
@@ -71,7 +71,7 @@ oop.inherit(ActionRule, AmlElement);
         if (e.currentTarget == this) {
             var pNode = this.parentNode;
             if (!pNode.$actions)
-                pNode.$actions = new apf.ruleList();
+                pNode.$actions = new RuleList();
             
             (pNode.$actions[this.localName] 
               || (pNode.$actions[this.localName] = [])).push(this);
@@ -106,7 +106,7 @@ oop.inherit(ActionRule, AmlElement);
             this.get = apf.serializeChildren(this.$aml).trim();
 
         var actions = this.parentNode.$actions 
-          || (this.parentNode.$actions = new apf.ruleList());
+          || (this.parentNode.$actions = new RuleList());
         
         (actions[this.localName] || (actions[this.localName] = [])).push(this);
     });

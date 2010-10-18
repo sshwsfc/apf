@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * @term smartbinding Smartbinding is a type of bidirectional databinding where 
@@ -653,12 +653,12 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @default_private
  */
 var Smartbinding = function(struct, tagName){
-    AmlElement.call(this, tagName || "smartbinding", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "smartbinding", this.NODE_HIDDEN, struct);
 
     this.$bindNodes = {};
 };
 
-oop.inherit(Smartbinding, AmlElement);
+oop.inherit(Smartbinding, DOMElement);
 
 
 (function(){

@@ -19,12 +19,12 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 var XhtmlInputElement = function(struct, tagName){
-    AmlElement.call(this, tagName || "input", this.NODE_VISIBLE, struct);
+    DOMElement.call(this, tagName || "input", this.NODE_VISIBLE, struct);
 };
 
-oop.inherit(XhtmlInputElement, AmlElement);
+oop.inherit(XhtmlInputElement, DOMElement);
 
 
 (function(){

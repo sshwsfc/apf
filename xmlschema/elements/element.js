@@ -43,7 +43,7 @@ apf.XsdElement = function(struct, tagName){
         });
     });
 }
-apf.XsdElement.prototype = new apf.AmlElement();
+apf.XsdElement.prototype = new apf.DOMElement();
 apf.XsdElement.prototype.$recompile = function(stack){
     if (!this.$amlLoaded)
         return;

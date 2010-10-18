@@ -275,7 +275,7 @@ oop.inherits(DOMNode, Class);
         if (!amlNode || !amlNode.hasFeature || !amlNode.hasFeature(apf.__AMLNODE__)){
             throw new Error(apf.formatErrorString(1072, this,
                 "Insertbefore DOM operation",
-                "Invalid argument passed. Expecting an AmlElement."));
+                "Invalid argument passed. Expecting an DOMElement."));
         }
         //#endif
 

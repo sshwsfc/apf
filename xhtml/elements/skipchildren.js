@@ -19,12 +19,12 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 var XhtmlSkipChildrenElement = function(struct, tagName){
-    AmlElement.call(this, tagName, this.NODE_VISIBLE, struct);
+    DOMElement.call(this, tagName, this.NODE_VISIBLE, struct);
 };
 
-oop.inherit(XhtmlSkipChildrenElement, AmlElement);
+oop.inherit(XhtmlSkipChildrenElement, DOMElement);
 
 
 (function(){

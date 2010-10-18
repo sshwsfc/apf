@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -55,10 +55,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @default_private
  */
 var BindingRule = function(struct, tagName){
-    AmlElement.call(this, tagName || true, this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || true, this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(BindingRule, AmlElement);
+oop.inherit(BindingRule, DOMElement);
 
 
 (function(){
@@ -217,7 +217,7 @@ oop.inherit(BindingRule, AmlElement);
             pNode = pNode.parentNode;
 
         //Add the rule to the set
-        var bindings = pNode.$bindings || (pNode.$bindings = new apf.ruleList());
+        var bindings = pNode.$bindings || (pNode.$bindings = new RuleList());
         (bindings[this.localName] || (bindings[this.localName] = [])).push(this);
         
         //Compile if necessary

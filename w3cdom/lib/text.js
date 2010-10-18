@@ -92,7 +92,7 @@ oop.inherits(AmlText, AmlCharacterData)
             
             this.$propHandlers["calcdata"] = apf.LiveMarkupPi.prototype.$propHandlers["calcdata"];
             
-            this.$setInheritedAttribute = apf.AmlElement.prototype.$setInheritedAttribute;
+            this.$setInheritedAttribute = apf.DOMElement.prototype.$setInheritedAttribute;
             //#ifdef __WITH_DATABINDING
             oop.decorate(AmlText, StandardBinding);;
             //#endif

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * element specifying which menu is shown when a
@@ -42,10 +42,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Contextmenu = function(){
-	AmlElement.call(this, "contextmenu", this.NODE_HIDDEN);
+	DOMElement.call(this, "contextmenu", this.NODE_HIDDEN);
 };
 
-oop.inherits(Contextmenu, AmlElement);
+oop.inherits(Contextmenu, DOMElement);
 
 (function(){
     this.$amlNodes = [];

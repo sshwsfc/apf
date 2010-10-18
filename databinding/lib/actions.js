@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
 * @define actions  element containing all the action rules for the data 
@@ -49,13 +49,13 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @default_private
  */
 var Actions = function(struct, tagName){
-    AmlElement.call(this, tagName || "actions", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "actions", this.NODE_HIDDEN, struct);
     
-    this.$actions      = new apf.ruleList();
+    this.$actions      = new RuleList();
     this.$amlNodes     = {};
 };
 
-oop.inherit(Actions, AmlElement);
+oop.inherit(Actions, DOMElement);
 
 
 (function(){

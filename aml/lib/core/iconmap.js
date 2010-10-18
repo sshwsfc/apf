@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * element that provides a means to get icons from a
@@ -58,10 +58,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Iconmap = function(){
-    AmlElement.call(this, "iconmap", this.NODE_HIDDEN);
+    DOMElement.call(this, "iconmap", this.NODE_HIDDEN);
 };
 
-oop.inherits(Iconmap, AmlElement);
+oop.inherits(Iconmap, DOMElement);
 
 (function(){
     this.$parsePrio = "050";

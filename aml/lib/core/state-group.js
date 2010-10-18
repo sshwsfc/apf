@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * Element that groups state elements together and
@@ -49,10 +49,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var StateGroup = function(){
-	AmlElement.call(this, "state-group", this.NODE_HIDDEN);
+	DOMElement.call(this, "state-group", this.NODE_HIDDEN);
 };
 
-oop.inherits(StateGroup, AmlElement);
+oop.inherits(StateGroup, DOMElement);
 
 aml && aml.setElement("state-group", StateGroup);
 

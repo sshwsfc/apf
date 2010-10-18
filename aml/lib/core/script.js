@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * element that loads javascript into the application
@@ -44,10 +44,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Script = function(){
-	AmlElement.call(this, "script", this.NODE_HIDDEN);
+	DOMElement.call(this, "script", this.NODE_HIDDEN);
 };
 
-oop.inherits(Script, AmlElement);
+oop.inherits(Script, DOMElement);
 
 (function(){
     this.$propHandlers["src"] = function(value){

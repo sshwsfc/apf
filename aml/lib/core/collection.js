@@ -55,6 +55,6 @@ apf.collection = function(struct, tagName){
 
         this.skinName = this.parentNode.skinName;
     });
-}).call(apf.collection.prototype = new apf.AmlElement());
+}).call(apf.collection.prototype = new apf.DOMElement());
 
 apf.aml.setElement("collection", apf.collection);

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * A symbolic link to an AML element. The visibility of this element determines
@@ -32,10 +32,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Junction = function(){
-	AmlElement.call(this, "junction", this.NODE_HIDDEN);
+	DOMElement.call(this, "junction", this.NODE_HIDDEN);
 };
 
-oop.inherits(Junction, AmlElement);
+oop.inherits(Junction, DOMElement);
 
 (function(){
     this.$focussable = false;

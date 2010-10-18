@@ -177,7 +177,7 @@ apf.dbg = function(struct, tagName){
         this.$debugger && this.$debugger.evaluate(expression, frame, global, disableBreak, callback);
     }
     
-}).call(apf.dbg.prototype = new apf.AmlElement());
+}).call(apf.dbg.prototype = new apf.DOMElement());
 
 apf.aml.setElement("debugger", apf.dbg);
 

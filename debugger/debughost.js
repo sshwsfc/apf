@@ -138,7 +138,7 @@ apf.debughost = function(struct, tagName){
         this.$host = null;
     };
     
-}).call(apf.debughost.prototype = new apf.AmlElement());
+}).call(apf.debughost.prototype = new apf.DOMElement());
 
 apf.aml.setElement("debughost", apf.debughost);
 return apf.debughost;

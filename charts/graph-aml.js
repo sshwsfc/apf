@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * Element displays a chart.
@@ -37,10 +37,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  */
 
  var Graph     = function(struct, tagName){
-    AmlElement.call(this, tagName || "graph", this.NODE_VISIBLE, struct);
+    DOMElement.call(this, tagName || "graph", this.NODE_VISIBLE, struct);
 };
 
-oop.inherit(Graph, AmlElement);
+oop.inherit(Graph, DOMElement);
 
 
 aml && aml.setElement("graph", Graph);

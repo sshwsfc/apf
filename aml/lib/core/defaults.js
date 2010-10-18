@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  *
@@ -28,10 +28,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Defaults = function(struct, tagName){
-    AmlElement.call(this, tagName || "services", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "services", this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(Defaults, AmlElement);
+oop.inherit(Defaults, DOMElement);
 
 
 (function(){

@@ -19,15 +19,15 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 /**
  * Defines a list of acceptable values
  */
 var XiInclude = function(struct, tagName){
-    AmlElement.call(this, tagName || "include", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "include", this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(XiInclude, AmlElement);
+oop.inherit(XiInclude, DOMElement);
 
 
 apf.xinclude.setElement("include", apf.XiInclude);

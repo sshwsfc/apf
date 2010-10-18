@@ -21,7 +21,14 @@
 
 apf.__DATABINDING__ = 1 << 1;
 
-define([], function(){
+define([
+    "optional!aml-core/presentation", 
+    "w3cdom/element", 
+    "optional!aml-core/virtualviewport",
+    "lib-oop"], 
+    function(Presentation, DOMElement, VirtualViewport, oop){
+
+var BaseClass = Presentation || DOMElement;
 
 /**
  * Baseclass adding data binding features to this element. Databinding takes
@@ -83,7 +90,8 @@ define([], function(){
  * @default_private
  */
 apf.DataBinding = function(){
-    this.$init(true);
+    if (this.$databinding) //Dual function as decorator and baseclass
+        BaseClass.call(this);
     
     this.$loadqueue = 
     this.$dbTimer   = null;
@@ -1542,15 +1550,14 @@ apf.DataBinding = function(){
         if (value != "virtual")
             return;
 
-        this.implement(apf.VirtualViewport);
+        oop.decorate(VirtualViewport);
     };
     //#endif
 };
-// #ifdef __WITH_PRESENTATION
-    apf.DataBinding.prototype = new apf[apf.Presentation ? "Presentation" : "AmlElement"]();
-/* #else
-    apf.DataBinding.prototype = new apf.AmlElement();
-#endif*/
+
+oop.inherits(DataBinding, BaseClass);
+
+DataBinding.prototype.$databinding = true;
 
 apf.config.$inheritProperties["model"]           = 1;
 apf.config.$inheritProperties["empty-message"]   = 1;
@@ -1558,6 +1565,6 @@ apf.config.$inheritProperties["loading-message"] = 1;
 apf.config.$inheritProperties["offline-message"] = 1;
 apf.config.$inheritProperties["noloading"]       = 1;
 
-apf.Init.run("databinding");
+return DataBinding;
 
 });

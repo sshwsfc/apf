@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * Element functioning as the central access point for xml data. Data can be
@@ -102,7 +102,7 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.8
  */
 var Model = function(struct, tagName){
-    AmlElement.call(this, tagName || "model", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "model", this.NODE_HIDDEN, struct);
     
     this.$amlNodes = {};
     this.$propBinds = {};
@@ -118,7 +118,7 @@ var Model = function(struct, tagName){
     }
 };
 
-oop.inherit(Model, AmlElement);
+oop.inherit(Model, DOMElement);
 
 
 (function(){

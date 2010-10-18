@@ -19,7 +19,7 @@
  *
  */
 define(["w3cdom/element", "optional!aml", "lib-oop"], 
-    function(AmlElement, aml, oop){
+    function(DOMElement, aml, oop){
 
 var StateServer = {
     states: {},
@@ -168,7 +168,7 @@ var StateServer = {
  * @since       0.9
  */
 var State = function(struct, tagName){
-    AmlElement.call(this, tagName || "state", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "state", this.NODE_HIDDEN, struct);
     
     this.$signalElements = [];
     this.$groupAdded     = {};
@@ -176,7 +176,7 @@ var State = function(struct, tagName){
 };
 
 //Inherit
-oop.inherits(State, AmlElement);
+oop.inherits(State, DOMElement);
 
 (function(){
     /**** Properties and Attributes ****/

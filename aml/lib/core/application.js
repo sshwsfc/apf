@@ -20,7 +20,7 @@
  */
 
 define(["optional!aml", "w3cdom/element", "lib-oop"], 
-    function(aml, AmlElement, oop){
+    function(aml, DOMElement, oop){
 
 /**
  * @todo description
@@ -30,7 +30,7 @@ define(["optional!aml", "w3cdom/element", "lib-oop"],
  * @since       0.4
  */
 var Application = function(){
-	AmlElement.call(this, "application", this.NODE_HIDDEN);
+	DOMElement.call(this, "application", this.NODE_HIDDEN);
     
     if (!apf.isO3) {    
         this.$int        = document.body;
@@ -49,7 +49,7 @@ var Application = function(){
 };
 
 //Inherit
-oop.inherits(Application, AmlElement);
+oop.inherits(Application, DOMElement);
 
 aml && aml.setElement("application", Application);
 

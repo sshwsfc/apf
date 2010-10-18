@@ -20,7 +20,7 @@
  */
 
 define(["optional!aml", "w3cdom/element", "lib-oop"], 
-    function(aml, AmlElement, oop){
+    function(aml, DOMElement, oop){
 
 /**
  * @todo description
@@ -30,7 +30,7 @@ define(["optional!aml", "w3cdom/element", "lib-oop"],
  * @since       0.4
  */
 var Loader = function(){
-    AmlElement.call(this, "loader", this.NODE_HIDDEN);
+    DOMElement.call(this, "loader", this.NODE_HIDDEN);
     
     this.show = function(){
         this.$ext.style.display = "block";
@@ -62,7 +62,7 @@ var Loader = function(){
 };
 
 //Inherit
-oop.inherits(Loader, AmlElement);
+oop.inherits(Loader, DOMElement);
 
 aml && aml.setElement("loader", Loader);
 

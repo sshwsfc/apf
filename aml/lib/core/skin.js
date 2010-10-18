@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, aml, oop){
+define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
 
 /**
  * element specifying the skin of an application.
@@ -41,10 +41,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Skin = function(struct, tagName){
-    AmlElement.call(this, tagName || "skin", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "skin", this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(Skin, AmlElement);
+oop.inherit(Skin, DOMElement);
 
 aml && aml.setElement("skin", Skin);
 

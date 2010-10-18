@@ -54,7 +54,7 @@ oop.inherits(AmlProcessingInstruction, DOMNode);
     }, this.$attrExcludePropBind);
     
     this.getAttribute = function(){};
-    this.$setInheritedAttribute = apf.AmlElement.prototype.$setInheritedAttribute;
+    this.$setInheritedAttribute = apf.DOMElement.prototype.$setInheritedAttribute;
     this.$supportedProperties = [];
     this.$propHandlers        = {};
     this.$booleanProperties   = {};

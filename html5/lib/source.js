@@ -20,7 +20,7 @@
  */
 
 define(["aml-core/amlelement", "optional!aml", "lib-oop"], 
-    function(AmlElement, aml, oop){
+    function(DOMElement, aml, oop){
 
 /**
  * Element 
@@ -35,10 +35,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"],
  * @since       3.0
  */
 var Source = function(struct, tagName){
-    AmlElement.call(this, tagName || "source", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "source", this.NODE_HIDDEN, struct);
 };
 
-oop.inherit(Source, AmlElement);
+oop.inherit(Source, DOMElement);
 
 (function(){
     this.$supportedProperties.push("src", "type");
