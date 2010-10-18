@@ -30,7 +30,7 @@ define(["optional!aml", "w3cdom/element", "lib-oop"],
  * @since       0.4
  */
 var Application = function(){
-    this.$init("application", this.NODE_HIDDEN);
+	AmlElement.call(this, "application", this.NODE_HIDDEN);
     
     if (!apf.isO3) {    
         this.$int        = document.body;

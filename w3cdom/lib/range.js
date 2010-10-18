@@ -25,8 +25,8 @@ define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
  * @todo copy docs from http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html
  */
 var AmlRange = function(doc){
-    this.$init();
-
+	Class.call(this);
+	
     this.$ownerDocument = 
     this.startContainer = 
     this.endContainer   = doc || apf.document;
@@ -83,6 +83,9 @@ var AmlRange = function(doc){
     
     this.$ownerDocument.addEventListener("DOMNodeRemoved", this.$domNodeRemDoc);
 };
+
+oop.inherits(AmlRange, Class);
+
 (function() {
     this.START_TO_START = 0;
     this.START_TO_END   = 1;

@@ -21,8 +21,10 @@
 
 define(["aml-core/amlcharacterdata", "optional!aml", "lib-oop"], function(AmlCharacterData, aml, oop){
 var AmlText = function(isPrototype){
-    this.$init(isPrototype);
+    AmlCharacterData.call(this, isPrototype);
 };
+
+oop.inherits(AmlText, AmlCharacterData)
 
 (function(){
     this.nodeType = this.NODE_TEXT;

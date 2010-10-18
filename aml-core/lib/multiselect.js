@@ -120,11 +120,13 @@ define(["aml-core/multiselectbinding", "optional!aml", "lib-oop"], function(Mult
  * </code>
  */
 var MultiSelect = function(){
-    this.$init(function(){
+	MultiselectBinding.call(this, function(){
         this.$valueList       = [];
         this.$selectedList    = [];
     });
 };
+
+oop.inherits(MultiSelect, MultiselectBinding);
 
 //@todo investigate if selectedList can be deprecated
 (function() {

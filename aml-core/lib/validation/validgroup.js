@@ -50,7 +50,7 @@ define(["lib-oop", "lib-oop/class", "aml-core/util/nameserver"],
  * @since       0.9
  */
 var ValidationGroup = function(name){
-    this.$init();
+	Class.call(this);
     
     this.childNodes = [];
     

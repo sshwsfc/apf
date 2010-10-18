@@ -36,8 +36,7 @@ define([], function(){
  * @since       1.0
  */
 var VirtualViewport = function(){
-    this.$init(true);
-
+   
     this.$regbase = this.$regbase | apf.__VIRTUALVIEWPORT__;
 
     this.virtualVTimer = null;

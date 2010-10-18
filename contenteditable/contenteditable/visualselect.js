@@ -22,14 +22,16 @@
 define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
 
 var VisualSelect = function(selection){
-    this.$init();
-
+    Class.call(this);
+    
     var _self = this;
     selection.addEventListener("update", function(){
         _self.updateSelection();
     });
     this.$selection = selection;
 };
+
+oop.inherit(VisualSelect, Class);
 
 (function(){
     var nodes = [],

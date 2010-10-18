@@ -44,8 +44,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Script = function(){
-    this.$init("script", this.NODE_HIDDEN);
+	AmlElement.call(this, "script", this.NODE_HIDDEN);
 };
+
+oop.inherits(Script, AmlElement);
 
 (function(){
     this.$propHandlers["src"] = function(value){
@@ -107,7 +109,6 @@ var Script = function(){
 }).call(Script.prototype);
 
 aml && aml.setElement("script", Script);
-
 
 return Script;
 

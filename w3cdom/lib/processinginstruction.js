@@ -20,9 +20,12 @@
  */
 
 define(["aml-core/domnode", "optional!aml", "lib-oop"], function(DOMNode, aml, oop){
+
 var AmlProcessingInstruction = function(isPrototype){
-    this.$init(isPrototype);
+	DOMNode.call(this, isPrototype);
 };
+
+oop.inherits(AmlProcessingInstruction, DOMNode);
 
 (function(){
     this.nodeType = this.NODE_PROCESSING_INSTRUCTION;

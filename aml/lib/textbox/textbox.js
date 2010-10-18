@@ -73,8 +73,10 @@ define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(Standar
  * @event clear     Fires when the content of this element is cleared. 
  */
 var Input    = function(struct, tagName){
-    this.$init(tagName || "input", this.NODE_VISIBLE, struct);
+    StandardBinding.call(tagName || "input", this.NODE_VISIBLE, struct);
 };
+
+oop.inherits(Input, StandardBinding)
 
 (function(){
     

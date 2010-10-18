@@ -30,9 +30,10 @@ define(["aml-core/amlprocessinginstruction", "optional!aml", "lib-oop"], functio
 
 var LiveMarkupPi = function(){
     //this.$data;
-    this.$init();
+	AmlProcessingInstruction.call(this);
 };
 
+oop.inherit(LiveMarkupPi, AmlProcessingInstruction);
 /*
     @todo optimize the pi, possible with this code:
     var div, doc = this.ownerDocument, domParser = doc.$domParser, 
@@ -121,9 +122,9 @@ var LiveMarkupPi = function(){
     };
 }).call(LiveMarkupPi.prototype);
 
-apf.aml.setProcessingInstruction("lm", apf.LiveMarkupPi);
-apf.aml.setProcessingInstruction("lm-debug", apf.LiveMarkupPi);
-apf.aml.setProcessingInstruction("livemarkup", apf.LiveMarkupPi);
+aml && aml.setProcessingInstruction("lm", LiveMarkupPi);
+aml && apf.setProcessingInstruction("lm-debug", LiveMarkupPi);
+aml && apf.setProcessingInstruction("livemarkup", LiveMarkupPi);
 
 
 return LiveMarkupPi;

@@ -58,8 +58,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Iconmap = function(){
-    this.$init("iconmap", this.NODE_HIDDEN);
+    AmlElement.call(this, "iconmap", this.NODE_HIDDEN);
 };
+
+oop.inherits(Iconmap, AmlElement);
 
 (function(){
     this.$parsePrio = "050";
@@ -86,7 +88,6 @@ var Iconmap = function(){
 }).call(Iconmap.prototype);
 
 aml && aml.setElement("iconmap", Iconmap);
-
 
 return Iconmap;
 

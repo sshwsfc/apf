@@ -42,8 +42,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Contextmenu = function(){
-    this.$init("contextmenu", this.NODE_HIDDEN);
+	AmlElement.call(this, "contextmenu", this.NODE_HIDDEN);
 };
+
+oop.inherits(Contextmenu, AmlElement);
 
 (function(){
     this.$amlNodes = [];
@@ -190,5 +192,6 @@ GuiElement.propHandlers = {
      */
     "contextmenu": function(value){
         this.contextmenus = [value];
-    },
+    }
     //#endif
+}

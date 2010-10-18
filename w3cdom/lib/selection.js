@@ -20,8 +20,9 @@
  */
 
 define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
+
 var AmlSelection = function(doc){
-    this.$init();
+    Class.call(this);
     
     this.$ownerDocument = doc;
     
@@ -52,6 +53,9 @@ var AmlSelection = function(doc){
         }
     }
 };
+
+oop.inherits(AmlSelection, Class);
+
 (function() {
     /**
      * Returns the element that contains the start of the selection.

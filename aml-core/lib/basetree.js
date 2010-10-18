@@ -40,7 +40,7 @@ define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect
  *
  */
 var BaseTree = function(){
-    this.$init(true);
+	MultiSelect.call(this, true);
     
     // #ifdef __WITH_CSS_BINDS
     this.$dynCssClasses = [];
@@ -48,6 +48,8 @@ var BaseTree = function(){
     
     this.$nodes = [];
 };
+
+oop.inherits(BaseTree, MultiSelect);
 
 (function() {
     //#ifdef __WITH_RENAME || __WITH_DATAACTION || __WITH_CACHE

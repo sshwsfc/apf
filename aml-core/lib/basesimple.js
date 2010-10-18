@@ -35,8 +35,10 @@ define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(Standar
  * @since       0.8
  */
 var BaseSimple = function(){
-    this.$init(true);
+	StandardBinding.call(this, true);
 };
+
+oop.inherits(BaseSimple, StandardBinding);
 
 (function() {
     //#ifdef __WITH_DATAACTION

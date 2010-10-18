@@ -98,7 +98,7 @@ define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect
  *   {String} value the value that was entered.
  */
 var BaseList = function(){
-    this.$init(true);
+    MultiSelect.call(this, true);
     
     // #ifdef __WITH_CSS_BINDS
     this.$dynCssClasses = [];
@@ -106,6 +106,8 @@ var BaseList = function(){
     
     this.listNodes   = [];
 };
+
+oop.inherits(BaseList, MultiSelect);
 
 (function() {
     //#ifdef __WITH_CACHE || __WITH_DATAACTION

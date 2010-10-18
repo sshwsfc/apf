@@ -29,7 +29,7 @@ define(["w3cdom/element", "optional!aml", "lib-oop"],
  * @since       0.4
  */
 var Services = function(struct, tagName){
-    this.$init(tagName || "services", this.NODE_VISIBLE, struct);
+	AmlElement.call(this, tagName || "services", this.NODE_VISIBLE, struct);
     
     this.addEventListener("DOMNodeInsertedIntoDocument", function(aml){
         var pNode = this.parentNode;

@@ -50,8 +50,10 @@ define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentati
  *   {apf.page} nextPage     the the current page.   
  */
 var BaseTab = function(){
-    this.$init(true);
+	Presentation.call(this, true);
 };
+
+oop.inherits(BaseTab, Presentation);
 
 (function() {
     this.isPaged     = true;
@@ -1550,7 +1552,6 @@ var BaseTab = function(){
         // #endif
     };
 }).call(BaseTab.prototype);
-
 
 return BaseTab;
 

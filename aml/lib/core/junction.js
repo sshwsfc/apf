@@ -32,8 +32,10 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(AmlElement, 
  * @since       0.4
  */
 var Junction = function(){
-    this.$init("junction", this.NODE_HIDDEN);
+	AmlElement.call(this, "junction", this.NODE_HIDDEN);
 };
+
+oop.inherits(Junction, AmlElement);
 
 (function(){
     this.$focussable = false;
@@ -73,7 +75,6 @@ var Junction = function(){
 }).call(Junction.prototype);
 
 aml && aml.setElement("junction", Junction);
-
 
 return Junction;
 

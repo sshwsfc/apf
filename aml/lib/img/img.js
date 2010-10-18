@@ -82,7 +82,7 @@ define(["aml-core/basesimple", "optional!aml", "lib-oop"],
  * </code>
  */
 var Img = function(struct, tagName){
-    this.$init(tagName || "img", this.NODE_VISIBLE, struct);
+	BaseSimple.call(this, tagName || "img", this.NODE_VISIBLE, struct);
 };
 
 //Inherit
