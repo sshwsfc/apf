@@ -26,93 +26,91 @@ define([], function(){
  * @author      Fabian Jakobs
  * @version     %I%, %G%
  * @since       1.0
- *
- * @namespace apf
- *
  */
-
-/**
- * Perform an async function in serial on each of the list items
- * 
- * @param {Array} list
- * @param {Function} async async function of the form function(item, callback)
- * @param {Function} callback function of the form function(error), which is
- *      called after all items have been processed
- */
-apf.asyncForEach = function(list, async, callback) {
-    var i = 0;
-    var len = list.length;
-
-    if (!len) return callback(null, []);
-
-    async(list[i], function handler(err) {
-        if (err) return callback(err);
-        i++;
-
-        if (i < len) {
-            async(list[i], handler);
-        } else {
-            callback(null);
-        }
-    });
-};
-
-
-/**
- * Map each element from the list to the result returned by the async mapper
- * function. The mapper takes an element from the list and a callback as arguments.
- * After completion the mapper has to call the callback with an (optional) error
- * object as first and the result of the map as second argument. After all
- * list elements have been processed the last callback is called with the mapped
- * array as second argument.
- * 
- * @param {Array} list
- * @param {Function} mapper function of the form function(item, next)
- * @param {Function} callback function of the form function(error, result)
- */
-apf.asyncMap = function(list, mapper, callback) {
-    var i = 0;
-    var len = list.length;
-
-    if (!len) return callback(null, []);
-    var map = [];
-
-    async(list[i], function handler(err, value) {
-        if (err) return callback(err);
+return {
+    /**
+     * Perform an async function in serial on each of the list items
+     * 
+     * @param {Array} list
+     * @param {Function} async async function of the form function(item, callback)
+     * @param {Function} callback function of the form function(error), which is
+     *      called after all items have been processed
+     */
+    foreach : function(list, async, callback) {
+        var i = 0;
+        var len = list.length;
+    
+        if (!len) return callback(null, []);
+    
+        async(list[i], function handler(err) {
+            if (err) return callback(err);
+            i++;
+    
+            if (i < len) {
+                async(list[i], handler);
+            } else {
+                callback(null);
+            }
+        });
+    },
+    
+    
+    /**
+     * Map each element from the list to the result returned by the async mapper
+     * function. The mapper takes an element from the list and a callback as arguments.
+     * After completion the mapper has to call the callback with an (optional) error
+     * object as first and the result of the map as second argument. After all
+     * list elements have been processed the last callback is called with the mapped
+     * array as second argument.
+     * 
+     * @param {Array} list
+     * @param {Function} mapper function of the form function(item, next)
+     * @param {Function} callback function of the form function(error, result)
+     */
+    map : function(list, mapper, callback) {
+        var i = 0;
+        var len = list.length;
+    
+        if (!len) return callback(null, []);
+        var map = [];
+    
+        async(list[i], function handler(err, value) {
+            if (err) return callback(err);
+            
+            map[i] = value;
+            i++;
+    
+            if (i < len) {
+                async(list[i], handler);
+            } else {
+                callback(null, map);
+            }
+        });
+    },
+    
+    
+    /**
+     * Chains an array of functions. Each of the functions except the last one must
+     * have excatly one 'callback' argument, which has to be called after the functions has
+     * finished. If the callback fails if has to pass a non null error object as
+     * first argument to the callback.
+     * 
+     * @param {Array} funcs
+     */
+    chain : function(funcs) {
+        var i = 0;
+        var len = funcs.length;
         
-        map[i] = value;
-        i++;
-
-        if (i < len) {
-            async(list[i], handler);
-        } else {
-            callback(null, map);
+        function next() {
+            var f = funcs[i++];
+            if (i == len)
+                f()
+            else
+                f(next)
         }
-    });
-};
-
-
-/**
- * Chains an array of functions. Each of the functions except the last one must
- * have excatly one 'callback' argument, which has to be called after the functions has
- * finished. If the callback fails if has to pass a non null error object as
- * first argument to the callback.
- * 
- * @param {Array} funcs
- */
-apf.asyncChain = function(funcs) {
-    var i = 0;
-    var len = funcs.length;
-    
-    function next() {
-        var f = funcs[i++];
-        if (i == len)
-            f()
-        else
-            f(next)
+        
+        next();
     }
-    
-    next();
-}
+};
 
 });

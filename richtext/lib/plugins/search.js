@@ -254,14 +254,14 @@ var SearchPlugin = function(sName) {
                 e = e || window.event;
                 e.cancelBubble = true;
             };
-            apf.sanitizeTextbox(this.oSearch);
+            FocusClientWindow.sanitizeTextbox(this.oSearch);
             this.oSearch.onselectstart = fSel;
             if (this.oReplace) {
-                apf.sanitizeTextbox(this.oReplace);
+                FocusClientWindow.sanitizeTextbox(this.oReplace);
                 this.oReplace.onselectstart = fSel;
             }
             // checkboxes also need the focus fix:
-            apf.sanitizeTextbox(this.oCase);
+            FocusClientWindow.sanitizeTextbox(this.oCase);
         }
         //#endif
 

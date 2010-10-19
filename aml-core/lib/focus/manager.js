@@ -1,24 +1,53 @@
-    //this should happen at document.load
-    define([], function(){
-    //Set the default selected element
-    if (!apf.document.activeElement && (!apf.config.allowBlur 
-      || apf.document.documentElement 
-      && apf.document.documentElement.editable))
-        apf.window.focusDefault();
-    });
+define(["aml-core", "lib-oop", "lib-oop/class"], 
+    function(amlCore, oop, Class){
+    
+var FocusManager = function(document){
+    Class.call(this);
+    
+    var _self = this;
+    
     /**
      * Constant for specifying that a widget is using only the keyboard to receive focus.
      * @type {Number}
      * @see baseclass.guielement.method.focus
      */
-    KEYBOARD       : 2,
+    this.KEYBOARD = 2;
+    
     /**
      * Constant for specifying that a widget is using the keyboard or the mouse to receive focus.
      * @type {Boolean}
      * @see baseclass.guielement.method.focus
      */
-    KEYBOARD_MOUSE : true,
-
+    this.KEYBOARD_MOUSE = true;
+    
+    /**
+     * Gives focus to the first element immediately or at document load.
+     */
+    this.setFirstFocus = function(){ 
+        var _self = this;
+        function setDefault() {
+            //Set the default selected element
+            if (!document.activeElement && (!apf.config.allowBlur 
+              || document.documentElement 
+              && document.documentElement.editable))
+                _self.focusDefault();
+        }
+        
+        document = amlCore.documents[0];
+        if (!document) {
+            amlCore.addEventListener("createdocument", function(e){
+                document = e.document;
+                amlCore.removeEventListener("createdocument", arguments.callee);
+                
+                setDefault();
+            });
+        }
+        else
+            setDefault();
+    }
+    if (!document)
+        this.setFirstFocus();
+    
     this.$tabList = [];
 
     this.$addFocus = function(amlNode, tabindex, isAdmin){
@@ -86,7 +115,7 @@
 
     var focusLoopDetect;
     this.$focus = function(amlNode, e, force){
-        var aEl = this.document.activeElement;
+        var aEl = document.activeElement;
         if (aEl == amlNode && !force)
             return; //or maybe when force do $focus
 
@@ -115,7 +144,7 @@
                 return false;
         }
 
-        (apf.activeElement = this.document.activeElement = amlNode).focus(true, e);
+        (_self.activeElement = document.activeElement = amlNode).focus(true, e);
 
         this.$settingFocus = null;
 
@@ -142,7 +171,7 @@
     };
 
     this.$blur = function(amlNode){
-        var aEl = this.document.activeElement;
+        var aEl = document.activeElement;
         if (aEl != amlNode)
             return false;
 
@@ -152,7 +181,7 @@
         //#endif
 
         aEl.$focusParent.$lastFocussed = null;
-        apf.activeElement = this.document.activeElement = null;
+        FocusManager.activeElement = document.activeElement = null;
 
         apf.dispatchEvent("movefocus", {
             fromElement : amlNode
@@ -163,18 +192,16 @@
         //#endif
     };
     
-    var lastFocusParent;
-
     this.$focusDefault = function(amlNode, e){
         var fParent = findFocusParent(amlNode);
         this.$focusLast(fParent, e);
     };
 
     this.$focusRoot = function(e){
-        var docEl = apf.document.documentElement;
+        var docEl = document.documentElement;
         if (this.$focusLast(docEl, e) === false) {
             //docEl.$lastFocussed = null;
-            //this.moveNext(null, apf.document.documentElement, true, e);
+            //this.moveNext(null, document.documentElement, true, e);
         }
     };
 
@@ -229,7 +256,7 @@
             }
 
             if (!node)
-                this.$focus(apf.document.documentElement);//return false;//
+                this.$focus(document.documentElement);//return false;//
 
             /*@todo get this back from SVN
             var node, list = amlNode.$tabList;
@@ -242,7 +269,7 @@
                 }
             }
 
-            this.$focus(apf.document.documentElement);*/
+            this.$focus(document.documentElement);*/
         }
     };
 
@@ -274,7 +301,7 @@
         } while(node && !node.$isWindowContainer);
         //(!node.$focussable || node.focussable === false)
 
-        return node || apf.document.documentElement;
+        return node || document.documentElement;
     }
 
     //Dom handler
@@ -284,9 +311,9 @@
             return;
         
         if (this.$isWindowContainer)
-            apf.window.$tabList.pushUnique(this);
+            _self.$tabList.pushUnique(this);
         else
-            apf.window.$addFocus(this, this.tabindex, true)
+            _self.$addFocus(this, this.tabindex, true)
     }
 
     //Dom handler
@@ -301,11 +328,11 @@
             list.remove(nodes[i]); //@todo assuming no windows here
         }
 
-        if (apf.document.activeElement == this)
-            apf.window.moveNext();
+        if (document.activeElement == this)
+            _self.moveNext();
         
         if (this.$isWindowContainer) {
-            apf.window.$tabList.remove(this); //@todo this can't be right
+            _self.$tabList.remove(this); //@todo this can't be right
             return;
         }
 
@@ -324,30 +351,30 @@
      * @returns {Boolean} whether the element has focus.
      */
     this.hasFocus = function(amlNode){
-        return this.document.activeElement == amlNode;
+        return document.activeElement == amlNode;
     };
 
     /**
      * @private
      */
     this.moveNext = function(shiftKey, relObject, switchWindows, e){
-        if (switchWindows && apf.document.activeElement) {
-            var p = apf.document.activeElement.$focusParent;
+        if (switchWindows && document.activeElement) {
+            var p = document.activeElement.$focusParent;
             if (p.visible && p.modal)
                 return false;
         }
 
         var dir, start, next,
-            amlNode = relObject || apf.document.activeElement,
+            amlNode = relObject || document.activeElement,
             fParent = amlNode
                 ? (switchWindows && amlNode.$isWindowContainer 
                   && amlNode.$isWindowContainer != -1
-                    ? apf.window
+                    ? _self
                     : e && e.innerList ? amlNode.$focusParent : amlNode.$focusParent2 || amlNode.$focusParent)
-                : apf.document.documentElement,
+                : document.documentElement,
             list    = fParent.$tabList;
 
-        if (amlNode && (switchWindows || amlNode != apf.document.documentElement)) {
+        if (amlNode && (switchWindows || amlNode != document.documentElement)) {
             start   = (list || []).indexOf(amlNode);
             if (start == -1) {
                 //#ifdef __DEBUG
@@ -362,7 +389,7 @@
             start = -1;
         }
 
-        if (this.document.activeElement && this.document.activeElement == amlNode
+        if (document.activeElement && document.activeElement == amlNode
           && list.length == 1 || list.length == 0)
             return false;
 
@@ -389,12 +416,12 @@
         }
         while (!amlNode
             || amlNode.disabled > 0
-            || amlNode == apf.document.activeElement
+            || amlNode == document.activeElement
             || (switchWindows ? !amlNode.visible : amlNode.$ext && !amlNode.$ext.offsetHeight)
             || amlNode.focussable === false
             || switchWindows && !amlNode.$tabList.length);
 
-        if (fParent == apf.window && amlNode.$isWindowContainer != -2) {
+        if (fParent == _self && amlNode.$isWindowContainer != -2) {
             this.$focusLast(amlNode, {mouse:true}, switchWindows);
         }
         else {
@@ -442,5 +469,12 @@
         //#endif
 
         if (this.moveNext() === false)
-            this.moveNext(null, apf.document.documentElement, true)
+            this.moveNext(null, document.documentElement, true)
     };
+};
+
+oop.inherits(FocusManager, Class);
+
+return new FocusManager();
+
+});

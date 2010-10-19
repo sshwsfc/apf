@@ -63,6 +63,36 @@ var Class = function(){
 Class.lookup = function(id){return this.all[id]}; //Temporary hack until refactor
 Class.all = []; //Temporary hack until refactor
 
+//Big hack to get lookup to work until refactor is complete.
+apf = {
+    /**
+     * Finds a aml element based on it's uniqueId
+     */
+    lookup : function(uniqueId){
+        return Class.all[uniqueId];
+    },
+
+    /**
+     * Searches in the html tree from a certain point to find the
+     * aml element that is responsible for rendering the specified html
+     * element.
+     * @param {HTMLElement} oHtml the html context to start the search from.
+     */
+    findHost : function(o){
+        while (o && o.parentNode) { //!o.host && 
+            try {
+                if ((o.host || o.host === false) && typeof o.host != "string")
+                    return o.host;
+            }
+            catch(e){}
+            
+            o = o.parentNode;
+        }
+        
+        return null;
+    }
+};
+
 Class.prototype  = new (function(){
     this.$regbase = 0;
     

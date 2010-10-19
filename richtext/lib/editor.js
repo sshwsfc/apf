@@ -372,6 +372,8 @@ oop.decorate(Editor, LiveEdit);
         });
 
         var scrollHandler = function(e){
+            //@todo refactor - this should work in the same way as scrollbar.js
+            
             if (!e) e = event;
             apf.window.$mousewheel.call(window, {target: _self.$ext, wheelDelta: e.wheelDelta, detail: e.detail});
         }
@@ -381,8 +383,8 @@ oop.decorate(Editor, LiveEdit);
 
         amlCore.addListener(this.$activeDocument, "contextmenu", onContextmenu.bindWithEvent(this));
         //#ifdef __WITH_WINDOW_FOCUS
-        amlCore.addListener(this.$activeDocument, "focus", apf.window.$focusevent);
-        amlCore.addListener(this.$activeDocument, "blur", apf.window.$blurevent);
+        amlCore.addListener(this.$activeDocument, "focus", FocusClientWindow.$focusevent);
+        amlCore.addListener(this.$activeDocument, "blur", FocusClientWindow.$blurevent);
         //#endif
         this.$activeDocument.host = this;
 
@@ -487,7 +489,7 @@ oop.decorate(Editor, LiveEdit);
 
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug)
-                apf.sanitizeTextbox(this.$activeDocument.body);
+                FocusClientWindow.sanitizeTextbox(this.$activeDocument.body);
             //#endif
 
             //#ifdef __WITH_LAYOUT

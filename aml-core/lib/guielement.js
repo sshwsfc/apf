@@ -119,7 +119,7 @@ oop.decorate(GuiElement, LiveEdit);
 (function(){
     this.$regbase    = this.$regbase | apf.__GUIELEMENT__;
     
-    this.$focussable = apf.KEYBOARD_MOUSE; // Each GUINODE can get the focus by default
+    this.$focussable = FocusManager.KEYBOARD_MOUSE; // Each GUINODE can get the focus by default
     this.visible     = true; //default value;
     
     /*this.minwidth   = 5;
@@ -352,7 +352,7 @@ GuiElement.propHandlers = {
                 if (apf.config.allowBlur && this.hasFeature(apf.__FOCUSSABLE__))
                     this.blur();
                 else
-                    apf.window.moveNext();
+                    FocusManager.moveNext();
             }
             
             this.visible = false;
@@ -430,7 +430,7 @@ GuiElement.propHandlers = {
         if (util.isTrue(value) || value == -1) {
             this.disabled = false;
             if (apf.document.activeElement == this) {
-                apf.window.moveNext(true); //@todo should not include window
+                FocusManager.moveNext(true); //@todo should not include window
                 if (apf.document.activeElement == this)
                     this.$blur();
             }

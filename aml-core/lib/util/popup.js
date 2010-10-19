@@ -63,7 +63,7 @@ return popup = {
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug 
               && !popup.focusFix[(e.srcElement || e.target).tagName]) {
-                apf.window.$focusfix();
+                FocusClientWindow.$focusfix();
             }
             //#endif
             
@@ -278,7 +278,7 @@ return popup = {
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug
               && !popup.focusFix[(e.srcElement || e.target).tagName]) {
-                apf.window.$focusfix();
+                FocusClientWindow.$focusfix();
             }
             //#endif
             

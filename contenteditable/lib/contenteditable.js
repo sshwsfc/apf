@@ -215,7 +215,7 @@ apf.addEventListener("load", function(){
         
         if (!node.editable) return;
         
-        //apf.activeElement == node && 
+        //FocusManager.activeElement == node && 
         if (sel.rangeCount > 1) {
             //Deselect a node when its already selected
             var idx, list = sel.$getNodeList(); //@todo use visualSelect cache here?

@@ -21,9 +21,16 @@
 
 apf.__FOCUSSABLE__ = 1 << 26;
 
-define([], function(){
+define([
+    "aml-core/focus/manager",
+    "aml-core/presentation", 
+    "aml-core/guielement",
+    "lib-oop"], 
+    function(focusManager, Presentation, GuiElement, oop){
+    
 var Focussable = function(){
     this.$regbase = this.$regbase | apf.__FOCUSSABLE__;
+
     if (this.disabled == undefined)
         this.disabled = false;
     
@@ -34,8 +41,8 @@ var Focussable = function(){
      * @param {Number} tabindex the position in the list
      */
     this.setTabIndex = function(tabindex){
-        apf.window.$removeFocus(this);
-        apf.window.$addFocus(this, tabindex);
+        focusManager.$removeFocus(this);
+        focusManager.$addFocus(this, tabindex);
         return this;
     };
 
@@ -46,14 +53,14 @@ var Focussable = function(){
     this.focus = function(noset, e, nofix){
         if (!noset) {
             if (this.$isWindowContainer > -1) {
-                apf.window.$focusLast(this, e, true);
+                focusManager.$focusLast(this, e, true);
             }
             else {
-                apf.window.$focus(this, e);
+                focusManager.$focus(this, e);
 
                 //#ifdef __WITH_WINDOW_FOCUS
                 if (!nofix && apf.hasFocusBug)
-                    apf.window.$focusfix();
+                    focusManager.$focusfix();
                 //#endif
             }
 
@@ -83,7 +90,7 @@ var Focussable = function(){
             this.$blur(e);
 
         if (!noset)
-            apf.window.$blur(this);
+            focusManager.$blur(this);
 
         this.dispatchEvent("blur", Object.extend({
             bubbles    : !e || !e.cancelBubble
@@ -101,16 +108,15 @@ var Focussable = function(){
     };
 };
 
-//Add to aml-core/skin/base .prototype (use decorate)
-/**** Focus ****/
-    this.$focus = function(){
+oop.mixin(Presentation.prototype, {
+    $focus : function(){
         if (!this.$ext)
             return;
 
         this.$setStyleClass(this.oFocus || this.$ext, this.$baseCSSname + "Focus");
-    };
+    },
 
-    this.$blur = function(){
+    $blur : function(){
         //#ifdef __WITH_RENAME
         if (this.renaming)
             this.stopRename(null, true);
@@ -120,9 +126,9 @@ var Focussable = function(){
             return;
 
         this.$setStyleClass(this.oFocus || this.$ext, "", [this.$baseCSSname + "Focus"]);
-    };
+    },
 
-    this.$fixScrollBug = function(){
+    $fixScrollBug : function(){
         if (this.$int != this.$ext)
             this.oFocus = this.$int;
         else {
@@ -133,30 +139,27 @@ var Focussable = function(){
             this.$int.style.height = "100%";
             this.$int.className = "focusbug"
         }
-    };
+    }
+});
 
+/**
+ * @attribute {Boolean} focussable whether this element can receive the focus.
+ * The focussed element receives keyboard event.s
+ */
+GuiElement.propHandlers.focussable = function(value){
+    this.focussable = typeof value == "undefined" || value;
 
+    if (!this.hasFeature(apf.__FOCUSSABLE__)) //@todo should this be on the prototype
+        oop.decorate(this, Focussable);
+
+    if (this.focussable) {
+        focusManager.$addFocus(this, this.tabindex);
+    }
+    else {
+        focusManager.$removeFocus(this);
+    }
+};
 
 return Focussable;
 
 });
-GuiElement.propHandlers = {
-    //#ifdef __WITH_FOCUS
-    /**
-     * @attribute {Boolean} focussable whether this element can receive the focus.
-     * The focussed element receives keyboard event.s
-     */
-    "focussable": function(value){
-        this.focussable = typeof value == "undefined" || value;
-
-        if (!this.hasFeature(apf.__FOCUSSABLE__)) //@todo should this be on the prototype
-            this.implement(apf.Focussable);
-
-        if (this.focussable) {
-            apf.window.$addFocus(this, this.tabindex);
-        }
-        else {
-            apf.window.$removeFocus(this);
-        }
-    },
-    //#endif

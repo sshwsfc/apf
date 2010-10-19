@@ -153,7 +153,7 @@ oop.decorate(Window, BaseStateButtons);
     this.visible           = false;
     this.showdragging      = false;
     this.kbclose           = false;
-    this.$focussable       = apf.KEYBOARD;
+    this.$focussable       = FocusManager.KEYBOARD;
     this.$editableCaption  = ["title"];
 
     /**** Public Methods ****/
@@ -445,7 +445,7 @@ oop.decorate(Window, BaseStateButtons);
             }
 
             if (this.hasFocus())
-                apf.window.moveNext(true, this, true);//go backward to detect modals
+                FocusManager.moveNext(true, this, true);//go backward to detect modals
 
             this.visible = false;
             

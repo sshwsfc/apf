@@ -113,7 +113,7 @@ LiveEdit.plugin("anchor", function() {
         
         this.oName = document.getElementById(idName);
         //#ifdef __WITH_WINDOW_FOCUS
-        apf.sanitizeTextbox(this.oName);
+        FocusClientWindow.sanitizeTextbox(this.oName);
         // #endif
         return panelBody;
     };

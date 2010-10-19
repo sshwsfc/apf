@@ -62,7 +62,7 @@ var Tab       = function(struct, tagName){
 };
 
 (function(){
-    this.$focussable = apf.KEYBOARD; // This object can get the focus from the keyboard
+    this.$focussable = FocusManager.KEYBOARD; // This object can get the focus from the keyboard
 
     /**** Init ****/
 

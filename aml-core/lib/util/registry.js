@@ -1,5 +1,5 @@
 
-define([], function(){
+define(["aml-core/nameserver"], function(Nameserver){
 
 //#ifdef __WITH_REGISTRY
 /**
@@ -11,7 +11,7 @@ define([], function(){
  *
  * @see core.storage
  */
-apf.registry = Object.extend({
+var Registry = Object.extend({
     /**
      * Stores a key value pair.
      * @param {String} key       the identifier of the information.
@@ -74,17 +74,17 @@ apf.registry = Object.extend({
             }
         }
     }
-}, nameserver);
+}, Nameserver);
 
 /**
  * @private
  */
-apf.registry.lookup = {};
+Registry.lookup = {};
 
-apf.registry.get = function(key, namespace){
+Registry.get = function(key, namespace){
     return this.lookup[namespace] ? this.lookup[namespace][key] : null;
 };
 
-apf.Init.run("nameserver");
+return Registry;
 
 });

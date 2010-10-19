@@ -57,7 +57,7 @@ oop.inherits(BaseTab, Presentation);
 
 (function() {
     this.isPaged     = true;
-    this.$focussable = apf.KEYBOARD;
+    this.$focussable = FocusManager.KEYBOARD;
     this.length      = 0;
     this.isLoading   = {};
     this.inited      =

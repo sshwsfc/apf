@@ -331,7 +331,7 @@ var Cache = function(){
         this.$setCurrentFragment = function(fragment){
             this.$container.appendChild(fragment);
     
-            if (!apf.window.hasFocus(this) && this.blur)
+            if (!FocusManager.hasFocus(this) && this.blur)
                 this.blur();
         };
     }

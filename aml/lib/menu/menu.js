@@ -90,7 +90,7 @@ oop.inherit(Menu, Presentation);
 
 
 (function(){
-    this.$focussable  = apf.KEYBOARD;
+    this.$focussable  = FocusManager.KEYBOARD;
     this.$positioning = "basic"
     //var _self         = this;
     //var blurring      = false;
@@ -138,7 +138,7 @@ oop.inherit(Menu, Presentation);
                         apf.menu.lastFocus = null;
                 }
                 //We're being hidden because window looses focus
-                else if (!apf.window.hasFocus()) {
+                else if (!FocusManager.hasFocus()) {
                     if (lastFocus.$blur)
                         lastFocus.$blur();
                     this.$blur();
@@ -163,7 +163,7 @@ oop.inherit(Menu, Presentation);
                         this.$blur();
                         apf.document.activeElement = null;
 
-                        if (visTest && apf.window.moveNext() === false)
+                        if (visTest && FocusManager.moveNext() === false)
                             apf.window.$focusRoot();
                     }
                     else {

@@ -49,12 +49,12 @@ define([
  *          ...
  *      ]]></a:style>
  *  
- *      <a:Skin>
+ *      <a:Presentation>
  *          <a:main>
  *              ...
  *          </a:main>
  *          ...
- *      </a:Skin>
+ *      </a:Presentation>
  *   </a:textbox>
  * </code>
  * The alias contains a name that contains alternative names for the skin. The
@@ -69,12 +69,12 @@ define([
  * @version     %I%, %G%
  * @since       0.5
  */
-var Skin = function(){
+var Presentation = function(){
     GuiElement.apply(this, arguments);
 };
 
 //Inherit
-oop.inherits(Skin, GuiElement);
+oop.inherits(Presentation, GuiElement);
 
 (function(){
     this.$regbase = this.$regbase | core.__SKIN__;
@@ -118,7 +118,7 @@ oop.inherits(Skin, GuiElement);
             var _self = this;
             clearTimeout(this.$skinTimer);
             this.$skinTimer = $setTimeout(function(){
-                changeSkin.call(_self, _self.skin);
+                changePresentation.call(_self, _self.skin);
                 delete _self.$skinTimer;
             });
         }
@@ -162,12 +162,12 @@ oop.inherits(Skin, GuiElement);
     }
 
     //#ifdef __WITH_SKIN_CHANGE
-    this.$forceSkinChange = function(skin, skinset){
-        changeSkin.call(this, skin, skinset);
+    this.$forcePresentationChange = function(skin, skinset){
+        changePresentation.call(this, skin, skinset);
     }
 
     //@todo objects don't always have an $int anymore.. test this
-    function changeSkin(skin, skinset){
+    function changePresentation(skin, skinset){
         clearTimeout(this.$skinTimer);
 
         //var skinName = (skinset || this.skinset || apf.config.skinset)
@@ -197,7 +197,7 @@ oop.inherits(Skin, GuiElement);
 
         //Load the new skin
         this.skin = skin;
-        this.$loadSkin(skinset ? skinset + ":" + skin : null);
+        this.$loadPresentation(skinset ? skinset + ":" + skin : null);
 
         //Draw
         if (this.$draw)
@@ -255,8 +255,8 @@ oop.inherits(Skin, GuiElement);
             for (var i = nodes.length - 1; i >= 0; i--) {
                 if ((node = nodes[i]).host) {
                     node.host.$pHtmlNode = newNode;
-                    if (node.host.$isLeechingSkin)
-                        setLeechedSkin.call(node.host);
+                    if (node.host.$isLeechingPresentation)
+                        setLeechedPresentation.call(node.host);
                 }
                 newNode.insertBefore(node, newNode.firstChild);
             }
@@ -349,7 +349,7 @@ oop.inherits(Skin, GuiElement);
 
     this.$setStyleClass = apf.setStyleClass;
 
-    function setLeechedSkin(e){
+    function setLeechedPresentation(e){
         if (!this.$amlLoaded || e && (e.$isMoveWithinParent 
           || e.currentTarget != this || !e.$oldParent))
             return;
@@ -361,60 +361,60 @@ oop.inherits(Skin, GuiElement);
 
         //e.relatedNode
         var skinName, pNode = this.parentNode, skinNode;
-        if ((skinName = this.$canLeechSkin.dataType 
-          == apf.STRING ? this.$canLeechSkin : this.localName)
+        if ((skinName = this.$canLeechPresentation.dataType 
+          == apf.STRING ? this.$canLeechPresentation : this.localName)
           && pNode.$originalNodes 
           && (skinNode = pNode.$originalNodes[skinName])
           && skinNode.getAttribute("inherit")) {
             var link = skinNode.getAttribute("link");
-            this.$isLeechingSkin = true;
+            this.$isLeechingPresentation = true;
             if (link) {
-                this.$forceSkinChange(link);
+                this.$forcePresentationChange(link);
             }
             else {
                 var skin = pNode.skinName.split(":");
-                this.$forceSkinChange(skin[1], skin[0]);
+                this.$forcePresentationChange(skin[1], skin[0]);
             }
         }
-        else if (this.$isLeechingSkin) {
+        else if (this.$isLeechingPresentation) {
             delete this.kin;
-            this.$forceSkinChange();
+            this.$forcePresentationChange();
         }
     }
 
-    //Skin Inheritance
+    //Presentation Inheritance
     //@todo Probably requires some cleanup
-    this.$initSkin = function(x){
-        if (this.$canLeechSkin) {
-            this.addEventListener("DOMNodeInserted", setLeechedSkin);
+    this.$initPresentation = function(x){
+        if (this.$canLeechPresentation) {
+            this.addEventListener("DOMNodeInserted", setLeechedPresentation);
         }
         
         if (!this.skin)
             this.skin = this.getAttribute("skin");
         
         var skinName, pNode = this.parentNode, skinNode;
-        if (this.$canLeechSkin && !this.skin 
-          && (skinName = this.$canLeechSkin.dataType == apf.STRING 
-            ? this.$canLeechSkin 
+        if (this.$canLeechPresentation && !this.skin 
+          && (skinName = this.$canLeechPresentation.dataType == apf.STRING 
+            ? this.$canLeechPresentation 
             : this.localName)
           && pNode.$originalNodes 
           && (skinNode = pNode.$originalNodes[skinName])
           && skinNode.getAttribute("inherit")) {
             var link = skinNode.getAttribute("link");
-            this.$isLeechingSkin = true;
+            this.$isLeechingPresentation = true;
             if (link) {
                 this.skin = link;
-                this.$loadSkin();
+                this.$loadPresentation();
             }
             else {
-                this.$loadSkin(pNode.skinName);
+                this.$loadPresentation(pNode.skinName);
             }
         }
         else {
             if (!this.skinset)
                 this.skinset = this.getAttribute("skinset");
             
-            this.$loadSkin(null, this.$canLeechSkin);
+            this.$loadPresentation(null, this.$canLeechPresentation);
         }
     }
 
@@ -424,9 +424,9 @@ oop.inherits(Skin, GuiElement);
      * @param  {String}  skinName  required  Identifier for the new skin (for example: 'default:List' or 'win').
      * @param  {Boolean} [noError]
      */
-    this.$loadSkin = function(skinName, noError){
+    this.$loadPresentation = function(skinName, noError){
         //this.skinName || //where should this go and why?
-        this.baseSkin = skinName || (this.skinset 
+        this.basePresentation = skinName || (this.skinset 
             || this.$setInheritedAttribute("skinset")) 
             + ":" + (this.skin || this.localName);
 
@@ -437,7 +437,7 @@ oop.inherits(Skin, GuiElement);
             this.$baseCSSname = null;
         }
 
-        this.skinName = this.baseSkin; //Why??
+        this.skinName = this.basePresentation; //Why??
         //this.skinset  = this.skinName.split(":")[0];
 
         this.$pNodes = {}; //reset the this.$pNodes collection
@@ -468,15 +468,15 @@ oop.inherits(Skin, GuiElement);
                 }
                 
                 throw new Error(apf.formatErrorString(1077, this,
-                    "Skin",
-                    "Could not load skin: " + this.baseSkin));
+                    "Presentation",
+                    "Could not load skin: " + this.basePresentation));
             }
             
             //this.skinset = this.skinName.split(":")[0];
         }
 
         if (this.$originalNodes)
-            apf.skins.setSkinPaths(this.skinName, this);
+            apf.skins.setPresentationPaths(this.skinName, this);
     };
 
     this.$getNewContext = function(type, amlNode){
@@ -511,7 +511,7 @@ oop.inherits(Skin, GuiElement);
             throw new Error("Invalid layout node name ('" + type + "'). lowercase required");
         }
         if (!this.$pNodes) {
-            throw new Error("Skin not loaded for :" + this.serialize(true));
+            throw new Error("Presentation not loaded for :" + this.serialize(true));
         }
         //#endif
 
@@ -588,11 +588,11 @@ oop.inherits(Skin, GuiElement);
 
         return oExt;
     };
-}).call(Skin.prototype);
+}).call(Presentation.prototype);
 
 core.$inheritProperties["skinset"] = 1;
 
-return Skin;
+return Presentation;
 
     }
 );

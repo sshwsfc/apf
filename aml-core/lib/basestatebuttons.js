@@ -296,7 +296,7 @@ var BaseStateButtons = function(){
                 }
 
                 if (this.hasFocus())
-                    apf.window.moveNext(null, this, true);
+                    FocusManager.moveNext(null, this, true);
                 //else if(apf.document.activeElement)
                     //apf.document.activeElement.$focus({mouse: true});
             }

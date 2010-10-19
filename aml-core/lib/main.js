@@ -131,6 +131,8 @@ var amlCore = {
 
 DOMDocument.prototype.addEventListener("beforeload", function(e){
     amlCore.documents.push(this);
+    
+    amlCore.dispatchEvent("createdocument", {document: this});
 });
 
 events.addListener(window, "beforeunload", function(){

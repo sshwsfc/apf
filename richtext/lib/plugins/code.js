@@ -178,7 +178,7 @@ LiveEdit.plugin("code", function() {
         oCont.style.display  = "none";
         
         //#ifdef __WITH_WINDOW_FOCUS
-        apf.sanitizeTextbox(oPreview);
+        FocusClientWindow.sanitizeTextbox(oPreview);
         // #endif
     }
 

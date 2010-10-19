@@ -1,80 +1,83 @@
-define([], function(){
-    /**
-     * Flashes the task bar. This can be useful to signal the user that an
-     * important event has occured. Only works in internet explorer under
-     * certain conditions.
-     */
-    this.flash = function(){
-        if (apf.window.hasFocus() || apf.isIphone)
+define(["aml-core/focus/window"], 
+    function(FocusClientWindow){
+
+/**
+ * Flashes the task bar. This can be useful to signal the user that an
+ * important event has occured. Only works in internet explorer under
+ * certain conditions.
+ */
+FocusClientWindow.flash = function(){
+    if (FocusManager.hasFocus() || apf.isIphone)
+        return;
+
+    if (apf.isDeskrun) {
+        jdwin.Flash();
+    }
+    else if (apf.isIE) {
+        if (!this.popup)
+            this.popup = window.createPopup();
+
+        if (FocusClientWindow.stopFlash)
             return;
 
-        if (apf.isDeskrun) {
-            jdwin.Flash();
-        }
-        else if (apf.isIE) {
-            if (!this.popup)
-                this.popup = window.createPopup();
+        state += "x"
 
-            if (apf.window.stopFlash)
+        function doFlash(nopopup) {
+            if (FocusManager.hasFocus())
                 return;
 
-            state += "x"
+            window.focus();
 
-            function doFlash(nopopup) {
-                if (apf.window.hasFocus())
+            function doPopup() {
+                if (FocusManager.hasFocus())
                     return;
 
-                window.focus();
+                this.popup.hide();
+                this.popup.show(0, 0, 0, 0, document.body);
+                this.popup.document.write("<body><script>\
+                    document.p = window.createPopup();\
+                    document.p.show(0, 0, 0, 0, document.body);\
+                    </script></body>");
+                this.popup.document.focus();
 
-                function doPopup() {
-                    if (apf.window.hasFocus())
-                        return;
+                clearInterval(this.flashTimer);
+                this.flashTimer = setInterval(function(){
+                    if (!FocusClientWindow.popup.isOpen
+                      || !FocusClientWindow.popup.document.p.isOpen) {
+                        clearInterval(FocusClientWindow.flashTimer);
 
-                    this.popup.hide();
-                    this.popup.show(0, 0, 0, 0, document.body);
-                    this.popup.document.write("<body><script>\
-                        document.p = window.createPopup();\
-                        document.p.show(0, 0, 0, 0, document.body);\
-                        </script></body>");
-                    this.popup.document.focus();
-
-                    clearInterval(this.flashTimer);
-                    this.flashTimer = setInterval(function(){
-                        if (!apf.window.popup.isOpen
-                          || !apf.window.popup.document.p.isOpen) {
-                            clearInterval(apf.window.flashTimer);
-
-                            if (!apf.window.hasFocus()) {
-                                apf.window.popup.hide();
-                                document.body.focus();
-                                state = "d";
-                                determineAction();
-                            }
-                            //when faster might have timing error
+                        if (!FocusManager.hasFocus()) {
+                            FocusClientWindow.popup.hide();
+                            document.body.focus();
+                            state = "d";
+                            determineAction();
                         }
-                    }, 10);
-                }
-
-                if (nopopup)
-                    $setTimeout(function(){
-                        doPopup.call(apf.window)
-                    }, 10);
-                else
-                    doPopup.call(apf.window);
-            }
-
-            if ("TEXTAREA|INPUT|SELECT".indexOf(document.activeElement.tagName) > -1) {
-                document.activeElement.blur();
-                document.body.focus();
-                apf.window.stopFlash = true;
-                $setTimeout(function(){
-                    doFlash.call(apf.window, true);
-                    apf.window.stopFlash = false;
+                        //when faster might have timing error
+                    }
                 }, 10);
             }
-            else {
-                doFlash.call(apf.window);
-            }
+
+            if (nopopup)
+                $setTimeout(function(){
+                    doPopup.call(FocusClientWindow)
+                }, 10);
+            else
+                doPopup.call(FocusClientWindow);
         }
-    };
-    });
+
+        if ("TEXTAREA|INPUT|SELECT".indexOf(document.activeElement.tagName) > -1) {
+            document.activeElement.blur();
+            document.body.focus();
+            FocusClientWindow.stopFlash = true;
+            $setTimeout(function(){
+                doFlash.call(FocusClientWindow, true);
+                FocusClientWindow.stopFlash = false;
+            }, 10);
+        }
+        else {
+            doFlash.call(FocusClientWindow);
+        }
+    }
+};
+
+});

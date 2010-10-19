@@ -475,7 +475,7 @@ var LiveEdit = function() {
         //#ifdef __WITH_WINDOW_FOCUS
         if (apf.hasFocusBug) {
             //@todo this leaks like a -> use amlCore.addListener
-            apf.sanitizeTextbox(oHtml);
+            FocusClientWindow.sanitizeTextbox(oHtml);
         }
         //#endif
         

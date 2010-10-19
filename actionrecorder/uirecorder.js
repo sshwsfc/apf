@@ -1375,7 +1375,7 @@ UIRecorder.playback = {
 TEMPORARILY DISABLED
         if (this.$warningList.length && this.$curAction.getAttribute("name") != "mouseup") {
             apf.console.info("testwarning on: " + this.$curAction.getAttribute("keyActionIdx") + ". " + this.$curAction.getAttribute("name"));
-            this.$activeEl = (apf.activeElement) ? apf.activeElement : null;
+            this.$activeEl = (FocusManager.activeElement) ? FocusManager.activeElement : null;
             apf.dispatchEvent("testwarning", {warnings: this.$warningList});
             this.$warningList = [];
             return;
@@ -1669,7 +1669,7 @@ TEMPORARILY DISABLED
         var aName;
         if ((aName = this.$curAction.getAttribute("name")) === "keypress") {
             // check if correct element is active/focussed for typing text
-            if (amlNode && ["text", "textbox", "textarea"].indexOf(amlNode.localName) > -1 && apf.activeElement != amlNode) {
+            if (amlNode && ["text", "textbox", "textarea"].indexOf(amlNode.localName) > -1 && FocusManager.activeElement != amlNode) {
                 this.$testError("Keypress action not executed on element " + (amlNodeXml.getAttribute("id") || ((amlNodeXml.getAttribute("caption") ? amlNodeXml.getAttribute("tagName") + " " + amlNodeXml.getAttribute("caption") : amlNodeXml.getAttribute("xpath")))));
                 return;
             }

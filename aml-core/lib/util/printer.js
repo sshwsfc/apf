@@ -21,10 +21,7 @@
 
 define([], function(){
 
-/**
- * @private
- */
-apf.printer = {
+var Printer = {
     tagName     : "printer",
     nodeFunc    : this.NODE_HIDDEN,
     lastContent : "",
@@ -40,7 +37,7 @@ apf.printer = {
         this.panel = document.body.appendChild(document.createElement("div"));
         this.panel.setAttribute("id", "print_content");
         this.panel.onmousedown = function(){
-            apf.printer.hide();
+            Printer.hide();
         };
         with (this.panel.style) {
             position        = "absolute";
@@ -142,16 +139,18 @@ apf.printer = {
         this.panel.style.height  = document.body.scrollHeight + "px";
         this.panel.style.width   = document.body.scrollWidth  + "px";
         return this;
+    },
+    
+    /**
+     * Sents html to a printer in formatted form.
+     * @param {String} strHtml the html to be printed.
+     */
+    print : function(strHtml){
+        Printer.init().preview(strHtml);
+        window.print();
     }
 };
 
-/**
- * Sents html to a printer in formatted form.
- * @param {String} strHtml the html to be printed.
- */
-apf.print = function(strHtml){
-    apf.printer.init().preview(strHtml);
-    window.print();
-};
+return Printer;
 
 });

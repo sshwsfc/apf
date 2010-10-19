@@ -473,7 +473,7 @@ apf.codeeditor = function(struct, tagName) {
             }
         });
 
-        apf.sanitizeTextbox(this.$editor.renderer.container.getElementsByTagName("textarea")[0]);
+        FocusClientWindow.sanitizeTextbox(this.$editor.renderer.container.getElementsByTagName("textarea")[0]);
     };
 
 // #ifdef __WITH_DATABINDING

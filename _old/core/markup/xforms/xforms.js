@@ -81,11 +81,11 @@ apf.XForms.prototype = new (function() {
             getModel.call(this, model).isValid(); 
         },
         "xforms-next" : function(){
-            apf.window.moveNext(null, this);
+            FocusManager.moveNext(null, this);
             return false;
         },
         "xforms-previous" : function(){
-            apf.window.moveNext(true, this);
+            FocusManager.moveNext(true, this);
             return false;
         },
         "xforms-focus" : function(){

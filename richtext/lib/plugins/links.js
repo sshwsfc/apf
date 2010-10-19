@@ -134,9 +134,9 @@ LiveEdit.plugin("link", function(){
 
         //#ifdef __WITH_WINDOW_FOCUS
         if (apf.hasFocusBug) {
-            apf.sanitizeTextbox(this.oUrl);
-            apf.sanitizeTextbox(this.oTarget);
-            apf.sanitizeTextbox(this.oTitle);
+            FocusClientWindow.sanitizeTextbox(this.oUrl);
+            FocusClientWindow.sanitizeTextbox(this.oTarget);
+            FocusClientWindow.sanitizeTextbox(this.oTitle);
             this.oUrl.onselectstart   = this.oTarget.onselectstart =
             this.oTitle.onselectstart = function(e) {
                 e = e || window.event;

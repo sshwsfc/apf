@@ -37,7 +37,7 @@
                 return false;
             }
 
-            apf.window.moveNext(e.shiftKey,
+            FocusManager.moveNext(e.shiftKey,
                 apf.document.activeElement.$focusParent, true);
 
             w = apf.document.activeElement.$focusParent;
@@ -136,7 +136,7 @@
                     return false;
                 }
 
-                apf.window.moveNext(e.shiftKey,
+                FocusManager.moveNext(e.shiftKey,
                     apf.document.activeElement.$focusParent, true);
 
                 w = apf.document.activeElement.$focusParent;
@@ -145,7 +145,7 @@
             }
             //Element focus handling
             else if(!apf.document.activeElement || apf.document.activeElement.tagName != "menu") {
-                apf.window.moveNext(e.shiftKey);
+                FocusManager.moveNext(e.shiftKey);
             }
 
             if (e.preventDefault)

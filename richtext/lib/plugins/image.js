@@ -99,7 +99,7 @@ LiveEdit.plugin("image", function(){
 
         //#ifdef __WITH_WINDOW_FOCUS
         if (apf.hasFocusBug) {
-            apf.sanitizeTextbox(this.oUrl);
+            FocusClientWindow.sanitizeTextbox(this.oUrl);
             this.oUrl.onselectstart = function(e) {
                 e = e || window.event;
                 e.cancelBubble = true;

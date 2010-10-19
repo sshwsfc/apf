@@ -548,7 +548,7 @@ var VirtualViewport = function(){
         }
 
         if (this.$focussable)
-            apf.window.hasFocus(this) ? this.$focus() : this.$blur();
+            FocusManager.hasFocus(this) ? this.$focus() : this.$blur();
     };
     
     this.$loadSubData = function(){}; //We use the same process for subloading, it shouldn't be done twice

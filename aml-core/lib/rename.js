@@ -356,7 +356,7 @@ Rename.initEditableArea = function(){
     
         //#ifdef __WITH_WINDOW_FOCUS
         //if (apf.hasFocusBug)
-            //apf.sanitizeTextbox(this.$txt);
+            //FocusClientWindow.sanitizeTextbox(this.$txt);
         //#endif
     
         this.$txt.refCount         = 0;
@@ -409,7 +409,7 @@ Rename.initEditableArea = function(){
         if (apf.hasFocusBug) {
             this.$txt.onfocus = function(){
                 if (apf.window)
-                    apf.window.$focusfix2();
+                    FocusClientWindow.$focusfix2();
             };
         }
         //#endif
@@ -422,7 +422,7 @@ Rename.initEditableArea = function(){
 
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug)
-                apf.window.$blurfix();
+                FocusClientWindow.$blurfix();
             //#endif
     
             if (this.host.$autocomplete)

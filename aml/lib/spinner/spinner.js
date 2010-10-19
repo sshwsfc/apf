@@ -171,7 +171,7 @@ oop.decorate(Spinner, DataAction);
 
         //#ifdef __WITH_WINDOW_FOCUS
         if (apf.hasFocusBug)
-            apf.sanitizeTextbox(this.oInput);
+            FocusClientWindow.sanitizeTextbox(this.oInput);
         //#endif
 
         this.focused = true;
@@ -265,7 +265,7 @@ oop.decorate(Spinner, DataAction);
         this.oLeft = this.$getLayoutNode("main", "left", this.$ext);
 
         //#ifdef __WITH_WINDOW_FOCUS
-        apf.sanitizeTextbox(this.oInput);
+        FocusClientWindow.sanitizeTextbox(this.oInput);
         //#endif
 
         var timer,

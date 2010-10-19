@@ -672,7 +672,7 @@ oop.decorate(Textbox, DataAction);
 
         //#ifdef __WITH_WINDOW_FOCUS
         if (apf.hasFocusBug)
-            apf.sanitizeTextbox(this.$input);
+            FocusClientWindow.sanitizeTextbox(this.$input);
         //#endif
 
         if (apf.hasAutocompleteXulBug)

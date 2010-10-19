@@ -113,7 +113,7 @@ var PasteDialog = function(sName) {
         this.oArea = document.getElementById(idArea);
 
         //#ifdef __WITH_WINDOW_FOCUS
-        apf.sanitizeTextbox(this.oArea);
+        FocusClientWindow.sanitizeTextbox(this.oArea);
         // #endif
 
         if (apf.isIE) {

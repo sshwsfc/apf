@@ -19,7 +19,8 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+define(["aml-core/presentation", "optional!aml", "lib-oop"],
+    function(Presentation, aml, oop){
 
 /**
  * Element showing an error message when the attached element 
@@ -88,7 +89,6 @@ var Errorbox = function(struct, tagName){
 };
 
 oop.inherit(Errorbox, Presentation);
-
 
 (function(){
     this.$positioning = "basic";
@@ -162,7 +162,7 @@ oop.inherit(Errorbox, Presentation);
             
             //#ifdef __WITH_WINDOW_FOCUS
             if (apf.hasFocusBug)
-                apf.window.$focusfix();
+                FocusClientWindow.$focusfix();
             //#endif
         }
 

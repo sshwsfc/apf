@@ -311,7 +311,7 @@ return (function() {
                 this.value = false;
 
             if (apf.hasFocusBug)
-                apf.window.$focusfix();
+                FocusClientWindow.$focusfix();
 
             return false;
         }
@@ -508,7 +508,7 @@ return (function() {
             if (typeof this.focussable == "undefined")
                 this.focussable = false;
             
-            this.$focussable = apf.KEYBOARD;
+            this.$focussable = FocusManager.KEYBOARD;
         }
 
         //Build Main Skin

@@ -642,7 +642,7 @@ if (Cache)
     this.$setCurrentFragment = function(fragment){
         this.$container.appendChild(fragment);
 
-        if (!apf.window.hasFocus(this))
+        if (!FocusManager.hasFocus(this))
             this.blur();
 
         apf.xmldb.addNodeListener(this.xmlRoot, this); //set node listener if not set yet

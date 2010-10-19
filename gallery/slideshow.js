@@ -1319,7 +1319,7 @@ oop.decorate(Slideshow, DataAction);
 
         this.dataset = fragment.dataset;
 
-        if (!apf.window.hasFocus(this))
+        if (!FocusManager.hasFocus(this))
             this.blur();
     };
 

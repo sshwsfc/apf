@@ -38,7 +38,7 @@ apf.XhtmlHtmlElement = function(struct, tagName){
     
     this.$int        = document.body;
     this.$tabList    = []; //Prevents documentElement from being focussed
-    this.$focussable = apf.KEYBOARD;
+    this.$focussable = FocusManager.KEYBOARD;
     this.focussable  = true;
     this.visible     = true;
     this.$isWindowContainer = true;
