@@ -117,7 +117,7 @@ var Offlineapplicationgears = {
                     _self.refreshing = false;
                     
                     if(newVersion)
-                        apf.storage.put("oldVersion", newVersion, null,
+                        Storage.put("oldVersion", newVersion, null,
                             apf.offline.application.storeName);
                     
                     if (callback) {

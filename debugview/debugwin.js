@@ -84,16 +84,16 @@ apf.$debugwin = {
         apf.importCssString(".console_date{display:inline}");
         
         //#ifdef __WITH_STORAGE
-        apf.storage.init();
+        Storage.init();
 
-        this.showtime       = apf.storage.get("apfdebug_console_date") !== false;
-        this.nativedebug    = apf.storage.get("apfdebug_debugger") == true;
-        this.highlighthover = apf.storage.get("apfdebug_highlight_hover") !== false;
-        this.selecteditable = apf.storage.get("apfdebug_select_editable") !== false;
+        this.showtime       = Storage.get("apfdebug_console_date") !== false;
+        this.nativedebug    = Storage.get("apfdebug_debugger") == true;
+        this.highlighthover = Storage.get("apfdebug_highlight_hover") !== false;
+        this.selecteditable = Storage.get("apfdebug_select_editable") !== false;
         
-        txtCode.setValue(apf.storage.get("jsexec") || "");
-        codetype.setProperty("value", apf.storage.get("scriptype") || "Javascript");
-        txtModel.setValue(apf.storage.get("mdlvalue") || "");
+        txtCode.setValue(Storage.get("jsexec") || "");
+        codetype.setProperty("value", Storage.get("scriptype") || "Javascript");
+        txtModel.setValue(Storage.get("mdlvalue") || "");
         
         this.setNativeDebug(this.nativedebug);
         //#endif
@@ -791,9 +791,9 @@ apf.$debugwin = {
     
     jRunCode : function(code, scripttype,  model){
         //#ifdef __WITH_STORAGE
-        apf.storage.put("jsexec", code);
-        apf.storage.put("scriptype", scripttype);
-        apf.storage.put("mdlvalue", model);
+        Storage.put("jsexec", code);
+        Storage.put("scriptype", scripttype);
+        Storage.put("mdlvalue", model);
         //#endif
         var islm = scripttype == 'Live Markup';
 
@@ -931,7 +931,7 @@ apf.$debugwin = {
     
     setShowTime : function(c){
         //#ifdef __WITH_STORAGE
-        apf.storage.put("apfdebug_console_date", c);
+        Storage.put("apfdebug_console_date", c);
         //#endif
         apf.setStyleRule('.console_date', 'display', c ? 'inline' : 'none');
         this.showtime = c;
@@ -940,7 +940,7 @@ apf.$debugwin = {
     setNativeDebug : function(c, admin){
         if (!admin) {
             //#ifdef __WITH_STORAGE
-            apf.storage.put("apfdebug_debugger", c);
+            Storage.put("apfdebug_debugger", c);
             //#endif
 
             this.apf.$debugwin.setNativeDebug(c, true);
@@ -953,14 +953,14 @@ apf.$debugwin = {
     
     setHighlightHover : function(c){
         //#ifdef __WITH_STORAGE
-        apf.storage.put("apfdebug_highlight_hover", c);
+        Storage.put("apfdebug_highlight_hover", c);
         //#endif
         this.highlighthover = c;
     },
     
     setSelectEditable : function(c){
         //#ifdef __WITH_STORAGE
-        apf.storage.put("apfdebug_select_editable", c);
+        Storage.put("apfdebug_select_editable", c);
         //#endif
         this.selecteditable = c;
     },

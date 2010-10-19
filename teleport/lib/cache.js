@@ -1,50 +1,53 @@
-    define([], function(){
-    var namespace = apf.config.name + ".apf.http";
+define(["teleport/http"], function(Http){
 
-    /**
-     * Saves the apf http cache to the available {@link core.storage storage engine}.
-     */
-    this.saveCache = function(){
-        // #ifdef __DEBUG
-        if (!apf.serialize)
-            throw new Error(apf.formatErrorString(1079, this,
-                "HTTP save cache",
-                "Could not find JSON library."));
-        // #endif
+//@todo refactor this needs some rethinking...    
+var namespace = apf.config.name + ".apf.http";
 
-        // #ifdef __DEBUG
-        apf.console.info("[HTTP] Loading HTTP Cache", "teleport");
-        // #endif
+/**
+ * Saves the apf http cache to the available {@link core.storage storage engine}.
+ */
+Http.saveCache = function(){
+    // #ifdef __DEBUG
+    if (!apf.serialize)
+        throw new Error(apf.formatErrorString(1079, this,
+            "HTTP save cache",
+            "Could not find JSON library."));
+    // #endif
 
-        var strResult = apf.serialize(comm.cache);
-        apf.storage.put("cache_" + this.name, strResult,
-            apf.config.name + ".apf.http");
-    };
+    // #ifdef __DEBUG
+    apf.console.info("[HTTP] Loading HTTP Cache", "teleport");
+    // #endif
 
-    /**
-     * Loads the apf http cache from the available {@link core.storage storage engine}.
-     */
-    this.loadCache = function(){
-        var strResult = apf.storage.get("cache_" + this.name,
-            apf.config.name + ".apf.http");
+    var strResult = apf.serialize(comm.cache);
+    Storage.put("cache_" + this.name, strResult,
+        apf.config.name + ".apf.http");
+};
 
-        // #ifdef __DEBUG
-        apf.console.info("[HTTP] Loading HTTP Cache", "teleport");
-        // #endif
+/**
+ * Loads the apf http cache from the available {@link core.storage storage engine}.
+ */
+Http.loadCache = function(){
+    var strResult = Storage.get("cache_" + this.name,
+        apf.config.name + ".apf.http");
 
-        if (!strResult)
-            return false;
+    // #ifdef __DEBUG
+    apf.console.info("[HTTP] Loading HTTP Cache", "teleport");
+    // #endif
 
-        this.cache = apf.unserialize(strResult);
+    if (!strResult)
+        return false;
 
-        return true;
-    };
+    this.cache = apf.unserialize(strResult);
 
-    /**
-     * Removes the stored http cache from the available {@link core.storage storage engine}.
-     */
-    this.clearCache = function(){
-        apf.storage.remove("cache_" + this.name,
-            apf.config.name + ".apf.http");
-    };
-    });
+    return true;
+};
+
+/**
+ * Removes the stored http cache from the available {@link core.storage storage engine}.
+ */
+Http.clearCache = function(){
+    Storage.remove("cache_" + this.name,
+        apf.config.name + ".apf.http");
+};
+
+});

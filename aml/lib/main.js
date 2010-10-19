@@ -35,5 +35,5 @@
  * @addnode global, anyaml
  */
 define("aml", ["w3cdom", "w3cdom/namespace"], function(parser, namespace){
-    var ns = parser.setNamespace("http://ajax.org/2005/aml", new namespace());
+    return parser.setNamespace("http://ajax.org/2005/aml", new namespace());
 });

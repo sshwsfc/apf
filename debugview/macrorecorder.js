@@ -357,5 +357,5 @@ function removeMacroFromPlaylist() {
     updateMacros();
 }
 
-//var recordings = apf.storage.get("recordings", location.href.split("#")[0]);
+//var recordings = Storage.get("recordings", location.href.split("#")[0]);
 //mdlMacro.load(recordings || "<recordings />");

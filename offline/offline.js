@@ -154,7 +154,7 @@ apf.offline = {
 
         //Check for storage provider
         if (provider) {
-            this.storage = apf.storage.getProvider(provider);
+            this.storage = Storage.getProvider(provider);
 
             //#ifdef __DEBUG
             if (this.storage)
@@ -163,9 +163,9 @@ apf.offline = {
         }
 
         if (!this.storage) {
-            this.storage = apf.storage.initialized
-                ? apf.storage
-                : apf.storage.init(); //autodetect
+            this.storage = Storage.initialized
+                ? Storage
+                : Storage.init(); //autodetect
         }
 
         if (!this.storage) {

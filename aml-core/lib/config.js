@@ -195,7 +195,7 @@ Object.extend(apf.config, {
         //#ifdef __WITH_STORAGE
         "storage" : function(value) {
             if (value)
-                apf.storage.init(value);
+                Storage.init(value);
         },
         //#endif
         //#ifdef __WITH_OFFLINE

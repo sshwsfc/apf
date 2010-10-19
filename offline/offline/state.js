@@ -80,7 +80,7 @@ var Offlinestate = {
         });
         
         //#ifdef __WITH_REGISTRY
-        var registry       = Object.extend({}, apf.offline.storage || apf.storage);
+        var registry       = Object.extend({}, apf.offline.storage || Storage);
         registry.namespace = apf.config.name + ".apf.registry";
         apf.registry.$export(registry);
         apf.registry       = registry;

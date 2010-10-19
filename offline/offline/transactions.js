@@ -72,7 +72,7 @@ apf.offline.transactions = {
     //@todo you might want to error on dotts in the at name
     addAction : function(at, qItem, type){
         //#ifdef __DEBUG
-        if (!at.name || !apf.storage.base.isValidKey(at.name)) {
+        if (!at.name || !Storage.base.isValidKey(at.name)) {
             //@todo
             throw new Error("Invalid or missing name for actiontracker \
                 used for offline transactions '" + at.name + "'.");
