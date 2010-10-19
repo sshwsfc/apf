@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["offline"], function(offline){
 
 /**
  * Object dealing with the storing the state of models for use offline. In
@@ -35,7 +35,7 @@ define([], function(){
  *
  * @default_private
  */
-var Offlinemodels = {
+offline.models = {
     enabled   : false,
     timer     : null,
     models    : {},
@@ -43,14 +43,14 @@ var Offlinemodels = {
     realtime  : true,
 
     init      : function(aml){
-        this.namespace = apf.config.name + ".apf.offline.models";
+        this.namespace = apf.config.name + ".offline.models";
 
         if (aml.nodeType && aml.getAttribute("realtime"))
             this.realtime = !util.isFalse(aml.getAttribute("realtime"));
 
         if (!this.realtime) {
             apf.addEventListener("exit", function(){
-                apf.offline.models.search();
+                offline.models.search();
             });
         }
 
@@ -78,14 +78,14 @@ var Offlinemodels = {
     },
 
     clear : function(){
-        apf.offline.storage.clear(this.namespace);
+        offline.storage.clear(this.namespace);
     },
 
     removeModel : function(model){
         var name = model.name || model.$uniqueId + ".model";
 
         //Remove recorded data of this model
-        apf.offline.storage.remove(name, this.namespace);
+        offline.storage.remove(name, this.namespace);
 
         //Remove the model from the init queue
         this.initQueue.remove(model);
@@ -107,13 +107,13 @@ var Offlinemodels = {
         model.data.setAttribute(apf.xmldb.xmlDocTag + "_length",
             apf.xmldb.nodeCount[docId]);
 
-        apf.offline.storage.put(name, model.data.xml || model.data.serialize(), this.namespace);
+        offline.storage.put(name, model.data.xml || model.data.serialize(), this.namespace);
     },
 
     loadModel : function(model){
         var name = model.name || model.$uniqueId + ".model";
 
-        var data = apf.offline.storage.get(name, this.namespace);
+        var data = offline.storage.get(name, this.namespace);
         if (!data) return false;
 
         //#ifdef __DEBUG
@@ -180,6 +180,6 @@ var Offlinemodels = {
 };
 
 
-return Offlinemodels;
+return offline.models;
 
 });

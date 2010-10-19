@@ -87,7 +87,7 @@ define(["aml-core/amlelement", "optional!aml", "lib-oop"],
  * collaborative protocols (i.e. xmpp). In many cases offline rdb messages should
  * not be stored after the user has been offline for longer then a certain time.
  * For instance 10 minutes. An accumulation of change messages would create a
- * serious scaling problem and is not preferred. apf.offline has built in support
+ * serious scaling problem and is not preferred. offline has built in support
  * for this type of timeout. By setting the rdb-timeout attribute it is aware
  * of when the server has timed out. When this timeout is reached the application
  * will reload all its data from the server and discard all offline rdb
@@ -441,7 +441,7 @@ Remote.SESSION_TERMINATED = 0x0004; //Session is terminated
 
         //#ifdef __WITH_OFFLINE
         // @todo apf3.0 implement proper offline support in RDB
-        if (apf.offline && apf.offline.inProcess == 2) {
+        if (offline && offline.inProcess == 2) {
              //We're coming online, let's queue until after sync
             queue.push(oMessage);
             
@@ -574,9 +574,9 @@ Remote.SESSION_TERMINATED = 0x0004; //Session is terminated
         //#endif
 
         //#ifdef __WITH_OFFLINE
-        if (apf.offline && apf.offline.enabled) {
+        if (offline && offline.enabled) {
             var queue = [];
-            apf.offline.addEventListener("afteronline", function(){
+            offline.addEventListener("afteronline", function(){
                 for (var i = 0, l = queue.length; i < l; i++)
                     _self.$receiveChange(queue[i]);
 

@@ -283,8 +283,8 @@ apf.actiontracker = function(struct, tagName){
         this.setProperty("undolength", this.$undostack.length);
 
         //#ifdef __WITH_OFFLINE_STATE && __WITH_OFFLINE_TRANSACTIONS
-        if (typeof apf.offline != "undefined") {
-            var t = apf.offline.transactions;
+        if (typeof offline != "undefined") {
+            var t = offline.transactions;
             if (t.doStateSync) {
                 t.addAction(this, UndoObj, "undo");
                 t.clearActions(this, "redo");
@@ -670,9 +670,9 @@ apf.actiontracker = function(struct, tagName){
             redoStack.push(UndoObj); //@todo check: moved from outside if(single)
 
             //#ifdef __WITH_OFFLINE_STATE && __WITH_OFFLINE_TRANSACTIONS
-            if (typeof apf.offline != "undefined" && apf.offline.transactions.doStateSync) {
-                apf.offline.transactions.removeAction(this, true, undo ? "undo" : "redo");
-                apf.offline.transactions.addAction(this, UndoObj, undo ? "redo" : "undo");
+            if (typeof offline != "undefined" && offline.transactions.doStateSync) {
+                offline.transactions.removeAction(this, true, undo ? "undo" : "redo");
+                offline.transactions.addAction(this, UndoObj, undo ? "redo" : "undo");
             }
             //#endif
 
@@ -724,8 +724,8 @@ apf.actiontracker = function(struct, tagName){
                 this.$redostack = [];
 
                 //#ifdef __WITH_OFFLINE_STATE && __WITH_OFFLINE_TRANSACTIONS
-                if (typeof apf.offline != "undefined") {
-                    var t = apf.offline.transactions;
+                if (typeof offline != "undefined") {
+                    var t = offline.transactions;
                     if (t.doStateSync)
                         t.clear("undo|redo");
                 }
@@ -780,7 +780,7 @@ apf.actiontracker = function(struct, tagName){
                        is it intuitive enough for the user that redo will
                        let the user retry the action??
             */
-            if (typeof apf.offline != "undefined" && !apf.offline.reloading)
+            if (typeof offline != "undefined" && !offline.reloading)
                 this.undo(UndoObj.id, extra.userdata, true);
 
             if (callback)
@@ -845,8 +845,8 @@ apf.actiontracker = function(struct, tagName){
 
             // #ifdef __WITH_OFFLINE_TRANSACTIONS
             //We want to maintain the stack for sync
-            if (typeof apf.offline != "undefined" && apf.offline.transactions.enabled)
-                apf.offline.transactions.removeAction(this, true, "queue");
+            if (typeof offline != "undefined" && offline.transactions.enabled)
+                offline.transactions.removeAction(this, true, "queue");
             //#endif
 
             //#ifdef __WITH_RDB
@@ -884,8 +884,8 @@ apf.actiontracker = function(struct, tagName){
 
         // #ifdef __WITH_OFFLINE_TRANSACTIONS
         //We want to maintain the stack for sync
-        if (typeof apf.offline != "undefined" && apf.offline.transactions.enabled)
-            apf.offline.transactions.addAction(this, qItem, "queue");
+        if (typeof offline != "undefined" && offline.transactions.enabled)
+            offline.transactions.addAction(this, qItem, "queue");
         //#endif
 
         //The queue was empty, yay! we're gonna exec immediately
@@ -913,8 +913,8 @@ apf.actiontracker = function(struct, tagName){
 
         // #ifdef __WITH_OFFLINE_TRANSACTIONS
         //We want to maintain the stack for sync
-        if (typeof apf.offline != "undefined" && apf.offline.transactions.enabled)
-            apf.offline.transactions.removeAction(this, null, "queue");
+        if (typeof offline != "undefined" && offline.transactions.enabled)
+            offline.transactions.removeAction(this, null, "queue");
         //#endif
 
         //Check if there is a new action to execute;

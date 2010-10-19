@@ -19,7 +19,7 @@
  *
  */
 
-// #ifdef __WITH_OFFLINE
+define([], function(){
 
 /**
  * @define offline
@@ -69,7 +69,7 @@
  * <a:modalwindow title="Synchronizing" visible="{offline.syncing}">
  *    <a:Label>Synchronizing your changes</a:label>
  *    <a:progressbar value="{offline.progress}" />
- *    <a:button onclick="apf.offline.stopSync()">Cancel</a:button>
+ *    <a:button onclick="offline.stopSync()">Cancel</a:button>
  *    <a:button onclick="this.parentNode.hide()">Hide Window</a:button>
  * </a:modalwindow>
  * </code>
@@ -91,7 +91,7 @@
  * 
  * @default_private
  */
-apf.offline = {
+var offline = {
     /**
      * whether offline support is enabled.
      * @type {Boolean}
@@ -149,7 +149,7 @@ apf.offline = {
         }
 
         // #ifdef __WITH_OFFLINE_APPLICATION
-        var provider = apf.offline.application.init(aml)
+        var provider = offline.application.init(aml)
         // #endif
 
         //Check for storage provider
@@ -179,15 +179,15 @@ apf.offline = {
 
         if (!this.storage.isPermanent()) {
             apf.addEventListener("exit", function(){
-                return apf.offline.dispatchEvent("losechanges");
+                return offline.dispatchEvent("losechanges");
             });
         }
 
         if (this.storage.asyncInit) {
             apf.document.$domParser.$shouldWait++; //@todo apf3.0 make this work again
             this.storage.ready(function(){
-                apf.offline.storage.onready = null; //Prevent being called twice
-                apf.offline.continueInit();
+                offline.storage.onready = null; //Prevent being called twice
+                offline.continueInit();
                 apf.document.$domParser.$continueParsing(apf.document.documentElement);
             });
 
@@ -220,7 +220,7 @@ apf.offline = {
         else //Else we try to go online
             this.goOnline();
 
-        apf.offline.dispatchEvent("load");
+        offline.dispatchEvent("load");
     },
 
     $destroy : function(){
@@ -417,7 +417,7 @@ apf.offline = {
                     rdb.models[j].clear();
 
                     // #ifdef __WITH_OFFLINE_MODEL
-                    apf.offline.models.addToInitQueue(rdb.models[j])
+                    offline.models.addToInitQueue(rdb.models[j])
                     /* #else
                     rbs[i].models[j].init();
                     #endif */
@@ -433,7 +433,7 @@ apf.offline = {
             //#endif
 
             //#ifdef __WITH_OFFLINE_TRANSACTIONS && __WITH_OFFLINE_STATE
-            apf.offline.transactions.clear("undo|redo");
+            offline.transactions.clear("undo|redo");
             //#endif
 
             //#ifdef __WITH_NAMESERVER
@@ -520,7 +520,7 @@ apf.offline = {
             }
         }
 
-        var fln      = apf.offline;
+        var fln      = offline;
         var callback = function(extra){
             if (fln.inProcess == fln.STOPPING) {
                 if (!extra.finished && extra.length - 1 != extra.position) {
@@ -592,8 +592,7 @@ apf.offline = {
             this.inProcess = this.STOPPING;
     }
 };
-/*#else
-apf.offline = {
-    onLine : true
-}
-#endif */
+
+return offline;
+
+});

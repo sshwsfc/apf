@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["offline"], function(offline){
 
 /**
  * Object handling queuing of actions that can only be executed whilst online.
@@ -31,18 +31,18 @@ define([], function(){
  *
  * @default_private
  */
-var Offlinequeue = {
+offline.queue = {
     enabled : false,
     stack   : [],
     
     init : function(){
-        this.namespace = apf.config.name + ".apf.offline.queue";
+        this.namespace = apf.config.name + ".offline.queue";
         this.enabled   = true;
     },
     
     add : function(commInfo){
         var namespace = this.namespace;
-        var storage   = apf.offline.storage;
+        var storage   = offline.storage;
         var len       = parseInt(storage.get("length", namespace)) || 0;
         
         //Add the commInfo to the stack
@@ -88,7 +88,7 @@ var Offlinequeue = {
     },
     
     getSyncLength : function(){
-        return parseInt(apf.offline.storage.get("length", this.namespace)) || 0;
+        return parseInt(offline.storage.get("length", this.namespace)) || 0;
     },
     
     //Sync all transactions, let offline decide when
@@ -100,7 +100,7 @@ var Offlinequeue = {
         }
 
         var namespace = this.namespace;
-        var storage   = apf.offline.storage;
+        var storage   = offline.storage;
         var len       = parseInt(storage.get("length", namespace)) || 0;
         var start     = parseInt(storage.get("start", namespace)) || 0;
         var commInfo;
@@ -118,7 +118,7 @@ var Offlinequeue = {
                 //#endif
                 
                 this.clear();
-                apf.offline.stopSync();
+                offline.stopSync();
                 
                 return callback({finished: true});
             }
@@ -141,7 +141,7 @@ var Offlinequeue = {
                 // We're done with this one
                 storage.remove(start, namespace);
                 storage.put("start", start+1, namespace);
-                apf.offline.queue.stack[start] = null;
+                offline.queue.stack[start] = null;
                 
                 callback({
                     position : start,
@@ -159,7 +159,7 @@ var Offlinequeue = {
                 }
                 else {
                     //Next!
-                    apf.offline.queue.sync(callback, true);
+                    offline.queue.sync(callback, true);
                 }
             }
         }
@@ -168,7 +168,7 @@ var Offlinequeue = {
     },
     
     clear : function(){
-         apf.offline.storage.clear(this.namespace);
+         offline.storage.clear(this.namespace);
     },
     
     $getCommInfo : function(strCommItem){
@@ -196,6 +196,6 @@ var Offlinequeue = {
 };
 
 
-return Offlinequeue;
+return offline.queue;
 
 });

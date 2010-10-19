@@ -869,8 +869,8 @@ oop.decorate(Markupedit, Rename);
             
             if (rule.get) {
                 // #ifdef __WITH_OFFLINE_TRANSACTIONS
-                if (!apf.offline.onLine) {
-                    apf.offline.transactions.actionNotAllowed();
+                if (!offline.onLine) {
+                    offline.transactions.actionNotAllowed();
                     this.slideClose(container, xmlNode);
                     return;
                 }

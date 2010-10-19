@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["offline"], function(offline){
 
 /**
  * Object detecting if the application has network, the detection moments can
@@ -45,7 +45,7 @@ define([], function(){
  *
  * @default_private
  */
-var Offlinedetector = {
+offline.detector = {
     //#ifndef __PACKED
     detectUrl : apf.basePath + "core/lib/offline/network_check.txt",
     /* #else
@@ -77,7 +77,7 @@ var Offlinedetector = {
                 //Timeout detected.. Network is probably gone
                 if (e.state == apf.TIMEOUT) {
                     //Let's try to go offline and return false to cancel the error
-                    return !apf.offline.goOffline();//callback //@todo callback???
+                    return !offline.goOffline();//callback //@todo callback???
                 }
             });
         }
@@ -96,10 +96,10 @@ var Offlinedetector = {
         this.oHttp.get(util.getNoCacheUrl(this.detectUrl), {
             callback: function(data, state, extra){
                 if(state != apf.SUCCESS || !window.navigator.onLine){
-                    apf.offline.goOffline(callback); //retry here??
+                    offline.goOffline(callback); //retry here??
                 }
                 else{
-                    apf.offline.goOnline(callback);
+                    offline.goOnline(callback);
                 }
             },
             ignoreOffline  : true,
@@ -136,6 +136,6 @@ var Offlinedetector = {
 };
 
 
-return Offlinedetector;
+return offline.detector;
 
 });

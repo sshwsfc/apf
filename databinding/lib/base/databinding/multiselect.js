@@ -448,15 +448,15 @@ var MultiselectBinding = function(){
         if (this.selectable) {
             //#ifdef __WITH_OFFLINE_STATE
             //@todo move this to multiselect event handler inside multiselect.js
-            var sel, bHasOffline = (typeof apf.offline != "undefined");
-            if (!this.firstLoad && bHasOffline && apf.offline.state.enabled
-              && apf.offline.state.realtime) {
-                sel = apf.offline.state.get(this, "selection");
+            var sel, bHasOffline = (typeof offline != "undefined");
+            if (!this.firstLoad && bHasOffline && offline.state.enabled
+              && offline.state.realtime) {
+                sel = offline.state.get(this, "selection");
                 this.firstLoad = true;
             }
 
             if (sel) {
-                var selstate = apf.offline.state.get(this, "selstate");
+                var selstate = offline.state.get(this, "selstate");
 
                 if (sel.length == 0) {
                     this.clearSelection();

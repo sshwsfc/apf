@@ -168,9 +168,9 @@ var DataAction = function(){
             return false;
         }
 
-        var bHasOffline = typeof apf.offline != "undefined";
+        var bHasOffline = typeof offline != "undefined";
         //#ifdef __WITH_OFFLINE
-        if (bHasOffline && !apf.offline.canTransact())
+        if (bHasOffline && !offline.canTransact())
             return false;
         //#endif
 
@@ -193,10 +193,10 @@ var DataAction = function(){
 
         //Check if we should attain a lock (when offline, we just pretend to get it)
         var lockInstruction = actionRule ? actionRule.lock : null;
-        if ((bHasOffline && (!apf.offline.enabled || !apf.offline.onLine)) && lockInstruction) {
+        if ((bHasOffline && (!offline.enabled || !offline.onLine)) && lockInstruction) {
             var curLock = this.$lock[name] = {
-                    start      : bHasOffline && !apf.offline.onLine
-                                    ? apf.offline.offlineTime
+                    start      : bHasOffline && !offline.onLine
+                                    ? offline.offlineTime
                                     : new Date().getUTCTime(),
                     stopped    : false,
                     xmlContext : xmlContext,
@@ -337,7 +337,7 @@ var DataAction = function(){
      */
     this.$executeAction = function(atAction, args, action, xmlNode, noevent, contextNode, multiple){
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && !apf.offline.canTransact())
+        if (typeof offline != "undefined" && !offline.canTransact())
             return false;
         //#endif
 

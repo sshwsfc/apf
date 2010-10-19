@@ -18,7 +18,16 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
+
+define([
+    "optional!databinding/multiselect", 
+    "optional!databinding/multiselect-binding", 
+    "aml-core/presentation", 
+    "optional!aml", 
+    "lib-oop"], 
+    function(MultiSelect, MultiselectBinding, Presentation, BindingRule, aml, oop){
+
+var BaseClass = MultiSelect || MultiselectBinding || Presentation; //@todo refactor..
 
 /**
  * Element displaying a rectangle consisting of one or more columns
@@ -94,12 +103,12 @@ define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect
  * @binding caption   Determines the caption of the docklet.
  */
 var Portal = function(struct, tagName){
-    MultiSelect.call(this, tagName || "portal", this.NODE_VISIBLE, struct);
+    BaseClass.call(this, tagName || "portal", this.NODE_VISIBLE, struct);
     
     this.$columns   = [];
 };
 
-oop.inherit(Portal, MultiSelect);
+oop.inherit(Portal, BaseClass);
 
 oop.decorate(Portal, DataAction);
 
@@ -639,13 +648,7 @@ oop.decorate(Portal, DataAction);
         if (document.elementFromPointAdd)
             document.elementFromPointAdd(this.$ext);
     };
-// #ifdef __WITH_MULTISELECT
 }).call(Portal.prototype);
-/* #elseif __WITH_DATABINDING
-}).call(apf.portal.prototype = new apf.MultiselectBinding());
-   #else
-}).call(apf.portal.prototype = new apf.Presentation());
-#endif*/
 
 aml && aml.setElement("portal",    Portal);
 aml && aml.setElement("src",       BindingRule);
@@ -657,17 +660,6 @@ aml && aml.setElement("buttons",   BindingRule);
 aml && aml.setElement("caption",   BindingRule);
 aml && aml.setElement("traverse",  BindingRule);
 
-/**
- * @constructor
- */
-Portal.Docklet = function(){}
-Portal.Docklet.prototype = new apf.Class();
-Portal.Docklet.prototype.create = function(xmlSettings, oWidget, oPortal){
-    this.xmlSettings = xmlSettings
-    this.oWidget = oWidget;
-
-    if (this.$create)
-        this.$create(xmlSettings, oWidget, oPortal);
-};
+return Portal;
 
 });

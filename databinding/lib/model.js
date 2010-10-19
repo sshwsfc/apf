@@ -673,16 +673,16 @@ oop.inherit(Model, DOMElement);
         }
         else {
             //#ifdef __WITH_OFFLINE_MODELS
-            if (typeof apf.offline != "undefined" && apf.offline.models.enabled) {
+            if (typeof offline != "undefined" && offline.models.enabled) {
                 //Check if there's stored data
-                if (apf.offline.models.loadModel(this)) {
+                if (offline.models.loadModel(this)) {
                     return;
                 }
 
                 //Hmm we're offline, lets wait until we're online again
                 //@todo this will ruin getting data from offline resources
-                if (this.src && !apf.offline.onLine) {
-                    apf.offline.models.addToInitQueue(this);
+                if (this.src && !offline.onLine) {
+                    offline.models.addToInitQueue(this);
                     return;
                 }
             }
@@ -752,7 +752,7 @@ oop.inherit(Model, DOMElement);
 
             //#ifdef __WITH_OFFLINE_MODELS
             if (state == LiveEdit.OFFLINE) {
-                apf.offline.models.addToInitQueue(this);
+                offline.models.addToInitQueue(this);
                 return false;
             }
             //#endif

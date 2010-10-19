@@ -193,12 +193,12 @@ var Http = function(){
         var _self = this;
         var id    = options.id;
         //#ifdef __WITH_OFFLINE
-        var bHasOffline = (typeof apf.offline != "undefined");
-        if (bHasOffline && !apf.offline.onLine && options.notWhenOffline)
+        var bHasOffline = (typeof offline != "undefined");
+        if (bHasOffline && !offline.onLine && options.notWhenOffline)
             return false;
 
-        if (bHasOffline && !apf.offline.onLine && !options.ignoreOffline) {
-            if (apf.offline.queue.enabled) {
+        if (bHasOffline && !offline.onLine && !options.ignoreOffline) {
+            if (offline.queue.enabled) {
                 //Let's record all the necesary information for future use (during sync)
                 var info = Object.extend({
                     url      : url,
@@ -210,7 +210,7 @@ var Http = function(){
                     $retry : "this.object.get(this.url, this.options)"
                 }, options);
 
-                apf.offline.queue.add(info);
+                offline.queue.add(info);
 
                 return;
             }

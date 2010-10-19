@@ -436,7 +436,7 @@ oop.inherits(DOMElement, DOMNode);
         //#endif
 
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && !apf.offline.onLine)
+        if (typeof offline != "undefined" && !offline.onLine)
             return false; //it's the responsibility of the dev to check this
         //#endif
 
@@ -668,8 +668,8 @@ oop.inherits(DOMElement, DOMNode);
         var a, i, l, attr = this.attributes;
 
         // #ifdef __WITH_OFFLINE_STATE
-        if (typeof apf.offline != "undefined" && apf.offline.state.enabled) {
-            var offlineLookup = apf.offline.state.getAll(this);
+        if (typeof offline != "undefined" && offline.state.enabled) {
+            var offlineLookup = offline.state.getAll(this);
             for (i in offlineLookup) {
                 a = attr.getNamedItem(i);
                 if (a) 

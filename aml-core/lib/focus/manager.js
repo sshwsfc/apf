@@ -164,9 +164,9 @@ var FocusManager = function(document){
         //#endif
 
         //#ifdef __WITH_OFFLINE_STATE
-        if (typeof apf.offline != "undefined" && apf.offline.state.enabled
-          && apf.offline.state.realtime)
-            apf.offline.state.set(this, "focus", amlNode.name || amlNode.$uniqueId);
+        if (typeof offline != "undefined" && offline.state.enabled
+          && offline.state.realtime)
+            offline.state.set(this, "focus", amlNode.name || amlNode.$uniqueId);
         //#endif
     };
 
@@ -439,8 +439,8 @@ var FocusManager = function(document){
      */
     this.focusDefault = function(){
         //#ifdef __WITH_OFFLINE_STATE
-        if (typeof apf.offline != "undefined" && apf.offline.state.enabled) {
-            var node, id = apf.offline.state.get(this, "focus");
+        if (typeof offline != "undefined" && offline.state.enabled) {
+            var node, id = offline.state.get(this, "focus");
 
             if (id == -1)
                 return this.$focusRoot();
@@ -457,8 +457,8 @@ var FocusManager = function(document){
                                    + "and rebooting.");
                     //#endif
 
-                    apf.offline.clear();
-                    apf.offline.reboot();
+                    offline.clear();
+                    offline.reboot();
                 }
                 else {
                     this.$focus(node);

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["offline"], function(offline){
 
 /**
  * Object recording the state of all elements. If the realtime attribute is
@@ -45,14 +45,14 @@ define([], function(){
  * @default_private
  * @todo optimize by not getting the default values from the aml
  */
-var Offlinestate = {
+offline.state = {
     enabled   : false,
     states    : {},
     realtime  : true,
     lookup    : {},
 
     init : function(aml){
-        this.namespace = apf.config.name + ".apf.offline.state";
+        this.namespace = apf.config.name + ".offline.state";
         
         if (aml.nodeType) {
             if (aml.getAttribute("realtime"))
@@ -63,48 +63,48 @@ var Offlinestate = {
         }
         
         apf.addEventListener("exit", function(){
-            if (!apf.offline.state.realtime) {
-                //apf.offline.state.search();
-                var lookup  = apf.offline.state.lookup;
-                var storage = apf.offline.storage;
-                var ns      = apf.offline.state.namespace;
+            if (!offline.state.realtime) {
+                //offline.state.search();
+                var lookup  = offline.state.lookup;
+                var storage = offline.storage;
+                var ns      = offline.state.namespace;
                 
                 for (var key in lookup) {
-                    var ns = apf.offline.state.namespace;
+                    var ns = offline.state.namespace;
                     storage.put(key, lookup[key], ns);
                 }
             }
             
-            if (apf.offline.state.setInstruction)
-                apf.offline.state.send();
+            if (offline.state.setInstruction)
+                offline.state.send();
         });
         
         //#ifdef __WITH_REGISTRY
-        var registry       = Object.extend({}, apf.offline.storage || Storage);
+        var registry       = Object.extend({}, offline.storage || Storage);
         registry.namespace = apf.config.name + ".apf.registry";
         apf.registry.$export(registry);
         apf.registry       = registry;
         //#endif
 
         //@todo This could be optimized if needed
-        if (apf.offline.storage.getAllPairs(this.namespace, this.lookup)) {
+        if (offline.storage.getAllPairs(this.namespace, this.lookup)) {
             /*
                 This is the moment the developer should do something like:
                 return confirm("Would you like to continue your previous session?");
             */
-            if (apf.offline.dispatchEvent("restore") === false) {
+            if (offline.dispatchEvent("restore") === false) {
                 this.clear();
                 this.lookup = {};
                 
                 //#ifdef __WITH_OFFLINE_TRANSACTIONS
-                apf.offline.transactions.clear("undo|redo");
+                offline.transactions.clear("undo|redo");
                 //#endif
             }
         }
         
         //#ifdef __WITH_OFFLINE_TRANSACTIONS
 
-        apf.offline.transactions.doStateSync = true;
+        offline.transactions.doStateSync = true;
         //#endif
         
         this.enabled = true;
@@ -126,7 +126,7 @@ var Offlinestate = {
             return;
         
         var name    = obj.name || obj.$uniqueId + "_" + obj.tagName;
-        var storage = apf.offline.storage;
+        var storage = offline.storage;
         
         //#ifdef __DEBUG
         if (!name || !storage.isValidKey(name)) { //@todo
@@ -158,7 +158,7 @@ var Offlinestate = {
     get : function(obj, key, value){
         return this.lookup[(obj.name || obj.$uniqueId + "_" + obj.tagName) + "." + key];
         
-        /*return apf.offline.storage.get(
+        /*return offline.storage.get(
             (obj.name || obj.$uniqueId + "." + obj.tagName) + "." + key, 
             this.namespace);*/
     },
@@ -177,7 +177,7 @@ var Offlinestate = {
     },
     
     clear : function(){
-        apf.offline.storage.clear(this.namespace);
+        offline.storage.clear(this.namespace);
         
         var ns = apf.registry.getNamespaces();
         for (var i = 0; i < ns.length; i++) {
@@ -185,12 +185,12 @@ var Offlinestate = {
         }
         
         //#ifdef __WITH_OFFLINE_TRANSACTIONS
-        apf.offline.transactions.clear("undo|redo");
+        offline.transactions.clear("undo|redo");
         //#endif
     },
 
     search : function(){
-        var storage = apf.offline.storage;
+        var storage = offline.storage;
         
         //Search for dynamic properties
         var props, i, j, nodes = apf.all;
@@ -210,7 +210,7 @@ var Offlinestate = {
     },
     
     send : function(){
-        var storage = apf.offline.storage;
+        var storage = offline.storage;
         
         var data = {};
         var keys = storage.getKeys(this.namespace);
@@ -223,28 +223,29 @@ var Offlinestate = {
             ignoreOffline : true,
             data          : apf.serialize(data),
             callback      : function(data, state, extra){
-                if (extra.tpModule.retryTimeout(extra, state, apf.offline) === true)
+                if (extra.tpModule.retryTimeout(extra, state, offline) === true)
                     return true;
             }
         });
     }
 };
 
-return Offlinestate;
+return offline.state;
 
 });
-    
+
+/*
 var setProp = this.$_setProperty;
 Class.prototype.$_setProperty = function(){
     this.$_setProperty = function(prop, value, forceOnMe, setAttr, inherited, isChanged){
         if (isChanged && !forceOnMe) {
-            if (typeof apf.offline != "undefined") {
-                if (apf.loaded && apf.offline.state.enabled) {
-                    apf.offline.state.set(this, prop, typeof value == "object"
+            if (typeof offline != "undefined") {
+                if (apf.loaded && offline.state.enabled) {
+                    offline.state.set(this, prop, typeof value == "object"
                         ? value.name
                         : value);
                 }
-                else if (apf.offline.enabled) {
+                else if (offline.enabled) {
 
                 }
             }
@@ -253,3 +254,4 @@ Class.prototype.$_setProperty = function(){
         setProp.apply(this, arguments);
     }
 };
+*/

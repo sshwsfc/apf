@@ -19,13 +19,13 @@
  *
  */
 
-define([], function(){
+define(["offline/application"], function(application){
 
 /**
  * Offline provider that uses Google gears.
  * @default_private
  */
-var Offlineapplicationgears = {
+application.gears = {
     localServer : null,
     lastStore   : null,
     cancelID    : null,
@@ -36,7 +36,7 @@ var Offlineapplicationgears = {
         //#ifdef __WITH_NAMESERVER
         // clip at 64 characters, the max length of a resource store name
         this.name = this.storeName.truncate(64);
-        this.storeName = apf.config.name + ".apf.offline";
+        this.storeName = apf.config.name + ".offline";
         
         try{
             this.localServer = nameserver.get("google", "gears").create("beta.localserver", "1.0");
@@ -118,7 +118,7 @@ var Offlineapplicationgears = {
                     
                     if(newVersion)
                         Storage.put("oldVersion", newVersion, null,
-                            apf.offline.application.storeName);
+                            offline.application.storeName);
                     
                     if (callback) {
                         callback({
@@ -143,6 +143,6 @@ var Offlineapplicationgears = {
 };
 
 
-return Offlineapplicationgears;
+return application.gears;
 
 });

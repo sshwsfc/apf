@@ -29,8 +29,8 @@
  * progress of the sync process.
  * <code>
  *  <a:progressbar
- *    value   = "{apf.offline.progress}"
- *    visible = "{apf.offline.syncing}" />
+ *    value   = "{offline.progress}"
+ *    visible = "{offline.syncing}" />
  *  </code>
  *
  * @constructor

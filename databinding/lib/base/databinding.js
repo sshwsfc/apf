@@ -662,8 +662,8 @@ apf.DataBinding = function(){
         var rule = this.$getBindRule("load", xmlRootNode);
         if (rule && (!rule[1] || rule[1](xmlRootNode))) {
             // #ifdef __WITH_OFFLINE_TRANSACTIONS
-            if (typeof apf.offline != "undefined" && !apf.offline.onLine) {
-                apf.offline.transactions.actionNotAllowed();
+            if (typeof offline != "undefined" && !offline.onLine) {
+                offline.transactions.actionNotAllowed();
                 this.$loadedWhenOffline = true;
     
                 //this.hasFeature(apf.__MULTISELECT__)

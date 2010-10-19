@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["offline"], function(offline){
 
 /**
  * Object recording the state of actiontrackers. When an application goes 
@@ -39,16 +39,16 @@ define([], function(){
  * @default_private
  * @todo remove serialize here
  */
-apf.offline.transactions = {
+offline.transactions = {
     enabled   : false,
        
     init : function(){
-        this.namespace = apf.config.name + ".apf.offline.transactions";
+        this.namespace = apf.config.name + ".offline.transactions";
         this.enabled   = true;
         
         //#ifdef __WITH_OFFLINE_STATE
         apf.addEventListener("load", function(){
-            apf.offline.transactions.rebuildActionQueues();
+            offline.transactions.rebuildActionQueues();
             apf.removeEventListener("load", arguments.callee);
         });
         //#endif
@@ -61,7 +61,7 @@ apf.offline.transactions = {
      * can be used to notify the user that we're offline.
      */
     actionNotAllowed : function(){
-        apf.offline.dispatchEvent("transactioncancel", {
+        offline.dispatchEvent("transactioncancel", {
             message : "Transaction is not allowed",
             bubbles : true
         });
@@ -80,7 +80,7 @@ apf.offline.transactions = {
         //#endif
         
         var namespace = this.namespace + "." + at.name + "." + type;
-        var storage   = apf.offline.storage;
+        var storage   = offline.storage;
         var len       = parseInt(storage.get("length", namespace)) || 0;
         
         storage.put(len, apf.serialize(type == "queue"
@@ -94,7 +94,7 @@ apf.offline.transactions = {
     
     removeAction : function(at, fromTop, type){
         var namespace = this.namespace + "." + at.name + "." + type;
-        var storage   = apf.offline.storage;
+        var storage   = offline.storage;
         
         //@todo add checks for stack sanity
         if (fromTop) {
@@ -130,7 +130,7 @@ apf.offline.transactions = {
     },
     
     rebuildActionQueues : function(){
-        var storage    = apf.offline.storage;
+        var storage    = offline.storage;
         var namespaces = storage.getNamespaces();
         if (!namespaces) return;
         var lookup, re = new RegExp(this.namespace + "\\.([^\\.]*)\\.([^\\.]*)");
@@ -187,20 +187,20 @@ apf.offline.transactions = {
             
             at.$loadQueue(stack, type);
             
-            apf.offline.sLookup = null;
+            offline.sLookup = null;
         }
         //#endif
     },
     
     clearActions : function(at, type){
-        apf.offline.storage.clear(this.namespace + "." + at.name + "." + type);
+        offline.storage.clear(this.namespace + "." + at.name + "." + type);
     },
     
     clear : function(queues){
         if (!queues)
             queues = "undo|redo|queue";
         
-        var storage    = apf.offline.storage;
+        var storage    = offline.storage;
         var namespaces = storage.getNamespaces();
         var re         = new RegExp(this.namespace + "\\.([^\\.]*)\\.(" + queues + ")");
         
@@ -261,8 +261,8 @@ apf.offline.transactions = {
  * @private
  * @method
  */
-apf.offline.canTransact = function(){
-    if(!apf.offline.enabled || this.onLine || this.transactions.enabled)
+offline.canTransact = function(){
+    if(!offline.enabled || this.onLine || this.transactions.enabled)
         return true;
     
     //Transactions can be enabled from this event
@@ -275,4 +275,6 @@ apf.offline.canTransact = function(){
     
     return false;
 };
+
+return offline.transactions;
 });

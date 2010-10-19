@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+define(["offline"], function(offline){
 
 /**
  * Object handling the offline state of the application resources. This includes
@@ -48,7 +48,7 @@ define([], function(){
  * @default_private
  * @todo a later version should also clear models and thus undo state
  */
-var Offlineapplication = {
+offline.application = {
     enabled   : false,
     urls      : [],
     providers : ["deskrun", "gears"],
@@ -57,7 +57,7 @@ var Offlineapplication = {
         if (this.enabled)
             return;
 
-        this.namespace = apf.config.name + ".apf.offline.application";
+        this.namespace = apf.config.name + ".offline.application";
 
         if (typeof aml == "string") {
             this.providers = aml.split("|");
@@ -104,7 +104,7 @@ var Offlineapplication = {
                                         + this.providers.join(", "));
                     //#endif
 
-                    apf.offline.application = null; //Can't put the app offline
+                    offline.application = null; //Can't put the app offline
                     return this.providers[0];
                 }
             }
@@ -115,21 +115,21 @@ var Offlineapplication = {
                                     + this.providers.join(", "));
                 //#endif
 
-                apf.offline.application = null; //Can't put the app offline
+                offline.application = null; //Can't put the app offline
                 return this.providers[0];
             }
         }
 
         if (!apf.loaded) { //@todo you might want to consider creating single run events
             apf.addEventListener("load", function(){
-                if (apf.offline.application.enabled)
-                    apf.offline.application.save();
+                if (offline.application.enabled)
+                    offline.application.save();
                 apf.removeEventListener("load", arguments.callee);
             });
         }
         else {
-            apf.offline.addEventListener("load", function(){
-                apf.offline.application.save();
+            offline.addEventListener("load", function(){
+                offline.application.save();
             });
         }
 
@@ -139,7 +139,7 @@ var Offlineapplication = {
     },
 
     install : function(){
-        if (apf.offline.dispatchEvent("beforeinstall") === false) {
+        if (offline.dispatchEvent("beforeinstall") === false) {
             //#ifdef __DEBUG
             apf.console.warn("Installation cancelled");
             //#endif
@@ -158,7 +158,7 @@ var Offlineapplication = {
             }
         }
 
-        apf.offline.dispatchEvent("afterinstall");
+        offline.dispatchEvent("afterinstall");
 
         if (!this.provider)
             return false;
@@ -183,7 +183,7 @@ var Offlineapplication = {
     },
 
     refresh : function(callback){
-        var storage = apf.offline.storage;
+        var storage = offline.storage;
 
         if(this.versionGet){
             var oldVersion = storage.get("oldVersion", this.namespace);
@@ -193,7 +193,7 @@ var Offlineapplication = {
             apf.getData(this.versionGet, {callback:
                 function(newVersion, state, extra){
                     if (state == apf.TIMEOUT)
-                        return extra.tpModule.retryTimeout(extra, state, apf.offline);
+                        return extra.tpModule.retryTimeout(extra, state, offline);
 
                     if (state == LiveEdit.OFFLINE)
                         return;
@@ -209,11 +209,11 @@ var Offlineapplication = {
                         //#endif
 
                         // #ifdef __WITH_OFFLINE_STATE
-                        if (apf.offline.state.enabled) {
-                            apf.offline.state.clear();
+                        if (offline.state.enabled) {
+                            offline.state.clear();
 
-                            if (apf.offline.state.realtime)
-                                apf.offline.state.search();
+                            if (offline.state.realtime)
+                                offline.state.search();
                         }
                         // #endif
 
@@ -325,12 +325,12 @@ var Offlineapplication = {
     },
 
     save : function(callback){
-        if (!apf.offline.onLine) {
+        if (!offline.onLine) {
             var func = function(){
-                apf.offline.application.save();
-                apf.offline.removeEventListener("afteronline", func)
+                offline.application.save();
+                offline.removeEventListener("afteronline", func)
             }
-            apf.offline.addEventListener("afteronline", func);
+            offline.addEventListener("afteronline", func);
 
             return;
         }
@@ -340,6 +340,6 @@ var Offlineapplication = {
 };
 
 
-return Offlineapplication;
+return offline.application;
 
 });

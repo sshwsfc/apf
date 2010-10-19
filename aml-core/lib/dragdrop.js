@@ -289,7 +289,7 @@ var DragDrop = function(){
      */
     this.isDragAllowed = function(x, data){
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && !apf.offline.canTransact())
+        if (typeof offline != "undefined" && !offline.canTransact())
             return false;
         //#endif
 
@@ -340,7 +340,7 @@ var DragDrop = function(){
      */
     this.isDropAllowed = function(x, target){
         //#ifdef __WITH_OFFLINE
-        if(typeof apf.offline != "undefined" && !apf.offline.canTransact())
+        if(typeof offline != "undefined" && !offline.canTransact())
             return false;
         //#endif
 

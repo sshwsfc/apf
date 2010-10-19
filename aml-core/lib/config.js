@@ -200,8 +200,8 @@ Object.extend(apf.config, {
         //#endif
         //#ifdef __WITH_OFFLINE
         "offline" : function(value){
-            if (value && typeof apf.offline != "undefined")
-                apf.offline.init(value);
+            if (value && typeof offline != "undefined")
+                offline.init(value);
         },
         //#endif
         //#ifdef __DESKRUN

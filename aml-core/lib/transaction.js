@@ -344,7 +344,7 @@ var Transaction = function(){
         this.$originalNode    = this.xmlRoot;
 
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && !apf.offline.canTransact())
+        if (typeof offline != "undefined" && !offline.canTransact())
             return false;
         //#endif
 
@@ -414,7 +414,7 @@ var Transaction = function(){
                 rule = null;
             
             //#ifdef __WITH_OFFLINE
-            if (typeof apf.offline != "undefined" && !apf.offline.onLine
+            if (typeof offline != "undefined" && !offline.onLine
               && !rule.get)
                 return false;
             //#endif

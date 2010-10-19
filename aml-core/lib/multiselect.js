@@ -428,11 +428,11 @@ oop.inherits(MultiSelect, MultiselectBinding);
             rule = null;
             
         //#ifdef __WITH_OFFLINE
-        var bHasOffline = (typeof apf.offline != "undefined");
-        if (bHasOffline && !apf.offline.canTransact())
+        var bHasOffline = (typeof offline != "undefined");
+        if (bHasOffline && !offline.canTransact())
             return false;
 
-        if (bHasOffline && !apf.offline.onLine && (!xmlNode || !rule.get))
+        if (bHasOffline && !offline.onLine && (!xmlNode || !rule.get))
             return false;
         //#endif
         
@@ -1827,12 +1827,12 @@ oop.inherits(MultiSelect, MultiselectBinding);
         
         //#ifdef __WITH_OFFLINE_STATE
         //@todo this should be generalized and collapsed with setProperty
-        if (typeof apf.offline != "undefined" && apf.offline.state.enabled
-          && apf.offline.state.realtime) {  //@todo please optimize
+        if (typeof offline != "undefined" && offline.state.enabled
+          && offline.state.realtime) {  //@todo please optimize
             for (var sel = [], i = 0; i < e.selection.length; i++)
                 sel.push(apf.xmlToXpath(e.selection[i], null, true));
 
-            apf.offline.state.set(this, "selection", sel);
+            offline.state.set(this, "selection", sel);
             fSelState.call(this);
         }
         //#endif
@@ -1843,9 +1843,9 @@ oop.inherits(MultiSelect, MultiselectBinding);
     
     //#ifdef __WITH_OFFLINE_STATE
     function fSelState(){
-        if (typeof apf.offline != "undefined" && apf.offline.state.enabled
-          && apf.offline.state.realtime) {
-            apf.offline.state.set(this, "selstate",
+        if (typeof offline != "undefined" && offline.state.enabled
+          && offline.state.realtime) {
+            offline.state.set(this, "selstate",
                 [this.caret
                     ? apf.xmlToXpath(this.caret, null, true)
                     : "",

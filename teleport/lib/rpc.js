@@ -611,7 +611,7 @@ oop.inherit(Rpc, Teleport);
         }
     
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && !apf.offline.onLine)
+        if (typeof offline != "undefined" && !offline.onLine)
             return;
         //#endif
     

@@ -748,11 +748,11 @@ var Xmldb = new (function(){
     this.applyChanges = function(action, xmlNode, undoObj, nextloop){
         if (undoObj && undoObj.$dontapply) return;
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && apf.offline.models.enabled
-          && apf.offline.models.realtime) {
+        if (typeof offline != "undefined" && offline.models.enabled
+          && offline.models.realtime) {
             //#ifdef __WITH_NAMESERVER
             var model = nameserver.get("model", apf.xmldb.getXmlDocId(xmlNode));
-            if (model) apf.offline.models.markForUpdate(model);
+            if (model) offline.models.markForUpdate(model);
             //#endif
         }
         //#endif

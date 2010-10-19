@@ -91,9 +91,9 @@ apf.UndoData = function(settings, at){
         //#endif
 
         //Record arguments
-        var sLookup = (typeof apf.offline != "undefined" && apf.offline.sLookup)
-            ? apf.offline.sLookup
-            : (apf.offline.sLookup = {});
+        var sLookup = (typeof offline != "undefined" && offline.sLookup)
+            ? offline.sLookup
+            : (offline.sLookup = {});
         if (!sLookup.count) sLookup.count = 0;
         var xmlNode, xmlId, args = this.args.slice();
 
@@ -191,9 +191,9 @@ apf.UndoData = function(settings, at){
                 || apf.lookup(this.argsModel);
 
             //Record arguments
-            var sLookup =  (typeof apf.offline != "undefined" && apf.offline.sLookup)
-                ? apf.offline.sLookup
-                : (apf.offline.sLookup = {});
+            var sLookup =  (typeof offline != "undefined" && offline.sLookup)
+                ? offline.sLookup
+                : (offline.sLookup = {});
             if (!sLookup.count) sLookup.count = 0;
 
             var args = this.args,

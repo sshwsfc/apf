@@ -2317,8 +2317,8 @@ oop.inherit(Xmpp, Teleport);
             to only contacts. This can be more useful than using XMPP's server
             storage solution, because of the feedback to user.
         */
-        if (typeof apf.offline != "undefined" && !apf.offline.onLine) {
-            if (apf.offline.queue.enabled) {
+        if (typeof offline != "undefined" && !offline.onLine) {
+            if (offline.queue.enabled) {
                 //Let's record all the necesary information for future use (during sync)
                 var info = {
                     options  : options,
@@ -2329,7 +2329,7 @@ oop.inherit(Xmpp, Teleport);
                     $retry  : "this.object.sendMessage(this.options)"
                 };
 
-                apf.offline.queue.add(info);
+                offline.queue.add(info);
 
                 return true;
             }
@@ -2403,8 +2403,8 @@ oop.inherit(Xmpp, Teleport);
         var _self = this;
 
         //#ifdef __WITH_OFFLINE
-        if (typeof apf.offline != "undefined" && !apf.offline.onLine) {
-            if (apf.offline.queue.enabled) {
+        if (typeof offline != "undefined" && !offline.onLine) {
+            if (offline.queue.enabled) {
                 var info = {
                     options  : options,
                     retry    : function(){
@@ -2414,7 +2414,7 @@ oop.inherit(Xmpp, Teleport);
                     $retry  : "this.object.sendMessage(this.options)"
                 };
 
-                apf.offline.queue.add(info);
+                offline.queue.add(info);
 
                 return true;
             }

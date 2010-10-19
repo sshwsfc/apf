@@ -409,7 +409,7 @@ aml && aml.setElement("auth", Auth);
             _self   = options.userdata = this;
 
         //#ifdef __WITH_OFFLINE
-        options.ignoreOffline = true; //We don't want to be cached by apf.offline
+        options.ignoreOffline = true; //We don't want to be cached by offline
         //#endif
 
         //#ifdef __DEBUG
