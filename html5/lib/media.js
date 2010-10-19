@@ -226,7 +226,7 @@ oop.inherits(Media, BaseClass);
         //@todo for mike: please check if this is the best behaviour for setting an empty value
         if (this.$loadTimer || !value) return;
 
-        var oUrl = new apf.url(value);
+        var oUrl = new url(value);
         this.src = oUrl.uri;
 
         // #ifdef __DEBUG

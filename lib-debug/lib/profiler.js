@@ -7,7 +7,7 @@ define([], function(){
  * @author Mike de Boer (mike AT javeline DOT com)
  * @private
  */
-apf.profiler = {
+var profiler = {
     stackTrace     : {},    //object - keepsafe for all profiled function during a cycle
     previousStack  : null,  //object - keeping hold of the stackTrace of the previous cycle
     isRunning      : false, //bool   - TRUE when the Profiler is running a cycle
@@ -110,7 +110,7 @@ apf.profiler = {
     },
 
     /**
-     * Do as if apf.profiler is loaded all over again with its default values,
+     * Do as if profiler is loaded all over again with its default values,
      * except for rounding precision, the total number of runs (still valid
      * count) and the active sorting method.
      * After - memory safe - deinit, the call is passed to {@link core.profiler.method.init} with
@@ -156,7 +156,7 @@ apf.profiler = {
         if (this.isRunning) {
             if (this.startBusy) {
                 if (sName) this.startQueue.push(sName);
-                this.startQueueTimer = $setTimeout("apf.profiler.registerStart()", 200);
+                this.startQueueTimer = $setTimeout("profiler.registerStart()", 200);
             }
             else {
                 this.startBusy = true;
@@ -200,7 +200,7 @@ apf.profiler = {
                     this.endQueue.push([sName, arguments.callee.caller.caller
                         ? arguments.callee.caller.caller.nameSelf
                         : null]);
-                this.endQueueTimer = $setTimeout("apf.profiler.registerEnd()", 200);
+                this.endQueueTimer = $setTimeout("profiler.registerEnd()", 200);
             }
             else {
                 this.endBusy = true;
@@ -344,7 +344,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_FUNCTIONNAME ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_FUNCTIONNAME ? active : ""),
                   '" rel="3" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="" width="110">Function</th>\
@@ -353,7 +353,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_CALLS ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_CALLS ? active : ""),
                   '" rel="1" \
                   onclick="apf.debugwin.resortResult(this);"\
                   title="Number of times function was called.">Calls</th>\
@@ -362,7 +362,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_PERCENTAGE ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_PERCENTAGE ? active : ""),
                   '" rel="2" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="Percentage of time spent on this function.">Percentage</th>\
@@ -371,7 +371,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_OWNTIME ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_OWNTIME ? active : ""),
                   '" rel="8" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="Time spent in function, excluding nested calls.">Own Time</th>\
@@ -380,7 +380,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_TIME ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_TIME ? active : ""),
                   '" rel="4" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="Time spent in function, including nested calls.">Time</th>\
@@ -389,7 +389,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_AVERAGE ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_AVERAGE ? active : ""),
                   '" rel="5" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="Average time, including function calls.">Avg</th>\
@@ -398,7 +398,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_MINIMUM ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_MINIMUM ? active : ""),
                   '" rel="6" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="Minimum time, including function calls.">Min</th>\
@@ -407,7 +407,7 @@ apf.profiler = {
                   border-left: 1px solid #d9d9d9;\
                   border-bottom: 1px solid #9c9c9c;\
                   padding: 0; margin: 0;',
-                  (this.sortMethod == apf.profiler.SORT_BY_MAXIMUM ? active : ""),
+                  (this.sortMethod == profiler.SORT_BY_MAXIMUM ? active : ""),
                   '" rel="7" \
                   onclick="apf.debugwin.resortResult(this);" \
                   title="Maximum time, including function calls.">Max</th>\
@@ -471,35 +471,35 @@ apf.profiler = {
             stack.perc = 100 - Math.round((Math.abs(stack.time - stackTrace.totalDur) / stackTrace.totalDur) * 100);
             
             switch (this.sortMethod) {
-                case apf.profiler.SORT_BY_CALLS :
+                case profiler.SORT_BY_CALLS :
                     aSorted.push([i, (stack.executions.length - 1)]);
                     break;
                 default:
-                case apf.profiler.SORT_BY_PERCENTAGE :
+                case profiler.SORT_BY_PERCENTAGE :
                     aSorted.push([i, stack.perc]);
                     break;
-                case apf.profiler.SORT_BY_FUNCTIONNAME :
+                case profiler.SORT_BY_FUNCTIONNAME :
                     aSorted.push([i, stack.fullName.toLowerCase()]);
                     break;
-                case apf.profiler.SORT_BY_TIME :
+                case profiler.SORT_BY_TIME :
                     aSorted.push([i, stack.time]);
                     break;
-                case apf.profiler.SORT_BY_AVERAGE :
+                case profiler.SORT_BY_AVERAGE :
                     aSorted.push([i, stack.avg]);
                     break;
-                case apf.profiler.SORT_BY_MINIMUM :
+                case profiler.SORT_BY_MINIMUM :
                     aSorted.push([i, stack.min]);
                     break;
-                case apf.profiler.SORT_BY_MAXIMUM :
+                case profiler.SORT_BY_MAXIMUM :
                     aSorted.push([i, stack.max]);
                     break;
-                case apf.profiler.SORT_BY_OWNTIME :
+                case profiler.SORT_BY_OWNTIME :
                     aSorted.push([i, (stack.time - stack.internalExec)]);
                     break;
             }
         }
         
-        return aSorted.sort((this.sortMethod == apf.profiler.SORT_BY_FUNCTIONNAME)
+        return aSorted.sort((this.sortMethod == profiler.SORT_BY_FUNCTIONNAME)
             ? this.sortingHelperAsc
             : this.sortingHelperDesc);
     },
@@ -566,17 +566,17 @@ apf.profiler = {
     }
 };
 
-apf.profiler.SORT_BY_CALLS        = 1;
-apf.profiler.SORT_BY_PERCENTAGE   = 2;
-apf.profiler.SORT_BY_FUNCTIONNAME = 3;
-apf.profiler.SORT_BY_TIME         = 4;
-apf.profiler.SORT_BY_AVERAGE      = 5;
-apf.profiler.SORT_BY_MINIMUM      = 6;
-apf.profiler.SORT_BY_MAXIMUM      = 7;
-apf.profiler.SORT_BY_OWNTIME      = 8;
+profiler.SORT_BY_CALLS        = 1;
+profiler.SORT_BY_PERCENTAGE   = 2;
+profiler.SORT_BY_FUNCTIONNAME = 3;
+profiler.SORT_BY_TIME         = 4;
+profiler.SORT_BY_AVERAGE      = 5;
+profiler.SORT_BY_MINIMUM      = 6;
+profiler.SORT_BY_MAXIMUM      = 7;
+profiler.SORT_BY_OWNTIME      = 8;
 
-apf.profiler.BLACKLIST = {
-    'apf.profiler' : 1
+profiler.BLACKLIST = {
+    'profiler' : 1
 };
 
 /**
@@ -586,10 +586,13 @@ apf.profiler.BLACKLIST = {
  */
 var Profiler_functionTemplate = function() {
     return function() {
-        apf.profiler.registerStart(arguments.callee.nameSelf);
-        var ret = apf.profiler.pointers['pointer_to_' + arguments.callee.nameSelf].apply(this, arguments);
-        apf.profiler.registerEnd(arguments.callee.nameSelf);
+        profiler.registerStart(arguments.callee.nameSelf);
+        var ret = profiler.pointers['pointer_to_' + arguments.callee.nameSelf].apply(this, arguments);
+        profiler.registerEnd(arguments.callee.nameSelf);
         return ret;
     };
 };
+
+return profiler;
+
 });

@@ -243,7 +243,7 @@ apf.persist = function(struct, tagName){
         }
         
         var _self = this;
-        this.get(this.host + new apf.url(uri).path + "?sid=" + this.sessionId, {
+        this.get(this.host + new url(uri).path + "?sid=" + this.sessionId, {
             nocache       : true,
             ignoreOffline : true,
             method        : "LOCK",
@@ -261,7 +261,7 @@ apf.persist = function(struct, tagName){
     //remove a listener to a document
     this.leave  = function(uri){
         var _self = this;
-        this.get(this.host + new apf.url(uri).path + "?sid=" + this.sessionId, {
+        this.get(this.host + new url(uri).path + "?sid=" + this.sessionId, {
             nocache       : true,
             ignoreOffline : true,
             method        : "UNLOCK",
@@ -276,7 +276,7 @@ apf.persist = function(struct, tagName){
     this.sendUpdate = function(uri, message){
         var _self = this;
         this.contentType = "application/json";
-        this.get(this.host + new apf.url(uri).path + "?sid=" + this.sessionId, {
+        this.get(this.host + new url(uri).path + "?sid=" + this.sessionId, {
             nocache       : true,
             ignoreOffline : true,
             method        : "PUT",

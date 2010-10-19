@@ -149,8 +149,8 @@ require.modify(
         }
         
         //#ifdef __PROFILER
-        if (apf.profiler)
-            apf.profiler.wrapFunction(Profiler_functionTemplate());
+        if (profiler)
+            profiler.wrapFunction(Profiler_functionTemplate());
         //#endif
 
         if (eventName.substr(0, 2) == "on")

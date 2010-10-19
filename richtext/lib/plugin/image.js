@@ -69,7 +69,7 @@ LiveEdit.plugin("image", function(){
         var sUrl = this.oUrl.value;
         if (sUrl) {
             apf.popup.forceHide();
-            var oUrl = new apf.url(sUrl);
+            var oUrl = new url(sUrl);
             if (!oUrl.protocol || !oUrl.host || !oUrl.file) 
                 alert("Please enter a valid URL");
             else

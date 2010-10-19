@@ -170,7 +170,7 @@ offline.application = {
     },
 
     cache : function(url){
-        //if(!new apf.url(url).isSameLocation())
+        //if(!new url(url).isSameLocation())
             //return;
         if (url.indexOf(":") > -1 && url.indexOf("http://" + location.host) == -1)
             return;

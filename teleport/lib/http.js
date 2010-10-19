@@ -366,7 +366,7 @@ var Http = function(){
                 //Currently we don't support html5 cross domain access
                 if (apf.hasHtml5XDomain
                   && httpUrl.match(/^http:\/\//)
-                  && !new apf.url(httpUrl).isSameLocation()) {
+                  && !new url(httpUrl).isSameLocation()) {
                     throw new Error(apf.formatErrorString(0,
                         this, "Communication error", "Url: " + httpUrl
                             + "\nReason: Same origin policy in effect"));

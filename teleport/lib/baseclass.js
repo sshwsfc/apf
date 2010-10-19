@@ -156,7 +156,7 @@ apf.__TELEPORT__ = 1 << 28;
         "autoroute");
 
     this.$propHandlers["url"] = function(value) {
-        var url = new apf.url(value);
+        var url = new url(value);
 
         // do some extra startup/ syntax error checking
         if (!url.protocol) {

@@ -447,7 +447,7 @@ oop.decorate(Map, DataAction);
         }
 
         if (this["marker-icon"] && !this.$markerIcon)
-            this.$markerIcon = new apf.url(this["marker-icon"]).uri;
+            this.$markerIcon = new url(this["marker-icon"]).uri;
 
         var lat    = pos.lat(),
             lon    = pos.lng(),

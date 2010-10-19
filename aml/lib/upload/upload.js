@@ -296,7 +296,7 @@ Upload.ERROR_CODES = {
     };
 
     this.$propHandlers["target"] = function(value) {
-        var oUrl = new apf.url(value);
+        var oUrl = new url(value);
         this.target = oUrl.uri;
 
         // #ifdef __DEBUG
