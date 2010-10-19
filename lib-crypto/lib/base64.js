@@ -21,7 +21,7 @@
 
 define([], function(){
 
-apf.crypto.Base64 = (function() {
+var CryptoBase64 = (function() {
     
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     
@@ -205,5 +205,7 @@ apf.crypto.UTF8 = {
     }
 
 };
+
+return CryptoBase64;
 
 });

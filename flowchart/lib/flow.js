@@ -63,7 +63,7 @@ define([], function(){
  * @namespace apf
  */
 
-apf.flow = {
+var flow = {
     isMoved            : false,
     objCanvases        : {},
     connectionsTemp    : null,
@@ -73,7 +73,7 @@ apf.flow = {
     fsSize : 15,
 
     init : function() {
-        //apf.flow.connectionsManager = new apf.flow.connectionsManager;
+        //flow.connectionsManager = new flow.connectionsManager;
 
         document.body.onmousedown = function(e) {
             e = (e || event);
@@ -84,12 +84,12 @@ apf.flow = {
 
             if (target.tagName == 'HTML')
                 return;
-            while (target != document.body && !apf.flow.findBlock(target.id)) {
+            while (target != document.body && !flow.findBlock(target.id)) {
                 target = target.parentNode || target.parentElement;
             }
             /* Looking for Block element - End*/
 
-            var objBlock = apf.flow.isBlock(target);
+            var objBlock = flow.isBlock(target);
 
             if (!objBlock)
                 return;
@@ -133,7 +133,7 @@ apf.flow = {
                 
 
                 objBlock.onMove();
-                apf.flow.onblockmove();
+                flow.onblockmove();
 
                 return false;
             };
@@ -141,8 +141,8 @@ apf.flow = {
             document.body.onmouseup = function(e) {
                 document.body.onmousemove = null;
 
-                if (apf.flow.onaftermove && isDragged) {
-                    apf.flow.onaftermove(dy, dx);
+                if (flow.onaftermove && isDragged) {
+                    flow.onaftermove(dy, dx);
 
                     isDragged = false;
                 }
@@ -157,7 +157,7 @@ apf.flow = {
  * @param {HTMLElement}   htmlElement    the html representation of a workarea
  * @constructor
  */
-apf.flow.canvas = function(htmlElement) {
+flow.canvas = function(htmlElement) {
     if (!htmlElement.getAttribute("id")) {
         apf.setUniqueHtmlId(htmlElement);
     }
@@ -179,7 +179,7 @@ apf.flow.canvas = function(htmlElement) {
     this.gridH          = 48;
 
     this.initCanvas = function() {
-        apf.flow.objCanvases[this.htmlElement.getAttribute("id")] = this;
+        flow.objCanvases[this.htmlElement.getAttribute("id")] = this;
     };
 
     this.removeConnector = function(id) {
@@ -316,7 +316,7 @@ apf.flow.canvas = function(htmlElement) {
  *    {String}       caption      description placed under block element
  * @constructor
  */
-apf.flow.block = function(htmlElement, objCanvas, other) {
+flow.block = function(htmlElement, objCanvas, other) {
     this.canvas        = objCanvas;
     this.htmlElement   = htmlElement;
     this.id            = htmlElement.getAttribute("id");
@@ -408,7 +408,7 @@ apf.flow.block = function(htmlElement, objCanvas, other) {
         for (id in inp) {
             input = this.htmlOutputs[id]
                 ? this.htmlOutputs[id]
-                : new apf.flow.input(this, id);
+                : new flow.input(this, id);
 
             if (!this.htmlOutputs[id])
                 this.htmlOutputs[id] = input;
@@ -416,10 +416,10 @@ apf.flow.block = function(htmlElement, objCanvas, other) {
 
             _x = pos[0] - (pos[2] == "left" || pos[2] == "right"
                 ? Math.ceil(parseInt(apf.getStyle(input.htmlElement, "width"))/2)
-                : Math.ceil(apf.flow.sSize/2));
+                : Math.ceil(flow.sSize/2));
             _y = pos[1] - (pos[2] == "top" || pos[2] == "bottom"
                 ? Math.ceil(parseInt(apf.getStyle(input.htmlElement, "height"))/2)
-                : Math.ceil(apf.flow.sSize/2));
+                : Math.ceil(flow.sSize/2));
 
             input.lastUpdate = pos;
             input.moveTo(_x, _y);
@@ -716,8 +716,8 @@ apf.flow.block = function(htmlElement, objCanvas, other) {
             r         = o.rotation,
             positions = {0 : "top", 1 : "right", 2 : "bottom", 3 : "left",
                          "top" : 0, "right" : 1, "bottom" : 2, "left" : 3},
-            sSize     = apf.flow.sSize,
-            hSize     = Math.floor(apf.flow.sSize / 2);
+            sSize     = flow.sSize,
+            hSize     = Math.floor(flow.sSize / 2);
 
         /* Changing input floating */
         ior = (ior == "auto")
@@ -787,7 +787,7 @@ apf.flow.block = function(htmlElement, objCanvas, other) {
 
     this.htmlElement.onmouseup = function(e) {
         if (!_self.other.type && _self.canvas.mode == "connection-add")
-            apf.flow.connectionsManager.addBlock(_self, 0);
+            flow.connectionsManager.addBlock(_self, 0);
     };
 };
 
@@ -799,7 +799,7 @@ apf.flow.block = function(htmlElement, objCanvas, other) {
  * @param {Number}   number     unique input number for block element
  * @constructor
  */
-apf.flow.input = function(objBlock, number) {
+flow.input = function(objBlock, number) {
     this.objBlock    = objBlock;
     this.htmlElement = objBlock.htmlElement.appendChild(document.createElement("div"));
     this.number      = number;
@@ -839,7 +839,7 @@ apf.flow.input = function(objBlock, number) {
     this.htmlElement.onmousedown = function(e) {
         e              = (e || event);
         e.cancelBubble = true;
-        apf.flow.isMoved = true;
+        flow.isMoved = true;
 
         var canvas     = _self.objBlock.canvas,
             pn         = _self.htmlElement.parentNode,
@@ -848,9 +848,9 @@ apf.flow.input = function(objBlock, number) {
         if (e.preventDefault)
             e.preventDefault();
 
-        vMB = new apf.flow.virtualMouseBlock(canvas, e);
+        vMB = new flow.virtualMouseBlock(canvas, e);
 
-        var con = apf.flow.findConnector(_self.objBlock, _self.number);
+        var con = flow.findConnector(_self.objBlock, _self.number);
         if (con) {
             var source = con.source
                     ? con.connector.objDestination
@@ -869,19 +869,19 @@ apf.flow.input = function(objBlock, number) {
                 destination.other.inputList[destinationInput])[2];
 
             _self.objBlock.onremoveconnection([con.connector.other.xmlNode]);
-            apf.flow.removeConnector(con.connector.htmlElement);
+            flow.removeConnector(con.connector.htmlElement);
 
-            connection = new apf.flow.addConnector(canvas , source, vMB, {
+            connection = new flow.addConnector(canvas , source, vMB, {
                 output : sourceInput, input : 1
             });
-            apf.flow.connectionsManager.addBlock(source, sourceInput);
+            flow.connectionsManager.addBlock(source, sourceInput);
             canvas.setMode("connection-change");
         }
         else {
-            connection = new apf.flow.addConnector(canvas, _self.objBlock, vMB, {
+            connection = new flow.addConnector(canvas, _self.objBlock, vMB, {
                 output : _self.number
             });
-            apf.flow.connectionsManager.addBlock(_self.objBlock, _self.number);
+            flow.connectionsManager.addBlock(_self.objBlock, _self.number);
             canvas.setMode("connection-add");
         }
         connection.newConnector.virtualSegment = true;
@@ -897,16 +897,16 @@ apf.flow.input = function(objBlock, number) {
             e = (e || event);
             var t = e.target || e.srcElement;
             document.body.onmousemove = null;
-            apf.flow.isMoved = false;
+            flow.isMoved = false;
 
             if (t && canvas.mode == "connection-change") {
                 if ((t.className || "").indexOf("input") == -1)
-                    apf.flow.connectionsManager.addBlock(destination, destinationInput);
+                    flow.connectionsManager.addBlock(destination, destinationInput);
             }
-            apf.flow.connectionsManager.clear();
+            flow.connectionsManager.clear();
 
             if (connection)
-                apf.flow.removeConnector(connection.newConnector.htmlElement);
+                flow.removeConnector(connection.newConnector.htmlElement);
             if (vMB) {
                 vMB.onMove(e);
                 vMB.destroy();
@@ -917,7 +917,7 @@ apf.flow.input = function(objBlock, number) {
     };
 
     this.htmlElement.onmouseup = function(e) {
-        apf.flow.connectionsManager.addBlock(_self.objBlock, _self.number);
+        flow.connectionsManager.addBlock(_self.objBlock, _self.number);
     };
 
     this.htmlElement.onmouseover = function(e) {
@@ -938,13 +938,13 @@ apf.flow.input = function(objBlock, number) {
  * connection will be created.
  * @constructor
  */
-apf.flow.connectionsManager = new (function() {
+flow.connectionsManager = new (function() {
     this.addBlock = function(objBlock, inputNumber) {
         if (objBlock && (inputNumber || inputNumber == 0)) {
-            var s = apf.flow.connectionsTemp;
+            var s = flow.connectionsTemp;
 
             if (!s) {
-                apf.flow.connectionsTemp = {
+                flow.connectionsTemp = {
                     objBlock    : objBlock,
                     inputNumber : inputNumber
                 };
@@ -961,7 +961,7 @@ apf.flow.connectionsManager = new (function() {
     };
 
     this.clear = function() {
-        apf.flow.connectionsTemp = null;
+        flow.connectionsTemp = null;
     };
 })();
 
@@ -972,7 +972,7 @@ apf.flow.connectionsManager = new (function() {
  * @param {Object}   canvas   object representation of canvas element
  * @constructor
  */
-apf.flow.virtualMouseBlock = function(canvas) {
+flow.virtualMouseBlock = function(canvas) {
     var hook = [0, 0, "virtual"];
     this.canvas      = canvas;
     this.htmlElement = document.createElement('div');
@@ -1032,7 +1032,7 @@ apf.flow.virtualMouseBlock = function(canvas) {
  *     {XMLElement} xmlNode   xml representation of connection element
  * @constructor
  */
-apf.flow.connector = function(htmlElement, objCanvas, objSource, objDestination, other) {
+flow.connector = function(htmlElement, objCanvas, objSource, objDestination, other) {
     /**
      * Connection segments
      */
@@ -1074,8 +1074,8 @@ apf.flow.connector = function(htmlElement, objCanvas, objSource, objDestination,
     this.htmlElement     = htmlElement;
     this.virtualSegment  = null;
 
-    var sSize            = apf.flow.sSize, //Segment size
-        fsSize           = apf.flow.fsSize, //First segment size
+    var sSize            = flow.sSize, //Segment size
+        fsSize           = flow.fsSize, //First segment size
         hSize            = Math.floor(sSize / 2),
 
         sourceHtml       = this.objSource.htmlElement,
@@ -1465,15 +1465,15 @@ apf.flow.connector = function(htmlElement, objCanvas, objSource, objDestination,
             htmlSegmentsTemp[i][0].style.display = "none";
 
         if (this.other.label)
-           this.htmlLabel = apf.flow.label(this);
+           this.htmlLabel = flow.label(this);
 
         if (this.other.type) {
             var _type = this.other.type.split("-");
 
             if (_type[0] !== "none")
-                this.htmlStart = apf.flow.connectorsEnds(this, "start", _type[0]);
+                this.htmlStart = flow.connectorsEnds(this, "start", _type[0]);
             if (_type[1] !== "none")
-                this.htmlEnd = apf.flow.connectorsEnds(this, "end", _type[1]);
+                this.htmlEnd = flow.connectorsEnds(this, "end", _type[1]);
         }
     };
 
@@ -1499,7 +1499,7 @@ apf.flow.connector = function(htmlElement, objCanvas, objSource, objDestination,
             var canvas = this.objSource.canvas;
             /* Segment events */
             segment.onmouseover = function(e) {
-                if (!apf.flow.isMoved && ((canvas.mode == "connection-change"
+                if (!flow.isMoved && ((canvas.mode == "connection-change"
                   && _self.selected) || canvas.mode == "connection-add")) {
                     _self.select("hover");
                 }
@@ -1634,7 +1634,7 @@ apf.flow.connector = function(htmlElement, objCanvas, objSource, objDestination,
     };
 };
 
-apf.flow.connectorsEnds = function(connector, place, type) {
+flow.connectorsEnds = function(connector, place, type) {
     var conEnd  = (place == "start") ? connector.htmlStart : connector.htmlEnd,
         segment = connector.htmlSegments[place == "start" ? 0 : 1],
 
@@ -1655,7 +1655,7 @@ apf.flow.connectorsEnds = function(connector, place, type) {
     return htmlElement;
 };
 
-apf.flow.label = function(connector, number) {
+flow.label = function(connector, number) {
     number = number || Math.ceil(connector.htmlSegments.length / 2);
     var htmlElement,
         segment = connector.htmlSegments[number],
@@ -1694,8 +1694,8 @@ apf.flow.label = function(connector, number) {
  * @param {String}   blockId   html representation of block element id
  * @return {Object}   object representation of block element
  */
-apf.flow.findBlock = function(blockId) {
-    var c = apf.flow.objCanvases;
+flow.findBlock = function(blockId) {
+    var c = flow.objCanvases;
 
     for (var id in c) {
         if (c[id].htmlBlocks[blockId]) {
@@ -1710,12 +1710,12 @@ apf.flow.findBlock = function(blockId) {
  * @param {HTMLElement}   htmlNode   html representation of block element
  * @return {Object}   object representation of block element
  */
-apf.flow.isBlock = function(htmlNode) {
+flow.isBlock = function(htmlNode) {
     if(!htmlNode)
         return;
     
     var id, block,
-        c = apf.flow.objCanvases;
+        c = flow.objCanvases;
 
     for (id in c) {
         block = c[id].htmlBlocks[htmlNode.getAttribute("id")];
@@ -1730,9 +1730,9 @@ apf.flow.isBlock = function(htmlNode) {
  * @param {HTMLElement}   htmlNode   html representation of canvas element
  * @return {Object}   object representation of canvas element
  */
-apf.flow.isCanvas = function(htmlNode) {
+flow.isCanvas = function(htmlNode) {
     if (htmlNode)
-        return apf.flow.objCanvases[htmlNode.id];
+        return flow.objCanvases[htmlNode.id];
 };
 
 /**
@@ -1753,9 +1753,9 @@ apf.flow.isCanvas = function(htmlNode) {
  *         true    when objBlock is a source block
  *         false   when objBlock isn't a source block
  */
-apf.flow.findConnector = function(objBlock, iNumber, objBlock2, iNumber2) {
+flow.findConnector = function(objBlock, iNumber, objBlock2, iNumber2) {
     var id, id2, cobjS, cobjD, co, ci, connectors,
-        c = apf.flow.objCanvases;
+        c = flow.objCanvases;
 
     for (id in c) {
         connectors = c[id].htmlConnectors;
@@ -1793,8 +1793,8 @@ apf.flow.findConnector = function(objBlock, iNumber, objBlock2, iNumber2) {
  * @param {HTMLElement}   htmlNode   html representation of connector element
  * @return {Object}   object representation of connector element
  */
-apf.flow.isConnector = function(htmlNode) {
-    var c = apf.flow.objCanvases;
+flow.isConnector = function(htmlNode) {
+    var c = flow.objCanvases;
     for (var id in c) {
         if (c[id].htmlConnectors[htmlNode.id])
             return c[id].htmlConnectors[htmlNode.id];
@@ -1807,11 +1807,11 @@ apf.flow.isConnector = function(htmlNode) {
  * @param {HTMLElement}   htmlNode   html representation of canvas element
  * @return {Object}    newCanvas     object representation of canvas element
  */
-apf.flow.getCanvas = function(htmlNode) {
-    var newCanvas = apf.flow.isCanvas(htmlNode);
+flow.getCanvas = function(htmlNode) {
+    var newCanvas = flow.isCanvas(htmlNode);
 
     if (!newCanvas) {
-        newCanvas = new apf.flow.canvas(htmlNode);
+        newCanvas = new flow.canvas(htmlNode);
         newCanvas.initCanvas();
     }
     return newCanvas;
@@ -1823,8 +1823,8 @@ apf.flow.getCanvas = function(htmlNode) {
  * @param {HTMLElement}   htmlNode   html representation of canvas element
  *
  */
-apf.flow.removeCanvas = function(htmlNode) {
-    var canvas = apf.flow.isCanvas(htmlNode);
+flow.removeCanvas = function(htmlNode) {
+    var canvas = flow.isCanvas(htmlNode);
     canvas.destroy();
 };
 
@@ -1882,12 +1882,12 @@ apf.flow.removeCanvas = function(htmlNode) {
  *    {String}       caption      description placed under block element
  * @return {Object}   object representation of block element
  */
-apf.flow.addBlock = function(htmlElement, objCanvas, other) {
-    if (htmlElement && !apf.flow.isBlock(htmlElement)) {
+flow.addBlock = function(htmlElement, objCanvas, other) {
+    if (htmlElement && !flow.isBlock(htmlElement)) {
         if (!htmlElement.getAttribute("id")) {
             apf.setUniqueHtmlId(htmlElement);
         }
-        var newBlock = new apf.flow.block(htmlElement, objCanvas, other);
+        var newBlock = new flow.block(htmlElement, objCanvas, other);
         newBlock.initBlock();
         return newBlock;
     }
@@ -1899,8 +1899,8 @@ apf.flow.addBlock = function(htmlElement, objCanvas, other) {
  * @param {HTMLElement}   htmlElement   html representation of block element
  *
  */
-apf.flow.removeBlock = function(htmlElement) {
-    var block = apf.flow.isBlock(htmlElement);
+flow.removeBlock = function(htmlElement) {
+    var block = flow.isBlock(htmlElement);
     block.destroy();
 };
 
@@ -1916,10 +1916,10 @@ apf.flow.removeBlock = function(htmlElement) {
  *     {Number}     input     destination block input number
  *     {XMLElement} xmlNode   xml representation of connection element
  */
-apf.flow.addConnector = function(c, s, d, o) {
+flow.addConnector = function(c, s, d, o) {
     var htmlElement = c.htmlElement.appendChild(document.createElement("div"));
 
-    this.newConnector = new apf.flow.connector(htmlElement, c, s, d, o);
+    this.newConnector = new flow.connector(htmlElement, c, s, d, o);
     this.newConnector.initConnector();
 };
 
@@ -1928,11 +1928,14 @@ apf.flow.addConnector = function(c, s, d, o) {
  *
  * @param {HTMLElement}   htmlElement   html representation of connector element
  */
-apf.flow.removeConnector = function(htmlElement) {
-    var connector = apf.flow.isConnector(htmlElement);
+flow.removeConnector = function(htmlElement) {
+    var connector = flow.isConnector(htmlElement);
     if (connector) {
         connector.destroy();
     }
     delete connector;
 };
+
+return flow
+
 });

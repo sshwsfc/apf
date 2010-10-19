@@ -21,8 +21,8 @@ define([], function(){
  *
  * @param {apf.crypto.BigInt} m
  */
-apf.crypto.Barrett = function(){this.init.apply(this, arguments);};
-apf.crypto.Barrett.prototype = {
+var CryptoBarrett = function(){this.init.apply(this, arguments);};
+CryptoBarrett.prototype = {
     init: function(m) {
         this.modulus = apf.crypto.BigInt.copy(m);
         this.k = apf.crypto.BigInt.highIndex(this.modulus) + 1;
@@ -72,5 +72,7 @@ apf.crypto.Barrett.prototype = {
         return result;
     }
 };
+
+return CryptoBarrett;
 
 });

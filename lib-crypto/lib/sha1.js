@@ -21,8 +21,6 @@
 
 define([], function(){
 
-(function(global) {
-
 function rotate_left(n,s) {
     var t4 = ( n<<s ) | (n>>>(32-s));
     return t4;
@@ -56,7 +54,7 @@ function cvt_hex(val) {
     return str;
 };
 
-global.SHA1 = function(str) {
+var CryptoSHA1 = function(str) {
     // Calculate the sha1 hash of a string
     //
     // version: 905.3122
@@ -174,6 +172,6 @@ global.SHA1 = function(str) {
     return temp.toLowerCase();
 };
 
-})(apf.crypto);
+var CryptoSHA1;
 
 });

@@ -225,7 +225,7 @@ oop.decorate(Flowchart, Rename);
         if (!htmlNode)
             return;
 
-        var objBlock = apf.flow.isBlock(htmlNode);
+        var objBlock = flow.isBlock(htmlNode);
 
         if (objBlock) {
             /*if (this.$flowVars.resizeManager) {
@@ -655,10 +655,10 @@ oop.decorate(Flowchart, Rename);
         
         
 
-        this.objCanvas = new apf.flow.getCanvas(this.$container);
-        apf.flow.init();
+        this.objCanvas = new flow.getCanvas(this.$container);
+        flow.init();
         
-        //apf.flow.onconnectionrename = function(e) {
+        //flow.onconnectionrename = function(e) {
         //   _self.$beforeRename(e);
         //}
         
@@ -743,11 +743,11 @@ oop.decorate(Flowchart, Rename);
 
                 if (!found) {
                     if (fv.objBlocks[blockId] && fv.objBlocks[cCurrent[i].ref]) {
-                        var ConToDel = apf.flow.findConnector(
+                        var ConToDel = flow.findConnector(
                             fv.objBlocks[blockId], cCurrent[i].output,
                             fv.objBlocks[cCurrent[i].ref], cCurrent[i].input);
                         if (ConToDel)
-                            apf.flow.removeConnector(ConToDel.connector.htmlElement);
+                            flow.removeConnector(ConToDel.connector.htmlElement);
                         fv.xmlConnections[blockId].removeIndex(i);
                     }
                 }
@@ -787,7 +787,7 @@ oop.decorate(Flowchart, Rename);
                         xmlNode : cNew[i]
                     });
 
-                    new apf.flow.addConnector(this.objCanvas,
+                    new flow.addConnector(this.objCanvas,
                         fv.objBlocks[blockId], fv.objBlocks[ref], {
                             output : output,
                             input  : input,
@@ -985,7 +985,7 @@ oop.decorate(Flowchart, Rename);
                 htmlElement = apf.xmldb.findHtmlNode(xmlBlock, this),
                 objBlock;
                 
-                if (!apf.flow.isBlock(htmlElement)) {
+                if (!flow.isBlock(htmlElement)) {
                     fv.blocks[id].blockNodes = {
                         elImageContainer : this.$getLayoutNode("item", "imagecontainer", htmlElement),
                         elImage          : this.$getLayoutNode("item", "image", htmlElement),
@@ -1014,7 +1014,7 @@ oop.decorate(Flowchart, Rename);
                 type        = this.$flowVars.xmlBlocks[id].getAttribute("type") || null,
                 inputList   = {};
 
-            var objBlock = apf.flow.isBlock(htmlElement);
+            var objBlock = flow.isBlock(htmlElement);
             var _self    = this;
 
             if (objBlock) {
@@ -1023,7 +1023,7 @@ oop.decorate(Flowchart, Rename);
                 objBlock.initBlock();
             }
             else {
-                objBlock = apf.flow.addBlock(htmlElement, this.objCanvas, other);
+                objBlock = flow.addBlock(htmlElement, this.objCanvas, other);
 
                 if (objBlock) {
                     objBlock.oncreateconnection = function(sXmlNode, sInput, dXmlNode, dInput) {
@@ -1041,14 +1041,14 @@ oop.decorate(Flowchart, Rename);
             var c = fv.xmlConnections[id] || [];
 
             for (i = 0, l = c.length; i < l; i++) {
-                var con = apf.flow.findConnector(fv.objBlocks[id], c[i].output,
+                var con = flow.findConnector(fv.objBlocks[id], c[i].output,
                                                  fv.objBlocks[c[i].ref], c[i].input);
                 if (!con) {
                     if (fv.objBlocks[id] && fv.objBlocks[c[i].ref]) {
                         //it's called because connection labels must be aligned
                         fv.objBlocks[id].onMove();
                         
-                        new apf.flow.addConnector(this.objCanvas, fv.objBlocks[id],
+                        new flow.addConnector(this.objCanvas, fv.objBlocks[id],
                                                   fv.objBlocks[c[i].ref], {
                             output  : c[i].output,
                             input   : c[i].input,
@@ -1086,7 +1086,7 @@ oop.decorate(Flowchart, Rename);
         // Try to draw rest of connections
         for (i = fv.connToPaint.length - 1; i >= 0 ; i--) {
             if (fv.objBlocks[fv.connToPaint[i].id] && fv.objBlocks[fv.connToPaint[i].id2]) {
-                new apf.flow.addConnector(this.objCanvas,
+                new flow.addConnector(this.objCanvas,
                                           fv.objBlocks[fv.connToPaint[i].id],
                                           fv.objBlocks[fv.connToPaint[i].id2], {
                     output  : fv.connToPaint[i].output,
@@ -1142,18 +1142,18 @@ oop.decorate(Flowchart, Rename);
         fv.resizeManager.onresize = function(htmlElement, t, l, w, h) {
             if (!htmlElement)
                 return;
-            var objBlock = apf.flow.isBlock(htmlElement);
+            var objBlock = flow.isBlock(htmlElement);
             objBlock.moveTo(t, l);
             objBlock.resize(w, h);
             objBlock.updateOutputs();
             objBlock.onMove();
         };
 
-        apf.flow.onaftermove = function(dt, dl) {
+        flow.onaftermove = function(dt, dl) {
             _self.moveTo(_self.selected, dl, dt);
         };
 
-        apf.flow.onblockmove = function() {
+        flow.onblockmove = function() {
             fv.resizeManager.show();
         };*/
     };

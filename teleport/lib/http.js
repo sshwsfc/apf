@@ -382,7 +382,7 @@ var Http = function(){
 
             if (options.username) {
                 setRequestHeader("Authorization", "Basic " 
-                    + apf.crypto.Base64.encode(options.username + ":" + options.password))
+                    + CryptoBase64.encode(options.username + ":" + options.password))
             }
 
             //@todo OPERA ERROR's here... on retry [is this still applicable?]

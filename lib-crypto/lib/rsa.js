@@ -32,7 +32,7 @@ var CryptoRSA = (function() {
         this.chunkSize = this.digitSize - 11; // maximum, anything lower is fine
         ////////////////////////////////// TYF
         this.radix = 16;
-        this.barrett = new apf.crypto.Barrett(this.m);
+        this.barrett = new CryptoBarrett(this.m);
     }
     
     function twoDigit(n) {

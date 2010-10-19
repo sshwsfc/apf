@@ -498,7 +498,7 @@ oop.inherit(Xmpp, Teleport);
         var sOut = aOut.join("").replace(/,$/, "");
 
         return "<response xmlns='" + constants.NS.sasl + "'>"
-            + apf.crypto.Base64.encode(sOut) + "</response>";
+            + CryptoBase64.encode(sOut) + "</response>";
     }
 
     /*
@@ -1161,7 +1161,7 @@ oop.inherit(Xmpp, Teleport);
             var sType = this.$serverVars["AUTH_TYPE"],
                 sAuth = "<auth xmlns='" + constants.NS.sasl + "' mechanism='"
                     + sType + (sType == "PLAIN" || sType == "ANONYMOUS"
-                        ? "'>" + apf.crypto.Base64.encode(sType == "ANONYMOUS"
+                        ? "'>" + CryptoBase64.encode(sType == "ANONYMOUS"
                             ? this.resource
                             : this.$serverVars["username"] + "@" + this.host
                                 + String.fromCharCode(0) + this.$serverVars["username"]
@@ -1216,7 +1216,7 @@ oop.inherit(Xmpp, Teleport);
         if (oChallenge.length && (oChallenge = oChallenge[0])) {
             var i, l, aChunk,
                 b64_challenge = oChallenge.firstChild.nodeValue,
-                aParts        = apf.crypto.Base64.decode(b64_challenge).split(",");
+                aParts        = CryptoBase64.decode(b64_challenge).split(",");
 
             for (i = 0, l = aParts.length; i < l; i++) {
                 aChunk = aParts[i].split("=");
