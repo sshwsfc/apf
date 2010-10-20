@@ -1,10 +1,7 @@
-require.modify(
-    "aml-core", 
-    "aml-core/ie", 
-    ["aml-core", 
+define(["aml-core", 
     "ecmaext/string", 
     "envdetect", 
-    "optional!debug/console"]
+    "optional!debug/console"],
     function(amlCore, env, console){
         
 //IE fix

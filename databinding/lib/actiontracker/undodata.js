@@ -1,3 +1,4 @@
+define([], function(){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -29,7 +30,7 @@
  * @constructor
  * @default_private
  */
-apf.UndoData = function(settings, at){
+var UndoData = function(settings, at){
     this.localName = "UndoData";
     this.extra     = {};
     //#ifdef __WITH_RDB
@@ -364,3 +365,4 @@ apf.UndoData = function(){
     this.extra   = {};
 }
 #endif */
+})

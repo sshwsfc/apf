@@ -1,3 +1,4 @@
+define([], function(){
 (function(){
     var deps = [];
     
@@ -15,3 +16,4 @@
         };
     })
 })();
+})

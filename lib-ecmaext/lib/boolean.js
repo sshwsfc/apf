@@ -1,6 +1,3 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/boolean",
-    function(){
+define(function(){
 
 });

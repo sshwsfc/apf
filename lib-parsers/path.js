@@ -1,5 +1,6 @@
 
-    /**
+    define([], function(){
+/**
      * Returns the directory portion of a url
      * @param {String} url the url to retrieve from.
      * @return {String} the directory portion of a url.
@@ -29,3 +30,4 @@
             ? url
             : (!url || !base || url.match(/^\w+\:\/\//) ? url : base.replace(/\/$/, "") + "/" + url.replace(/^\//, ""));
     },
+})

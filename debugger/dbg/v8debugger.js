@@ -1,5 +1,4 @@
-if (apf.hasRequireJS) define("apf/elements/dbg/v8debugger",
-    ["debug/Breakpoint"],
+define(["debug/Breakpoint"],
     function(Breakpoint) {
 
 var V8Debugger = function(dbg, host) {

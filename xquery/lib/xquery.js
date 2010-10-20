@@ -1,3 +1,4 @@
+define([], function(){
 apf.n = function(xml, xpath){
     return new apf.xmlset(xml, xpath, true);
 }
@@ -425,3 +426,4 @@ apf.xmlset = function(xml, xpath, local, previous){
         return new apf.xmlset(this.$xml, "(" + this.$xpath + ")[last()]", this.$local, this);
     }
 }).call(apf.xmlset.prototype);
+})

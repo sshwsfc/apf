@@ -1,3 +1,4 @@
+define([], function(){
 /**
  * baseclasses
  * alle classes die geen elements zijn
@@ -895,3 +896,5 @@ function childParse(pNode, parent, type, container) {
         }
     }
 }
+
+})

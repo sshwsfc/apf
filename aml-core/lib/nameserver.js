@@ -19,7 +19,7 @@
  *
  */
 
-define(["ecmaext"]
+define(["ecmaext"],
     function(ecma){
 
 return {

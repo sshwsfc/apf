@@ -1,3 +1,4 @@
+define([], function(){
 var o3_mouseTranslate = (apf.isIE) 
     ? [3,4] 
     : (apf.isGecko || apf.isChrome)
@@ -28,7 +29,7 @@ var $o3 = o3.create("8A66ECAC-63FD-4AFA-9D42-3034D18C88F4", {
     product : 'O3Demo'
 });
 
-apf.$debugwin.apf.uirecorder.$o3 = $o3;
+var $debugwinapfuirecorder$o3 = $o3;
 
 // WinXp save folder: C:\Documents and Settings\Admin\Local Settings\Temp\Low\o3_v0_9\localhost
 if ($o3) {
@@ -359,3 +360,5 @@ function removeMacroFromPlaylist() {
 
 //var recordings = Storage.get("recordings", location.href.split("#")[0]);
 //mdlMacro.load(recordings || "<recordings />");
+
+})

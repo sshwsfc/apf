@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/date",
-    function(){
+define(function(){
 
 var libDate = {
     masks : {

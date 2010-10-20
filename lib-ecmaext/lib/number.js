@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/number",
-    function(){
+define(function(){
 
 if (typeof isFinite == "undefined") {
     function isFinite(val){

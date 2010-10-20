@@ -1,7 +1,4 @@
-require.modify(
-    "w3cdom/node",
-    "w3cdom/domevents",
-    ["w3cdom/node"], 
+define(["w3cdom/node"], 
     function(DOMNode){
 
 //@todo implement spec correctly, refactor elements to not abuse capturing phase

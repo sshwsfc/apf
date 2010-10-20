@@ -1,7 +1,4 @@
-require.modify(
-    "lib-xml",
-    "lib-xml/xpath",
-    function(){
+define(function(){
 
 //XMLDocument.selectNodes
 HTMLDocument.prototype.selectNodes = XMLDocument.prototype.selectNodes = function(sExpr, contextNode){

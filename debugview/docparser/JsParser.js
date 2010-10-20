@@ -1,3 +1,4 @@
+define([], function(){
 JsParser = new (function(){
     var tok_lut = {
             '"': 4, '\'': 4, '[': 2, ']': 3, '{': 2, '}': 3, '(': 2, ')': 3,
@@ -194,3 +195,5 @@ JsParser = new (function(){
         
     }    
 })();
+
+})

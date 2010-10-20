@@ -1,3 +1,4 @@
+define([], function(){
 apf.drawctx = function(){
 };
 
@@ -468,3 +469,5 @@ function draw(){
 	// ellipse 
  	// path
 }
+
+})

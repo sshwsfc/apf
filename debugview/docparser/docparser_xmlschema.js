@@ -1,3 +1,4 @@
+define([], function(){
 /**
  * @author Admin
  */
@@ -1186,3 +1187,5 @@ function genDesc(desc, dataType) {
         
     return description.join("\n");
 }
+
+})

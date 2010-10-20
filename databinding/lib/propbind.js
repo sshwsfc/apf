@@ -1,5 +1,6 @@
 
-    Class.prototype.$_setDynamicProperty = function(prop, pValue, fParsed, exclNr){
+    define([], function(){
+Class.prototype.$_setDynamicProperty = function(prop, pValue, fParsed, exclNr){
         //if there's xpath: Add apf.DataBinding if not inherited. 
         //Add compiled binding rule. Load databinding if not loaded. 
         var check = 1;
@@ -36,3 +37,4 @@
         
         setProp.apply(this, arguments);
     }
+})

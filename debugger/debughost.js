@@ -1,5 +1,4 @@
-if (apf.hasRequireJS) define("apf/elements/debughost",
-    ["apf/elements/dbg/chromedebughost",
+define(["apf/elements/dbg/chromedebughost",
      "apf/elements/dbg/v8debughost", 
      "apf/elements/dbg/v8websocketdebughost"],
     function(ChromeDebugHost, V8DebugHost, V8WebSocketDebugHost) {

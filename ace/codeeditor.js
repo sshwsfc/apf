@@ -35,15 +35,15 @@
  * @version     %I%, %G%
  * @since       0.1
  */
+  
+define("apf/elements/codeeditor",
+    ["ace/Editor", "ace/VirtualRenderer", "ace/Document", "ace/UndoManager", "ace/Range"],
+     function(Editor, VirtualRenderer, Document, UndoManager, Range) {
 
-if (!apf.hasRequireJS)
-    apf.aml.setElement("codeeditor", apf.textbox);
-else
-    define("apf/elements/codeeditor",
-        ["ace/Editor", "ace/VirtualRenderer", "ace/Document", "ace/UndoManager", "ace/Range"],
-        function(Editor, VirtualRenderer, Document, UndoManager, Range) {
+define(["aml-core/basebutton", "optional!aml", "lib-oop"], 
+    function(BaseButton, aml, oop){
 
-apf.codeeditor = function(struct, tagName) {
+var CodeEditor = function(struct, tagName) {
     this.$init(tagName || "codeeditor", this.NODE_VISIBLE, struct);
 
     this.documents = [];

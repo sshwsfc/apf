@@ -1,3 +1,4 @@
+define([], function(){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -33,7 +34,7 @@
  * @version     %I%, %G%
  * @since       0.4
  */
-apf.collection = function(struct, tagName){
+var Collection = function(struct, tagName){
     this.$init(tagName || "collection", this.NODE_HIDDEN, struct);
 };
 
@@ -58,3 +59,4 @@ apf.collection = function(struct, tagName){
 }).call(apf.collection.prototype = new apf.DOMElement());
 
 apf.aml.setElement("collection", apf.collection);
+})

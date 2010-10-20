@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/random",
-    function(){
+define(function(){
 
 /**
  * Appends a random number with a specified length to this String instance.

@@ -1,9 +1,10 @@
+define([], function(){
 // #ifdef __WITH_CONVERTIFRAME
 /**
  * @private
  */
 //@todo this is all broken. needs to be fixed before apf3.0
-apf.convertIframe = function(iframe, preventSelect){
+var ConvertIframe = function(iframe, preventSelect){
     var win = iframe.contentWindow;
     var doc = win.document;
     var pos;
@@ -145,3 +146,4 @@ apf.convertIframe = function(iframe, preventSelect){
     
     return doc;
 };
+})

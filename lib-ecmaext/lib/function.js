@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/function",
-    function(){
+define(function(){
 
 /**
  * Extends a Function object with properties from other objects, specified as

@@ -1,3 +1,4 @@
+define([], function(){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -43,7 +44,7 @@
  *
  * @inherits apf.Presentation
  */
-apf.panel    = function(struct, tagName){
+var Panel    = function(struct, tagName){
     this.$init(tagName || "panel", this.NODE_VISIBLE, struct);
 };
 
@@ -139,3 +140,4 @@ apf.panel    = function(struct, tagName){
 }).call(apf.panel.prototype = new apf.Presentation());
 
 apf.aml.setElement("panel", apf.panel);
+})

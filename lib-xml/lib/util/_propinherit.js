@@ -1,3 +1,4 @@
+define([], function(){
 /**
  * Retrieves the attribute of an xml node or the first parent node that has
  * that attribute set. If no attribute is set the value is looked for on
@@ -8,7 +9,7 @@
  * @param {Function}   [func] callback that is run for every node that is searched.
  * @return {String} the found value, or empty string if none was found.
  */
-apf.getInheritedAttribute = function(xml, attr, func){
+var GetInheritedAttribute = function(xml, attr, func){
     var result, avalue;
 
     //@todo optimize this and below
@@ -27,3 +28,4 @@ apf.getInheritedAttribute = function(xml, attr, func){
         ? apf.config[attr]
         : result;
 };
+})

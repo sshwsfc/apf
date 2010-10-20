@@ -19,10 +19,7 @@
  *
  */
 
-require.modify(
-    "lib-css", 
-    "lib-css/ie", 
-    ["lib-css", "envdetect", "envdetect/features"]
+define(["lib-css", "envdetect", "envdetect/features"],
     function(css, env, features){
 
 /**

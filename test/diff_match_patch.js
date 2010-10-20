@@ -1,3 +1,4 @@
+define([], function(){
 function diff_rebuildtexts(diffs) {
     // Construct the two texts which made up the diff originally.
     var text1 = '',
@@ -754,3 +755,5 @@ test("patch_apply()", function() {
     results = dmp.patch_apply(patches, 'x');
     equals(QUnit.equiv(['x123', [true]], results), true);
 });
+
+})

@@ -19,7 +19,7 @@ require(["envdetect"],
             deps.push("aml-core/env/opera");
     }
 
-    require.def("aml-core", deps, 
+    define("aml-core", deps, 
         function(Class, DOMNode, DOMDocument, console){
 
 var amlCore = {

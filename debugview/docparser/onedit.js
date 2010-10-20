@@ -1,3 +1,4 @@
+define([], function(){
 /**
  * Helper class that aids in creating and controlling Javeline OnEdit instances
  *
@@ -291,3 +292,5 @@ global.onedit = {
 
 })(this);
 // #endif
+
+})

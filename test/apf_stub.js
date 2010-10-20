@@ -1,3 +1,4 @@
+define([], function(){
 var apf = {
     supportVML : document.all?true:false,
     supportSVG : document.all?false:true,
@@ -205,3 +206,5 @@ apf.console.warn = apf.logw;
         };
     }
 }
+
+})

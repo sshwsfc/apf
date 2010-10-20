@@ -50,10 +50,7 @@
  * of it's property.
  */
 
-require.modify(
-    "lib-oop/class",
-    "lib-oop/propbinds",
-    [
+define([
         "lib-oop/class", 
         "livemarkup", 
         "optional!livemarkup/language",

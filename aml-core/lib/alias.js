@@ -1,4 +1,7 @@
+define([], function(){
 GuiElement.propHandlers = {
+})
+
 
     //#ifdef __WITH_ALIAS
     /**

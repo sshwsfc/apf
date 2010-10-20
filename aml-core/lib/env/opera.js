@@ -1,7 +1,4 @@
-require.modify(
-    "aml-core", 
-    "aml-core/w3c", 
-    ["aml-core", "ecmaext/string"]
+define(["aml-core", "ecmaext/string"],
     function(amlCore){
 
 var serializer = new XMLSerializer();

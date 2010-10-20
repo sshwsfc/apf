@@ -1,3 +1,4 @@
+define([], function(){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -63,7 +64,7 @@
  *  <a:progressbar value="[mdlProgress::@progress]" />
  * </code>
  */
-apf.progressbar = function(struct, tagName){
+var Progressbar = function(struct, tagName){
     this.$init(tagName || "progressbar", this.NODE_VISIBLE, struct);
 };
 
@@ -260,3 +261,4 @@ apf.progressbar = function(struct, tagName){
 #endif */
 
 apf.aml.setElement("progressbar", apf.progressbar);
+})

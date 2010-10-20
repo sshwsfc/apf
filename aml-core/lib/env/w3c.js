@@ -1,7 +1,4 @@
-require.modify(
-    "aml-core", 
-    "aml-core/w3c", 
-    ["envdetect"]
+define(["envdetect"],
     function(env){
         
 if (document.body)

@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/regexp",
-    function(){
+define(function(){
 
 RegExp.prototype.getNativeFlags = function() {
     return (this.global     ? "g" : "") +

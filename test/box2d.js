@@ -1,3 +1,4 @@
+define([], function(){
 var box2d = new (function(){
     function classCreate() {
         var parent = null;/*, properties = $A(arguments);
@@ -11890,3 +11891,5 @@ objectExtend(b2RevoluteJointDef.prototype,
 
 
 })();
+
+})

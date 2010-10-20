@@ -19,10 +19,7 @@
  *
  */
 
-require.modify(
-    "lib-css",
-    "lib-css/webkit",
-    ["lib-css", "lib-css/non_ie"]
+define(["lib-css", "lib-css/non_ie"],
     function(css){
 
 css.getHtmlLeft = function(oHtml){

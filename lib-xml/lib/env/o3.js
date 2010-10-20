@@ -1,4 +1,4 @@
-define(["node-xml-dom"]
+define(["node-xml-dom"],
     function(DOMParser){
         
 XMLDocument = DOMParser.parseFromString("<root />", "text/xml");

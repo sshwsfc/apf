@@ -1,5 +1,4 @@
-if (apf.hasRequireJS) define("apf/elements/dbg/v8debughost",
-    ["debug/StandaloneV8DebuggerService",
+define(["debug/StandaloneV8DebuggerService",
      "debug/V8Debugger",
      "apf/elements/dbg/v8debugger"],
     function(StandaloneV8DebuggerService, V8Debugger, APFV8Debugger) {

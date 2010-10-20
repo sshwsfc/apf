@@ -1,4 +1,4 @@
-define(["aml-core/guielement", "lib-oop"]
+define(["aml-core/guielement", "lib-oop"],
     function(GuiElement, oop){
         
 /**** Convenience functions for gui nodes ****/

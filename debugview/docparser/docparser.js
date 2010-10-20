@@ -1,3 +1,4 @@
+define([], function(){
 /**
  * @author Linh Nguyen
  */
@@ -691,3 +692,4 @@ function splitCommentLine(l, n, keepCurly) {
 	
     return values;
 }
+})

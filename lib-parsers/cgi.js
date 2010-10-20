@@ -1,8 +1,9 @@
+define([], function(){
 /**
  * Converts a cgi string to a javascript object.
  * @see core.convertXml
  */
-apf.fromCgiString = function(args) {
+var FromCgiString = function(args) {
     if (!args)
         return false;
 
@@ -33,3 +34,4 @@ apf.fromCgiString = function(args) {
 
     return obj;
 }
+})

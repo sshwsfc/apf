@@ -1,5 +1,6 @@
 
-    /**
+    define([], function(){
+/**
      * Formats a Ajax.org Platform error message.
      * @param {Number}      number      the number of the error. This can be used to look up more information about the error.
      * @param {AMLElement}  control     the aml element that will throw the error.
@@ -76,3 +77,4 @@
         return message;
         #endif */
     },
+})

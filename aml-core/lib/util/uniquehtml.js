@@ -1,4 +1,4 @@
-define(function(){
+define([],function(){
         
 var uniqueHtmlIds = 0;
 return {

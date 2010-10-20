@@ -1,4 +1,5 @@
-    /**
+    define([], function(){
+/**
      * Loads javascript from a url.
      * 
      * @param {String}  sourceFile the url where the javascript is located.
@@ -148,3 +149,4 @@
         }
     },
     // #endif
+})

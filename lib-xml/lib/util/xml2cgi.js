@@ -1,5 +1,6 @@
 
 
+define([], function(){
 /**
  * @private
  */
@@ -190,3 +191,5 @@ apf.convertMethods = {
 apf.convertXml = function(xml, to){
     return apf.convertMethods[to](xml);
 };
+
+})

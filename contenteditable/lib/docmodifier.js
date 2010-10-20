@@ -1,3 +1,4 @@
+define([], function(){
 //Modify DOMDocument with the following properties
 
     //#ifdef __WITH_CONTENTEDITABLE
@@ -88,3 +89,4 @@
     };
     
     this.$commands = {};
+})

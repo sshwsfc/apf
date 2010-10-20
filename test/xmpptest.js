@@ -1,3 +1,4 @@
+define([], function(){
 self.getPrio = function() {
     return 42;
 };
@@ -483,3 +484,4 @@ test0();
 
 // test8: bot priorities
 // test9: rpc calls
+})

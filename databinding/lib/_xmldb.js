@@ -1,3 +1,4 @@
+define([], function(){
 /**
  * Sets the nodeValue of a dom node.
  *
@@ -133,3 +134,4 @@ apf.removeQueryNode = function(xmlNode, xpath, local){
     
     return node;
 };
+})

@@ -1,5 +1,4 @@
-if (apf.hasRequireJS) define("apf/elements/debugger",
-    [], function() {
+define([], function() {
 
 apf.dbg = function(struct, tagName){
     this.$init(tagName || "debugger", this.NODE_HIDDEN, struct);

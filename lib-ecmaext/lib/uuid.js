@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/uuid",
-    function(){
+define(function(){
 
 /**
  * Generate a random uuid. Usage: Math.uuid(length, radix)

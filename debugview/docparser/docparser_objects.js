@@ -1,5 +1,5 @@
-// base class
-function Base() {
+define(function(){
+return {
     this.isPrivate = false;
     
     this.$init = function(){
@@ -1503,3 +1503,5 @@ function addDefine(elName, keyword, itemValue, itemName) {
             docTree.defines[elName][keyword].push(itemValue);
     }
 }               
+
+});

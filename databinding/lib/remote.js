@@ -20,7 +20,7 @@
  */
 
 define(["aml-core/amlelement", "optional!aml", "lib-oop"], 
-    sfunction(DOMElement, aml, oop){
+    function(DOMElement, aml, oop){
 
 /**
  * Element allowing data synchronization between multiple clients using the same

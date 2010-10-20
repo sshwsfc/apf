@@ -1,7 +1,4 @@
-require.modify(
-    "ecmaext",
-    "ecmaext/object",
-    function(){
+define(function(){
 
 /**
  * Extends an object with one or more other objects by copying all their

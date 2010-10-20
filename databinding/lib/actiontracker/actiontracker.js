@@ -1,3 +1,4 @@
+define([], function(){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -96,7 +97,7 @@
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.actiontracker = function(struct, tagName){
+var Actiontracker = function(struct, tagName){
     this.$init(tagName || "actiontracker", this.NODE_HIDDEN, struct);
 
     this.$undostack = [];
@@ -995,6 +996,8 @@ apf.actiontracker = function(){
 #endif */
 
 GuiElement.propHandlers = {
+})
+
     //#ifdef __WITH_DATABINDING
     /**
      * @attribute {String} actiontracker the name of the actiontracker that
