@@ -65,12 +65,12 @@ define([], function(){
  * </code>
  */
 var Progressbar = function(struct, tagName){
-    this.$init(tagName || "progressbar", this.NODE_VISIBLE, struct);
+    StandardBinding.call(this, tagName || "progressbar", this.NODE_VISIBLE, struct);
 };
 
 (function(){
     //#ifdef __WITH_DATAACTION
-    this.implement(apf.DataAction);
+    oop.inherit(Progressbar, DataAction);
     //#endif
 
     this.$focussable = false; // This object can get the focus
@@ -255,10 +255,11 @@ var Progressbar = function(struct, tagName){
             this.hide();
     };
 // #ifdef __WITH_DATABINDING
-}).call(apf.progressbar.prototype = new apf.StandardBinding());
+}).call(Progressbar.prototype);
 /* #else
 }).call(apf.progressbar.prototype = new apf.Presentation());
 #endif */
+aml && aml.setElement("progressbar", Progressbar);
 
-apf.aml.setElement("progressbar", apf.progressbar);
+return Progressbar;
 })

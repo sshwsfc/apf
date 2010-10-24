@@ -89,7 +89,7 @@ var BaseClass = Presentation || DOMElement;
  * @since       0.4
  * @default_private
  */
-apf.DataBinding = function(){
+var DataBinding = function(){
     if (this.$databinding) //Dual function as decorator and baseclass
         BaseClass.call(this);
     

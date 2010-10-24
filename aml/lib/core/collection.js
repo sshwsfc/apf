@@ -35,7 +35,7 @@ define([], function(){
  * @since       0.4
  */
 var Collection = function(struct, tagName){
-    this.$init(tagName || "collection", this.NODE_HIDDEN, struct);
+    DOMElement.call(this, tagName || "collection", this.NODE_HIDDEN, struct);
 };
 
 (function(){
@@ -56,7 +56,8 @@ var Collection = function(struct, tagName){
 
         this.skinName = this.parentNode.skinName;
     });
-}).call(apf.collection.prototype = new apf.DOMElement());
+}).call(Collection.prototype);
+aml && aml.setElement("collection", Collection);
 
-apf.aml.setElement("collection", apf.collection);
+return Collection;
 })

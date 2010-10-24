@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
     return new (function(){
         // Browser Detection, using feature inference methods where possible:
         // http://www.thespanner.co.uk/2009/01/29/detecting-browsers-javascript-hacks/

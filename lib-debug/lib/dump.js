@@ -19,64 +19,80 @@
  *
  */
 
-define(function(){
-	var dump = function( o, opt, s, d, r ){
-		if(!s)s = [], r = [], d = 0; 
-		opt = opt || {};
-		var k, tabs1, tabs2, nl, l = s.length, i, j, t;
-		switch(typeof(o)){
-			case 'object': 
-				if(o==null){
-					s[l++] = "null"; break;
-				}
-				if(d>=(opt.depth || 99)){
-					s[l++] = "{...}";break;
-				}
-				r.push(o);
-				if(opt.pack)
-					tabs1 = tabs2 = nl = "";
-				else
-					tabs1 = Array(d+2).join('\t'), tabs2 = Array(d+1).join('\t'), nl = "\n";
-					
-				if(o.constructor == Array){
-					s[l++] = "[", s[l++] = nl;
-					for(k = 0; k<o.length; k++){
-						s[l++] = tabs1;
-						if(!opt.notest)for(i = 0, t = o[k], j = r.length;i<j;i++)
-							if(r[i] == t) break;
-						if(i == j)
-							dump(t, opt, s, d+1, r);
-						else 
-							s[l++] = "[nested: "+i+"]";
-						l = s.length;
-						s[l++]=", "+nl;
-					}
-					s[l-1] = nl+tabs2+"]";
-				} else {
-					s[l++] = "{", s[l++] = nl;
-					for(k in o){
-						s[l++] = tabs1 + (k.match(/[^a-zA-Z0-9_]/)?'"'+k+'"':k) + ':';
-						if(!opt.notest)for(i = 0, t = o[k], j = r.length;i<j;i++)
-							if(r[i] == t) break;
-						if(i == j) 
-							dump(t, opt, s, d+1, r);
-						else 
-							s[l++] = "[nested: "+i+"]";
-						l = s.length;
-						s[l++] = ", "+nl;
-					}
-					s[l-1] = nl + tabs2 + "}";
-				}
-				r.pop();
-				break;
-			case 'string':
-				s[l++]='"' + o.replace(/(["\\])/g, '\\$1').replace(/\r?\n/g,"\\n") + '"';
-				break;
-			default:
-				s.push(o);
-				break;
-		}
-		return d?0:s.join('');
-	};
-	return dump;
+define([], function(){
+        
+var sNodes           = null, 
+    aNodes           = null,
+    applyPositioning = true,
+    // Path to a transparent GIF image
+    shim,
+
+    fnLoadPngs = function() {
+        if (!shim)
+            shim = apf.skins.skins["default"].mediaPath + '/blank.gif';
+
+        if (aNodes === null) {
+            if (sNodes)
+                aNodes = sNodes.splitSafe(',');
+            else
+                aNodes = [document];
+        }
+
+        function fixMe(obj) {
+            // background pngs
+            if (obj.currentStyle.backgroundImage.match(/\.png/i) !== null)
+                bg_fnFixPng(obj);
+            // image elements
+            if (obj.tagName == 'IMG' && obj.src.match(/\.png$/i) !== null)
+                el_fnFixPng(obj);
+            // apply position to 'active' elements
+            if (applyPositioning && (obj.tagName == 'A' || obj.tagName == 'INPUT')
+              && obj.style.position === '') {
+                obj.style.position = 'relative';
+            }
+        }
+
+        for (var j = 0, l = aNodes.length, node; j < l; j++) {
+            if (typeof aNodes[j] == "string")
+                aNodes[j] = document.getElementById(aNodes[j]);
+            node = aNodes[j];
+            if (!node) continue;
+
+            if (node != document)
+                fixMe(node);
+
+            for (var i = node.all.length - 1, obj = null; (obj = node.all[i]); i--)
+                fixMe(obj);
+        }
+    },
+
+    bg_fnFixPng = function(obj) {
+        var mode = 'scale',
+            bg   = obj.currentStyle.backgroundImage,
+            src  = bg.substring(5, bg.length - 2);
+
+        if (obj.currentStyle.backgroundRepeat == 'no-repeat')
+            mode = 'crop';
+        obj.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"
+            + src + "', sizingMethod='" + mode + "')";
+        obj.style.backgroundImage = "url(" + shim + ")";
+    },
+
+    el_fnFixPng = function(img) {
+        var src          = img.src;
+        img.style.width  = img.width  + "px";
+        img.style.height = img.height + "px";
+        img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"
+            + src + "', sizingMethod='scale')";
+        img.src          = shim;
+    };
+
+return {
+    limitTo: function(s) {
+        sNodes = s;
+        return this;
+    },
+    run: fnLoadPngs
+};
+
 });

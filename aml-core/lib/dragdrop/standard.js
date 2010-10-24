@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
     
 return function() {
     this.$showDragIndicator = function(sel, e){

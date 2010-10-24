@@ -115,6 +115,6 @@ url.options = {
     }
 };
 
-return;
+return url;
 
 });

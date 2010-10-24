@@ -195,9 +195,9 @@ var Upload = function(struct, tagName){
 oop.inherits(Upload, GuiElement);
 
 if (DataAction)
-    oop.decorate(DataAction);
+    oop.decorate(Upload, DataAction);
 if (Validation)
-    oop.decorate(Validation);
+    oop.decorate(Upload, Validation);
 
 Upload.STOPPED   = 0x0001; // Inital state of the queue and also the state ones it's finished all it's uploads.
 Upload.STARTED   = 0x0002; // Upload process is running

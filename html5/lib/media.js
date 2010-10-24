@@ -47,7 +47,7 @@ var BaseClass = StandardBinding || Presentation;
  * @version     %I%, %G%
  * @since       1.0
  */
-Media = function(){
+var Media = function(){
     BaseClass.call(this);
 };
 
@@ -558,5 +558,7 @@ Media.HAVE_SOME_DATA    = 2; //wtf??
 Media.HAVE_CURRENT_DATA = 3;
 Media.HAVE_FUTURE_DATA  = 4;
 Media.HAVE_ENOUGH_DATA  = 5;
+
+return Media;
 
 });

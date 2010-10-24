@@ -19,7 +19,7 @@
  *
  */
 
-define(function(){
+define([], function(){
     
 /**
  * Manages the z-index of all elements in the UI. It takes care of different

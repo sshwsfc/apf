@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
 
 if (typeof isFinite == "undefined") {
     function isFinite(val){

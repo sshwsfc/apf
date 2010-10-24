@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
 
 /**
  * Extends a Function object with properties from other objects, specified as

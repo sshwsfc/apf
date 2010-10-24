@@ -19,7 +19,7 @@
  *
  */
 
-define(function(){
+define([], function(){
 
 var escapes  = /\\["\\\/bfnrtu@]/g,
     values   = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,

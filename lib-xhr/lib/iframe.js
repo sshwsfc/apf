@@ -19,7 +19,7 @@
  *
  */
 
-define(function(){
+define([], function(){
 
 /*
  * This object create a compatibility layer for environments where the

@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
 
 /**
  * Casts the first character in a string to uppercase.

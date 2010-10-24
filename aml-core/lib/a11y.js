@@ -35,7 +35,7 @@ define([], function(){
  *
  * @default_private
  */
-A11y = function(){
+var A11y = function(){
     this.setRole = function(oNode, sRole) {
         if (!oNode)
             throw new Error();

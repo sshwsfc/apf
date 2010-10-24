@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
 
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xmlParser;

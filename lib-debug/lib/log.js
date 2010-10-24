@@ -19,7 +19,7 @@
  *
  */
 
-define(function(){
+define([], function(){
 	return function( txt ){
 		// lets find our log div
 		var e = document.getElementById('_logw');

@@ -139,8 +139,8 @@ define([], function(){
  *
  * @default_private
  */
-apf.Teleport = function(){
-    this.$init(true);
+var Teleport = function(){
+    DOMElement.call(this);
 };
 
 apf.__TELEPORT__ = 1 << 28;
@@ -215,10 +215,10 @@ apf.__TELEPORT__ = 1 << 28;
         if (this.id)
             apf.$asyncObjects[this.id] = 1;
     });
-}).call(apf.Teleport.prototype = new apf.DOMElement());
+}).call(Teleport.prototype);
 
 //#ifdef __DEBUG
-apf.teleportLog = function(extra){
+console.teleportLog = function(extra){
     var xml, request = extra.method + " " + extra.url + " HTTP/1.1\n\n" + extra.data;
 
     this.setXml = function(pNode){
@@ -255,6 +255,6 @@ apf.teleportLog = function(extra){
     }
 }
 //#endif
-
+return Teleport
 });
-apf.Init.run("teleport");
+

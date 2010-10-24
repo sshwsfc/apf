@@ -45,11 +45,11 @@ define([], function(){
  * @inherits apf.Presentation
  */
 var Panel    = function(struct, tagName){
-    this.$init(tagName || "panel", this.NODE_VISIBLE, struct);
+    Presentation.call(this, tagName || "panel", this.NODE_VISIBLE, struct);
 };
 
 (function(){
-    this.implement(apf.BaseStateButtons);
+    oop.inherit(Panel, BaseStateButtons);
 
     this.$focussable     = false;
     
@@ -137,7 +137,8 @@ var Panel    = function(struct, tagName){
         return this.$activeElements;
     }
     //#endif
-}).call(apf.panel.prototype = new apf.Presentation());
+}).call(Panel.prototype);
+aml && aml.setElement("panel", Panel);
 
-apf.aml.setElement("panel", apf.panel);
+return Panel;
 })

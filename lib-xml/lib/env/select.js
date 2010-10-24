@@ -1,4 +1,4 @@
-define(function(){
+define([], function(){
 
 //XMLDocument.selectNodes
 HTMLDocument.prototype.selectNodes = XMLDocument.prototype.selectNodes = function(sExpr, contextNode){
