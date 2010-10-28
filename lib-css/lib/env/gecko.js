@@ -19,45 +19,42 @@
  *
  */
 
-define(["lib-css", "lib-css/non_ie"],
-    function(css){
+define(function(require, exports, module){
 
-css.getHtmlLeft = function(oHtml){
-    return (oHtml.offsetLeft
-        + (parseInt(css.getStyle(oHtml.parentNode, "borderLeftWidth")) || 0));
-};
-
-css.getHtmlRight = function(oHtml){
-    var p;
-    return (((p = oHtml.offsetParent).tagName == "BODY" 
-      ? css.getWindowWidth()
-      : p.offsetWidth)
-        - oHtml.offsetLeft - oHtml.offsetWidth
-        - (2 * (parseInt(css.getStyle(p, "borderLeftWidth")) || 0))
-        - (parseInt(css.getStyle(p, "borderRightWidth")) || 0));
-};
-
-css.getHtmlTop = function(oHtml){
-    return (oHtml.offsetTop
-        + (parseInt(css.getStyle(oHtml.parentNode, "borderTopWidth")) || 0));
-};
-
-css.getHtmlBottom = function(oHtml){
-    var p;
-    return (((p = oHtml.offsetParent).tagName == "BODY" 
-      ? css.getWindowHeight()
-      : p.offsetHeight)
-        - oHtml.offsetTop - oHtml.offsetHeight
-        - (2 * (parseInt(css.getStyle(p, "borderTopWidth")) || 0))
-        - (parseInt(css.getStyle(p, "borderBottomWidth")) || 0));
-};
-
-css.getBorderOffset = function(oHtml){
-    return [-1 * (parseInt(css.getStyle(oHtml, "borderLeftWidth")) || 0),
-        -1 * (parseInt(css.getStyle(oHtml, "borderTopWidth")) || 0)];
-};
-
-    }
-);
-
-//#endif
+return function() {
+	this.getHtmlLeft = function(oHtml){
+	    return (oHtml.offsetLeft
+	        + (parseInt(this.getStyle(oHtml.parentNode, "borderLeftWidth")) || 0));
+	};
+	
+	this.getHtmlRight = function(oHtml){
+	    var p;
+	    return (((p = oHtml.offsetParent).tagName == "BODY" 
+	      ? this.getWindowWidth()
+	      : p.offsetWidth)
+	        - oHtml.offsetLeft - oHtml.offsetWidth
+	        - (2 * (parseInt(this.getStyle(p, "borderLeftWidth")) || 0))
+	        - (parseInt(this.getStyle(p, "borderRightWidth")) || 0));
+	};
+	
+	this.getHtmlTop = function(oHtml){
+	    return (oHtml.offsetTop
+	        + (parseInt(this.getStyle(oHtml.parentNode, "borderTopWidth")) || 0));
+	};
+	
+	this.getHtmlBottom = function(oHtml){
+	    var p;
+	    return (((p = oHtml.offsetParent).tagName == "BODY" 
+	      ? this.getWindowHeight()
+	      : p.offsetHeight)
+	        - oHtml.offsetTop - oHtml.offsetHeight
+	        - (2 * (parseInt(this.getStyle(p, "borderTopWidth")) || 0))
+	        - (parseInt(this.getStyle(p, "borderBottomWidth")) || 0));
+	};
+	
+	this.getBorderOffset = function(oHtml){
+	    return [-1 * (parseInt(this.getStyle(oHtml, "borderLeftWidth")) || 0),
+	        -1 * (parseInt(this.getStyle(oHtml, "borderTopWidth")) || 0)];
+	};
+	
+});

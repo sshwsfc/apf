@@ -1,25 +1,10 @@
-require([
-    "envdetect", 
-    "envdetect/features", 
-    "optional!debug"], 
-    function(env, features){
+//define(["envdetect", "envdetect/features", "lib-css/env/ie", "lib-css/env/non_ie", "lib-css/env/gecko", "lib-css/env/webkit", "lib-css/env/opera"], function() {
+define(function(require, exports, module) {
 
-    var deps = [];
-    if (env.isIE)
-        deps.push("lib-css/env/ie");
-    else {
-        deps.push("lib-css/env/non_ie.js");
-        if (env.isGecko)
-            deps.push("lib-css/env/gecko");
-        else if (env.isWebkit)
-            deps.push("lib-css/env/webkit");
-        else if (env.isOpera)
-            deps.push("lib-css/env/opera");
-    }
+var env = require("envdetect");
+var features = require("envdetect/features");
 
-    require.def("lib-css", deps, function(){
-
-return {
+var css = {
     /**
      * This method adds one class name to an HTMLElement and removes none or more.
      * @param {HTMLElement} oHtml        the HTMLElement to apply the css class to.
@@ -191,5 +176,17 @@ return {
     }
 };
 
-    })
+if (env.isIE)
+    require("lib-css/env/ie").call(css);
+else {
+    require("lib-css/env/non_ie").call(css);
+    if (env.isGecko)
+        require("lib-css/env/gecko").call(css);
+    else if (env.isWebkit)
+        require("lib-css/env/webkit").call(css);
+    else if (env.isOpera)
+        require("lib-css/env/opera").call(css);
+}
+
+module.exports = css;
 });
