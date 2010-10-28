@@ -589,5 +589,4 @@ aml && aml.setElement("button",  Button);
 
 return Button;
 
-    }
-);
+});

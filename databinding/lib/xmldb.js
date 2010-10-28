@@ -51,6 +51,8 @@ var Xmldb = new (function(){
 
     this.$xmlDocLut   = [];
     this.$nodeCount   = {};
+    
+    this.delayUpdate  = null;
 
     var cleanRE       = /(?:a_doc|a_id|a_listen|a_loaded)=(?:"|')[^'"]+(?:"|')/g,
         whiteRE       = />[\s\n\r\t]+</g;

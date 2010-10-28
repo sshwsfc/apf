@@ -757,7 +757,7 @@ Upload.files = function(oUpload, model) {
 
         file = oFiles[file.id];
         if (model && file.xml && !noXml)
-            apf.xmldb.removeChild(model.data, file.xml);
+            apf.xmldb.removeNode(file.xml);
         aFiles.remove(file);
         delete oFiles[file.id];
     };

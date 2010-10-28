@@ -1,9 +1,10 @@
-define([], function(){
+module.declare = function(factory) { factory(require, module, exports); }
+
+module.declare(function(require, module, exports){
+
+
+//#ifdef __WITH_ALIAS
 GuiElement.propHandlers = {
-})
-
-
-    //#ifdef __WITH_ALIAS
     /**
      * @attribute {String} alias the alternative name for this element. The 
      * alias attribute can be set on another element. Only one element can have
@@ -13,7 +14,7 @@ GuiElement.propHandlers = {
      * @experimental
      */
     //@todo rewrite this completely...
-    ,"alias" : function(value){
+    "alias" : function(value){
         if (!value) //@todo think about whether this has more meaning
             return;
         //#ifdef __WITH_NAMESERVER
@@ -139,3 +140,5 @@ GuiElement.propHandlers = {
         //#endif
     }
     //#endif
+    
+});

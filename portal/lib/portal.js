@@ -154,7 +154,7 @@ oop.decorate(Portal, DataAction);
         
         //more hack stuff
         //determine docklet xml position by the html position
-        var nr = apf.xmldb.getChildNumber(docklet.oExt), 
+        var nr = apf.getChildNumber(docklet.oExt), 
         	  nodes = dataNode.selectNodes("../node()[@column='" + colNr + "']");
         if (nodes[nr] != dataNode) {
         		var jmlNode = apf.findHost(docklet.oExt.nextSibling);

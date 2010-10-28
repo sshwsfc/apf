@@ -105,7 +105,7 @@ offline.models = {
 
         var docId = model.data.getAttribute(apf.xmldb.xmlDocTag);
         model.data.setAttribute(apf.xmldb.xmlDocTag + "_length",
-            apf.xmldb.nodeCount[docId]);
+            apf.xmldb.$nodeCount[docId]);
 
         offline.storage.put(name, model.data.xml || model.data.serialize(), this.namespace);
     },
@@ -122,7 +122,7 @@ offline.models = {
 
         var xmlNode = apf.getXmlDom(data).documentElement;
         var docId   = xmlNode.getAttribute(apf.xmldb.xmlDocTag);
-        apf.xmldb.nodeCount[docId]
+        apf.xmldb.$nodeCount[docId]
             = parseInt(xmlNode.getAttribute(apf.xmldb.xmlDocTag + "_length"));
 
         model.load(xmlNode);
