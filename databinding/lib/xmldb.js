@@ -1088,7 +1088,7 @@ var Xmldb = new (function(){
 
         return docId;
     };
-});
+})();
 
 
 return Xmldb;

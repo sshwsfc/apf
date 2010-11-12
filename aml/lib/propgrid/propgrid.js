@@ -1148,6 +1148,6 @@ if (BindingRule) {
 }
 //#endif
 
-return Datagrid;
+return PropGrid;
 
 });

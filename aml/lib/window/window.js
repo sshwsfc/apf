@@ -743,6 +743,6 @@ oop.decorate(Window, BaseStateButtons);
 aml && aml.setElement("window", Modalwindow);
 
 
-return Modalwindow;
+return Window;
 
 });

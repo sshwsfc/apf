@@ -794,7 +794,7 @@ var Vector =  new (function(){
         }).call(group.prototype);
                 
     })();
- });
+ })();
 
  
 return Vector;

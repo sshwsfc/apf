@@ -51,7 +51,7 @@ define(["aml-core/guielement", "optional!aml", "lib-oop"],
  * @version     %I%, %G%
  * @since       0.9
  */
-Hbox = function(struct, tagName){
+var Hbox = function(struct, tagName){
     GuiElement.call(this, tagName || "hbox", this.NODE_VISIBLE, struct);
 };
 
@@ -821,9 +821,9 @@ oop.inherits(Hbox, GuiElement);
         if (!apf.hasFlexibleBox && !this.$vbox && !this.height && this.align == "stretch")
             myHeightHandler.call(this, {});
     };
-}).call(Hbox);
+}).call(Hbox.prototype);
 
-apf.aml.setElement("hbox", Hbox);
+aml && aml.setElement("hbox", Hbox);
 
 return Hbox;
 

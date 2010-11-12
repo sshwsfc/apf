@@ -41,7 +41,7 @@ define([
  * @version     %I%, %G%
  * @since       0.8
  */
-apf.DOMDocument = function(){
+DOMDocument = function(){
     DOMNode.apply(this, arguments);
     
     this.$prefixes      = {};
@@ -208,7 +208,7 @@ oop.inherits(DOMDocument, DOMNode);
     this.hasFocus = function(){
         
     }
-}).call(apf.DOMDocument.prototype);
+}).call(DOMDocument.prototype);
 
 return DOMDocument;
 
