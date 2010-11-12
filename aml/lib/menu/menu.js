@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a skinnable menu of items which can be choosen.
@@ -551,6 +551,6 @@ oop.inherit(Menu, Presentation);
 
 aml && aml.setElement("menu", Menu);
 
-return Menu;
+module.exports = Menu;
 
 });

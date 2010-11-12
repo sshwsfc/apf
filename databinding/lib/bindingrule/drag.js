@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @attribute {String} target 
@@ -114,6 +114,6 @@ oop.inherit(BindingDndRule, BindingRule);
 aml && aml.setElement("drag", BindingDndRule);
 aml && aml.setElement("drop", BindingDndRule);
 
-return BindingDndRule;
+module.exports = BindingDndRule;
 
 });

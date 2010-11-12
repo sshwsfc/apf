@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline"], function(offline){
+module.declare(function(require, exports, module){
 
 /**
  * Object handling the offline state of the application resources. This includes
@@ -340,6 +340,6 @@ offline.application = {
 };
 
 
-return offline.application;
+module.exports = offline.application;
 
 });

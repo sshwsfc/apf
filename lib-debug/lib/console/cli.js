@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
     
 /**
  * The console outputs to the debug screen
@@ -67,6 +67,6 @@ var console = {
     teleport: function() {}
 };
 
-return console;
+module.exports = console;
 
 });

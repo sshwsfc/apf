@@ -1,4 +1,4 @@
-define(["lib-xml"], function(getXmlDom){
+module.declare(function(require, exports, module){
 
 /**
  * Integrates nodes as children of a parent. Optionally attributes are
@@ -16,7 +16,7 @@ define(["lib-xml"], function(getXmlDom){
  *   {XMLElement} [marker]      This feature is used for the virtual viewport. More information will follow.
  * @return  {XMLNode}  the created xml node
  */
-return function(XMLRoot, parentNode, options){
+module.exports = function(XMLRoot, parentNode, options){
     if (typeof parentNode != "object")
         parentNode = getElementById(parentNode);
 

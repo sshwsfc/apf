@@ -1,4 +1,4 @@
-define(['ecmatypes'],function(){
+module.declare(function(require, exports, module){
 
 /**
  * Reliably determines whether a variable is an array.

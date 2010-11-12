@@ -19,7 +19,7 @@
  *
  */ 
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element allowing the user to select a value from a range of
@@ -924,6 +924,6 @@ oop.decorate(Slider, DataAction);
 aml && aml.setElement("slider", Slider);
 
 
-return Slider;
+module.exports = Slider;
 
 });

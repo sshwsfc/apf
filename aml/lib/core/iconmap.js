@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * element that provides a means to get icons from a
@@ -89,6 +89,6 @@ oop.inherits(Iconmap, DOMElement);
 
 aml && aml.setElement("iconmap", Iconmap);
 
-return Iconmap;
+module.exports = Iconmap;
 
 });

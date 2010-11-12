@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
+module.declare(function(require, exports, module){
 
 var HAS_CHILD = 1 << 1,
     IS_CLOSED = 1 << 2,
@@ -1461,6 +1461,6 @@ oop.decorate(Markupedit, Rename);
 
 aml && aml.setElement("markupedit", Markupedit);
 
-return Markupedit;
+module.exports = Markupedit;
 
 });

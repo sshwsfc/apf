@@ -21,7 +21,7 @@
 
 apf.__MULTICHECK__ = 1 << 22;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have checkable items.
@@ -456,6 +456,6 @@ var MultiCheck = function(){
 };
 
 
-return MultiCheck;
+module.exports = MultiCheck;
 
 });

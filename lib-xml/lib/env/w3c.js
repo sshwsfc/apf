@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xmlParser;
@@ -59,7 +59,7 @@ if (XMLDocument.prototype.__defineGetter__) {
     });
 }
 
-return getXmlDom;
+module.exports = getXmlDom;
 
     }
 );

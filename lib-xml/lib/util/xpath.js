@@ -1,11 +1,6 @@
-define([
-    "lib-xml", 
-    "lib-xml/util",
-    "optional!debug",
-    "optional!databinding/xmldb"], 
-    function(getXmlDom, xmlUtil, debug, xmldb){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     /**
      * Creates an xml node based on an xpath statement.
      *

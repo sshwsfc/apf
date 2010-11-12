@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Object handling sorting in a similar way as xslt.
@@ -231,6 +231,6 @@ var Sort = function(xmlNode){
 };
 
 
-return Sort;
+module.exports = Sort;
 
 });

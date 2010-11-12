@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlcharacterdata", "optional!aml", "lib-oop"], function(AmlCharacterData, aml, oop){
+module.declare(function(require, exports, module){
 var AmlComment = function(isPrototype){
     this.nodeType = this.NODE_COMMENT;
     this.nodeName = "#comment";
@@ -41,6 +41,6 @@ var AmlComment = function(isPrototype){
     }
 }).call(AmlComment.prototype);
 
-return AmlComment;
+module.exports = AmlComment;
 
 });

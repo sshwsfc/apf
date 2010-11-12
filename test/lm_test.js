@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 var testmodel;
 var jsvar = 5;
 var testxml = "<xml><folder name='F1'><file>C</file><file>A</file><file>B</file></folder><folder name='F2'><file>D</file></folder><folder name='F2'><file>F</file><file>A</file></folder></xml>";

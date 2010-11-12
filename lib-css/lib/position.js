@@ -19,13 +19,9 @@
  *
  */
 
-define([
-    "lib-css",
-    "envdetect",
-    "envdetect/features"],
-    function(css, env, features){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     /**
      * This method determines if specified coordinates are within the HTMLElement.
      * @param {HTMLElement} el  the element to check

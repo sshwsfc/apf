@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element giving the user a visual choice of several colors presented in a
@@ -373,6 +373,6 @@ oop.decorate(Colorpicker, DataAction);
 aml && aml.setElement("colorpicker", Colorpicker);
 
 
-return Colorpicker;
+module.exports = Colorpicker;
 
 });

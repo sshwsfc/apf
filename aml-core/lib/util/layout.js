@@ -19,15 +19,12 @@
  *
  */
 
-define([
-    "envdetect/features", 
-    "aml-core/util/uniquehtml"], 
-    function(features, uniqueHtml){
+module.declare(function(require, exports, module){
 
 /**
  * Object dealing with layout updates
  */
-return {
+module.exports = {
     compile : function(oHtml){
         var l = this.layouts[oHtml.getAttribute("id")];
         if (!l) return false;

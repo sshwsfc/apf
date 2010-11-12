@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
+module.declare(function(require, exports, module){
 /**
  *
  * @inherits apf.DataAction
@@ -419,6 +419,6 @@ aml && aml.setElement("calendarlist", Calendarlist);
 aml && aml.setElement("date",         BindingRule);
 aml && aml.setElement("duration",     BindingRule);
 
-return Calendarlist;
+module.exports = Calendarlist;
 
 });

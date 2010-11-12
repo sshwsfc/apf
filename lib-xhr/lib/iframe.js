@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /*
  * This object create a compatibility layer for environments where the
@@ -28,7 +28,7 @@ define([], function(){
  * @todo this code is very old. Review it completely.
  */
 
-return function(){
+module.exports = function(){
     var _self = this;
     
     if (apf.USEIFRAME) {

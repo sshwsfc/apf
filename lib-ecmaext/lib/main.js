@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var ecma = {};
 
@@ -31,6 +31,6 @@ String.prototype.dataType   = ecma.STRING   = 3;
 RegExp.prototype.dataType   = ecma.REGEXP   = 6;
 Function.prototype.dataType = ecma.FUNCTION = 7;
 
-return ecma;
+module.exports = ecma;
 
 });

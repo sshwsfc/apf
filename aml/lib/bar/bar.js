@@ -19,7 +19,7 @@
  *
  */
 
-define(["optional!aml", "lib-oop"], function(aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a skinnable rectangle which can contain other 
@@ -126,6 +126,6 @@ oop.implement(Bar, Presentation);
 
 aml && aml.setElement("bar", Bar);
 
-return Bar
+module.exports = Bar
 
 });

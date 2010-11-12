@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Helper class that aids in creating and controlling Ajax O3 instances
  *

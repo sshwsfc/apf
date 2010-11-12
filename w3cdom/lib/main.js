@@ -19,22 +19,7 @@
  *
  */
 
-define([
-    "w3cdom/node",
-    "w3cdom/element",
-    "w3cdom/attr",
-    /*"w3cdom/text",
-    "w3cdom/cdatasection",
-    "w3cdom/processinginstruction",
-    "w3cdom/comment",*/
-    "w3cdom/document",
-    //"w3cdom/documentfragment",
-    "lib-xml",
-    "optional!lib-oop/queue",
-    "optional!envdetect"], 
-    function(DOMNode, DOMElement, DOMAttr, DOMText, DOMCDATASection, 
-             DOMProcessingInstruction, DOMComment, DOMDocument, 
-             DOMDocumentFragment, xml, queue, env){
+module.declare(function(require, exports, module){
 
 /**
  * W3CDOM Parser written in javascript.
@@ -460,7 +445,7 @@ DOMParser.setNamespace = function(namespaceURI, oNamespace){
 
 //DOMParser.processingInstructions
 
-return DOMParser;
+module.exports = DOMParser;
 
     }
 );

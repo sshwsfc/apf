@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 RegExp.prototype.getNativeFlags = function() {
     return (this.global     ? "g" : "") +

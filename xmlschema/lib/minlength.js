@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Specifies the minimum number of characters or list items allowed. Must be equal to or greater than zero
  */
@@ -44,6 +44,6 @@ oop.inherit(XsdMinLength, XsdElement);
 
 apf.xsd.setElement("minlength", apf.XsdMinLength);
 
-return XsdMinLength;
+module.exports = XsdMinLength;
 
 });

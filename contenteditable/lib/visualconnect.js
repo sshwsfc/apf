@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * @private
  */
@@ -929,6 +929,6 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
     
 }).call(connectEdit.prototype = new apf.Class());
 
-return VisualConnect;
+module.exports = VisualConnect;
 
 });

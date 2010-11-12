@@ -19,13 +19,7 @@
  *
  */
 
-define([
-    "optional!databinding/multiselect", 
-    "optional!databinding/multiselect-binding", 
-    "aml-core/presentation", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(MultiSelect, MultiselectBinding, Presentation, BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 var BaseClass = MultiSelect || MultiselectBinding || Presentation; //@todo refactor..
 
@@ -660,6 +654,6 @@ aml && aml.setElement("buttons",   BindingRule);
 aml && aml.setElement("caption",   BindingRule);
 aml && aml.setElement("traverse",  BindingRule);
 
-return Portal;
+module.exports = Portal;
 
 });

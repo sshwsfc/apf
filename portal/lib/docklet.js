@@ -1,5 +1,4 @@
-define(["lib-oop/class", "lib-oop"], 
-    function(Class, oop){
+module.declare(function(require, exports, module){
 
 var Docklet = function(){}
 
@@ -13,6 +12,6 @@ Docklet.prototype.create = function(xmlSettings, oWidget, oPortal){
         this.$create(xmlSettings, oWidget, oPortal);
 };
 
-return Docklet;
+module.exports = Docklet;
 
 });

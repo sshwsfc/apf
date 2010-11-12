@@ -19,7 +19,7 @@
  *
  */
 
-define(["storage"], function(Storage){
+module.declare(function(require, exports, module){
 
 // summary: 
 //		Storage provider that uses features in the Adobe AIR runtime to achieve
@@ -360,6 +360,6 @@ Storage.modules['air.sql'] = {
     }
 };
 
-return Storage.modules['air.sql'];
+module.exports = Storage.modules['air.sql'];
 
 });

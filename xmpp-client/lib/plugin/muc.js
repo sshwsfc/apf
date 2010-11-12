@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Interface implementing a Multi User Chat service for the apf.xmpp object.
@@ -501,6 +501,6 @@ XmppMuc.ACTION_BAN     = 0x0004;
 XmppMuc.ACTION_GRANT   = 0x0008;
 XmppMuc.ACTION_REVOKE  = 0x0010;
 
-return XmppMuc;
+module.exports = XmppMuc;
 
 });

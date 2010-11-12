@@ -19,7 +19,7 @@
  *
  */
 
-define(["html5/video"], function(Video){
+module.declare(function(require, exports, module){
 
 Video.TypeQTCompat = (function(){
     var gTagAttrs           = null;
@@ -719,6 +719,6 @@ Video.TypeQT.prototype = {
     }
 };
 
-return Video.TypeQTCompat;
+module.exports = Video.TypeQTCompat;
 
 });

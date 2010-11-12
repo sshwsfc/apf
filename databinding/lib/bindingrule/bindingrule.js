@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -251,6 +251,6 @@ aml && aml.setElement("collapsed",  BindingRule);
 aml && aml.setElement("expanded",  BindingRule);
 aml && aml.setElement("empty",      BindingRule);
 
-return BindingRule;
+module.exports = BindingRule;
 
 });

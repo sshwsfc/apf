@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
     
 /**
  * @term datainstruction Data instructions offer a single and consistent way for
@@ -429,6 +429,6 @@ var data = {
  */
 data.saveData = data.getData;
 
-return data;
+module.exports = data;
 
 });

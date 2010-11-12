@@ -1,4 +1,4 @@
-    define([], function(){
+    module.declare(function(require, exports, module){
 function Error(nr, msg){
         // #ifdef __DEBUG
         if (!apf.$debugwin.nativedebug) 

@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Provides a way to record user actions, store them and play them back.
  * @experimental
@@ -1770,5 +1770,5 @@ TEMPORARILY DISABLED
         }
     }
 
-    return UIRecorder;
+    module.exports = UIRecorder;
 });

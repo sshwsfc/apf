@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element that groups state elements together and
@@ -89,6 +89,6 @@ aml && aml.setElement("state-group", StateGroup);
     });
 }).call(StateGroup.prototype);
 
-return StateGroup;
+module.exports = StateGroup;
 
 });

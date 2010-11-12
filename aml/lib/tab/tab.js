@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/basetab", "optional!aml", "lib-oop"], function(BaseTab, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a page and several buttons allowing a
@@ -76,6 +76,6 @@ var Tab       = function(struct, tagName){
 aml && aml.setElement("tab",    Tab);
 
 
-return Tab;
+module.exports = Tab;
 
 });

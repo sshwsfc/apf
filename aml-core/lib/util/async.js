@@ -20,14 +20,14 @@
  */
 
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @author      Fabian Jakobs
  * @version     %I%, %G%
  * @since       1.0
  */
-return {
+module.exports = {
     /**
      * Perform an async function in serial on each of the list items
      * 

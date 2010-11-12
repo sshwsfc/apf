@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  *
@@ -55,6 +55,6 @@ oop.inherit(Defaults, DOMElement);
 aml && aml.setElement("defaults", Defaults);
 
 
-return Defaults;
+module.exports = Defaults;
 
 });

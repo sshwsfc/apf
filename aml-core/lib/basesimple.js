@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Baseclass of a simple element. This are usually displaying elements 
@@ -51,6 +51,6 @@ oop.decorate(BaseSimple, DataAction);
 }).call(BaseSimple.prototype);
 
 
-return BaseSimple;
+module.exports = BaseSimple;
 
 });

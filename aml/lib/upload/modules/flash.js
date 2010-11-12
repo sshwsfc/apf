@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/upload/upload", "lib-oop/class", "lib-oop"], 
-    function(Upload, Class, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a Flash uploader
@@ -241,6 +240,6 @@ Upload.flash.isSupported = function() {
 }).call(Upload.flash.prototype);
 
 
-return Upload.flash;
+module.exports = Upload.flash;
 
 });

@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a set of choices to the user which allows
@@ -178,6 +178,6 @@ oop.decorate(Palette, DataAction);
 
 aml && aml.setElement("palette", Palette);
 
-return Palette;
+module.exports = Palette;
 
 });

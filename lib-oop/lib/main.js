@@ -1,4 +1,4 @@
-define([], function() {
+module.declare(function(require, exports, module) {
     var oop = {};
     
     oop.inherits = function(ctor, superCtor) {
@@ -24,5 +24,5 @@ define([], function() {
             decorator.call(ctor.prototype);
     }
 
-    return oop;
+    module.exports = oop;
 });

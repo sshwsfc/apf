@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 var SubSupCommand = function(sName) {
     this.name        = sName;
@@ -49,6 +48,6 @@ var SubSupCommand = function(sName) {
 LiveEdit.plugin("sub", SubSupCommand);
 LiveEdit.plugin("sup", SubSupCommand);
 
-return SubSupCommand;
+module.exports = SubSupCommand;
 
 });

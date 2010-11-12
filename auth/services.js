@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/element", "optional!aml", "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  *
@@ -42,6 +41,6 @@ oop.inherit(Services, DOMElement);
 
 aml && aml.setElement("services", Services);
 
-return Services;
+module.exports = Services;
 
 });

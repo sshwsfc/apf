@@ -21,7 +21,7 @@
 
 apf.__VIRTUALVIEWPORT__ = 1 << 19;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} can have a virtual viewport.
@@ -760,6 +760,6 @@ var VirtualViewport = function(){
     this.caching = false; //for now, because the implications are unknown
 };
 
-return VirtualViewport;
+module.exports = VirtualViewport;
 
 });

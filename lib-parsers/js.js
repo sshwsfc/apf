@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
     var tok_lut = {
             '"': 4, '\'': 4, '[': 2, ']': 3, '{': 2, '}': 3, '(': 2, ')': 3,
             '\n': 6, '\r\n': 6, '//': 7, '/*': 7, '*/': 7, '/':8
@@ -317,5 +317,5 @@ define([], function(){
         return root;
     };
     
-    return { parse: parse, store:store, find: find, findrx:findrx, replace:replace, dump: dump, serialize: serialize, line: lineLookup };
+    module.exports = { parse: parse, store:store, find: find, findrx:findrx, replace:replace, dump: dump, serialize: serialize, line: lineLookup };
 });

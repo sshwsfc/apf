@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
 * @define actions  element containing all the action rules for the data 
@@ -101,6 +101,6 @@ oop.inherit(Actions, DOMElement);
 
 aml && aml.setElement("actions", Actions);
 
-return Actions;
+module.exports = Actions;
 
 });

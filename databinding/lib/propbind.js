@@ -1,5 +1,5 @@
 
-    define([], function(){
+    module.declare(function(require, exports, module){
 Class.prototype.$_setDynamicProperty = function(prop, pValue, fParsed, exclNr){
         //if there's xpath: Add apf.DataBinding if not inherited. 
         //Add compiled binding rule. Load databinding if not loaded. 

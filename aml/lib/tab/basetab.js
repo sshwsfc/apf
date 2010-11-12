@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Baseclass of a paged element. 
@@ -1553,6 +1553,6 @@ oop.inherits(BaseTab, Presentation);
     };
 }).call(BaseTab.prototype);
 
-return BaseTab;
+module.exports = BaseTab;
 
 });

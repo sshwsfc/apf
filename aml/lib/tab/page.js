@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * A page in a pageable element. (i.e. a page in {@link element.tab})
@@ -533,6 +533,6 @@ oop.inherit(Page, Presentation);
 aml && aml.setElement("page", Page);
 
 
-return Page;
+module.exports = Page;
 
 });

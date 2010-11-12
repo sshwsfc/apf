@@ -18,7 +18,7 @@
  *
  */
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 /** 
  * This element is used to choosing number by plus/minus buttons.
  * When plus button is clicked longer, number growing up faster. The same
@@ -552,6 +552,6 @@ oop.decorate(Spinner, DataAction);
 
 aml && aml.setElement("spinner", Spinner);
 
-return Spinner;
+module.exports = Spinner;
 
 });

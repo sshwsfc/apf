@@ -19,12 +19,7 @@
  *
  */
 
-define([
-    "optional!databinding/base/standard", 
-    "aml-core/skin/skin",
-    "optional!aml-core/childvalue",
-    "lib-oop"], 
-    function(StandardBinding, Skin, ChildValue, oop){
+module.declare(function(require, exports, module){
 
 var BaseClass = StandardBinding || Skin;
 
@@ -322,7 +317,7 @@ oop.decorate(BaseButton, ChildValue);
     };
 }).call(BaseButton.prototype);
 
-return BaseButton;
+module.exports = BaseButton;
 
     }
 );

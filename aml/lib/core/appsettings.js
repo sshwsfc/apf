@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element specifying the settings of the application.
@@ -172,6 +172,6 @@ oop.inherit(Appsettings, DOMElement);
 
 aml && aml.setElement("appsettings", Appsettings);
 
-return Appsettings;
+module.exports = Appsettings;
 
 });

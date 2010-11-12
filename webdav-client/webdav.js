@@ -19,8 +19,7 @@
  *
  */
 
-define(["teleport/baseclass", "optional!aml", "lib-oop"], 
-    function(Teleport, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element implementing WebDAV remote filesystem protocol.
@@ -1200,6 +1199,6 @@ WebDav.STATUS_CODES = {
 //    12152 ERROR_HTTP_INVALID_SERVER_RESPONSE
 };
 
-return WebDav;
+module.exports = WebDav;
 
 });

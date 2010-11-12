@@ -1,7 +1,4 @@
-define(["debug/StandaloneV8DebuggerService",
-     "debug/V8Debugger",
-     "apf/elements/dbg/v8debugger"],
-    function(StandaloneV8DebuggerService, V8Debugger, APFV8Debugger) {
+module.declare(function(require, exports, module) {
 
 var V8DebugHost = function(hostname, port, o3obj) {
     this.$hostname = hostname;
@@ -82,6 +79,6 @@ var V8DebugHost = function(hostname, port, o3obj) {
     
 }).call(V8DebugHost.prototype = new apf.Class());
 
-return V8DebugHost;
+module.exports = V8DebugHost;
 
 });

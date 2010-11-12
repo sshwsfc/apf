@@ -19,9 +19,9 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     /**
      * Determines whether the keyboard input was a character that can influence
      * the value of an element (like a textbox).

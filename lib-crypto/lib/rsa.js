@@ -14,7 +14,7 @@
  * @author Dave Shapiro <dave AT ohdave DOT com>
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var CryptoRSA = (function() {
     function RSAKeyPair(encryptionExponent, decryptionExponent, modulus) {
@@ -141,6 +141,6 @@ var CryptoRSA = (function() {
 })();
 
 
-return CryptoRSA;
+module.exports = CryptoRSA;
 
 });

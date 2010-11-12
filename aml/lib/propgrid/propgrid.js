@@ -19,14 +19,7 @@
  *
  */
 
-define([
-    "aml-core/presentation",
-    "optional!databinding/databinding", 
-    "optional!databinding/bindingrule", 
-    "optional!databinding/cache", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(Presentation, DataBinding, BindingRule, Cache, DataAction, aml, oop){
+module.declare(function(require, exports, module){
 
 //@todo There is a lot of dead code in here (also in the skin) remove it
 var BaseClass = Presentation || DataBinding;
@@ -1148,6 +1141,6 @@ if (BindingRule) {
 }
 //#endif
 
-return PropGrid;
+module.exports = PropGrid;
 
 });

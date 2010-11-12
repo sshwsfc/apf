@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 var XhtmlOptionElement = function(struct, tagName){
     DOMElement.call(this, tagName || "option", this.NODE_VISIBLE, struct);
@@ -41,6 +41,6 @@ oop.inherit(XhtmlOptionElement, DOMElement);
 
 apf.xhtml.setElement("option", apf.XhtmlOptionElement);
 
-return XhtmlOptionElement;
+module.exports = XhtmlOptionElement;
 
 });

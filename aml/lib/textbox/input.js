@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/textbox/textbox"], 
-    function(aml, Textbox){
+module.declare(function(require, exports, module){
 
 /**
  */
@@ -30,7 +29,7 @@ var Secret = function (struct, tagName){
 Secret.prototype = Textbox.prototype;
 aml && aml.setElement("secret",  Secret);
 
-return Secret;
+module.exports = Secret;
 
     }
 );

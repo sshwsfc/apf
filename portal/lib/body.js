@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], 
-    function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @todo description

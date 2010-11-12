@@ -19,10 +19,7 @@
  *
  */
 
-define([
-    "lib-oop/class",
-    "lib-oop"], 
-    function(Class, oop){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have Document Object Model (DOM) support. The DOM
@@ -742,7 +739,7 @@ oop.inherits(DOMNode, Class);
     };
 }).call(DOMNode.prototype);
 
-return DOMNode;
+module.exports = DOMNode;
 
     }
 );

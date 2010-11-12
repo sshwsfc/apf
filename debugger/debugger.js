@@ -1,4 +1,4 @@
-define([], function() {
+module.declare(function(require, exports, module) {
 
 apf.dbg = function(struct, tagName){
     this.$init(tagName || "debugger", this.NODE_HIDDEN, struct);
@@ -224,5 +224,5 @@ window.adbg = {
  };
 (apf.$asyncObjects || (apf.$asyncObjects = {}))["adbg"] = 1;
 
-return apf.dbg;
+module.exports = apf.dbg;
 });

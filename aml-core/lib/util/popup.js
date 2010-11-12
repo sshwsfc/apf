@@ -25,14 +25,7 @@ aml-core/focus
 lib-css/position
 */
 
-define([
-    "aml-core", 
-    "aml-core/focus",
-    "envdetect/features", 
-    "lib-css", 
-    "lib-css/position", 
-    "hotkey"],
-    function(amlCore, focusManager, features, css, position, hotkey){
+module.declare(function(require, exports, module){
 
 var popup;
 
@@ -40,7 +33,7 @@ amlCore.addListener(window, "unload", function(){
     popup.destroy();
 });
 
-return popup = {
+module.exports = popup = {
     cache      : {},
     focusFix   : {"INPUT":1,"TEXTAREA":1,"SELECT":1},
     

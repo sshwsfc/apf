@@ -19,8 +19,7 @@
  *
  */
 
-define(["lib-css", "lib-css/non_ie"],
-    function(css){
+module.declare(function(require, exports, module){
 
 css.getHtmlLeft = function(oHtml){
     return oHtml.offsetLeft;

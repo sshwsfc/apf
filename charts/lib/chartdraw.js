@@ -19,7 +19,7 @@
  *
  */
  
-define([], function(){
+module.declare(function(require, exports, module){
 
 var chartDraw = {
     // #ifdef __ENABLE_CHART_AXIS2D
@@ -1266,6 +1266,6 @@ $:0};
 chartDraw.height2D = chartDraw.line2D;
 chartDraw._height2D = chartDraw._line2D;
 
-return chartDraw;
+module.exports = chartDraw;
 
 });

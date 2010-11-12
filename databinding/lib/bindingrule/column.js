@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @attribute {String}  icon
@@ -528,6 +528,6 @@ oop.inherit(BindingColumnRule, BindingRule);
 
 aml && aml.setElement("column", BindingColumnRule);
 
-return BindingColumnRule;
+module.exports = BindingColumnRule;
 
 });

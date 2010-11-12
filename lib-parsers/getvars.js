@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
     
 var parseGetVars = function(url){
     var o = {};
@@ -24,6 +24,6 @@ var parseGetVars = function(url){
     return o;
 }
 
-return parseGetVars;
+module.exports = parseGetVars;
 
 });

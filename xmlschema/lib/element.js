@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/element", "optional!aml", "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
     
 var XsdElement = function(struct, tagName){
     this.$init(true);
@@ -58,6 +57,6 @@ XsdElement.prototype.$recompile = function(stack){
         this.$compile();
 };
 
-return XsdElement;
+module.exports = XsdElement;
 
 });

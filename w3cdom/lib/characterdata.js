@@ -19,10 +19,7 @@
  *
  */
 
-define([
-    "w3cdom/node",
-    "lib-oop"], 
-    function(DOMNode, oop){
+module.declare(function(require, exports, module){
     
 //@todo apf3.0 The functions seem to not set nodeValue...
 var DOMCharacterData = function(){

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Implementation of hash change listener. The 'hash' is the part of the
@@ -273,6 +273,6 @@ var History = {
 };
 
 
-return History;
+module.exports = History;
 
 });

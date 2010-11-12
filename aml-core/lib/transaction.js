@@ -21,7 +21,7 @@
 
 apf.__TRANSACTION__ = 1 << 3;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have transaction support. A transaction is a 
@@ -622,6 +622,6 @@ apf.GuiElement.propHandlers["transaction"] = function(value){
 }
 
 
-return Transaction;
+module.exports = Transaction;
 
 });

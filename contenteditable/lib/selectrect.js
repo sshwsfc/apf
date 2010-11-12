@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * @private
  */
@@ -153,6 +153,6 @@ var Selectrect = function (){
     };
 };
 
-return Selectrect;
+module.exports = Selectrect;
 
 });

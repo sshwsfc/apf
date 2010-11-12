@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var GetShortestPath = function(p1, p2) {
     if (p1.charAt(0) == "/")
@@ -1157,6 +1157,6 @@ apf.$debugwin = {
 }
 
 
-return GetShortestPath;
+module.exports = GetShortestPath;
 
 });

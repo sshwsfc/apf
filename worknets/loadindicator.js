@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element shows a nice animated loader
@@ -163,6 +163,6 @@ oop.inherit(Loadindicator, Presentation);
 
 aml && aml.setElement("loadindicator", Loadindicator);
 
-return Loadindicator;
+module.exports = Loadindicator;
 
 });

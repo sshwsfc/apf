@@ -19,7 +19,7 @@
  *
  */
 
-define(["storage"], function(Storage){
+module.declare(function(require, exports, module){
 
 // summary: 
 //		Storage provider that uses features in the Adobe AIR runtime to achieve
@@ -302,6 +302,6 @@ Storage.modules['air.file'] = {
     }
 };
 
-return Storage.modules['air.file'];
+module.exports = Storage.modules['air.file'];
 
 });

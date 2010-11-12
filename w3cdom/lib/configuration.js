@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
+module.declare(function(require, exports, module){
 var AmlConfiguration = function(isPrototype){
     this.parameterNames = [];
 
@@ -36,6 +36,6 @@ var AmlConfiguration = function(isPrototype){
     };
 }).call(AmlConfiguration.prototype);
 
-return AmlConfiguration;
+module.exports = AmlConfiguration;
 
 });

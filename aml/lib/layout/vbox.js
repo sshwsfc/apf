@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/layout/hbox"], 
-    function(aml, Hbox){
+module.declare(function(require, exports, module){
 
 /**
  */
@@ -30,7 +29,7 @@ var Vbox = function (struct, tagName){
 Vbox.prototype = Hbox.prototype;
 aml && aml.setElement("vbox",  Vbox);
 
-return Vbox;
+module.exports = Vbox;
 
     }
 );

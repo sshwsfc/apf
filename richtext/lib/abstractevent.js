@@ -19,7 +19,7 @@
  *
  */
   
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @constructor
@@ -130,6 +130,6 @@ AbstractEvent.stop = function(event) {
     return (new apf.AbstractEvent(event)).stop();
 };
 
-return AbstractEvent;
+module.exports = AbstractEvent;
 
 });

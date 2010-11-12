@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/window/window"], 
-    function(aml, Window){
+module.declare(function(require, exports, module){
 
 /**
  */
@@ -30,7 +29,7 @@ var ToolWindow = function (struct, tagName){
 ToolWindow.prototype = Window.prototype;
 aml && aml.setElement("toolwindow",  ToolWindow);
 
-return ToolWindow;
+module.exports = ToolWindow;
 
     }
 );

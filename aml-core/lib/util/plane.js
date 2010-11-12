@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * @todo needs refactor
  * @private
@@ -188,6 +188,6 @@ var Plane = {
     }
 };
 
-return Plane;
+module.exports = Plane;
 
 });

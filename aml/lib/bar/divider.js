@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/bar/bar"], 
-    function(aml, Bar){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a divider. For use in toolbars, menu's and such.
@@ -33,7 +32,7 @@ var Divider = function (struct, tagName){
 Divider.prototype = Bar.prototype;
 aml && aml.setElement("divider",  Divider);
 
-return Divider;
+module.exports = Divider;
 
     }
 );

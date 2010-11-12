@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * A symbolic link to an AML element. The visibility of this element determines
@@ -76,6 +76,6 @@ oop.inherits(Junction, DOMElement);
 
 aml && aml.setElement("junction", Junction);
 
-return Junction;
+module.exports = Junction;
 
 });

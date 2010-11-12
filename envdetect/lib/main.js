@@ -1,5 +1,5 @@
-define([], function(){
-    return new (function(){
+module.declare(function(require, exports, module){
+    module.exports = new (function(){
         // Browser Detection, using feature inference methods where possible:
         // http://www.thespanner.co.uk/2009/01/29/detecting-browsers-javascript-hacks/
         // http://webreflection.blogspot.com/2009/01/32-bytes-to-know-if-your-browser-is-ie.html

@@ -1,8 +1,4 @@
-define([
-    "aml-core", 
-    "aml-core/focus/manager",
-    "envdetect"], 
-    function(amlCore, focusManager, env){
+module.declare(function(require, exports, module){
 
 // Keyboard forwarding to focussed object
 amlCore.addListener(document, "keyup", function(e){ //this.$keyup = 

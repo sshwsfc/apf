@@ -21,7 +21,7 @@
 
 apf.__CHILDVALUE__ = 1 << 27;
 
-define([], function(){
+module.declare(function(require, exports, module){
 var ChildValue = function(){
     if (!this.$childProperty)
         this.$childProperty = "value";
@@ -92,6 +92,6 @@ var ChildValue = function(){
     });
 };
 
-return ChildValue;
+module.exports = ChildValue;
 
 });

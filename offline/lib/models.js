@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline"], function(offline){
+module.declare(function(require, exports, module){
 
 /**
  * Object dealing with the storing the state of models for use offline. In
@@ -180,6 +180,6 @@ offline.models = {
 };
 
 
-return offline.models;
+module.exports = offline.models;
 
 });

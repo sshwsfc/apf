@@ -19,10 +19,7 @@
  *
  */
 
-define([
-    "w3cdom/node",
-    "lib-oop"], 
-    function(DOMNode, oop){
+module.declare(function(require, exports, module){
 
 var DOMElement = function(struct, tagName){
     //@todo
@@ -718,7 +715,7 @@ oop.inherits(DOMElement, DOMNode);
     }, true);
 }).call(DOMElement.prototype);
 
-return DOMElement;
+module.exports = DOMElement;
 
     }
 );

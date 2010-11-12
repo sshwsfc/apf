@@ -1,6 +1,5 @@
 //This is somewhat of a hack and should probably be moved to elsewhere in the future
-define(["lib-ecmaext/json2", "lib-ecmaext/json2xml", "lib-xml"],
-    function(json, json2Xml, libXml){
+module.declare(function(require, exports, module){
 
 var parseError = libXml.xmlParseError;
 libXml.xmlParseError = function(xml, message){

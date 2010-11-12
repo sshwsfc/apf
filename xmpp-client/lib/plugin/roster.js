@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Element implementing a Roster service for the apf.xmpp object.
@@ -414,6 +414,6 @@ var XmppRoster = function(model, modelContent, res) {
 };
 
 
-return XmppRoster;
+module.exports = XmppRoster;
 
 });

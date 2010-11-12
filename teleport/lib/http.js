@@ -21,8 +21,7 @@
 
 // #ifdef __TP_HTTP
 
-define(["lib-xmlhttp"], 
-    function(XMLHttpRequest){
+module.declare(function(require, exports, module){
 
 /**
  * This object does what is commonly known as Ajax, it <strong>A</strong>synchronously 
@@ -989,7 +988,7 @@ Http.ERROR   : 3,
  */
 Http.OFFLINE : 4,
 
-return Http;
+module.exports = Http;
 
     }
 );

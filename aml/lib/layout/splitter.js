@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @constructor
@@ -359,6 +359,6 @@ oop.inherit(Splitter, Presentation);
 
 aml && aml.setElement("splitter", Splitter);
 
-return Splitter;
+module.exports = Splitter;
 
 });

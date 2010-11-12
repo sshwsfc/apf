@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * element specifying which menu is shown when a
@@ -163,7 +163,7 @@ aml && aml.setElement("contextmenu", Contextmenu);
         }
     });
     
-return Contextmenu;
+module.exports = Contextmenu;
 
 });    
     

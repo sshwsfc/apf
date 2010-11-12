@@ -19,10 +19,7 @@
  *
  */
 
-define([
-    "lib-oop/class",
-    "lib-oop"], 
-    function(Class, oop){
+module.declare(function(require, exports, module){
     
 var DOMTextRectangle = function(host){
     var _self = this;
@@ -45,6 +42,6 @@ var DOMTextRectangle = function(host){
 //Inherit
 oop.inherits(DOMTextRectangle, Class);
 
-return DOMTextRectangle;
+module.exports = DOMTextRectangle;
 
 });

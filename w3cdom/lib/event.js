@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
     
 /**
  * Implementation of W3C event object. An instance of this class is passed as
@@ -67,6 +67,6 @@ DOMEvent.prototype = {
     }
 };
 
-return DOMEvent;
+module.exports = DOMEvent;
 
 });

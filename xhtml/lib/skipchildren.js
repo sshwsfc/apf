@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 var XhtmlSkipChildrenElement = function(struct, tagName){
     DOMElement.call(this, tagName, this.NODE_VISIBLE, struct);
 };
@@ -60,6 +60,6 @@ apf.xhtml.setElement("table", apf.XhtmlSkipChildrenElement);
 
 apf.xhtml.setElement("pre", apf.XhtmlSkipChildrenElement);
 
-return XhtmlSkipChildrenElement;
+module.exports = XhtmlSkipChildrenElement;
 
 });

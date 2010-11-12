@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/amlprocessinginstruction", "optional!aml", "lib-oop"], function(AmlProcessingInstruction, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Live Markup processor for a processing instruction
@@ -129,6 +129,6 @@ aml && apf.setProcessingInstruction("lm-debug", LiveMarkupPi);
 aml && apf.setProcessingInstruction("livemarkup", LiveMarkupPi);
 
 
-return LiveMarkupPi;
+module.exports = LiveMarkupPi;
 
 });

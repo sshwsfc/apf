@@ -1,4 +1,4 @@
-define(["aml/button/button"], function(Button){
+module.declare(function(require, exports, module){
     
 Button.actions = {
     // #ifdef __WITH_ACTIONTRACKER

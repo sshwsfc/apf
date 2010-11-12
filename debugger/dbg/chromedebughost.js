@@ -1,10 +1,4 @@
-define(["debug/ChromeDebugMessageStream", 
-     "debug/WSChromeDebugMessageStream", 
-     "debug/DevToolsService", 
-     "debug/V8DebuggerService",
-     "debug/V8Debugger",
-     "apf/elements/dbg/v8debugger"],
-    function(ChromeDebugMessageStream, WSChromeDebugMessageStream, DevToolsService, V8DebuggerService, V8Debugger, APFV8Debugger) {
+module.declare(function(require, exports, module) {
 
 var ChromeDebugHost = function(hostname, port, o3obj, ws) {
     this.$hostname = hostname;
@@ -126,6 +120,6 @@ var ChromeDebugHost = function(hostname, port, o3obj, ws) {
     
 }).call(ChromeDebugHost.prototype = new apf.Class());
 
-return ChromeDebugHost;
+module.exports = ChromeDebugHost;
 
 });

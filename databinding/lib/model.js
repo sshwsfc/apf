@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element functioning as the central access point for xml data. Data can be
@@ -1203,6 +1203,6 @@ oop.inherit(Model, DOMElement);
 aml && aml.setElement("model", Model);
 
 
-return Model;
+module.exports = Model;
 
 });

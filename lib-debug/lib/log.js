@@ -19,8 +19,8 @@
  *
  */
 
-define([], function(){
-	return function( txt ){
+module.declare(function(require, exports, module){
+	module.exports = function( txt ){
 		// lets find our log div
 		var e = document.getElementById('_logw');
 		if(!e){

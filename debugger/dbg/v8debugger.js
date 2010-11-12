@@ -1,5 +1,4 @@
-define(["debug/Breakpoint"],
-    function(Breakpoint) {
+module.declare(function(require, exports, module) {
 
 var V8Debugger = function(dbg, host) {
     this.$init();
@@ -451,6 +450,6 @@ var V8Debugger = function(dbg, host) {
     
 }).call(V8Debugger.prototype = new apf.Class());
 
-return V8Debugger;
+module.exports = V8Debugger;
 
 });

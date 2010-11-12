@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Extends a Function object with properties from other objects, specified as

@@ -21,7 +21,7 @@
 
 apf.__ANCHORING__ = 1 << 13;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 //#ifdef __WITH_ANCHORING
 this.percentageMatch = new RegExp();
@@ -497,6 +497,6 @@ var Anchoring = function(){
 };
 
 
-return Anchoring;
+module.exports = Anchoring;
 
 });

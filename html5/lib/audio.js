@@ -19,8 +19,7 @@
  *
  */
 
-define(["html5/media", "optional!aml", "lib-oop"], 
-    function(Media, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element that is able to play an audio file or remote stream

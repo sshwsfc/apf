@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/tab/tab"], 
-    function(aml, Tab){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -45,7 +44,7 @@ var Pages = function(struct, tagName){
 Pages.prototype = Tab.prototype;
 aml && aml.setElement("pages",  Pages);
 
-return Pages;
+module.exports = Pages;
 
     }
 );

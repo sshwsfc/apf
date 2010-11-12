@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element acting as the navigational instrument for any
@@ -231,6 +231,6 @@ oop.inherit(Toc, Presentation);
 
 aml && aml.setElement("toc", Toc);
 
-return Toc;
+module.exports = Toc;
 
 });

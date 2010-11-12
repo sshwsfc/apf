@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * The animation library that is used for the animations inside elements
@@ -980,6 +980,6 @@ return {
 })(apf);
 
 
-return Tween;
+module.exports = Tween;
 
 });

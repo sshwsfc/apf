@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["html5/audio"], function(Audio){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a Flash audio
@@ -380,6 +380,6 @@ Audio.TypeFlash.prototype = {
     }
 };
 
-return Audio.TypeFlash;
+module.exports = Audio.TypeFlash;
 
 });

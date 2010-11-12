@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 var o3_mouseTranslate = (apf.isIE) 
     ? [3,4] 
     : (apf.isGecko || apf.isChrome)

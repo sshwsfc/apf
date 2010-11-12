@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 apf.n = function(xml, xpath){
     return new apf.xmlset(xml, xpath, true);
 }

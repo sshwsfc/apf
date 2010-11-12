@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @constructor
@@ -440,6 +440,6 @@ var Textboxmasking = function(){
 };
 
 
-return Textboxmasking;
+module.exports = Textboxmasking;
 
 });

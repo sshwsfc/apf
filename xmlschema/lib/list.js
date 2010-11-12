@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 var XsdList = function(struct, tagName){
     XsdElement.call(this, tagName || "list", this.NODE_HIDDEN, struct);
 };
@@ -33,6 +33,6 @@ oop.inherit(XsdList, XsdElement);
 
 apf.xsd.setElement("list", apf.XsdList);
 
-return XsdList;
+module.exports = XsdList;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * element specifying a method available within the rpc element.
@@ -106,6 +106,6 @@ oop.inherit(Method, DOMElement);
 
 aml && aml.setElement("method", Method);
 
-return Method;
+module.exports = Method;
 
 });

@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 function diff_rebuildtexts(diffs) {
     // Construct the two texts which made up the diff originally.
     var text1 = '',

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @private
@@ -200,6 +200,6 @@ var Modalwindowwidget = function(){
     }
 };
 
-return Modalwindowwidget;
+module.exports = Modalwindowwidget;
 
 });

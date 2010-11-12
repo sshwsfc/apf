@@ -1,5 +1,4 @@
-define(["envdetect", "aml-core/focus/manager"], 
-    function(env, FocusManager){
+module.declare(function(require, exports, module){
 
 var iframeFixTimer, lastFocusParent, lastFocusElement;
 var timer, state = "", last = "";
@@ -151,6 +150,6 @@ amlCore.addListener(window, "blur", FocusClientWindow.$blurevent = function(){
     }
 });
 
-return FocusClientWindow;
+module.exports = FocusClientWindow;
 
 });

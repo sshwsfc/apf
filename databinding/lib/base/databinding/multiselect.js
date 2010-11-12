@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/databinding", "optional!aml", "lib-oop"], function(DataBinding, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} can bind to data 
  * which contains multiple nodes.
@@ -1206,6 +1206,6 @@ var MultiselectBinding = function(){
     //#endif
 }).call(MultiselectBinding.prototype);
 
-return MultiselectBinding;
+module.exports = MultiselectBinding;
 
 });

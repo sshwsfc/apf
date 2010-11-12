@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @define auth Centralized authentication handling. Not being logged in, after being
@@ -622,6 +622,6 @@ aml && aml.setElement("auth", Auth);
 
 }).call(Auth.prototype);
 
-return Auth;
+module.exports = Auth;
 
 });

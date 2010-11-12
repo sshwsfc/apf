@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 //Modify DOMDocument with the following properties
 
     //#ifdef __WITH_CONTENTEDITABLE

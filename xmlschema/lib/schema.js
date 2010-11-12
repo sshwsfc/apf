@@ -19,8 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], 
-    function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 
 var XsdSchema = function(struct, tagName){
     XsdElement.call(this);
@@ -30,6 +29,6 @@ oop.inherit(XsdSchema, XsdElement);
 
 apf.xsd.setElement("schema", XsdSchema);
 
-return XsdSchema;
+module.exports = XsdSchema;
 
 });

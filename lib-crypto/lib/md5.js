@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var CryptoMD5 = {
     /*
@@ -248,6 +248,6 @@ var CryptoMD5 = {
 };
 
 
-return CryptoMD5;
+module.exports = CryptoMD5;
 
 });

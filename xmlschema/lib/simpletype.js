@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 var XsdSimpleType = function(struct, tagName){
     XsdElement.call(this, tagName || "simpletype", this.NODE_HIDDEN, struct);
     
@@ -62,6 +62,6 @@ oop.inherit(XsdSimpleType, XsdElement);
 
 apf.xsd.setElement("simpletype", apf.XsdSimpleType);
 
-return XsdSimpleType;
+module.exports = XsdSimpleType;
 
 });

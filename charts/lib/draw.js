@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @private
@@ -1632,6 +1632,6 @@ this.moveTo("_x6=__cos(_y8=((_x9="+rs+")+(_y9="+rw+"))*0.5)*(_x8="+ds+")*(_x7="+
     colors : apf.color.colors
 };
 
-return Draw;
+module.exports = Draw;
 
 });

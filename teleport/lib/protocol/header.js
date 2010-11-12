@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Implementation of an RPC protocol which encodes the variable information in 
@@ -99,6 +99,6 @@ var Header = function(){
 };
 
 
-return Header;
+module.exports = Header;
 
 });

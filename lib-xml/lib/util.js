@@ -19,9 +19,9 @@
  *
  */
 
-define(["lib-xml"], function(getXmlDom){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     /**
      * Determines whether a node is a child of another node.
      *

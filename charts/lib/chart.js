@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displays a chart.
@@ -280,6 +280,6 @@ aml && aml.setElement("chart", Chart);
 }).call(Chart.prototype);
 
 
-return Chart;
+module.exports = Chart;
 
 });

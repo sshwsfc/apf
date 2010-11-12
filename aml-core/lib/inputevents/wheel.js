@@ -1,4 +1,4 @@
-define(["aml-core", "envdetect"], function(amlCore, env){
+module.declare(function(require, exports, module){
 
 var wheel = function(e) {
     if (!e)

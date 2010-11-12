@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline"], function(offline){
+module.declare(function(require, exports, module){
 
 /**
  * Object handling queuing of actions that can only be executed whilst online.
@@ -196,6 +196,6 @@ offline.queue = {
 };
 
 
-return offline.queue;
+module.exports = offline.queue;
 
 });

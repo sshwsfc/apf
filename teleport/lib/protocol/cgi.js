@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Implementation of the Common Gateway Interface (CGI) as a module for the RPC
@@ -213,6 +213,6 @@ var Cgi = function(){
 };
 
 
-return Cgi;
+module.exports = Cgi;
 
 });

@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 LiveEdit.richtext = function(){
     this.$state          = LiveEdit.ON;
@@ -1486,6 +1485,6 @@ LiveEdit.plugin = function(sName, fExec) {
     };
 };
 
-return LiveEdit.richtext;
+module.exports = LiveEdit.richtext;
 
 });

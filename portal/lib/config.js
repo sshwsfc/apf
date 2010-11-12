@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "portal/body"], 
-    function(aml, Body){
+module.declare(function(require, exports, module){
 
 /**
  * @todo description
@@ -35,7 +34,7 @@ var Config = function (struct, tagName){
 Config.prototype = Button.prototype;
 aml && aml.setElement("config",  Config);
 
-return Config;
+module.exports = Config;
 
     }
 );

@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Retrieves the attribute of an xml node or the first parent node that has
  * that attribute set. If no attribute is set the value is looked for on

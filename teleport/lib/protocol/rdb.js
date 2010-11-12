@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 // #define __WITH_RDB 1
 
 /**
@@ -251,6 +251,6 @@ var Rdb = function(){
 };
 
 
-return Rdb;
+module.exports = Rdb;
 
 });

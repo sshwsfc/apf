@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
+module.declare(function(require, exports, module){
 
 var VisualSelect = function(selection){
     Class.call(this);
@@ -468,6 +468,6 @@ oop.inherit(VisualSelect, Class);
 }).call(VisualSelect.prototype);
 
 
-return VisualSelect;
+module.exports = VisualSelect;
 
 });

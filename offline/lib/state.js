@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline"], function(offline){
+module.declare(function(require, exports, module){
 
 /**
  * Object recording the state of all elements. If the realtime attribute is
@@ -230,7 +230,7 @@ offline.state = {
     }
 };
 
-return offline.state;
+module.exports = offline.state;
 
 });
 

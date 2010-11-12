@@ -19,13 +19,7 @@
  *
  */
 
-define([
-    "w3cdom/node", 
-    "w3cdom/configuration", 
-    "optional!lib-parsers/xpath", 
-    "optional!envdetect", 
-    "lib-oop"], 
-    function(DOMNode, DOMConfig, xpath, env, oop){
+module.declare(function(require, exports, module){
 
 /**
  * The aml document, this is the root of the DOM Tree and has a nodeType with 
@@ -210,7 +204,7 @@ oop.inherits(DOMDocument, DOMNode);
     }
 }).call(DOMDocument.prototype);
 
-return DOMDocument;
+module.exports = DOMDocument;
 
     }
 );

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 var ContentEditablecommands = (function(){
     var STATE = 1;
     var VALUE = 2;
@@ -885,6 +885,6 @@ var ContentEditablecommands = (function(){
 })();
 
 
-return ContentEditablecommands;
+module.exports = ContentEditablecommands;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /*
   <xs:simpleType name="SizeType">
     <xs:union memberTypes="DressSizeType">
@@ -68,6 +68,6 @@ oop.inherit(XsdUnion, XsdElement);
 
 apf.xsd.setElement("union", apf.XsdUnion);
 
-return XsdUnion;
+module.exports = XsdUnion;
 
 });

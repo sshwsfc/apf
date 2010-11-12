@@ -21,12 +21,7 @@
 
 apf.__FOCUSSABLE__ = 1 << 26;
 
-define([
-    "aml-core/focus/manager",
-    "aml-core/presentation", 
-    "aml-core/guielement",
-    "lib-oop"], 
-    function(focusManager, Presentation, GuiElement, oop){
+module.declare(function(require, exports, module){
     
 var Focussable = function(){
     this.$regbase = this.$regbase | apf.__FOCUSSABLE__;
@@ -160,6 +155,6 @@ GuiElement.propHandlers.focussable = function(value){
     }
 };
 
-return Focussable;
+module.exports = Focussable;
 
 });

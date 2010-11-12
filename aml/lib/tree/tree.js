@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/basetree", "optional!aml", "lib-oop"], function(BaseTree, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying data in a list where each item in the list can contain
@@ -425,6 +425,6 @@ aml && aml.setElement("tree", Tree);
 
 aml && aml.setElement("checked", BindingRule);
 
-return Tree;
+module.exports = Tree;
 
 });

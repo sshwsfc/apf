@@ -19,9 +19,9 @@
  *
  */
  
-define([], function() {
+module.declare(function(require, exports, module) {
 
-return function(){
+module.exports = function(){
 	this.getHtmlLeft = function(oHtml){
 	    return (oHtml.offsetLeft
 	        - (parseInt(apf.getStyle(oHtml.parentNode, "borderLeftWidth")) || 0));

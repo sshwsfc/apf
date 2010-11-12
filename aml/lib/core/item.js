@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Item of a menu displaying a clickable area.
@@ -649,6 +649,6 @@ oop.decorate(Item, ChildValue);
 //apf.aml.setElement("check", apf.check);
 aml && aml.setElement("item",  Item);
 
-return Item;
+module.exports = Item;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var Config = new apf.Class().$init();
 Object.extend(apf.config, {
@@ -241,6 +241,6 @@ if (apf.history)
 //#endif
 
 
-return Config;
+module.exports = Config;
 
 });

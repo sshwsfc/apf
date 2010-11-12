@@ -18,8 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["teleport/baseclass", "optional!aml", "lib-oop"], 
-    function(Teleport, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Baseclass for rpc in teleport. Modules are available for
@@ -649,6 +648,6 @@ apf.config.$inheritProperties["baseurl"] = 1;
 aml && aml.setElement("rpc", Rpc);
 
 
-return Rpc;
+module.exports = Rpc;
 
 });

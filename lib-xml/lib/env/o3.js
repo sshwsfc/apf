@@ -1,5 +1,4 @@
-define(["node-xml-dom"],
-    function(DOMParser){
+module.declare(function(require, exports, module){
         
 XMLDocument = DOMParser.parseFromString("<root />", "text/xml");
 Element = XMLDocument.documentElement;
@@ -34,7 +33,7 @@ getXmlDom.xmlParseError = function(xml, message){
     return xml;
 };
 
-return getXmlDom;
+module.exports = getXmlDom;
 
     }
 );

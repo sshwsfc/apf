@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/panel/panel"], 
-    function(aml, Panel){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -42,7 +41,7 @@ var Frame = function (struct, tagName){
 Frame.prototype = Panel.prototype;
 aml && aml.setElement("frame",  Frame);
 
-return Frame;
+module.exports = Frame;
 
     }
 );

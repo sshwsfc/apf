@@ -19,7 +19,7 @@
  *
  */
 
-define(["html5/video"], function(Video){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying an &lt;video&gt; element
@@ -328,6 +328,6 @@ Video.TypeNative.prototype = {
     }
 };
 
-return Video.TypeNative;
+module.exports = Video.TypeNative;
 
 });

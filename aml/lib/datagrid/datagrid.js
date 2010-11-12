@@ -19,13 +19,7 @@
  *
  */
 
-define([
-    "aml-core/base/basetree", 
-    "optional!databinding/dataaction", 
-    "optional!databinding/bindingrule", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(BaseTree, BindingRule, DataAction, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element providing a sortable, selectable grid containing scrollable 
@@ -1236,6 +1230,6 @@ if (BindingRule) {
     aml && aml.setElement("contents",    BindingRule);
 }
 
-return Datagrid;
+module.exports = Datagrid;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["storage"], function(Storage){
+module.declare(function(require, exports, module){
 
 /**
  * Storage module using javascript objects to store the data. When the 
@@ -302,6 +302,6 @@ Storage.modules.memory = {
     }
 };
 
-return Storage.modules.memory;
+module.exports = Storage.modules.memory;
 
 });

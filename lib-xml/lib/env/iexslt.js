@@ -1,5 +1,4 @@
-define([], 
-    function(){
+module.declare(function(require, exports, module){
 
 function pickRecentProgID(idList){
     var progId;
@@ -184,7 +183,7 @@ var XSLTProcessor = function(){
     };
 }).call(XSLTProcessor.prototype);
 
-return XSLTProcessor;
+module.exports = XSLTProcessor;
 
     }
 );

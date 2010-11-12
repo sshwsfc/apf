@@ -19,12 +19,7 @@
  *
  */
 
-define([
-    "aml-core/amlelement", 
-    "optional!contenteditable/contenteditable", 
-    "optional!xhtml", 
-    "lib-oop"], 
-    function(DOMElement, ContentEditable, xhtml, oop){
+module.declare(function(require, exports, module){
 
 var XhtmlElement = function(struct, tagName){
     DOMElement.call(this, tagName || true, this.NODE_VISIBLE, struct);
@@ -163,6 +158,6 @@ apf.Init.addConditional(function(){
 
 xhtml && xhtml.setElement("@default", apf.XhtmlElement);
 
-return XhtmlElement;
+module.exports = XhtmlElement;
 
 });

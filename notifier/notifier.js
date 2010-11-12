@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Notification element, which shows popups when events occur. Similar
  * to growl on the OSX platform.
@@ -411,6 +411,6 @@ oop.inherit(Notifier, Presentation);
 aml && aml.setElement("notifier", Notifier);
 aml && aml.setElement("event", Event);
 
-return Notifier;
+module.exports = Notifier;
 
 });

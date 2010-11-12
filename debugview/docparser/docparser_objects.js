@@ -1,5 +1,5 @@
-define([], function(){
-return {
+module.declare(function(require, exports, module){
+module.exports = {
     this.isPrivate = false;
     
     this.$init = function(){

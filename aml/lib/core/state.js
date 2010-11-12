@@ -18,8 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["w3cdom/element", "optional!aml", "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 var StateServer = {
     states: {},
@@ -331,5 +330,5 @@ oop.inherits(State, DOMElement);
 
 aml && aml.setElement("state", State);
 
-return State;
+module.exports = State;
 });

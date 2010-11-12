@@ -19,7 +19,7 @@
  *
  */
 
-define(["html5/video"], function(Video){
+module.declare(function(require, exports, module){
 
 Video.TypeWmpCompat = (function() {
     var hasWMP = false;
@@ -390,6 +390,6 @@ Video.TypeWmp.prototype = {
     }
 };
 
-return Video.TypeWmpCompat;
+module.exports = Video.TypeWmpCompat;
 
 });

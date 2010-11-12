@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Defines a list of acceptable values
  */
@@ -54,6 +54,6 @@ oop.inherit(XsdEnumeration, XsdElement);
 
 apf.xsd.setElement("enumeration", apf.XsdEnumeration);
 
-return XsdEnumeration;
+module.exports = XsdEnumeration;
 
 });

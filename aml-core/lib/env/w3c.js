@@ -1,5 +1,4 @@
-define(["envdetect"],
-    function(env){
+module.declare(function(require, exports, module){
         
 if (document.body)
     document.body.focus = function(){};

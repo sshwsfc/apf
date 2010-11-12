@@ -19,7 +19,7 @@
  *
  */
 
-define(["storage"], function(Storage){
+module.declare(function(require, exports, module){
 
 /**
  *        Storage provider that uses WHAT Working Group features in Firefox 2 
@@ -230,6 +230,6 @@ Storage.modules.html5 = {
     }
 };
 
-return Storage.modules.html5;
+module.exports = Storage.modules.html5;
 
 });

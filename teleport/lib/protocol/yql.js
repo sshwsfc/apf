@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Implementation of the Yahoo! Query Language as a module for the RPC
@@ -114,6 +114,6 @@ YQL.PUBLIC  = "http://query.yahooapis.com/v1/public/yql";
 YQL.PRIVATE = "http://query.yahooapis.com/v1/yql";
 YQL.FORMATS = {"xml":1, "json":1};
 
-return YQL;
+module.exports = YQL;
 
 });

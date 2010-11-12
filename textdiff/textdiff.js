@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @fileoverview Computes the difference between two texts to create a patch.
@@ -2099,6 +2099,6 @@ var Diff_match_patch = new (function() {
 })();
 
 
-return Diff_match_patch;
+module.exports = Diff_match_patch;
 
 });

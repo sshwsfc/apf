@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 var apf = {
     supportVML : document.all?true:false,
     supportSVG : document.all?false:true,

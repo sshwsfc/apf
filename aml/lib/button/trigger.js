@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/button/button"], 
-    function(aml, Button){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -42,7 +41,7 @@ function Trigger(struct, tagName){
 Trigger.prototype = Button.prototype;
 aml && aml.setElement("trigger",  Trigger);
 
-return Trigger;
+module.exports = Trigger;
 
     }
 );

@@ -1,4 +1,4 @@
-define(["teleport/http"], function(Http){
+module.declare(function(require, exports, module){
 
 //@todo refactor this needs some rethinking...    
 var namespace = apf.config.name + ".apf.http";

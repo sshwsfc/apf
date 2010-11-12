@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 this.$btndown = function(oHtml, e){
     this.$setStyleClass(oHtml, "down");

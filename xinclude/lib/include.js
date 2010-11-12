@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/element", "xinclude", "optional!aml", "lib-oop"], 
-    function(DOMElement, xinclude, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Defines a list of acceptable values
  */
@@ -187,6 +186,6 @@ aml && aml.setElement("include", XiInclude);
     }
 }).call(XiInclude.prototype);
 
-return XiInclude;
+module.exports = XiInclude;
 
 });

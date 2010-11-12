@@ -20,7 +20,7 @@
  */
 
 //@todo needs refactor
-define([], function(){
+module.declare(function(require, exports, module){
 
 // Only add setZeroTimeout to the window object, and hide everything
 // else in a closure.
@@ -104,6 +104,6 @@ var Queue = {
     }
 };
 
-return Queue;
+module.exports = Queue;
 
 });

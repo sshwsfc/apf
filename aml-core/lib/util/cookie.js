@@ -19,9 +19,9 @@
  *
  */
  
-define([],function(){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     /**
      * Sets a name/value pair which is stored in the browser and sent to the server
      * with every request. This is also known as a cookie. Be careful setting 

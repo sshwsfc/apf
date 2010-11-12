@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Specifies the exact number of characters or list items allowed. Must be equal to or greater than zero
  */
@@ -42,6 +42,6 @@ oop.inherit(XsdLength, XsdElement);
 
 apf.xsd.setElement("length", apf.XsdLength);
 
-return XsdLength;
+module.exports = XsdLength;
 
 });

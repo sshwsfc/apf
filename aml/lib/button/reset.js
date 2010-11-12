@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/button/button"], 
-    function(aml, Button){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -42,7 +41,7 @@ var Reset = function (struct, tagName){
 Reset.prototype = Button.prototype;
 aml && aml.setElement("reset",  Reset);
 
-return Reset;
+module.exports = Reset;
 
     }
 );

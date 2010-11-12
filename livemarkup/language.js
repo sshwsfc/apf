@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Adds multilingual support for aml applications. Reads language symbols from
@@ -249,6 +249,6 @@ var Language = {
 };
 
 
-return Language;
+module.exports = Language;
 
 });

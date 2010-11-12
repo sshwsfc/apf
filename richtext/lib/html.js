@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * The parser of the HyperText Markup Language.
  * @private
@@ -363,6 +363,6 @@ var HtmlCleaner = (function() {
 })();
 
 
-return HtmlCleaner;
+module.exports = HtmlCleaner;
 
 });

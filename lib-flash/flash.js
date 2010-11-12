@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Helper class that aids in creating and controlling Adobe Flash
  * elements.
@@ -626,6 +626,6 @@ var Flash = (function(){
     };
 })();
 
-return Flash;
+module.exports = Flash;
 
 });

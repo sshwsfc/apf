@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/multiselectbinding", "optional!aml", "lib-oop"], function(MultiselectBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a rectangle containing arbitrary (X)HTML.
@@ -340,6 +340,6 @@ oop.decorate(Text, ChildValue);
 
 aml && aml.setElement("text", Text);
 
-return Text;
+module.exports = Text;
 
 });

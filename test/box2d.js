@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 var box2d = new (function(){
     function classCreate() {
         var parent = null;/*, properties = $A(arguments);

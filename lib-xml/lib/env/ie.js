@@ -1,7 +1,7 @@
 /**
  * Compatibility layer for Internet Explorer.
  */
-define([], function(){
+module.declare(function(require, exports, module){
         
 var getXmlDom = function(message, noError, preserveWhiteSpaces){
     var xmlParser = new ActiveXObject("microsoft.XMLDOM");
@@ -44,7 +44,7 @@ getXmlDom.xmlParseError = function(xml){
     return xml;
 };
 
-return getXmlDom;
+module.exports = getXmlDom;
 
     }
 );

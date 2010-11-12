@@ -19,7 +19,7 @@
  *
  */
 
-define(["lib-oop/class"], function(Class){
+module.declare(function(require, exports, module){
 
 var classCount = 0;
 
@@ -198,7 +198,7 @@ Class.prototype  = new (function(){
     };
 })();
 
-return Class;
+module.exports = Class;
 
     }
 );

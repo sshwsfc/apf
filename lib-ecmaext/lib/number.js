@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 if (typeof isFinite == "undefined") {
     function isFinite(val){

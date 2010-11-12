@@ -1,5 +1,4 @@
-define(["aml-core", "lib-oop", "lib-oop/class"], 
-    function(amlCore, oop, Class){
+module.declare(function(require, exports, module){
     
 var FocusManager = function(document){
     Class.call(this);
@@ -475,6 +474,6 @@ var FocusManager = function(document){
 
 oop.inherits(FocusManager, Class);
 
-return new FocusManager();
+module.exports = new FocusManager();
 
 });

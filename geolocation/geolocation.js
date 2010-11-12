@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * 
@@ -239,6 +239,6 @@ var Geolocation = (function() {
     return pub;
 })();
 
-return Geolocation;
+module.exports = Geolocation;
 
 });

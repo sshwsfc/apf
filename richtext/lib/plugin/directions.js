@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 var DirectionPlugin = function(sName) {
     this.name        = sName;
@@ -44,6 +43,6 @@ LiveEdit.plugin("ltr", DirectionPlugin);
 LiveEdit.plugin("rtl", DirectionPlugin);
 
 
-return DirectionPlugin;
+module.exports = DirectionPlugin;
 
 });

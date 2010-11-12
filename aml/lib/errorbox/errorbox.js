@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"],
-    function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element showing an error message when the attached element 
@@ -186,6 +185,6 @@ oop.inherit(Errorbox, Presentation);
 
 aml && aml.setElement("errorbox", Errorbox);
 
-return Errorbox;
+module.exports = Errorbox;
 
 });

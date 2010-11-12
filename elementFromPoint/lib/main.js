@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
     
 if (!document.elementFromPoint) {
     Document.prototype.elementFromPointRemove = function(el){

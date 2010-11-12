@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 var XsdRestriction = function(struct, tagName){
     XsdElement.call(this, tagName || "restriction", this.NODE_HIDDEN, struct);
 };
@@ -45,6 +45,6 @@ oop.inherit(XsdRestriction, XsdElement);
 
 apf.xsd.setElement("restriction", apf.XsdRestriction);
 
-return XsdRestriction;
+module.exports = XsdRestriction;
 
 });

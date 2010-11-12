@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var XmlDiff = function (doc1, doc2){
     /*var domParser = new apf.DOMParser();
@@ -921,6 +921,6 @@ var XmlDiff = function (doc1, doc2){
 }
 
 
-return XmlDiff;
+module.exports = XmlDiff;
 
 });

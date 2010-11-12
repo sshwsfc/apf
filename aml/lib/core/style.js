@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @todo description
@@ -58,6 +58,6 @@ aml && aml.setElement("style", Style);
 apf.xhtml.setElement("style",  apf.style);
 
 
-return Style;
+module.exports = Style;
 
 });

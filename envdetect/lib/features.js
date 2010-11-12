@@ -1,5 +1,5 @@
-define(["envdetect"], function(env){
-    return new (function(){
+module.declare(function(require, exports, module){
+    module.exports = new (function(){
         //Set Compatibility
         this.TAGNAME                   = env.isIE ? "baseName" : "localName";
         this.styleSheetRules           = env.isIE ? "rules" : "cssRules";

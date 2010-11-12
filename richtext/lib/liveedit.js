@@ -20,10 +20,7 @@
  */
 apf.__LIVEEDIT__  = 1 << 23;
 
-define([
-    "optional!aml-core/validation",
-    "optional!databinding/dataaction"], 
-    function(Validation, DataAction){
+module.declare(function(require, exports, module){
 
 /**
  * Baseclass of an element whose content is editable. This is usually an
@@ -853,6 +850,6 @@ LiveEdit.mousedown = function(oHtml, event){
     }
 }
 
-return LiveEdit;
+module.exports = LiveEdit;
 
 });

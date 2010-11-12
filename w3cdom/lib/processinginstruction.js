@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/domnode", "optional!aml", "lib-oop"], function(DOMNode, aml, oop){
+module.declare(function(require, exports, module){
 
 var AmlProcessingInstruction = function(isPrototype){
 	DOMNode.call(this, isPrototype);
@@ -127,6 +127,6 @@ oop.inherits(AmlProcessingInstruction, DOMNode);
     };
 }).call(AmlProcessingInstruction.prototype);
 
-return AmlProcessingInstruction;
+module.exports = AmlProcessingInstruction;
 
 });

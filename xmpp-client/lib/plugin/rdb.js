@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Description
@@ -555,6 +555,6 @@ XmppRdb.ACTION_BAN     = 0x0004;
 XmppRdb.ACTION_GRANT   = 0x0008;
 XmppRdb.ACTION_REVOKE  = 0x0010;
 
-return XmppRdb;
+module.exports = XmppRdb;
 
 });

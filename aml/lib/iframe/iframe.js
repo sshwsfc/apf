@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying the rendered contents of an URL.
@@ -193,6 +193,6 @@ oop.decorate(Iframe, StandardBinding);
 
 aml && aml.setElement("iframe", Iframe);
 
-return Iframe;
+module.exports = Iframe;
 
 });

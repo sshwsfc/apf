@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/bar/bar"], 
-    function(aml, Bar){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a bar consisting of bars containing other text, icons
@@ -54,7 +53,7 @@ var Statusbar = function (struct, tagName){
 Statusbar.prototype = Bar.prototype;
 aml && aml.setElement("statusbar",  Statusbar);
 
-return Statusbar;
+module.exports = Statusbar;
 
     }
 );

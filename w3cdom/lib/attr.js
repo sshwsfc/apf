@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/node", "lib-oop"], 
-    function(DOMNode, oop){
+module.declare(function(require, exports, module){
 
 var AmlAttr = function(ownerElement, name, value){
     DOMNode.apply(this.arguments);
@@ -147,7 +146,7 @@ oop.inherits(AmlAttr, DOMNode);
     this.addEventListener("DOMNodeInsertedIntoDocument", this.$triggerUpdate);
 }).call(apf.AmlAttr.prototype);
 
-return AmlAttr;
+module.exports = AmlAttr;
 
     }
 );

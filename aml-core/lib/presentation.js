@@ -21,12 +21,7 @@
 
 require("aml-core").__SKIN__ = 1 << 9;
 
-define([
-    "aml-core",
-    "aml-core/guielement",
-    "aml-core/skin/main",
-    "lib-oop"], 
-    function(core, GuiElement, skinManager, oop){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have skinning features. A skin is a description
@@ -592,7 +587,7 @@ oop.inherits(Presentation, GuiElement);
 
 core.$inheritProperties["skinset"] = 1;
 
-return Presentation;
+module.exports = Presentation;
 
     }
 );

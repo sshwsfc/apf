@@ -19,12 +19,7 @@
  *
  */
 
-define([
-    "databinding/rulelist", 
-    "aml-core/amlelement", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(RuleList, DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @define bindings element containing all the binding rules for the data 
@@ -144,5 +139,5 @@ oop.inherits(Bindings, DOMElement);
 
 aml && aml.setElement("bindings", Bindings);
 
-return Bindings;
+module.exports = Bindings;
 });

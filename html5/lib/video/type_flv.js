@@ -19,7 +19,7 @@
  *
  */
  
-define(["html5/video"], function(Video){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a Flash video
@@ -511,6 +511,6 @@ Video.TypeFlv.prototype = {
     }
 };
 
-return Video.TypeFlv;
+module.exports = Video.TypeFlv;
 
 });

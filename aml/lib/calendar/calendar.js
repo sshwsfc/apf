@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Element displaying a calendar, ordered by week. It allows the user to choose 
  * the month and year for which to display the days. Calendar returns a date 
@@ -747,6 +747,6 @@ oop.decorate(Calendar, DataAction);
 
 aml && aml.setElement("calendar", Calendar);
 
-return Calendar;
+module.exports = Calendar;
 
 });

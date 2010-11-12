@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displays a chart.
@@ -584,6 +584,6 @@ addEventListener("DOMNodeInsertedIntoDocument", function( e ){
     });
 }).call(Graph.prototype);
 
-return Graph;
+module.exports = Graph;
 
 });

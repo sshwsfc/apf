@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 var XsdMaxScale = function(struct, tagName){
     XsdElement.call(this, tagName || "maxscale", this.NODE_HIDDEN, struct);
 };
@@ -38,6 +38,6 @@ oop.inherit(XsdMaxScale, XsdElement);
 
 apf.xsd.setElement("maxscale", apf.XsdMaxScale);
 
-return XsdMaxScale;
+module.exports = XsdMaxScale;
 
 });

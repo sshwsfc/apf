@@ -19,8 +19,7 @@
  *
  */
 
-define(["databinding/databinding", "lib-oop"], 
-    function(DataBinding){
+module.declare(function(require, exports, module){
 
 /**
  * @constructor
@@ -183,6 +182,6 @@ var StandardBinding = function(){
 
 oop.inherits(StandardBinding, DataBinding);
 
-return StandardBinding;
+module.exports = StandardBinding;
 
 });

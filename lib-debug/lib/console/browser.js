@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
     
 /**
  * The console outputs to the debug screen and offers differents ways to do
@@ -320,6 +320,6 @@ var console = {
     }
 };
 
-return console;
+module.exports = console;
 
 });

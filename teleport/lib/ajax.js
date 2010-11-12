@@ -1,4 +1,4 @@
-define(["teleport"], function(teleport){
+module.declare(function(require, exports, module){
     
 /**
  * Sends and retrieves data from remote locations over http.
@@ -49,6 +49,6 @@ f.exec = function(method, args, callback, options){
     }
 };
 
-return f;
+module.exports = f;
 
 });

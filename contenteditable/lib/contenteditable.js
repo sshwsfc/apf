@@ -21,7 +21,7 @@
 
 apf.__CONTENTEDITABLE__  = 1 << 24;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 apf.addEventListener("load", function(){
     var lastShift;
@@ -540,6 +540,6 @@ ContentEditable.$renameSkinChange = function(e){
 
 apf.config.$inheritProperties["editable"] = 2;
 
-return ContentEditable;
+module.exports = ContentEditable;
 
 });

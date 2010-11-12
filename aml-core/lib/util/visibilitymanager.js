@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
     
 function destroy(){
     //@todo
@@ -39,7 +39,7 @@ function add(){
  *
  * @private
  */
-return {
+module.exports = {
     check : function(amlNode, type, callback) {
         if (amlNode.$ext.offsetHeight || amlNode.$ext.offsetWidth)
             return true;

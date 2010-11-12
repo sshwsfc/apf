@@ -1,5 +1,4 @@
-define(["lib-oop", "lib-oop/class", "aml-core/util/nameserver"], 
-    function(oop, Class, nameserver){
+module.declare(function(require, exports, module){
 
 /**
  * Object allowing for a set of AML elements to be validated, an element that 
@@ -237,6 +236,6 @@ oop.inherit(ValidationGroup, Class);
 
 apf.config.$inheritProperties["validgroup"] = 1;
 
-return ValidationGroup;
+module.exports = ValidationGroup;
 
 });

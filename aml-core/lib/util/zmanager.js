@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
     
 /**
  * Manages the z-index of all elements in the UI. It takes care of different
@@ -58,7 +58,7 @@ var count = {
     }
 };
 
-return {
+module.exports = {
     set : function(type, main, companion){
         main.style.zIndex = count[type].level++;
         if (companion) {

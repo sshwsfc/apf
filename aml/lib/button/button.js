@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/basebutton", "optional!aml", "lib-oop"], 
-    function(BaseButton, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -587,6 +586,6 @@ oop.inherits(Button, BaseButton);
 
 aml && aml.setElement("button",  Button);
 
-return Button;
+module.exports = Button;
 
 });

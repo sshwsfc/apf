@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 var XhtmlInputElement = function(struct, tagName){
     DOMElement.call(this, tagName || "input", this.NODE_VISIBLE, struct);
 };
@@ -59,6 +59,6 @@ oop.inherit(XhtmlInputElement, DOMElement);
 
 apf.xhtml.setElement("input", apf.XhtmlInputElement);
 
-return XhtmlInputElement;
+module.exports = XhtmlInputElement;
 
 });

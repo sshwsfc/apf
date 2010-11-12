@@ -19,7 +19,7 @@
  *
  */
  
-define(["html5/audio"], function(Audio){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying an &lt;audio&gt; element
@@ -333,6 +333,6 @@ Audio.TypeNative.prototype = {
     }
 };
 
-return Audio.TypeNative;
+module.exports = Audio.TypeNative;
 
 });

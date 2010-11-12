@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var Color = {
 /*
@@ -229,6 +229,6 @@ var Color = {
 };
 
 
-return Color;
+module.exports = Color;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline"], function(offline){
+module.declare(function(require, exports, module){
 
 /**
  * Object detecting if the application has network, the detection moments can
@@ -136,6 +136,6 @@ offline.detector = {
 };
 
 
-return offline.detector;
+module.exports = offline.detector;
 
 });

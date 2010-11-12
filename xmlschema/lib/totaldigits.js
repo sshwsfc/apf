@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Specifies the exact number of digits allowed. Must be greater than zero
  */
@@ -43,6 +43,6 @@ oop.inherit(XsdTotalDigits, XsdElement);
 
 apf.xsd.setElement("totaldigits", apf.XsdTotalDigits);
 
-return XsdTotalDigits;
+module.exports = XsdTotalDigits;
 
 });

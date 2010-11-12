@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/upload/upload", "lib-oop/class", "lib-oop"], 
-    function(Upload, Class, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a HTML4 uploader
@@ -263,6 +262,6 @@ Upload.html4.isSupported = function() {
     };
 }).call(Upload.html4.prototype);
 
-return Upload.html4;
+module.exports = Upload.html4;
 
 });

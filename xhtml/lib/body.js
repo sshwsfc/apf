@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 var XhtmlBodyElement = function(struct, tagName){
     DOMElement.call(this, tagName || "body", this.NODE_VISIBLE, struct);
 };
@@ -54,6 +54,6 @@ apf.Init.addConditional(function(){
 
 apf.xhtml.setElement("body", apf.XhtmlBodyElement);
 
-return XhtmlBodyElement;
+module.exports = XhtmlBodyElement;
 
 });

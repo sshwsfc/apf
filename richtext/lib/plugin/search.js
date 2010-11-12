@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 var SearchPlugin = function(sName) {
     this.name        = sName;
@@ -285,6 +284,6 @@ var SearchPlugin = function(sName) {
 LiveEdit.plugin("search",  SearchPlugin);
 LiveEdit.plugin("replace", SearchPlugin);
 
-return SearchPlugin;
+module.exports = SearchPlugin;
 
 });

@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * baseclasses
  * alle classes die geen elements zijn

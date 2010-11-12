@@ -1,5 +1,5 @@
 
-    define([], function(){
+    module.declare(function(require, exports, module){
 /**
      * Formats a Ajax.org Platform error message.
      * @param {Number}      number      the number of the error. This can be used to look up more information about the error.

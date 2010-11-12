@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @attribute {String} formula 
@@ -58,6 +58,6 @@ oop.inherit(BindingSeriesRule, BindingRule);
 
 aml && aml.setElement("series", BindingSeriesRule);
 
-return BindingSeriesRule;
+module.exports = BindingSeriesRule;
 
 });

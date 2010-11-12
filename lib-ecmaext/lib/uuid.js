@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Generate a random uuid. Usage: Math.uuid(length, radix)

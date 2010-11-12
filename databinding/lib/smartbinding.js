@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @term smartbinding Smartbinding is a type of bidirectional databinding where 
@@ -859,6 +859,6 @@ oop.inherit(Smartbinding, DOMElement);
 
 aml && aml.setElement("smartbinding", Smartbinding);
 
-return Smartbinding;
+module.exports = Smartbinding;
 
 });

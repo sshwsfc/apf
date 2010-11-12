@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
+module.declare(function(require, exports, module){
 // || __INC_ALL
 
 /**
@@ -1464,6 +1464,6 @@ oop.decorate(Vectorflow, DataAction);;
 
 aml && aml.setElement("vectorflow", Vectorflow);
 
-return Vectorflow;
+module.exports = Vectorflow;
 
 });

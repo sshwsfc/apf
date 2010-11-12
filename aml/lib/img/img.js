@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/basesimple", "optional!aml", "lib-oop"], 
-    function(BaseSimple, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a picture. This element can read databound resources.
@@ -234,5 +233,5 @@ oop.inherits(Img, BaseSimple);
 
 apf.aml.setElement("img", Img);
 
-return Img;
+module.exports = Img;
 });

@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/baselist", "optional!aml-core/rename", "optional!aml", "lib-oop"], 
-    function(BaseList, Rename, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a skinnable list of options which can be selected.
@@ -358,5 +357,5 @@ if (Rename)
 
 aml && aml.setElement("list", List);
 
-return List;
+module.exports = List;
 });

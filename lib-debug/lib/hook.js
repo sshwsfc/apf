@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @author      Rik Arends
@@ -290,6 +290,6 @@ var hook = {
     }
 }
 
-return hook;
+module.exports = hook;
 
 });

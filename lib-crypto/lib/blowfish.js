@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /*
  * Copyright (C) 2005 - Stephen Griffin, i-code.co.uk
@@ -543,6 +543,6 @@ CryptoBlowfish.prototype = {
     }
 };
 
-return CryptoBlowfish;
+module.exports = CryptoBlowfish;
 
 });

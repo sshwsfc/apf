@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"],
-    function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a Rich Text Editor, like M$ Office Word in a browser
@@ -577,6 +576,6 @@ oop.decorate(Editor, LiveEdit);
 
 aml && aml.setElement("editor", Editor);
 
-return Editor;
+module.exports = Editor;
 
 });

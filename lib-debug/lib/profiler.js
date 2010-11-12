@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * $Id$
  * Profiler class
@@ -593,6 +593,6 @@ var Profiler_functionTemplate = function() {
     };
 };
 
-return profiler;
+module.exports = profiler;
 
 });

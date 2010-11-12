@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var CryptoBase64 = (function() {
     
@@ -206,6 +206,6 @@ apf.crypto.UTF8 = {
 
 };
 
-return CryptoBase64;
+module.exports = CryptoBase64;
 
 });

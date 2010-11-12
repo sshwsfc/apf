@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
+module.declare(function(require, exports, module){
 
 /*
  * @author      Lukasz Lipinski
@@ -1210,6 +1210,6 @@ aml && aml.setElement("blockoutput", BindingRule);
 aml && aml.setElement("blockinput",  BindingRule);
 aml && aml.setElement("blocklabel",  BindingRule);
 
-return Flowchart;
+module.exports = Flowchart;
 
 });

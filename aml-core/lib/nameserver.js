@@ -19,10 +19,9 @@
  *
  */
 
-define(["ecmaext"],
-    function(ecma){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     lookup : {},
     
     add : function(type, item){

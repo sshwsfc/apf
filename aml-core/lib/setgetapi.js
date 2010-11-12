@@ -1,5 +1,4 @@
-define(["aml-core/guielement", "lib-oop"],
-    function(GuiElement, oop){
+module.declare(function(require, exports, module){
         
 /**** Convenience functions for gui nodes ****/
 oop.mixin(GuiElement, {

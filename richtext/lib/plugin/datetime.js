@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 var DateTimePlugin = function(sName) {
     this.name        = sName;
@@ -79,6 +78,6 @@ LiveEdit.plugin("insertdate", DateTimePlugin);
 LiveEdit.plugin("inserttime", DateTimePlugin);
 
 
-return DateTimePlugin;
+module.exports = DateTimePlugin;
 
 });

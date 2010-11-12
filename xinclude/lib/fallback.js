@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/element", "xinclude", "optional!aml", "lib-oop"], 
-    function(DOMElement, xinclude, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Defines a list of acceptable values
@@ -37,6 +36,6 @@ XiFallback.prototype.$parsePrio = "002";
 xinclude.setElement("fallback", XiFallback);
 aml && aml.setElement("fallback", XiFallback);
 
-return XiFallback;
+module.exports = XiFallback;
 
 });

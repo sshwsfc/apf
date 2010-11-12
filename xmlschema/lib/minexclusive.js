@@ -19,8 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], 
-    function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
     
 /**
  * Specifies the lower bounds for numeric values (the value must be greater than this value)
@@ -43,6 +42,6 @@ oop.inherit(XsdMinExclusive, XsdElement);
 
 apf.xsd.setElement("minexclusive", apf.XsdMinExclusive);
 
-return XsdMinExclusive;
+module.exports = XsdMinExclusive;
 
 });

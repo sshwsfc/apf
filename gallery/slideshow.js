@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/multiselectbinding", "optional!aml", "lib-oop"], function(MultiselectBinding, aml, oop){
+module.declare(function(require, exports, module){
 /** 
  * This element is used for viewing images. It's possible to add thumbnail and 
  * description to each of them. You can select a displayed image in several ways.
@@ -1346,6 +1346,6 @@ aml && aml.setElement("src",   BindingRule);
 aml && aml.setElement("title", BindingRule);
 aml && aml.setElement("thumb", BindingRule);
 
-return Slideshow;
+module.exports = Slideshow;
 
 });

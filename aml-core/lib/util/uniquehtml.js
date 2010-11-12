@@ -1,7 +1,7 @@
-define([],function(){
+module.declare(function(require, exports, module){
         
 var uniqueHtmlIds = 0;
-return {
+module.exports = {
     /**
      * Adds a unique id attribute to an html element.
      * @param {HTMLElement} oHtml the object getting the attribute.

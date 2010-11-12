@@ -19,10 +19,7 @@
  *
  */
 
-define([
-    "w3cdom/node",
-    "lib-oop"], 
-    function(DOMNode, oop){
+module.declare(function(require, exports, module){
         
 var DOMDocumentFragment = function(isPrototype){
     this.$init(isPrototype);
@@ -35,6 +32,6 @@ DOMDocumentFragment.prototype.nodeName = "#document-fragment";
 DOMDocumentFragment.prototype.nodeType = 
     DOMDocumentFragment.prototype.NODE_DOCUMENT_FRAGMENT;
 
-return DOMDocumentFragment;
+module.exports = DOMDocumentFragment;
 
 });

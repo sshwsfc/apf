@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 self.getPrio = function() {
     return 42;
 };

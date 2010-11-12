@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Specifies the upper bounds for numeric values (the value must be less than this value)
  */
@@ -42,6 +42,6 @@ oop.inherit(XsdMaxExclusive, XsdElement);
 
 apf.xsd.setElement("maxexclusive", apf.XsdMaxExclusive);
 
-return XsdMaxExclusive;
+module.exports = XsdMaxExclusive;
 
 });

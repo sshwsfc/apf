@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Stores javascript structures based on a name and a namespace. This object
  * is used by {@link element.offline apf offline support} as well as the 
@@ -242,6 +242,6 @@ var Storage = {
     // #endif
 };
 
-return Storage;
+module.exports = Storage;
 
 });

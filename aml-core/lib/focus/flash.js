@@ -1,5 +1,4 @@
-define(["aml-core/focus/window"], 
-    function(FocusClientWindow){
+module.declare(function(require, exports, module){
 
 /**
  * Flashes the task bar. This can be useful to signal the user that an

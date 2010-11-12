@@ -1,5 +1,5 @@
 
-define(["aml-core/nameserver"], function(Nameserver){
+module.declare(function(require, exports, module){
 
 //#ifdef __WITH_REGISTRY
 /**
@@ -85,6 +85,6 @@ Registry.get = function(key, namespace){
     return this.lookup[namespace] ? this.lookup[namespace][key] : null;
 };
 
-return Registry;
+module.exports = Registry;
 
 });

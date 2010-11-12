@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element allowing data synchronization between multiple clients using the same
@@ -594,6 +593,6 @@ Remote.SESSION_TERMINATED = 0x0004; //Session is terminated
 
 aml && aml.setElement("remote", Remote);
 
-return Remote;
+module.exports = Remote;
 
 });

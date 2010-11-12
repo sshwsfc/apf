@@ -19,9 +19,9 @@
  *
  */
 
-define([],function(){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     skins  : {},
     css    : [],
     events : ["onmousemove", "onmousedown", "onmouseup", "onmouseout",

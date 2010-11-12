@@ -1,9 +1,4 @@
-define([
-    "aml-core", 
-    "aml-core/focus/manager",
-    "envdetect", 
-    "lib-css/position"], 
-    function(amlCore, focusManager, env, cssPos){
+module.declare(function(require, exports, module){
     
 amlCore.addListener(document, "contextmenu", function(e){
     if (!e)

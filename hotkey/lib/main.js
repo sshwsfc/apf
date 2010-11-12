@@ -1,6 +1,4 @@
-define(
-    ["aml-core", "lib-oop/class", "envdetect/features"],
-    function(amlCore, Class, features){
+module.declare(function(require, exports, module){
 
 var HotKeyManager = new Class();
 
@@ -185,6 +183,6 @@ var HotKeyManager = new Class();
     });
 }).call(HotKeyManager);
 
-return HotKeyManager;
+module.exports = HotKeyManager;
 
 });

@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/textbox/textbox"], 
-    function(aml, Textbox){
+module.declare(function(require, exports, module){
 
 /**
  */
@@ -32,7 +31,7 @@ var Textarea = function (struct, tagName){
 Textarea.prototype = Textbox.prototype;
 aml && aml.setElement("textarea",  Textarea);
 
-return Textarea;
+module.exports = Textarea;
 
     }
 );

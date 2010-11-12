@@ -1,7 +1,4 @@
-define(["apf/elements/dbg/chromedebughost",
-     "apf/elements/dbg/v8debughost", 
-     "apf/elements/dbg/v8websocketdebughost"],
-    function(ChromeDebugHost, V8DebugHost, V8WebSocketDebugHost) {
+module.declare(function(require, exports, module) {
     
 apf.debughost = function(struct, tagName){
     this.$init(tagName || "debughost", this.NODE_HIDDEN, struct);
@@ -140,6 +137,6 @@ apf.debughost = function(struct, tagName){
 }).call(apf.debughost.prototype = new apf.DOMElement());
 
 apf.aml.setElement("debughost", apf.debughost);
-return apf.debughost;
+module.exports = apf.debughost;
 
 });

@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 LiveEdit.plugin("fonts", function() {
     this.name        = "fonts";

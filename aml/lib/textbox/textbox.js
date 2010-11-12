@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 //@todo DOCUMENT the modules too
 
@@ -765,6 +765,6 @@ apf.config.$inheritProperties["realtime"]        = 1;
 aml && aml.setElement("input",    Input);
 
 
-return Input;
+module.exports = Input;
 
 });

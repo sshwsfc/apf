@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * @private
  */
@@ -348,6 +348,6 @@ var RunIphone = function() {
 };
 
 
-return RunIphone;
+module.exports = RunIphone;
 
 });

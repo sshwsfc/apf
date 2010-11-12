@@ -1,8 +1,4 @@
-define([
-    "w3cdom/element", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
         
 var NoMedia = function(struct, tagName) {
     DOMElement.call(this, tagName || "nomedia", this.NODE_HIDDEN, struct);
@@ -19,6 +15,6 @@ oop.inherits(NoMedia, DOMElement);
 
 aml && aml.setElement("nomedia", NoMedia);
 
-return NoMedia;
+module.exports = NoMedia;
 
 });

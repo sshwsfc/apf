@@ -19,13 +19,7 @@
  *
  */
 
-define([
-    "aml-core/guielement", 
-    "optional!databinding/dataaction", 
-    "optional!aml-core/validation", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(GuiElement, DataAction, Validation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element allowing the user to upload a file to a server. This element does 
@@ -808,5 +802,5 @@ Upload.files = function(oUpload, model) {
 
 aml && aml.setElement("upload", Upload);
 
-return Upload;
+module.exports = Upload;
 });

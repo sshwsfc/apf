@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @todo docs
@@ -45,6 +45,6 @@ oop.inherit(BindingLoadRule, BindingRule);
 aml && aml.setElement("load", BindingLoadRule);
 aml && aml.setElement("insert", BindingLoadRule);
 
-return BindingLoadRule;
+module.exports = BindingLoadRule;
 
 });

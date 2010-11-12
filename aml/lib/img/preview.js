@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/img/img"], 
-    function(aml, Img){
+module.declare(function(require, exports, module){
 
 /**
  */
@@ -30,7 +29,7 @@ var Preview = function (struct, tagName){
 Preview.prototype = Img.prototype;
 aml && aml.setElement("preview",  Preview);
 
-return Preview;
+module.exports = Preview;
 
     }
 );

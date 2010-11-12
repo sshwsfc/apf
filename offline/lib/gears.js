@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline/application"], function(application){
+module.declare(function(require, exports, module){
 
 /**
  * Offline provider that uses Google gears.
@@ -143,6 +143,6 @@ application.gears = {
 };
 
 
-return application.gears;
+module.exports = application.gears;
 
 });

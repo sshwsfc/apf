@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/element", "xhtml", "lib-oop"],
-    function(DOMElement, Xhtml, oop){
+module.declare(function(require, exports, module){
     
 var XhtmlIgnoreElement = function(struct, tagName){
     DOMElement.call(this, tagName, this.NODE_VISIBLE, struct);
@@ -33,6 +32,6 @@ Xhtml.setElement("noscript", XhtmlIgnoreElement);
 Xhtml.setElement("head",     XhtmlIgnoreElement);
 Xhtml.setElement("meta",     XhtmlIgnoreElement);
 
-return XhtmlIgnoreElement;
+module.exports = XhtmlIgnoreElement;
 
 });

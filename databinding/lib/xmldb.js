@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 amlCore.addListener(window, "unload", function(){
     //#ifdef __WITH_XMLDATABASE
@@ -1091,6 +1091,6 @@ var Xmldb = new (function(){
 })();
 
 
-return Xmldb;
+module.exports = Xmldb;
 
 });

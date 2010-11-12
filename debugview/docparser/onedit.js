@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Helper class that aids in creating and controlling Javeline OnEdit instances
  *

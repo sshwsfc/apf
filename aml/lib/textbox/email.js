@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/textbox/textbox"], 
-    function(aml, Textbox){
+module.declare(function(require, exports, module){
 
 /**
  */
@@ -30,7 +29,7 @@ var Email = function (struct, tagName){
 Email.prototype = Textbox.prototype;
 aml && aml.setElement("email",  Email);
 
-return Email;
+module.exports = Email;
 
     }
 );

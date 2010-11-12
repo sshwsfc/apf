@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 Date.prototype.fromISO8601 = function(formattedString) {
     var match  = formattedString.match(/^(?:(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(.\d+)?)?((?:[+-](\d{2}):(\d{2}))|Z)?)?$/),

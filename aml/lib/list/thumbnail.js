@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/list/list"], 
-    function(aml, List){
+module.declare(function(require, exports, module){
 
 /**
  * Example:
@@ -66,7 +65,7 @@ var Thumbnail = function(struct, tagName){
 Thumbnail.prototype = List.prototype;
 aml && aml.setElement("thumbnail",  Thumbnail);
 
-return Thumbnail;
+module.exports = Thumbnail;
 
     }
 );

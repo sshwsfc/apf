@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 JsParser = new (function(){
     var tok_lut = {
             '"': 4, '\'': 4, '[': 2, ']': 3, '{': 2, '}': 3, '(': 2, ')': 3,

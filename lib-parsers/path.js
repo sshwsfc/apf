@@ -1,5 +1,5 @@
 
-    define([], function(){
+    module.declare(function(require, exports, module){
 /**
      * Returns the directory portion of a url
      * @param {String} url the url to retrieve from.

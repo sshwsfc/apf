@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @term livemarkup
@@ -2451,6 +2451,6 @@ var LiveMarkupExec = new (function(){
     // #endif
 })();
 
-return LiveMarkup;
+module.exports = LiveMarkup;
 
 });

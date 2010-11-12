@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Object that represents a URI, broken down to its parts, according to RFC3986.
@@ -115,6 +115,6 @@ url.options = {
     }
 };
 
-return url;
+module.exports = url;
 
 });

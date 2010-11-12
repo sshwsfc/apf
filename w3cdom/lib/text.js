@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlcharacterdata", "optional!aml", "lib-oop"], function(AmlCharacterData, aml, oop){
+module.declare(function(require, exports, module){
 var AmlText = function(isPrototype){
     AmlCharacterData.call(this, isPrototype);
 };
@@ -116,6 +116,6 @@ oop.inherits(AmlText, AmlCharacterData)
     }, true);
 }).call(AmlText.prototype);
 
-return AmlText;
+module.exports = AmlText;
 
 });

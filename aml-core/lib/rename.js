@@ -21,7 +21,7 @@
 
 apf.__RENAME__ = 1 << 10;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have the rename features. Rename is triggered by
@@ -435,6 +435,6 @@ Rename.initEditableArea = function(){
     this.$txt.refCount++;
 }
 
-return Rename;
+module.exports = Rename;
 
 });

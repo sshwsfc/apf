@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -140,5 +140,5 @@ var Panel    = function(struct, tagName){
 }).call(Panel.prototype);
 aml && aml.setElement("panel", Panel);
 
-return Panel;
+module.exports = Panel;
 })

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/teleport", "optional!aml", "lib-oop"], function(Teleport, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element implementing the persist messaging protocol.
@@ -469,6 +469,6 @@ oop.inherit(Persist, Teleport);
 aml && aml.setElement("persist", Persist);
 
 
-return Persist;
+module.exports = Persist;
 
 });

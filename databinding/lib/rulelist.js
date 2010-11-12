@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
         
 var RuleList = function(){
     this.$compiled = {};
@@ -131,6 +131,6 @@ RuleList.prototype = {
     }
 }
 
-return RuleList;
+module.exports = RuleList;
 
 });

@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 var xmlEntityMap = {
     "quot": "34", "amp": "38", "apos": "39", "lt": "60", "gt": "62",
@@ -62,7 +62,7 @@ var xmlEntityMap = {
  * @param {String} str the xml string to escape.
  * @return {String} the escaped string.
  */
-return {
+module.exports = {
     encode : function(str) {
         return str.replace(/&([a-z]+);/gi, function(a, m) {
             if (xmlEntityMap[m = m.toLowerCase()])

@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * @private
  */
@@ -622,6 +622,6 @@ apf.CodeCompilation = function(code){
 
 }
 
-return RunXpath;
+module.exports = RunXpath;
 
 });

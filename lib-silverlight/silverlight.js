@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Helper class that aids in creating and controlling Microsoft Silverlight
  * elements (XAML stuff).
@@ -725,6 +725,6 @@ var Silverlight = (function() {
     };
 })();
 
-return Silverlight;
+module.exports = Silverlight;
 
 });

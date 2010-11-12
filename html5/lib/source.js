@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element 
@@ -51,6 +50,6 @@ oop.inherit(Source, DOMElement);
 
 aml && aml.setElement("source", Source);
 
-return Source;
+module.exports = Source;
 
 });

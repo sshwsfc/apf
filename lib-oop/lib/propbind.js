@@ -50,14 +50,7 @@
  * of it's property.
  */
 
-define([
-        "lib-oop/class", 
-        "livemarkup", 
-        "optional!livemarkup/language",
-        "optional!debug/console",
-        "optional!lib-oop/queue"
-    ],
-    function(Class, livemarkup, language, console, queue){
+module.declare(function(require, exports, module){
 
 (function(){
     this.$attrExcludePropBind = false;

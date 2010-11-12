@@ -14,7 +14,7 @@
  * @author Dave Shapiro <dave AT ohdave DOT com>
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * A class for performing Barrett modular reduction computations in JavaScript.
@@ -73,6 +73,6 @@ CryptoBarrett.prototype = {
     }
 };
 
-return CryptoBarrett;
+module.exports = CryptoBarrett;
 
 });

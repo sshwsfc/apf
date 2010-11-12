@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Defines the exact sequence of characters that are acceptable
  */
@@ -43,6 +43,6 @@ oop.inherit(XsdPattern, XsdElement);
 
 apf.xsd.setElement("pattern", apf.XsdPattern);
 
-return XsdPattern;
+module.exports = XsdPattern;
 
 });

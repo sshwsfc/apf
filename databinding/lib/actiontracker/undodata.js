@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.

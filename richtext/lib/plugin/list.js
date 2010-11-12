@@ -19,8 +19,7 @@
  *
  */
 
-define(["richtext/liveedit"], 
-    function(LiveEdit){
+module.declare(function(require, exports, module){
 
 var ListPlugin = function(sName) {
     this.name        = sName;
@@ -131,6 +130,6 @@ var ListPlugin = function(sName) {
 LiveEdit.plugin("bullist", ListPlugin);
 LiveEdit.plugin("numlist", ListPlugin);
 
-return ListPlugin;
+module.exports = ListPlugin;
 
 });

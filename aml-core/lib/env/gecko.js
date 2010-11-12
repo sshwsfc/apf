@@ -1,5 +1,4 @@
-define(["aml-core", "ecmaext/string"],
-    function(amlCore){
+module.declare(function(require, exports, module){
 
 var serializer = new XMLSerializer();
 var o = document.createElement("div");

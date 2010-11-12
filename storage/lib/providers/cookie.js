@@ -19,7 +19,7 @@
  *
  */
 
-define(["storage"], function(Storage){
+module.declare(function(require, exports, module){
 
 /**
  * Storage module using browsers cookies objects to store the data. 
@@ -302,6 +302,6 @@ Storage.modules.cookie = {
     }
 };
 
-return Storage.modules.cookie;
+module.exports = Storage.modules.cookie;
 
 });

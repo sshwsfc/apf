@@ -19,7 +19,7 @@
  *
  */
  
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @attribute {String} match
@@ -121,6 +121,6 @@ aml && aml.setElement("move",   ActionRule);
 aml && aml.setElement("check",  ActionRule);
 aml && aml.setElement("change", ActionRule);
 
-return ActionRule;
+module.exports = ActionRule;
 
 });

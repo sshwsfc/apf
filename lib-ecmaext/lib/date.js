@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 var libDate = {
     masks : {

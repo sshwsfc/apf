@@ -19,8 +19,7 @@
  *
  */
 
-define(["w3cdom/element", "optional!aml", "lib-oop"], 
-    function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * element specifying an argument of a method in an rpc element.
@@ -40,6 +39,6 @@ Param.prototype.$parsePrio = "002";
 
 aml && aml.setElement("param", Param);
 
-return Param;
+module.exports = Param;
 
 });

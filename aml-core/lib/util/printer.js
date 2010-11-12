@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var Printer = {
     tagName     : "printer",
@@ -151,6 +151,6 @@ var Printer = {
     }
 };
 
-return Printer;
+module.exports = Printer;
 
 });

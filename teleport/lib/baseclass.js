@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Element which specifies the ways the application can communicate to remote
@@ -255,6 +255,6 @@ console.teleportLog = function(extra){
     }
 }
 //#endif
-return Teleport
+module.exports = Teleport
 });
 

@@ -19,7 +19,7 @@
  *
  */
  
-define([], function(){
+module.declare(function(require, exports, module){
 
 var Vector =  new (function(){
 
@@ -797,6 +797,6 @@ var Vector =  new (function(){
  })();
 
  
-return Vector;
+module.exports = Vector;
 
 });

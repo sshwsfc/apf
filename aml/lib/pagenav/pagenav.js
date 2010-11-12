@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/standardbinding", "optional!aml", "lib-oop"], function(StandardBinding, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * This elements displays buttons which can be used to navigate between some
@@ -247,6 +247,6 @@ aml && aml.setElement("pagenav",   Pagenav);
 aml && aml.setElement("total",   BindingRule);
 aml && aml.setElement("current", BindingRule);
 
-return Pagenav;
+module.exports = Pagenav;
 
 });

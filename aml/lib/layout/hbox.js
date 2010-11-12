@@ -19,8 +19,7 @@
  *
  */
 
-define(["aml-core/guielement", "optional!aml", "lib-oop"], 
-    function(GuiElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @define vbox Container that stacks it's children vertically.
@@ -825,6 +824,6 @@ oop.inherits(Hbox, GuiElement);
 
 aml && aml.setElement("hbox", Hbox);
 
-return Hbox;
+module.exports = Hbox;
 
 });

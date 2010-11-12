@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/bar/bar"], 
-    function(aml, Bar){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle that visually confirms to the
@@ -42,7 +41,7 @@ var Menubar = function (struct, tagName){
 Menubar.prototype = Bar.prototype;
 aml && aml.setElement("menubar",  Menubar);
 
-return Menubar;
+module.exports = Menubar;
 
     }
 );

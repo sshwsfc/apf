@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @binding each Determines the list of elements for which each
@@ -308,6 +308,6 @@ oop.inherit(BindingEachRule, BindingRule);
 
 aml && aml.setElement("each", BindingEachRule);
 
-return BindingEachRule;
+module.exports = BindingEachRule;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 var WinServer = {
     count : 9000,
@@ -743,6 +743,6 @@ oop.decorate(Window, BaseStateButtons);
 aml && aml.setElement("window", Modalwindow);
 
 
-return Window;
+module.exports = Window;
 
 });

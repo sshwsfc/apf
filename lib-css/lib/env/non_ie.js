@@ -19,8 +19,7 @@
  *
  */
 
-define(["lib-css", "envdetect"],
-    function(css, env){
+module.declare(function(require, exports, module){
 
 /**
  * This method retrieves the current value of a property on a HTML element

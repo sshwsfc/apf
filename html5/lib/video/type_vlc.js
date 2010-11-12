@@ -19,7 +19,7 @@
  *
  */
 
-define(["html5/video"], function(Video){
+module.declare(function(require, exports, module){
 
 Video.TypeVlcCompat = (function() {
     var iVersion = 0;
@@ -388,6 +388,6 @@ Video.TypeVlc.prototype = {
     }
 };
 
-return Video.TypeVlcCompat;
+module.exports = Video.TypeVlcCompat;
 
 });

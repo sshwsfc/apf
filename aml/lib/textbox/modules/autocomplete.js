@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Adds autocomplete to the textbox element
@@ -170,6 +170,6 @@ var Textboxautocomplete = function(){
 };
 
 
-return Textboxautocomplete;
+module.exports = Textboxautocomplete;
 
 });

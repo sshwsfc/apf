@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var syntax = {
     /**
@@ -283,6 +283,6 @@ var syntax = {
 
 syntax.highlightXml = syntax.highlightCode;
 
-return syntax;
+module.exports = syntax;
 
 });

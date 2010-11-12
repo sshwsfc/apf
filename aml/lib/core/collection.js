@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -59,5 +59,5 @@ var Collection = function(struct, tagName){
 }).call(Collection.prototype);
 aml && aml.setElement("collection", Collection);
 
-return Collection;
+module.exports = Collection;
 })

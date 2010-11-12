@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
         
 var sNodes           = null, 
     aNodes           = null,
@@ -87,7 +87,7 @@ var sNodes           = null,
         img.src          = shim;
     };
 
-return {
+module.exports = {
     limitTo: function(s) {
         sNodes = s;
         return this;

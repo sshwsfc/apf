@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/basesimple", "optional!aml", "lib-oop"], function(BaseSimple, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a text in the user interface, usually specifying
@@ -152,6 +152,6 @@ oop.decorate(Label, ChildValue);
 
 aml && aml.setElement("label", Label);
 
-return Label;
+module.exports = Label;
 
 });

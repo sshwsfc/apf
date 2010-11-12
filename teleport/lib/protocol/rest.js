@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Implementation of the Common Gateway Interface (REST) as a module for the RPC
@@ -124,6 +124,6 @@ var Rest = function(){
 };
 
 
-return Rest;
+module.exports = Rest;
 
 });

@@ -21,7 +21,7 @@
 
 apf.__VALIDATION__ = 1 << 6;
 
-define(["aml-core/guielement"], function(GuiElement){
+module.declare(function(require, exports, module){
 
 //if checkequal then notnull = true
 var validator = {
@@ -505,6 +505,6 @@ GuiElement.propHandlers["validtest"]  = function(value, prop){
     this.$propHandlers[prop].call(this, value, prop);
 }
 
-return Validation;
+module.exports = Validation;
 
 });

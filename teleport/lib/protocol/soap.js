@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Implementation of the SOAP RPC protocol.
@@ -317,6 +317,6 @@ var Soap = function(){
 };
 
 
-return Soap;
+module.exports = Soap;
 
 });

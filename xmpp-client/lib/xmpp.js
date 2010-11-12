@@ -19,14 +19,7 @@
  *
  */
 
-define([
-    "optional!xmpp/muc",
-    "optional!xmpp/rdb",
-    "optional!xmpp/roster",
-    "teleport/baseclass", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(XmppMuc, XmppRDB, XmppRoster, Teleport, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element implementing XMPP IM protocol.
@@ -2607,6 +2600,6 @@ oop.inherit(Xmpp, Teleport);
 aml && aml.setElement("xmpp", Xmpp);
 
 
-return Xmpp;
+module.exports = Xmpp;
 
 });

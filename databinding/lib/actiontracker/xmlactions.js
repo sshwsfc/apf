@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Default actions, that are known to the actiontracker
  * @todo test if the .extra speed impact matters
@@ -259,6 +259,6 @@ var Actiontrackeractions = {
 };
 
 
-return Actiontrackeractions;
+module.exports = Actiontrackeractions;
 
 });

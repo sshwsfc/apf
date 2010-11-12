@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "aml/bar/bar"], 
-    function(aml, Bar){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a bar containing buttons and other aml elements.
@@ -74,7 +73,7 @@ var Toolbar = function (struct, tagName){
 Toolbar.prototype = Bar.prototype;
 aml && aml.setElement("toolbar",  Toolbar);
 
-return Toolbar;
+module.exports = Toolbar;
 
     }
 );

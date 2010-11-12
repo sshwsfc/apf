@@ -19,7 +19,7 @@
  *
  */
 
-define(["contenteditable/contenteditable"], function(ContentEditable){
+module.declare(function(require, exports, module){
 
 /*
     Adds complex resize/drag behaviour for ContentEditable

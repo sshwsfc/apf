@@ -19,10 +19,7 @@
  *
  */
 
-define([
-    "w3cdom/text",
-    "lib-oop"], 
-    function(DOMText, oop){
+module.declare(function(require, exports, module){
     
 var DOMCDATASection = function(isPrototype){
     this.nodeType = this.NODE_CDATA_SECTION;
@@ -38,6 +35,6 @@ DOMCDATASection.prototype.serialize = function(){
     return "<![CDATA[" + this.nodeValue + "]]>";
 };
 
-return DOMCDATASection;
+module.exports = DOMCDATASection;
 
 });

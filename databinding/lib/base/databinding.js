@@ -21,12 +21,7 @@
 
 apf.__DATABINDING__ = 1 << 1;
 
-define([
-    "optional!aml-core/presentation", 
-    "w3cdom/element", 
-    "optional!aml-core/virtualviewport",
-    "lib-oop"], 
-    function(Presentation, DOMElement, VirtualViewport, oop){
+module.declare(function(require, exports, module){
 
 var BaseClass = Presentation || DOMElement;
 
@@ -1565,6 +1560,6 @@ apf.config.$inheritProperties["loading-message"] = 1;
 apf.config.$inheritProperties["offline-message"] = 1;
 apf.config.$inheritProperties["noloading"]       = 1;
 
-return DataBinding;
+module.exports = DataBinding;
 
 });

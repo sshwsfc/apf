@@ -1,5 +1,4 @@
-define(["w3cdom/node"], 
-    function(DOMNode){
+module.declare(function(require, exports, module){
 
 //@todo implement spec correctly, refactor elements to not abuse capturing phase
 (function(){

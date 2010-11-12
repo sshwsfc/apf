@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @todo docs
@@ -303,6 +303,6 @@ oop.inherit(BindingQuicksandRule, BindingRule);
 
 aml && aml.setElement("quicksand", BindingQuicksandRule);
 
-return BindingQuicksandRule;
+module.exports = BindingQuicksandRule;
 
 });

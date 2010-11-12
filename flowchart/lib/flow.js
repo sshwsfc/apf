@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * This abstraction is used for creating block elements which can be moved by
@@ -1936,6 +1936,6 @@ flow.removeConnector = function(htmlElement) {
     delete connector;
 };
 
-return flow
+module.exports = flow
 
 });

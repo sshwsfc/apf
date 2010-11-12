@@ -19,8 +19,7 @@
  *
  */
 
-define(["html5/media", "optional!databinding/dataaction", "optional!aml", "lib-oop"], 
-    function(Media, DataAction, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element that is able to play a video file or remote stream

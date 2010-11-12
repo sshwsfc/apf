@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Displays a popup element with a message with optionally an icon at the
@@ -60,6 +60,6 @@ oop.inherit(Event, DOMElement);
 
 aml && aml.setElement("event", Event);
 
-return Event;
+module.exports = Event;
 
 });

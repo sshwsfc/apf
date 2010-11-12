@@ -21,12 +21,7 @@
 
 apf.__MEDIA__ = 1 << 20;
 
-define([
-    "optional!databinding/standard", 
-    "aml-core/presentation", 
-    "optional!aml", 
-    "lib-oop"], 
-    function(StandardBinding, Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 var BaseClass = StandardBinding || Presentation;
 
@@ -559,6 +554,6 @@ Media.HAVE_CURRENT_DATA = 3;
 Media.HAVE_FUTURE_DATA  = 4;
 Media.HAVE_ENOUGH_DATA  = 5;
 
-return Media;
+module.exports = Media;
 
 });

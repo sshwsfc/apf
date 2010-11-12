@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * element that loads javascript into the application
@@ -110,6 +110,6 @@ oop.inherits(Script, DOMElement);
 
 aml && aml.setElement("script", Script);
 
-return Script;
+module.exports = Script;
 
 });

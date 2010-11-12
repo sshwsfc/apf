@@ -1,15 +1,10 @@
-define([
-    "lib-xml", 
-    "lib-ecmaext",
-    "lib-ecmaext/json",
-    "optional!debug/console"], 
-    function(getXmlDom, ecma, json, console){
+module.declare(function(require, exports, module){
 
 var json2xml_Obj  = {};
 var json2xml_Attr = {};
 var json2xml_ObjByAttr = {};
 
-return {
+module.exports = {
     /**
      * Creates xml nodes from an JSON string/ object recursively.
      *

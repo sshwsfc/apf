@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 var escapes  = /\\["\\\/bfnrtu@]/g,
     values   = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
@@ -263,7 +263,7 @@ if (!self["JSON"]) {
     })();
 }
 
-return {    
+module.exports = {    
     /**
      * Reliably determines whether a variable is a string of JSON.
      * @see http://json.org/

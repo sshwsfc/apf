@@ -19,7 +19,7 @@
  *
  */
 
-define(["lib-oop/class"], function(Class){
+module.declare(function(require, exports, module){
 
 var ClipBoard = new Class();
 ClipBoard.store = null;
@@ -75,6 +75,6 @@ ClipBoard.pasteSelection = function(amlNode, selected){
 };
 //#endif
 
-return ClipBoard;
+module.exports = ClipBoard;
 
 });

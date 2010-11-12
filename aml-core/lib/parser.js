@@ -1,6 +1,6 @@
-define(["debug/console"], function(console){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     amlParts : [],
 
     auto : function(){

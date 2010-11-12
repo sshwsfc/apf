@@ -21,7 +21,7 @@
 
 apf.__ALIGNMENT__ = 1 << 29;
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have
@@ -138,6 +138,6 @@ A11y.ATTR_RELATIONS = {
     "label":"1", "labelledby":{}, "owns":{}, "posinset":1, "setsize":1
 };
 
-return A11y;
+module.exports = A11y;
 
 });

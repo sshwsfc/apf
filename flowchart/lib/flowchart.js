@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
+module.declare(function(require, exports, module){
 /**
  * Element with which you can add and remove graphical blocks and create 
  * connections between them. Block could be rotated, flipped, resized, 
@@ -1346,6 +1346,6 @@ aml && aml.setElement("blockoutput", BindingRule);
 aml && aml.setElement("blockinput",  BindingRule);
 aml && aml.setElement("blocklabel",  BindingRule);
 
-return Flowchart;
+module.exports = Flowchart;
 
 });

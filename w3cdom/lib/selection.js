@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/class", "optional!aml", "lib-oop"], function(Class, aml, oop){
+module.declare(function(require, exports, module){
 
 var AmlSelection = function(doc){
     Class.call(this);
@@ -280,6 +280,6 @@ oop.inherits(AmlSelection, Class);
     }
 }).call(AmlSelection.prototype);
 
-return AmlSelection;
+module.exports = AmlSelection;
 
 });

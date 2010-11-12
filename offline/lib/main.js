@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @define offline
@@ -593,6 +593,6 @@ var offline = {
     }
 };
 
-return offline;
+module.exports = offline;
 
 });

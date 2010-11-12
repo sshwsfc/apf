@@ -21,11 +21,7 @@
 
 apf.__DRAGDROP__ = 1 << 5;
 
-define([
-    "aml-core/guielement", 
-    "aml-core/dragdrop/multiselect", 
-    "aml-core/dragdrop/standard"], 
-    function(GuiElement, MultiselectDragDrop, StandardDragDrop){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} have drag&drop 
@@ -1201,6 +1197,6 @@ var DragServer = {
 
 DragServer.Init();
 
-return DragDrop;
+module.exports = DragDrop;
 
 });

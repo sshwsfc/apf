@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 //@todo: fix the stuff with all the uppercase variable and function names...wazzup?
 
@@ -740,6 +740,6 @@ oop.inherit(Scrollbar, Presentation);
 }).call(Scrollbar.prototype);
 aml && aml.setElement("scrollbar", Scrollbar);
 
-return Scrollbar;
+module.exports = Scrollbar;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/amlelement", "optional!aml", "lib-oop"], function(DOMElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displays a chart.
@@ -354,6 +354,6 @@ aml && aml.setElement("axis", Axis);
      });
 }).call(Axis.prototype);
 
-return Axis;
+module.exports = Axis;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["xhtml/element", "lib-oop"], function(XhtmlElement, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @todo description
@@ -76,6 +76,6 @@ oop.inherits(XhtmlHtmlElement, XhtmlElement);
 
 Xhtml.setElement("html", XhtmlHtmlElement);
 
-return XhtmlHtmlElement;
+module.exports = XhtmlHtmlElement;
 
 });

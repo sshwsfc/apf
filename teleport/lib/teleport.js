@@ -19,7 +19,7 @@
  *
  */
 
-define(["w3cdom/element"], function(DOMElement){
+module.declare(function(require, exports, module){
 
 apf.aml.setElement("teleport", DOMElement);
 

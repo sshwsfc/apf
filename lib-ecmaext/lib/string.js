@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * Casts the first character in a string to uppercase.

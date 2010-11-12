@@ -19,7 +19,7 @@
  *
  */
 
-define(["xmlschema/element", "optional!aml", "lib-oop"], function(XsdElement, aml, oop){
+module.declare(function(require, exports, module){
 var XsdMinScale = function(struct, tagName){
     XsdElement.call(this, tagName || "minscale", this.NODE_HIDDEN, struct);
 };
@@ -38,6 +38,6 @@ oop.inherit(XsdMinScale, XsdElement);
 
 apf.xsd.setElement("minscale", apf.XsdMinScale);
 
-return XsdMinScale;
+module.exports = XsdMinScale;
 
 });

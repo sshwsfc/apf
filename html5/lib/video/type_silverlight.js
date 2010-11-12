@@ -19,7 +19,7 @@
  *
  */
 
-define(["html5/video"], function(Video){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a Silverlight video
@@ -465,6 +465,6 @@ Video.TypeSilverlight.prototype = {
     }
 };
 
-return Video.TypeSilverlight;
+module.exports = Video.TypeSilverlight;
 
 });

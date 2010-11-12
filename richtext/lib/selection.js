@@ -19,7 +19,7 @@
  *
  */
 
-define([], function(){
+module.declare(function(require, exports, module){
 
 /**
  * @class apf.selection
@@ -1002,6 +1002,6 @@ var Selection = function(oWin, oDoc, editor) {
     };
 };
 
-return Selection;
+module.exports = Selection;
 
 });

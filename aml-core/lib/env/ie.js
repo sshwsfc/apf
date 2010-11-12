@@ -1,8 +1,4 @@
-define(["aml-core", 
-    "ecmaext/string", 
-    "envdetect", 
-    "optional!debug/console"],
-    function(amlCore, env, console){
+module.declare(function(require, exports, module){
         
 //IE fix
 try {

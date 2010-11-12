@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
+module.declare(function(require, exports, module){
 
 var Filler = function(struct, tagName){
     GuiElement.call(this, tagName || "filler", this.NODE_VISIBLE, struct);
@@ -39,6 +39,6 @@ oop.inherit(Filler, GuiElement);
 aml && aml.setElement("filler", Filler);
 
 
-return Filler;
+module.exports = Filler;
 
 });

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/baselist", "optional!aml", "lib-oop"], function(BaseList, aml, oop){
+module.declare(function(require, exports, module){
 // #define __WITH_PRESENTATION 1
 
 /**
@@ -801,6 +801,6 @@ aml && aml.setElement("gallery", Gallery);
 aml && aml.setElement("url", BindingRule);
 aml && aml.setElement("mediatype", BindingRule);
 
-return Gallery;
+module.exports = Gallery;
 
 });

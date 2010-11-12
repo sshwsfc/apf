@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/multiselect", "optional!aml", "lib-oop"], function(MultiSelect, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Baseclass of elements that allows the user to select one or more items
@@ -1208,6 +1208,6 @@ oop.decorate(BaseTree, Cache);
 #endif*/
 
 
-return BaseTree;
+module.exports = BaseTree;
 
 });

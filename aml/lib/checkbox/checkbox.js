@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/basebutton", "optional!aml", "lib-oop"], function(BaseButton, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a clickable rectangle having two states which
@@ -259,6 +259,6 @@ oop.decorate(Checkbox, DataAction);
 
 aml && aml.setElement("checkbox", Checkbox);
 
-return Checkbox;
+module.exports = Checkbox;
 
 });

@@ -1,6 +1,6 @@
-define([],function(){
+module.declare(function(require, exports, module){
 
-return function() {
+module.exports = function() {
     /**** Drag & Drop ****/
     // #ifdef __WITH_DRAGDROP
     this.diffX        =

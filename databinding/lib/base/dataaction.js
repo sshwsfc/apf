@@ -21,7 +21,7 @@
 
 apf.__DATAACTION__ = 1 << 25;
 
-define([], function(){
+module.declare(function(require, exports, module){
 /**
  * Baseclass adding data action features to this element. 
  */
@@ -647,6 +647,6 @@ var DataAction = function(){
 apf.config.$inheritProperties["create-model"] = 1;
 
 
-return DataAction;
+module.exports = DataAction;
 
 });

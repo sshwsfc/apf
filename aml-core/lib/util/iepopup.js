@@ -1,4 +1,4 @@
-    define([], function(){
+    module.declare(function(require, exports, module){
     /**
      * @private
      */
@@ -105,6 +105,6 @@
         }
     };
     
-return Popup2;
+module.exports = Popup2;
 
 });

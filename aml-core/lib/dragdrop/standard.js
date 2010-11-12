@@ -1,6 +1,6 @@
-define([], function(){
+module.declare(function(require, exports, module){
     
-return function() {
+module.exports = function() {
     this.$showDragIndicator = function(sel, e){
         var x = e.offsetX + 22,
             y = e.offsetY;

@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/bindingrule", "optional!aml", "lib-oop"], function(BindingRule, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * @todo docs
@@ -67,6 +67,6 @@ oop.inherit(BindingColorRule, BindingRule);
 
 aml && aml.setElement("color", BindingColorRule);
 
-return BindingColorRule;
+module.exports = BindingColorRule;
 
 });

@@ -21,14 +21,7 @@
 
 require("aml-core").__GUIELEMENT__ = 1 << 15;
 
-define([
-    "aml-core",
-    "w3cdom/element",
-    "optional!aml-core/anchoring",
-    "optional!contenteditable",
-    "optional!liveedit",
-    "lib-oop"], 
-    function(core, DOMElement, Anchoring, ContentEditable, LiveEdit, oop){
+module.declare(function(require, exports, module){
 
 /**
  * All elements inheriting from this {@link term.baseclass baseclass} are an aml component.
@@ -507,7 +500,7 @@ GuiElement.propHandlers = {
     }
 };
 
-return GuiElement;
+module.exports = GuiElement;
 
     }
 );

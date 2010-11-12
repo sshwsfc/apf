@@ -19,7 +19,7 @@
  *
  */
 
-define(["offline"], function(offline){
+module.declare(function(require, exports, module){
 
 /**
  * Object recording the state of actiontrackers. When an application goes 
@@ -276,5 +276,5 @@ offline.canTransact = function(){
     return false;
 };
 
-return offline.transactions;
+module.exports = offline.transactions;
 });

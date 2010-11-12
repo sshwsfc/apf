@@ -1,4 +1,4 @@
-define([], function(){
+module.declare(function(require, exports, module){
 /*
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -261,5 +261,5 @@ var Progressbar = function(struct, tagName){
 #endif */
 aml && aml.setElement("progressbar", Progressbar);
 
-return Progressbar;
+module.exports = Progressbar;
 })

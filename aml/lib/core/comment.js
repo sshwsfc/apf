@@ -19,8 +19,7 @@
  *
  */
 
-define(["optional!aml", "w3cdom/comment", "lib-oop"], 
-    function(aml, AmlComment, oop){
+module.declare(function(require, exports, module){
 
 /**
  * all elements within the comment tag are ignored by the parser.
@@ -38,6 +37,6 @@ oop.inherits(Comment, AmlComment);
 
 aml && aml.setElement("comment", Comment);
 
-return Comment;
+module.exports = Comment;
 
 });

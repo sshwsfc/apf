@@ -19,7 +19,7 @@
  *
  */
 
-define(["storage"], function(Storage){
+module.declare(function(require, exports, module){
 
 // summary:
 //        Storage provider that uses features in Flash to achieve permanent
@@ -450,6 +450,6 @@ Storage.modules.flash = {
     }
 };
 
-return Storage.modules.flash;
+module.exports = Storage.modules.flash;
 
 });

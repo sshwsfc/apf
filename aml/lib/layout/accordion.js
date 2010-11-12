@@ -18,7 +18,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  *
  */
-define(["aml-core/presentation", "optional!aml", "lib-oop"], function(Presentation, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * The Accordion is component that allows you to provide multiple vertical or 
@@ -642,6 +642,6 @@ oop.inherit(Accordion, Presentation);
 
 aml && aml.setElement("accordion", Accordion);
 
-return Accordion;
+module.exports = Accordion;
 
 });

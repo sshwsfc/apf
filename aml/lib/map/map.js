@@ -19,7 +19,7 @@
  *
  */
 
-define(["aml-core/guielement", "optional!aml", "lib-oop"], function(GuiElement, aml, oop){
+module.declare(function(require, exports, module){
 
 /**
  * Element displaying a Google Map with all option customizable through attributes
@@ -580,6 +580,6 @@ oop.decorate(Map, DataAction);
 aml && aml.setElement("map", Map);
 
 
-return Map;
+module.exports = Map;
 
 });

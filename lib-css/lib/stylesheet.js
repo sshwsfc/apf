@@ -1,9 +1,6 @@
-define([
-    "envdetect",
-    "envdetect/features"],
-    function(env, features){
+module.declare(function(require, exports, module){
 
-return {
+module.exports = {
     /**
      * This method sets a single css rule
      * @param {String} name         the css name of the rule (i.e. '.cls' or '#id').
