@@ -394,9 +394,10 @@ apf.ContentEditable.commands = (function(){
     	    amlNode.$dragStart({
     	        reappend : true,
     	        clientX  : e.htmlEvent.clientX, 
-    	        clientY  : e.htmlEvent.clientY
-    	    }, true, true);
-    	    //amlNode.dragOutline = true;
+    	        clientY  : e.htmlEvent.clientY,
+                target   : e.htmlEvent.target
+    	    }, false, true);
+    	    amlNode.dragOutline = true;
     	    
     	    addType = null;
     	}
@@ -465,11 +466,13 @@ apf.ContentEditable.commands = (function(){
             case INDET: return false;
         }
         
-        var pNode = sel[0].parentNode;
-        sel.each(function(sel) {
-            sel.removeNode();
-        });
-
+        if (sel && sel.length) {
+            var pNode = sel[0].parentNode;
+            sel.each(function(sel) {
+                sel.removeNode();
+            });
+        }
+        
         var s = pNode.ownerDocument.getSelection();
         s.$selectList([apf.document.activeElement && apf.document.activeElement.editable 
             ? apf.document.activeElement

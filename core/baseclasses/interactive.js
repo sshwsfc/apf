@@ -219,11 +219,14 @@ apf.Interactive = function(){
 
         //@todo not for docking
         //#ifdef __WITH_PLANE
+        apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 222");
+/*
         if (posAbs && !_self.aData) {
             apf.plane.show(dragOutline
                 ? oOutline
                 : _self.$ext, e.reappend);//, true
         }
+*/        
         //#endif
 
         var ext = (reparent || oOutline.self) && dragOutline //little dirty hack to detect outline set by visualselect
@@ -279,8 +282,11 @@ apf.Interactive = function(){
             document.onmousemove = document.onmouseup = null;
 
             //#ifdef __WITH_PLANE
+            apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 285");
+            /*
             if (posAbs && !_self.aData)
                 apf.plane.hide();
+            */
             //#endif
             
             var htmlNode = dragOutline
@@ -387,6 +393,7 @@ apf.Interactive = function(){
                 t = change.t, oHtml.style.top = t + "px";
         }
 
+        _self.dispatchEvent("dragmove");
         overThreshold = true;
     };
     
@@ -661,6 +668,7 @@ apf.Interactive = function(){
         
         doResize(e);
         
+        _self.dispatchEvent("resizemove");
         //overThreshold = true;
     }
     

@@ -45,7 +45,8 @@
             div = document.body.appendChild(document.createElement("div"));
             div.style.position = "absolute";
             div.className = classes[i];
-            div.style.zIndex = 1000000;
+            //div.style.zIndex = 1000000;
+            apf.window.zManager.set("drag", div);
             //@todo use apf.window.zManager.set("drag", div);
             div.style.display = "none";
             div.host = false;
@@ -60,7 +61,7 @@
     function doReparentDrag(el, amlNode, e){
         if (lastReparent == amlNode)
             return;
-        
+
         var htmlNode = el.dragOutline ? outline : el.$ext;
         var pHtmlNode = amlNode.$int;
         var isBody = pHtmlNode.tagName == "BODY";
@@ -249,20 +250,19 @@
             while (amlNode && !amlNode.$int)
                 amlNode = amlNode.parentNode;
 
-            if (!amlNode.editable)
+            if (!amlNode) // || amlNode.editable
                 return;
-            
+
             if (lastAmlNode && lastAmlNode[0] == amlNode 
               && Math.abs(e.clientX - lastAmlNode[2]) < 2
               && Math.abs(e.clientY - lastAmlNode[3]) < 2) {
                 //do Nothing
-    
             }
             else {
                 if (lastAmlNode)
                     clearTimeout(lastAmlNode[4]);
 
-                var plane = apf.plane.get()
+                var plane = apf.plane.get();
                 if (el && amlNode != el && amlNode.$int 
                   && htmlNode.parentNode != amlNode.$int 
                   && (htmlNode.parentNode != plane.plane || amlNode.$int != document.body)
@@ -271,20 +271,20 @@
                     lastAmlNode = [amlNode, new Date().getTime(), e.clientX, e.clientY,
                         setTimeout(function(){
                             doReparentDrag(el, amlNode, ev);
-                        }, 300)];
+                        })]; // , 300
                     
                     //if (el.$adding)
                         //doReparentDrag(el, amlNode, e);
                 }
-                else
+                else {
                     lastAmlNode = [];
+                }
             }
         },
         
         common : function(l, t, htmlNode, e, change, snapDiff){
             var oOutline = this.$ext;
             var prevTop = htmlNode.style.top;
-            
             var el = this, plane = apf.plane.get();
             dragIndicator1.style.top = 
             plane.plane.style.top = 
@@ -298,9 +298,14 @@
             var d = dragInfo;
             showDrag.common_resize.call(this, l, t, d.width, 
                 d.height, e, change, true, true, true, true, true);
-            
-            apf.config.setProperty("x", change.l || (change.l === 0 ? 0 : apf.getHtmlLeft(oOutline)));
-            apf.config.setProperty("y", change.t || (change.t === 0 ? 0 : apf.getHtmlTop(oOutline)));
+
+            var pos1 = apf.getAbsolutePosition(oOutline);
+            var pos2 = apf.getAbsolutePosition(canvas.$ext);
+            apf.config.setProperty("x", pos1[0]-pos2[0]);
+            apf.config.setProperty("y", pos1[1]-pos2[1]);
+
+            apf.config.setProperty("relx", change.l || (change.l === 0 ? 0 : apf.getHtmlLeft(oOutline)));
+            apf.config.setProperty("rely", change.t || (change.t === 0 ? 0 : apf.getHtmlTop(oOutline)));
             apf.config.setProperty("w", d.width);
             apf.config.setProperty("h", d.height);
         },
@@ -483,7 +488,7 @@
             }
             
             //Elements - Opposite sides - X
-            var oppDiff = 5, oloffset, olpos = false, tdiff;
+            var oppDiff = 0, oloffset, olpos = false, tdiff;
             if (d.xl.length && change.l !== 0) {
                 //Left
                 if (!change.lsticky) {
@@ -668,6 +673,7 @@
         var container = pEl.$int;
         var isBody    = pEl.$int.tagName == "BODY";
         var htmlEl = isDrag && el.dragOutline ? outline : el.$ext;
+        
         var d = dragInfo = {
             left   : apf.getHtmlLeft(htmlEl),
             top    : apf.getHtmlTop(htmlEl),
@@ -707,7 +713,7 @@
             var bLeft = q[0];
             var bTop  = q[1];
             for (var l, t, h, w, i = 0, il = els.length; i < il; i++) {
-                if (selected.indexOf(curel = els[i]) > -1 || !curel.$ext)
+                if (selected.indexOf(curel = els[i]) > -1 || !curel.$ext || curel == el)
                     continue;
     
                 l = curel.$ext.offsetLeft - bLeft;
@@ -913,7 +919,8 @@
     var lastPos;
     function beforedragstart(e){
         //Prevent dragging when this node isn't selected
-        var selection = apf.document.$getVisualSelect().getLastSelection();
+        if (!(selection = apf.document.$getVisualSelect().getLastSelection()).length)
+            selection = [e.currentTarget];
 
         outline = selection.length > 1 && !e.htmlEvent.ctrlKey
             ? apf.document.$getVisualSelect().$getOutline()
@@ -958,7 +965,7 @@
             dragIndicator1.style.borderWidth = "";
             this.$showDrag = showDrag[pEl.localName];
         }
-        else if (pEl.editable || add || this.$adding) {
+        else if (pEl == canvas || pEl.editable || add || this.$adding) {
             this.realtime = true;
 
             setDragInfo(this, pEl, true);
@@ -977,7 +984,7 @@
             lastAmlNode = null;
         }
         lastReparent = null;
-    
+
         var el = this;
         var htmlNode = el.dragOutline ? outline : el.$ext;
         
@@ -989,13 +996,22 @@
             selected   = [el];
             prevParent = 
             pNode      = apf.findHost(htmlNode.parentNode);
+            
+            if (pNode != canvas && !apf.isChildOf(canvas, pNode))
+                prevParent = pNode = canvas;
         }
         else {
             selected   = apf.document.$getVisualSelect().getLastSelection();
-            prevParent = selected[0].parentNode;
-            pNode      = apf.findHost(htmlNode.parentNode);
+            if (selected && selected.length) {
+                prevParent = selected[0].parentNode;
+                pNode      = apf.findHost(htmlNode.parentNode);
+            
+                if (pNode != canvas && !apf.isChildOf(canvas, pNode))
+                    pNode = canvas;
+            }
         }
 
+        if (!selected.length) return;
         //Set the coordinates if not dropped into a layout node
         if (selected.length > 1 && lastPos
           && "vbox|hbox|table".indexOf(pNode.localName) == -1) {
@@ -1101,7 +1117,7 @@
         
         if (el.$adding) {
             delete el.$adding;
-            el.dragOutline = true;
+//            el.dragOutline = true;
             el.focus();
         }
         else {
@@ -1339,18 +1355,36 @@
         amlNode.addEventListener("beforedragstart", beforedragstart);
         amlNode.addEventListener("beforedrag",      beforedrag);
         amlNode.addEventListener("beforeresize",    beforeresize);
+        amlNode.addEventListener("dragmove",        dragmove);
+        amlNode.addEventListener("resizemove",      resizemove);
         amlNode.addEventListener("afterdrag",       afterdrag);
         amlNode.addEventListener("afterresize",     afterresize);
         amlNode.addEventListener("resizecancel",    cancel);
         amlNode.addEventListener("dragcancel",      cancel);
-        
         setDefaultStuck(amlNode);
     }
-    
+
+    function dragmove(e) {
+        var target = (outline.style.display != "none") ? outline : e.currentTarget.$ext;
+        var pos1 = apf.getAbsolutePosition(target);
+        var pos2 = apf.getAbsolutePosition(canvas.$ext);
+        apf.config.setProperty("x", pos1[0]-pos2[0]);
+        apf.config.setProperty("y", pos1[1]-pos2[1]);
+
+        apf.config.setProperty("relx", apf.getHtmlLeft(target));
+        apf.config.setProperty("rely", apf.getHtmlTop(target));
+    }
+    function resizemove(e) {
+        var target = (outline.style.display != "none") ? outline : e.currentTarget.$ext;
+        apf.config.setProperty("w", target.offsetWidth);
+        apf.config.setProperty("h", target.offsetHeight);
+    }
     apf.ContentEditable.removeInteraction = function(amlNode){
         amlNode.removeEventListener("beforedragstart", beforedragstart);
         amlNode.removeEventListener("beforedrag",      beforedrag);
         amlNode.removeEventListener("beforeresize",    beforeresize);
+        amlNode.removeEventListener("dragmove",        dragmove);
+        amlNode.removeEventListener("resizemove",      resizemove);
         amlNode.removeEventListener("afterdrag",       afterdrag);
         amlNode.removeEventListener("afterresize",     afterresize);
         amlNode.removeEventListener("resizecancel",    cancel);

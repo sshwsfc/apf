@@ -137,10 +137,10 @@ apf.addEventListener("load", function(){
     apf.document.addEventListener("focus", $focus = function(e){
         if (recursion)
             return;
-        
+
         recursion = true;
         var node = e.currentTarget, isSelected;
-        if (node.editable) {
+        if (node.editable && apf.isChildOf(canvas, node, false)) {
             if (sel.rangeCount) {
                 isSelected = sel.$getNodeList().indexOf(node) > -1; //@todo use visualSelect cache here?
 
@@ -167,10 +167,19 @@ apf.addEventListener("load", function(){
                     }
                 }
             }
-            
+
             //Add element to the selection
             sel.addRange(this.createRange()).selectNode(node);
             lastFocussed = node;
+        }
+
+        if (trVe) {
+            setTimeout(function() {
+                if (apf.isChildOf(canvas, node)) {
+                    trVe.select(node);
+                    winProperties.setProperty("title", "Properties " + apf.activeElement.id);
+                }
+            });
         }
         recursion = false;
     });
@@ -186,11 +195,12 @@ apf.addEventListener("load", function(){
     apf.addEventListener("mouseup", function(e){
         if ((apf.document.queryCommandState("mode") || "").indexOf("connect-") > -1)
             apf.document.execCommand("mode", null, "arrow");
-    
+
+/*    
         if (Math.abs(lastPos[0] - e.htmlEvent.clientX) > 2 
           || Math.abs(lastPos[1] - e.htmlEvent.clientY) > 2)
             return;
-        
+*/        
         var o = apf.document.$getVisualSelect().$getOutline();
         if (!o) return;
         
@@ -203,9 +213,28 @@ apf.addEventListener("load", function(){
         
         var node = apf.findHost(
             document.elementFromPoint(e.htmlEvent.clientX, e.htmlEvent.clientY));
-
+        if (!node || node == canvas) {
+            if (!apf.dragMode) {
+                sel.removeAllRanges();
+                return;
+            }
+        }
         o.style.top = lastTop;
 
+        // set element properties
+        if (e.currentTarget != apf) {
+            var target = o;
+            var pos1 = apf.getAbsolutePosition(target);
+            var pos2 = apf.getAbsolutePosition(canvas.$ext);
+            apf.config.setProperty("x", pos1[0]-pos2[0] + "x");
+            apf.config.setProperty("y", pos1[1]-pos2[1] + "x");
+                
+            apf.config.setProperty("relx", apf.getHtmlLeft(target));
+            apf.config.setProperty("rely", apf.getHtmlTop(target));
+            apf.config.setProperty("w", target.offsetWidth);
+            apf.config.setProperty("h", target.offsetHeight);
+        }
+        
         if (lastFocussed == node) {
             lastFocussed = null;
             return;
@@ -256,7 +285,7 @@ apf.ContentEditable = function() {
     
     this.$booleanProperties["editable"] = true;
     this.$propHandlers["editable"] = function(value, prop){
-        if (this.nomk) { //A way to have UI elements excluded from editing
+        if (this.nomk || this.getAttribute("locked")) { //A way to have UI elements excluded from editing
             this.editable = false;
             return false;
         }

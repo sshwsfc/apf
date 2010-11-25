@@ -142,7 +142,7 @@ apf.visualSelect = function(selection){
             }
         }
         
-        if (s.$ext.parentNode.tagName == "BODY") {
+        if (s && s.$ext.parentNode.tagName == "BODY") {
             apf.layout.setRules(document.documentElement, "visualselect", 
               "apf.all[" + this.$uniqueId + "].updateGeo()", true);
             apf.layout.queue(document.documentElement);
@@ -153,7 +153,7 @@ apf.visualSelect = function(selection){
         }
         //#endif
         lastSelection = nodes;
-        
+
         if (!nodes.length)
             return this.hide();
         else if (nodes.length > 1)

@@ -102,16 +102,16 @@ apf.selectrect = function (){
             if (!amlNode)
                 amlNode = apf.document.documentElement;
             
-            if (!amlNode.editable)
-                return;
+            //if (!amlNode.editable)
+                //return;
               
             //apf.ContentEditable.resize.grab(amlNode);
 
             q.style.display = "block";
-            q.style.left    = (startX = event.clientX) + "px";
-            q.style.top     = (startY = event.clientY) + "px";
+            q.style.left    = (startX = e.clientX) + "px";
+            q.style.top     = (startY = e.clientY) + "px";
             q.style.width   = q.style.height = "1px";
-            
+
             apf.dragMode = true;
         };
 
@@ -123,7 +123,7 @@ apf.selectrect = function (){
                 else {
                     apf.document.execCommand("add", false, {htmlNode: q});
                 }
-                _self.deactivate();
+                //_self.deactivate();
             }
             
             q.style.display = "none";
