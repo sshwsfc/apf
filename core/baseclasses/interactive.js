@@ -630,7 +630,6 @@ apf.Interactive = function(){
             if ((left || left === 0) && (!hasRight || hasLeft)) 
                 _self.setProperty("left", left, 0, _self.editable);
             if ((top || top === 0) && (!hasBottom || hasTop)) {
-                apf.console.log("top: " + top);
                 _self.setProperty("top", top, 0, _self.editable);
             }
         }

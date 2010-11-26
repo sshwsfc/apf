@@ -141,6 +141,18 @@ apf.addEventListener("load", function(){
         recursion = true;
         var node = e.currentTarget, isSelected;
         if (node.editable && apf.isChildOf(canvas, node, false)) {
+            // set element properties
+            var target = node.$ext;
+            var pos1 = apf.getAbsolutePosition(target);
+            var pos2 = apf.getAbsolutePosition(canvas.$ext);
+            apf.config.setProperty("x", pos1[0]-pos2[0]);
+            apf.config.setProperty("y", pos1[1]-pos2[1]);
+                
+            apf.config.setProperty("relx", apf.getHtmlLeft(target));
+            apf.config.setProperty("rely", apf.getHtmlTop(target));
+            apf.config.setProperty("w", target.offsetWidth);
+            apf.config.setProperty("h", target.offsetHeight);
+
             if (sel.rangeCount) {
                 isSelected = sel.$getNodeList().indexOf(node) > -1; //@todo use visualSelect cache here?
 
@@ -221,20 +233,6 @@ apf.addEventListener("load", function(){
         }
         o.style.top = lastTop;
 
-        // set element properties
-        if (e.currentTarget != apf) {
-            var target = o;
-            var pos1 = apf.getAbsolutePosition(target);
-            var pos2 = apf.getAbsolutePosition(canvas.$ext);
-            apf.config.setProperty("x", pos1[0]-pos2[0] + "x");
-            apf.config.setProperty("y", pos1[1]-pos2[1] + "x");
-                
-            apf.config.setProperty("relx", apf.getHtmlLeft(target));
-            apf.config.setProperty("rely", apf.getHtmlTop(target));
-            apf.config.setProperty("w", target.offsetWidth);
-            apf.config.setProperty("h", target.offsetHeight);
-        }
-        
         if (lastFocussed == node) {
             lastFocussed = null;
             return;

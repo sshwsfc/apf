@@ -2275,12 +2275,11 @@ var apf = {
     
     fireEvent : function(el, type, e, capture){
         if (el.dispatchEvent){
-            try {
-                el.dispatchEvent(type, e, capture);
-            }
-            catch (err) {
-                debugger;
-            }
+            var evt = document.createEvent("MouseEvents");
+            evt.initMouseEvent(type, e.canBubble, e.cancelable, window,
+                e.detail, e.screenX, e.screenY, e.clientX, e.clientY, 
+                e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, e.button, e.relatedTarget);
+            el.dispatchEvent(evt);
         }else
             el.fireEvent("on" + type, e);
     },
