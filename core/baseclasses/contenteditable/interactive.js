@@ -77,21 +77,23 @@
     
         hideIndicators();
     
-        dragIndicator5.style.left = pos1[0] + "px";
-        dragIndicator5.style.top = pos1[1] + "px";
-        var diff = apf.getDiff(dragIndicator5);
-        dragIndicator5.style.width = (pos1[2] - diff[0]) + "px";
-        dragIndicator5.style.height = (pos1[3] - diff[1]) + "px";
-        dragIndicator5.style.display = "block";
+        if (amlNode != canvas) {
+            dragIndicator5.style.left = pos1[0] + "px";
+            dragIndicator5.style.top = pos1[1] + "px";
+            var diff = apf.getDiff(dragIndicator5);
+            dragIndicator5.style.width = (pos1[2] - diff[0]) + "px";
+            dragIndicator5.style.height = (pos1[3] - diff[1]) + "px";
+            dragIndicator5.style.display = "block";
 
-        apf.tween.single(dragIndicator5, {
-            type  : "fade",
-            from  : 0,
-            to    : 1,
-            anim  : apf.tween.easeInSine,
-            steps : 5
-        });
-
+            apf.tween.single(dragIndicator5, {
+                type  : "fade",
+                from  : 0,
+                to    : 1,
+                anim  : apf.tween.easeInSine,
+                steps : 5
+            });
+        }
+        
         htmlNode.style.left = (apf.getHtmlLeft(htmlNode) - (pos1[0] - pos2[0])) + "px";
         htmlNode.style.top = (apf.getHtmlTop(htmlNode) - (pos1[1] - pos2[1])) + "px";
 
@@ -488,13 +490,21 @@
             }
             
             //Elements - Opposite sides - X
-            var oppDiff = 0, oloffset, olpos = false, tdiff;
+            var connDiff = 3, oppDiff = 5, oloffset, olpos = false, tdiff;
             if (d.xl.length && change.l !== 0) {
                 //Left
                 if (!change.lsticky) {
                     for (var i = 0, il = d.xr.length; i < il; i++) {
                         tdiff = (Math.max(0, (change.l || l) - d.xr[i]) || 10000) - oppDiff;
-                        if ((sd ? Math.abs(tdiff) : tdiff) < (we ? snapDiff : 1)) {
+                        if ((sd ? Math.abs(tdiff) : tdiff) < connDiff) {
+                            change.ol = (olpos = d.xr[i]);
+                            change.olpos = olpos;
+                            change.olEl = d.els[i];
+                            change.oloffset = oloffset = 0;
+                            change.olline = 1;
+                            break;
+                        }
+                        else if ((sd ? Math.abs(tdiff) : tdiff) < (we ? snapDiff : 1)) {
                             change.ol = (olpos = d.xr[i]) + oppDiff;
                             change.olpos = olpos + oppDiff;
                             change.olEl = d.els[i];
@@ -508,7 +518,15 @@
                 if (!change.rsticky) {
                     for (var i = 0, il = d.xl.length; i < il; i++) {
                         tdiff = (Math.max(0, d.xl[i] - (change.l || l) - w) || 10000) - oppDiff;
-                        if ((sd ? Math.abs(tdiff) : tdiff) < (ea ? snapDiff : 1)) {
+                        if ((sd ? Math.abs(tdiff) : tdiff) < connDiff) {
+                            change.or = (olpos = d.xl[i]) - w;
+                            change.orpos = d.container[2] - olpos;
+                            change.orEl = d.els[i];
+                            change.oloffset = oloffset = 0;
+                            change.olline = 1;
+                            break;
+                        }
+                        else if ((sd ? Math.abs(tdiff) : tdiff) < (ea ? snapDiff : 1)) {
                             change.or = (olpos = d.xl[i] - oppDiff) - w;
                             change.orpos = d.container[2] - olpos;
                             change.orEl = d.els[i];
@@ -525,7 +543,15 @@
                 if (!change.tsticky) {
                     for (var i = 0, il = d.yr.length; i < il; i++) {
                         tdiff = Math.abs((Math.max(0, (change.t || t) - d.yr[i]) || 10000) - oppDiff);
-                        if ((sd ? Math.abs(tdiff) : tdiff)  < (no ? snapDiff : 1)) {
+                        if ((sd ? Math.abs(tdiff) : tdiff)  < connDiff) {
+                            change.ot = (otpos = d.yr[i]);
+                            change.otpos = otpos;
+                            change.otEl = d.els[i];
+                            change.otoffset = otoffset = 0;
+                            change.otline = 1;
+                            break;
+                        }
+                        else if ((sd ? Math.abs(tdiff) : tdiff)  < (no ? snapDiff : 1)) {
                             change.ot = (otpos = d.yr[i]) + oppDiff;
                             change.otpos = otpos + oppDiff;
                             change.otEl = d.els[i];
@@ -538,7 +564,15 @@
                 if (!change.bsticky) {
                     for (var i = 0, il = d.yl.length; i < il; i++) {
                         tdiff = Math.abs((Math.max(0, d.yl[i] - (change.t || t) - h) || 10000) - oppDiff);
-                        if ((sd ? Math.abs(tdiff) : tdiff) < (so ? snapDiff : 1)) {
+                        if ((sd ? Math.abs(tdiff) : tdiff) < connDiff) {
+                            change.ob = (otpos = d.yl[i]) - h;
+                            change.obpos = d.container[3] - otpos;
+                            change.obEl = d.els[i];
+                            change.otoffset = otoffset = 0;
+                            change.otline = 1;
+                            break;
+                        }
+                        else if ((sd ? Math.abs(tdiff) : tdiff) < (so ? snapDiff : 1)) {
                             change.ob = (otpos = d.yl[i] - oppDiff) - h;
                             change.obpos = d.container[3] - otpos;
                             change.obEl = d.els[i];
@@ -608,7 +642,7 @@
                 dragIndicator6.style.top = d.container[1] + "px";
                 dragIndicator6.style.height = (d.container[3]) + "px"
                 dragIndicator6.style.display = "block";
-                dragIndicator6.style.borderWidth = "0 0 0 " + oppDiff + "px";
+                dragIndicator6.style.borderWidth = "0 0 0 " + (change.olline || oppDiff) + "px";
             }
             else
                 dragIndicator6.style.display = "none";
@@ -618,7 +652,7 @@
                 dragIndicator7.style.top = (otpos + otoffset + d.container[1]) + "px";
                 dragIndicator7.style.width = (d.container[2]) + "px"
                 dragIndicator7.style.display = "block";
-                dragIndicator7.style.borderWidth = oppDiff + "px 0 0";
+                dragIndicator7.style.borderWidth = (change.otline || oppDiff) + "px 0 0";
             }
             else
                 dragIndicator7.style.display = "none";
@@ -1117,6 +1151,8 @@
         
         if (el.$adding) {
             delete el.$adding;
+            el.dragOutline = true;
+            apf.setStyleClass(el.$ext, "", ["newoutline"]);
 //            el.dragOutline = true;
             el.focus();
         }
@@ -1168,16 +1204,17 @@
                 apf.layout.processQueue();
             }
         }
-        else if (this.parentNode.editable && name != "table") {
+        else if ((this.parentNode.editable || this.parentNode == canvas) && name != "table") {
             this.realtime = true;
             
             setDragInfo(this, this.parentNode);
             
             this.$showResize = showDrag.common_resize;
         }
-        else
+        else {
+            debugger;
             this.realtime = false;
-        
+        }
         if ("hbox|vbox|table".indexOf(name) == -1
           && apf.getStyle(this.$ext, "position") != "absolute") { //ignoring fixed for now...
             this.$ext.style.width = (this.$ext.offsetWidth - apf.getWidthDiff(this.$ext)) + "px";
@@ -1309,10 +1346,9 @@
             n = selected[i];
             ext = n.$ext;
             d = apf.getDiff(ext);
-        
             n.$updateProperties(
-                l = apf.getHtmlLeft(ext) + (dirX * (e.ctrlKey ? 10 : (e.shiftKey ? 30 : 1))), 
-                t = apf.getHtmlTop(ext) + (dirY * (e.ctrlKey ? 10 : (e.shiftKey ? 30 : 1))), 
+                l = ext.offsetLeft + (dirX * (e.ctrlKey ? 10 : (e.shiftKey ? 30 : 1))), 
+                t = ext.offsetTop + (dirY * (e.ctrlKey ? 10 : (e.shiftKey ? 30 : 1))), 
                 (w = ext.offsetWidth) - d[0], 
                 (h = ext.offsetHeight) - d[1], d[0], d[1]);
         }

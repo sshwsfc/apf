@@ -197,6 +197,10 @@ apf.Interactive = function(){
         if (_self.dispatchEvent("beforedragstart", {htmlEvent: e}) === false)
             return;
         
+        if (_self.$adding) {
+            var sel = apf.document.getSelection();
+            sel.removeAllRanges();
+        }  
         apf.dragMode  = true;
         if (reparent) {
             _self.dispatchEvent("beforedrag")
@@ -219,7 +223,7 @@ apf.Interactive = function(){
 
         //@todo not for docking
         //#ifdef __WITH_PLANE
-        apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 222");
+        //apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 222");
 /*
         if (posAbs && !_self.aData) {
             apf.plane.show(dragOutline
@@ -282,7 +286,7 @@ apf.Interactive = function(){
             document.onmousemove = document.onmouseup = null;
 
             //#ifdef __WITH_PLANE
-            apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 285");
+            //apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 285");
             /*
             if (posAbs && !_self.aData)
                 apf.plane.hide();
@@ -354,7 +358,7 @@ apf.Interactive = function(){
         
         if (!overThreshold && _self.showdragging)
             apf.setStyleClass(_self.$ext, "dragging");
-        
+        if (_self.$adding) apf.setStyleClass(_self.$ext, "newoutline");
         // usability rule: start dragging ONLY when mouse pointer has moved delta x pixels
         var dx = e.clientX - oX,
             dy = e.clientY - oY,
@@ -625,8 +629,10 @@ apf.Interactive = function(){
         
             if ((left || left === 0) && (!hasRight || hasLeft)) 
                 _self.setProperty("left", left, 0, _self.editable);
-            if ((top || top === 0) && (!hasBottom || hasTop)) 
+            if ((top || top === 0) && (!hasBottom || hasTop)) {
+                apf.console.log("top: " + top);
                 _self.setProperty("top", top, 0, _self.editable);
+            }
         }
 
         if (hdiff != undefined && width && (!hasLeft || !hasRight)) 

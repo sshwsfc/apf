@@ -331,6 +331,8 @@ apf.ContentEditable.commands = (function(){
     	    mode = value;
     	    this.$getSelectRect().activate();
     	}
+// disabled for now
+/*
     	else if (value && value.mode == "connect") {
     	    mode = "connect";
     	    var vc = this.$getVisualConnect();
@@ -360,6 +362,7 @@ apf.ContentEditable.commands = (function(){
             vc.setMode("all");
             vc.activate(value.event,value.timeout);
     	}
+*/
     	else if (value && value.mode == "add") {
             mode = "add";
             var e   = value.ev;
@@ -397,7 +400,7 @@ apf.ContentEditable.commands = (function(){
     	        clientY  : e.htmlEvent.clientY,
                 target   : e.htmlEvent.target
     	    }, false, true);
-    	    amlNode.dragOutline = true;
+    	    //amlNode.dragOutline = true;
     	    
     	    addType = null;
     	}

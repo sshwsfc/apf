@@ -2274,9 +2274,14 @@ var apf = {
     // #endif
     
     fireEvent : function(el, type, e, capture){
-        if (el.dispatchEvent)
-            el.dispatchEvent(type, e, capture);
-        else
+        if (el.dispatchEvent){
+            try {
+                el.dispatchEvent(type, e, capture);
+            }
+            catch (err) {
+                debugger;
+            }
+        }else
             el.fireEvent("on" + type, e);
     },
     
