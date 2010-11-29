@@ -396,7 +396,6 @@
             //Elements - X
             if (d.xl.length && (typeof change.l == "undefined" || force)) {
                 //Left
-if (apf.dbg) debugger;
                 for (var i = 0, il = d.xl.length; i < il; i++) {
                     if (Math.abs(d.xl[i] - l) < (we ? snapDiff : 1)) {
                         change.l = lpos = d.xl[i];
