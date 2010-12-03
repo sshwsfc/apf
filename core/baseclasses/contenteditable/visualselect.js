@@ -58,14 +58,14 @@ apf.visualSelect = function(selection){
         oOutline.onmouseup   = 
         oOutline.onmousedown = function(e){
             if (!e) e = event;
-
             var prevTop = this.style.top;
             this.style.top = "-10000px";
-            var el = document.elementFromPoint(e.clientX, e.clientY);
+            var el = apf.findHost(document.elementFromPoint(e.clientX, e.clientY)).$ext || document.elementFromPoint(e.clientX, e.clientY);
+
             this.style.top = prevTop;
             apf.fireEvent(el, (e.type || e.name), e);
             
-            e.cancelBubble = true;
+            e.cancelBubble = false;
         }
         
         //@todo this should be cleaned up
@@ -142,7 +142,7 @@ apf.visualSelect = function(selection){
             }
         }
         
-        if (s && s.$ext.parentNode.tagName == "BODY") {
+        if (s && s.$ext.parentNode && s.$ext.parentNode.tagName == "BODY") {
             apf.layout.setRules(document.documentElement, "visualselect", 
               "apf.all[" + this.$uniqueId + "].updateGeo()", true);
             apf.layout.queue(document.documentElement);
@@ -376,7 +376,6 @@ apf.visualSelect = function(selection){
     var resizing, map = {"e":"right", "w":"left", "n":"top", "s":"bottom"};
     function mousedown(e){
         if (!e) e = event;
-        
         var docsel = this.self.$selection;
         if (e.button == 2 || docsel.rangeCount > 1)
             return;

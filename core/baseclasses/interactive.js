@@ -208,7 +208,7 @@ apf.Interactive = function(){
         }
         else
             overThreshold = false;
-        
+
         //#ifdef __WITH_POPUP
         apf.popup.forceHide();
         //#endif
@@ -230,7 +230,7 @@ apf.Interactive = function(){
                 ? oOutline
                 : _self.$ext, e.reappend);//, true
         }
-*/        
+*/
         //#endif
 
         var ext = (reparent || oOutline.self) && dragOutline //little dirty hack to detect outline set by visualselect
@@ -353,8 +353,8 @@ apf.Interactive = function(){
     function dragMove(e){
         if(!e) e = event;
         
-        //if (_self.dragSelection)
-            //overThreshold = true;
+        if (_self.dragSelection)
+            overThreshold = true;
         
         if (!overThreshold && _self.showdragging)
             apf.setStyleClass(_self.$ext, "dragging");
@@ -367,14 +367,16 @@ apf.Interactive = function(){
         if (!overThreshold 
           && (distance = dx*dx > dy*dy ? dx : dy) * distance < 2)
             return;
-
         //Drag outline support
         else if (!overThreshold) {
             if (dragOutline 
               && oOutline.style.display != "block")
                 oOutline.style.display = "block";
 
-            if (_self.dispatchEvent && _self.dispatchEvent("beforedrag") === false) {
+            // this line fixes bug where dragging new element to canvas while multiselection is active 
+            // but raises another bug which prevent reparenting (orange outline) to occur.
+            // dragOutline && apf.document.$getVisualSelect().$getOutline().childNodes.length > 1 && 
+            if (_self.dispatchEvent("beforedrag") === false) {
                 document.onmouseup();
                 return;
             }
@@ -389,11 +391,12 @@ apf.Interactive = function(){
 
         if (_self.realtime) {
             var change = _self.$stick = {};
-            _self.$showDrag(l, t, oHtml, e, change);
+            if (!_self.$multidrag)
+                _self.$showDrag(l, t, oHtml, e, change);
             
-            if (typeof change.l != "undefined") 
+            if (typeof change.l != "undefined")
                 l = change.l, oHtml.style.left = l + "px";
-            if (typeof change.t != "undefined") 
+            if (typeof change.t != "undefined")
                 t = change.t, oHtml.style.top = t + "px";
         }
 
@@ -611,7 +614,6 @@ apf.Interactive = function(){
 
             if (hasRight && !(right || right === 0))
                 right = apf.getHtmlRight(htmlNode);
-
             if (hasBottom && !(bottom || bottom === 0))
                 bottom = apf.getHtmlBottom(htmlNode);
 
@@ -626,18 +628,18 @@ apf.Interactive = function(){
                 if (!_self.top)
                     htmlNode.style.top = "";
             }
-        
+
             if ((left || left === 0) && (!hasRight || hasLeft)) 
                 _self.setProperty("left", left, 0, _self.editable);
-            if ((top || top === 0) && (!hasBottom || hasTop)) {
+            if ((top || top === 0) && (!hasBottom || hasTop))
                 _self.setProperty("top", top, 0, _self.editable);
-            }
         }
 
         if (hdiff != undefined && width && (!hasLeft || !hasRight)) 
             _self.setProperty("width", width + hdiff, 0, _self.editable) 
         if (vdiff != undefined && height && (!hasTop || !hasBottom)) 
             _self.setProperty("height", height + vdiff, 0, _self.editable); 
+
     }
     this.$updateProperties = updateProperties;
     

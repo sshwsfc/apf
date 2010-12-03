@@ -301,6 +301,7 @@
             showDrag.common_resize.call(this, l, t, d.width, 
                 d.height, e, change, true, true, true, true, true);
 
+            /*
             var pos1 = apf.getAbsolutePosition(oOutline);
             var pos2 = apf.getAbsolutePosition(canvas.$ext);
             apf.config.setProperty("x", pos1[0]-pos2[0]);
@@ -310,6 +311,7 @@
             apf.config.setProperty("rely", change.t || (change.t === 0 ? 0 : apf.getHtmlTop(oOutline)));
             apf.config.setProperty("w", d.width);
             apf.config.setProperty("h", d.height);
+            */
         },
         
         //@todo temporarily disabled middle guides for resize
@@ -495,7 +497,7 @@
                 //Left
                 if (!change.lsticky) {
                     for (var i = 0, il = d.xr.length; i < il; i++) {
-                        tdiff = (Math.max(0, (change.l || l) - d.xr[i]) || 10000) - oppDiff;
+                        tdiff = (Math.max(0, (change.l || l) - d.xr[i]) || 10000); // - oppDiff
                         if ((sd ? Math.abs(tdiff) : tdiff) < connDiff) {
                             change.ol = (olpos = d.xr[i]);
                             change.olpos = olpos;
@@ -517,7 +519,7 @@
                 //Right
                 if (!change.rsticky) {
                     for (var i = 0, il = d.xl.length; i < il; i++) {
-                        tdiff = (Math.max(0, d.xl[i] - (change.l || l) - w) || 10000) - oppDiff;
+                        tdiff = (Math.max(0, d.xl[i] - (change.l || l) - w) || 10000); // - oppDiff
                         if ((sd ? Math.abs(tdiff) : tdiff) < connDiff) {
                             change.or = (olpos = d.xl[i]) - w;
                             change.orpos = d.container[2] - olpos;
@@ -542,7 +544,7 @@
             if (d.yl.length && change.t !== 0) {
                 if (!change.tsticky) {
                     for (var i = 0, il = d.yr.length; i < il; i++) {
-                        tdiff = Math.abs((Math.max(0, (change.t || t) - d.yr[i]) || 10000) - oppDiff);
+                        tdiff = Math.abs((Math.max(0, (change.t || t) - d.yr[i]) || 10000));
                         if ((sd ? Math.abs(tdiff) : tdiff)  < connDiff) {
                             change.ot = (otpos = d.yr[i]);
                             change.otpos = otpos;
@@ -563,7 +565,7 @@
                 
                 if (!change.bsticky) {
                     for (var i = 0, il = d.yl.length; i < il; i++) {
-                        tdiff = Math.abs((Math.max(0, d.yl[i] - (change.t || t) - h) || 10000) - oppDiff);
+                        tdiff = Math.abs((Math.max(0, d.yl[i] - (change.t || t) - h) || 10000));
                         if ((sd ? Math.abs(tdiff) : tdiff) < connDiff) {
                             change.ob = (otpos = d.yl[i]) - h;
                             change.obpos = d.container[3] - otpos;
@@ -1123,9 +1125,10 @@
                 
                 for (var i = 0; i < selected.length; i++) {
                     pNode.appendChild(selected[i]);
-                    if (!el.$adding)
+                    if (!el.$adding) {
                         setDefaultStuck(selected[i]);
                         //selected[i].$stuck = [false, false, false, false]; //reset stickyness in new context
+                    }
                 }
             }
             
@@ -1212,7 +1215,6 @@
             this.$showResize = showDrag.common_resize;
         }
         else {
-            debugger;
             this.realtime = false;
         }
         if ("hbox|vbox|table".indexOf(name) == -1
@@ -1311,11 +1313,11 @@
         var selected = apf.document.$getVisualSelect().getLastSelection();//apf.document.getSelection().$getNodeList(); //@todo maybe optimize by requesting from visualselect
         if (!selected.length)
             return;
-        
+        if (!apf.isChildOf(canvas, apf.activeElement) && selected.indexOf(apf.activeElement) == -1) return;
         //@todo this should be solved in the capturing phase
         if (apf.document.queryCommandState("rename"))
             return;
-            
+        
         var name = selected[0].parentNode.localName;
         if ("vbox|hbox|table".indexOf(name) > -1)
             return;
@@ -1387,7 +1389,7 @@
     apf.ContentEditable.addInteraction    = function(amlNode){
         if (!inited)
             init();
-        
+
         amlNode.addEventListener("beforedragstart", beforedragstart);
         amlNode.addEventListener("beforedrag",      beforedrag);
         amlNode.addEventListener("beforeresize",    beforeresize);
@@ -1397,6 +1399,7 @@
         amlNode.addEventListener("afterresize",     afterresize);
         amlNode.addEventListener("resizecancel",    cancel);
         amlNode.addEventListener("dragcancel",      cancel);
+        
         setDefaultStuck(amlNode);
     }
 
@@ -1406,9 +1409,15 @@
         var pos2 = apf.getAbsolutePosition(canvas.$ext);
         apf.config.setProperty("x", pos1[0]-pos2[0]);
         apf.config.setProperty("y", pos1[1]-pos2[1]);
-
-        apf.config.setProperty("relx", apf.getHtmlLeft(target));
-        apf.config.setProperty("rely", apf.getHtmlTop(target));
+        
+        if (target.parentNode != canvas.$ext) {
+            apf.config.setProperty("relx", target.offsetLeft);
+            apf.config.setProperty("rely", target.offsetTop);
+        }
+        else {
+            apf.config.setProperty("relx", "");
+            apf.config.setProperty("rely", "");
+        }
     }
     function resizemove(e) {
         var target = (outline.style.display != "none") ? outline : e.currentTarget.$ext;

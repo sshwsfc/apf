@@ -85,7 +85,7 @@ apf.ContentEditable.commands = (function(){
                 maxheight = amlNode.maxheight
                     || parseInt(amlNode.$getOption("main", "maxheight")) || 10000;
         }
-        
+
         if (!options.ignorePos) {
             amlNode.setAttribute("width", Math.min(maxwidth, Math.max(minwidth,
                 htmlNode.offsetWidth)));
@@ -97,9 +97,10 @@ apf.ContentEditable.commands = (function(){
                 amlNode.setAttribute("left", options.left);
                 amlNode.setAttribute("top", options.top);
             }
-            if (options.width || options.width === 0)
+            
+            if (addType != "hbox" && options.width || options.width === 0)
                 amlNode.setAttribute("width", options.width);
-            if (options.height || options.height === 0)
+            if (addType != "vbox" && options.height || options.height === 0)
                 amlNode.setAttribute("height", options.height);
         }
         
@@ -458,7 +459,8 @@ apf.ContentEditable.commands = (function(){
         if (selList.length)
             apf.document.getSelection().$selectList(selList);
         
-        //trTools.select(trTools.queryNode("//node()[@name='Arrow']"));
+        trTools.select(trTools.queryNode("//node()[@name='Arrow']"));
+        
     };
     
     commands["remove"] = function(sel, showUI, value, query){
@@ -477,9 +479,20 @@ apf.ContentEditable.commands = (function(){
         }
         
         var s = pNode.ownerDocument.getSelection();
-        s.$selectList([apf.document.activeElement && apf.document.activeElement.editable 
+        var activeEl = apf.document.activeElement && apf.document.activeElement.editable 
             ? apf.document.activeElement
-            : (pNode.editable ? pNode : pNode.firstChild)]);
+            : (pNode.editable 
+                ? pNode 
+                : (pNode.firstChild)
+                    ? pNode.firstChild
+                    : null);
+                    
+        if (activeEl && apf.isChildOf(canvas, activeEl)) {
+            s.$selectList([activeEl]);
+        }
+        else {
+            apf.document.$getVisualSelect().hide();
+        }
     };
     
     commands["each"] = function(sel, showUI, func, query){
@@ -804,6 +817,7 @@ apf.ContentEditable.commands = (function(){
             left : pos[0],
             top : pos[1]
         };
+        
         if (pNode.localName != "table") {
             if (pNode.localName != "vbox")
                 opt.width = pos[2];

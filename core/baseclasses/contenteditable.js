@@ -147,9 +147,16 @@ apf.addEventListener("load", function(){
             var pos2 = apf.getAbsolutePosition(canvas.$ext);
             apf.config.setProperty("x", pos1[0]-pos2[0]);
             apf.config.setProperty("y", pos1[1]-pos2[1]);
-                
-            apf.config.setProperty("relx", apf.getHtmlLeft(target));
-            apf.config.setProperty("rely", apf.getHtmlTop(target));
+            
+            if (node.parentNode != canvas) {
+                apf.config.setProperty("relx", apf.getHtmlLeft(target));
+                apf.config.setProperty("rely", apf.getHtmlTop(target));
+            }
+            else {            
+                apf.config.setProperty("relx", "");
+                apf.config.setProperty("rely", "");
+            }
+            
             apf.config.setProperty("w", target.offsetWidth);
             apf.config.setProperty("h", target.offsetHeight);
 
@@ -183,15 +190,6 @@ apf.addEventListener("load", function(){
             //Add element to the selection
             sel.addRange(this.createRange()).selectNode(node);
             lastFocussed = node;
-        }
-
-        if (trVe) {
-            setTimeout(function() {
-                if (apf.isChildOf(canvas, node)) {
-                    trVe.select(node);
-                    winProperties.setProperty("title", "Properties " + apf.activeElement.id);
-                }
-            });
         }
         recursion = false;
     });
@@ -238,7 +236,9 @@ apf.addEventListener("load", function(){
             return;
         }
         
-        if (!node.editable) return;
+        if (!node.editable) {
+            return;
+        }
         
         //apf.activeElement == node && 
         if (sel.rangeCount > 1) {
