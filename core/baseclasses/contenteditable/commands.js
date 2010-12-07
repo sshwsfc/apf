@@ -407,6 +407,10 @@ apf.ContentEditable.commands = (function(){
     	}
     	else {
     	    mode = value.mode || value;
+            
+            if (mode == "arrow")
+                apf.dragMode = false;   // hack
+
     	    this.$getSelectRect().deactivate();
             this.$getVisualConnect().deactivate();
     	}
@@ -456,11 +460,12 @@ apf.ContentEditable.commands = (function(){
             }
         }
         
-        if (selList.length)
+        if (selList.length) {
             apf.document.getSelection().$selectList(selList);
-        
-        trTools.select(trTools.queryNode("//node()[@name='Arrow']"));
-        
+            trTools.select(trTools.queryNode("//node()[@name='Arrow']"));
+        }
+        else
+            apf.document.$getVisualSelect().hide();
     };
     
     commands["remove"] = function(sel, showUI, value, query){
@@ -805,8 +810,8 @@ apf.ContentEditable.commands = (function(){
         //Reset position
         var isInLayout = "vbox|hbox|table".indexOf(pNode.localName) > -1;
         commands["resetgeo"].call(this, sel, false, {
-            keepwidth  : !isInLayout && options.to == "hbox",
-            keepheight : !isInLayout && options.to == "vbox"
+            keepwidth  : true, // !isInLayout && options.to == "hbox",
+            keepheight : true // !isInLayout && options.to == "vbox"
         });
 
         //Add container

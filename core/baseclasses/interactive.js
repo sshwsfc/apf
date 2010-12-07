@@ -185,9 +185,9 @@ apf.Interactive = function(){
     function dragStart(e, reparent){
         if (!e) e = event;
 
-        if (!reparent && (!_self.draggable || apf.dragMode))//_self.editable || 
+        if (!reparent && (!_self.draggable || apf.dragMode)) //_self.editable || 
             return;
-        
+
         //#ifdef __WITH_OUTLINE
         dragOutline = _self.dragOutline == true || apf.config.dragOutline;
         /*#else
@@ -376,7 +376,7 @@ apf.Interactive = function(){
             // this line fixes bug where dragging new element to canvas while multiselection is active 
             // but raises another bug which prevent reparenting (orange outline) to occur.
             // dragOutline && apf.document.$getVisualSelect().$getOutline().childNodes.length > 1 && 
-            if (_self.dispatchEvent("beforedrag") === false) {
+            if (_self.dispatchEvent("beforedrag") === false && dragOutline && apf.document.$getVisualSelect().$getOutline().childNodes.length > 1) {
                 document.onmouseup();
                 return;
             }
@@ -391,7 +391,7 @@ apf.Interactive = function(){
 
         if (_self.realtime) {
             var change = _self.$stick = {};
-            if (!_self.$multidrag)
+            //if (!_self.$multidrag)
                 _self.$showDrag(l, t, oHtml, e, change);
             
             if (typeof change.l != "undefined")

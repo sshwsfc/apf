@@ -115,6 +115,8 @@
                 plane.plane.style.top = 0;
                 htmlNode.style.top = prevTop;
                 
+                showDrag.reparent.call(this, amlNode, el, e);
+                
                 if (amlNode && amlNode != el && (amlNode.parentNode == (lastReparent || el.parentNode))) {
                     var ext1 = amlNode.$altExt || amlNode.$ext;
                     var ext2 = el.$altExt || el.$ext;
@@ -972,7 +974,7 @@
         if ((this.$multidrag = selection.length > 1) 
           && selection.indexOf(this) == -1)
             return false;
-        
+
         if (outline != (selection.length > 1
           ? apf.document.$getVisualSelect().$getOutline()
           : dragOutline))
@@ -1407,6 +1409,10 @@
         var target = (outline.style.display != "none") ? outline : e.currentTarget.$ext;
         var pos1 = apf.getAbsolutePosition(target);
         var pos2 = apf.getAbsolutePosition(canvas.$ext);
+
+        apf.config.setProperty("x", apf.getHtmlLeft(target).toString());
+        apf.config.setProperty("y", apf.getHtmlTop(target).toString());
+        /*
         apf.config.setProperty("x", pos1[0]-pos2[0]);
         apf.config.setProperty("y", pos1[1]-pos2[1]);
         
@@ -1418,6 +1424,7 @@
             apf.config.setProperty("relx", "");
             apf.config.setProperty("rely", "");
         }
+        */
     }
     function resizemove(e) {
         var target = (outline.style.display != "none") ? outline : e.currentTarget.$ext;

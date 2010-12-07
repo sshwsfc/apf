@@ -68,7 +68,7 @@ apf.selectrect = function (){
                     ? (document.documentElement.offsetHeight - startY - 4) + "px"
                     : "";
                 q.style.top    = ht < 0 ? "" : (startY) + "px";
-                
+
                 apf.config.setProperty("x", apf.getHtmlLeft(q));
                 apf.config.setProperty("y", apf.getHtmlTop(q));
                 apf.config.setProperty("w", q.offsetWidth);
@@ -125,11 +125,13 @@ apf.selectrect = function (){
                 //_self.deactivate();
             }
             
-            q.style.display = "none";
-            startX = false;
-            startY = false;
-            
-            apf.dragMode = false;
+//            if (apf.document.getSelection().$getNodeList().length) {
+                q.style.display = "none";
+                startX = false;
+                startY = false;
+                
+                apf.dragMode = false;
+//            }
         };
 
         p1.style.display =

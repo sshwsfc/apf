@@ -123,10 +123,10 @@ apf.visualSelect = function(selection){
     var lastSelection = [];
     this.updateSelection = function(){
         var nodes = this.$selection.$getNodeList();
-        
+        if (apf.dbg) nodes = [Bar1];
         if (!inited)
             init.call(this);
-        
+
         //#ifdef __WITH_LAYOUT
         for (var s, i = 0, l = lastSelection.length; i < l; i++) {
             if (nodes.indexOf(s = lastSelection[i]) == -1) {

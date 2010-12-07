@@ -145,9 +145,16 @@ apf.addEventListener("load", function(){
             var target = node.$ext;
             var pos1 = apf.getAbsolutePosition(target);
             var pos2 = apf.getAbsolutePosition(canvas.$ext);
+
+            apf.config.setProperty("x", apf.getHtmlLeft(target).toString());
+            apf.config.setProperty("y", apf.getHtmlTop(target).toString());
+            // absolute
+            /*
             apf.config.setProperty("x", pos1[0]-pos2[0]);
             apf.config.setProperty("y", pos1[1]-pos2[1]);
-            
+            */
+            // relative position
+            /*
             if (node.parentNode != canvas) {
                 apf.config.setProperty("relx", apf.getHtmlLeft(target));
                 apf.config.setProperty("rely", apf.getHtmlTop(target));
@@ -156,6 +163,7 @@ apf.addEventListener("load", function(){
                 apf.config.setProperty("relx", "");
                 apf.config.setProperty("rely", "");
             }
+            */
             
             apf.config.setProperty("w", target.offsetWidth);
             apf.config.setProperty("h", target.offsetHeight);
