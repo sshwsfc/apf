@@ -26,6 +26,7 @@ apf.visualSelect = function(selection){
 
     var _self = this;
     selection.addEventListener("update", function(){
+        if (apf.dbg) debugger;
         _self.updateSelection();
     });
     this.$selection = selection;
@@ -92,7 +93,7 @@ apf.visualSelect = function(selection){
     this.show = function(){
         if (!inited) 
             init.call(this);
-        
+
         this.visible = true;
         for (var i = 0; i < nodes.length; i++)
             nodes[i].style.display = "";
@@ -123,7 +124,6 @@ apf.visualSelect = function(selection){
     var lastSelection = [];
     this.updateSelection = function(){
         var nodes = this.$selection.$getNodeList();
-        if (apf.dbg) nodes = [Bar1];
         if (!inited)
             init.call(this);
 
@@ -159,7 +159,8 @@ apf.visualSelect = function(selection){
         else if (nodes.length > 1)
             oOutline.innerHTML = Array(nodes.length + 1).join("<div></div>");
 
-        this.updateGeo();
+        // hack - added true to display correct outline
+        this.updateGeo(true);
         
         //Show
         if (!this.visible)
@@ -172,9 +173,9 @@ apf.visualSelect = function(selection){
     
     var lastPos, txt, recursion;
     this.updateGeo = function(force, onlyUpdateAnchors){
-        if (recursion)
+        if (recursion && !force)
             return;
-
+            
         var selection = lastSelection;
         if (!selection.length)
             return;

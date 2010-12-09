@@ -140,6 +140,7 @@ apf.addEventListener("load", function(){
 
         recursion = true;
         var node = e.currentTarget, isSelected;
+        
         if (node.editable && apf.isChildOf(canvas, node, false)) {
             // set element properties
             var target = node.$ext;
@@ -199,6 +200,7 @@ apf.addEventListener("load", function(){
             sel.addRange(this.createRange()).selectNode(node);
             lastFocussed = node;
         }
+
         recursion = false;
     });
     if (apf.document.activeElement && apf.document.activeElement.editable)

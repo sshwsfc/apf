@@ -104,16 +104,12 @@ apf.ContentEditable.commands = (function(){
                 amlNode.setAttribute("height", options.height);
         }
         
-        var name, n = amlNode.localName.uCaseFirst(), i = 0;
-        do{
-            name = n + ++i;
-        } while (self[name]);
-        amlNode.setAttribute("id", name);
+        commands["generateId"].call(this, amlNode);
         
         var hasProp = rename.getEditableProp(amlNode);
         if (hasProp) {
             var prop = hasProp[1];
-            amlNode.setAttribute(prop, name);
+            amlNode.setAttribute(prop, amlNode.id);
         }
         
         if (options.userInteraction)
@@ -131,6 +127,11 @@ apf.ContentEditable.commands = (function(){
 
         options.addedNode = amlNode;
         
+        if (options.edge)
+            amlNode.setAttribute("edge", options.edge);
+        if (options.padding)
+            amlNode.setAttribute("padding", options.padding);
+            
         //@todo hack!
         //trTools.select(trTools.queryNode("//node()[@name='Arrow']"));
     };
@@ -491,9 +492,10 @@ apf.ContentEditable.commands = (function(){
                 : (pNode.firstChild)
                     ? pNode.firstChild
                     : null);
-                    
+        
+
         if (activeEl && apf.isChildOf(canvas, activeEl)) {
-            s.$selectList([activeEl]);
+            //s.$selectList([activeEl]);
         }
         else {
             apf.document.$getVisualSelect().hide();
@@ -574,7 +576,8 @@ apf.ContentEditable.commands = (function(){
         var content = apf.clipboard.get();
         if (!content) return;
         
-        var pNode = sel.length > 1 ? sel[0].parentNode : sel[0];
+        //var pNode = sel.length > 1 ? sel[0].parentNode : sel[0];
+        var pNode = sel[0].parentNode;
 
         if (typeof content == "string") {
             sel.insertMarkup(content);
@@ -588,19 +591,28 @@ apf.ContentEditable.commands = (function(){
             docsel.removeAllRanges();
             
             //Copy nodes and add to selection
-            var _self = this;
+            var _self = this, newNode;
+            
             content.each(function(item){
+                newNode = item.cloneNode(true);
+                commands["generateId"].call(this, newNode, item);
+                commands["generatePos"].call(this, newNode, item);
+
                 docsel.addRange(new apf.AmlRange(_self)).selectNode(
-                    pNode.appendChild(item.cloneNode(true)));
+                    apf.xmldb.appendChild(pNode, newNode));
+                    
+                if (sel.length == 1)
+                    newNode.focus();
             });
         }
         else if (content.$regbase) {
-            sel.appendChild(content.cloneNode(true))
+            apf.xmldb.appendChild(sel, content.cloneNode(true));
         }
         else {
             alert("Could not paste content");
         }
         
+            
         //#ifdef __WITH_LAYOUT
         //@todo more general place for this?
         apf.layout.processQueue();
@@ -614,16 +626,27 @@ apf.ContentEditable.commands = (function(){
             case ENABL: return true;
             case INDET: return false;
         }
-        
+
         //Init selection
         var docsel = this.getSelection();
         docsel.removeAllRanges();
-        
+
         //Copy nodes and add to selection
+        var newNode;
+
         sel.each(function(item){
+            newNode = apf.getCleanCopy(item);
+            commands["generatePos"].call(this, newNode, item);
+
             docsel.addRange(new apf.AmlRange(item)).selectNode(
-                item.parentNode.appendChild(apf.getCleanCopy(item)));
+                apf.xmldb.appendChild(item.parentNode, newNode));
+            
+            commands["generateId"].call(this, newNode, item);
         });
+        
+        if (sel.length == 1)
+            newNode.focus();
+        
         
         /*apf.ContentEditable.execCommand("resetgeo", {
             sel: nodes
@@ -633,6 +656,44 @@ apf.ContentEditable.commands = (function(){
         //@todo more general place for this?
         apf.layout.processQueue();
         //#endif
+    };
+
+    commands["generateId"] = function(newNode, orItem) {
+        var n, name, j = 0;
+        n = newNode.localName.uCaseFirst();
+        do{
+            name = n + ++j;
+        } while (self[name]);
+        
+        newNode.setAttribute("id", name);
+        attrs = ["caption", "value", "label"];
+        for (var att, i = 0, l = attrs.length; i < l; i++) {
+            if (newNode.getAttribute(att = attrs[i]) == undefined) continue;
+            if (apf.dbg) debugger;
+            newNode.setAttribute(att, !orItem || orItem.getAttribute("id") == orItem.getAttribute(att)
+                ? newNode.getAttribute("id") 
+                : orItem.getAttribute(att));
+        }
+        
+        if (newNode.childNodes.length) {
+            for (var i = 0, l = newNode.childNodes.length; i < l; i++) {
+                commands["generateId"].call(this, newNode.childNodes[i]);
+            }
+        }
+    };
+
+    commands["generatePos"] = function(newNode, orItem) {
+        var newpos, itemT, itemL, itemH, itemW;
+        var marg = 5;
+        
+        var ext = newNode.$ext || newNode.$aml.$ext || orItem.$ext || orItem.$aml.$ext;
+        if (!ext) debugger;
+        if ((newpos = (itemT = parseInt(newNode.getAttribute("top") || ext.offsetTop)) + (itemH = parseInt(newNode.getAttribute("height") || ext.offsetHeight)) + marg) + itemH < parseInt(canvas.getAttribute("height") || canvas.$ext.offsetHeight)
+            || (newpos = itemT - itemH - marg) > 0)
+            newNode.setAttribute("top", newpos);
+        else if ((newpos = (itemL = parseInt(newNode.getAttribute("left"))) + (itemW = parseInt(newNode.getAttribute("width"))) + marg) < parseInt(canvas.getAttribute("width") || canvas.$ext.offsetWidth)
+            (newpos = itemL - itemW - marg) > 0)
+            newNode.setAttribute("left", newpos);
     };
     
     commands["resetgeo"] = function(sel, showUI, options, query){
@@ -820,7 +881,8 @@ apf.ContentEditable.commands = (function(){
             beforeNode : sel[0],
             ignorePos : true,
             left : pos[0],
-            top : pos[1]
+            top : pos[1],
+            edge : 10
         };
         
         if (pNode.localName != "table") {
