@@ -682,6 +682,7 @@ apf.xmldb = new (function(){
         //ActionTracker Support
         if (undoObj && !undoObj.$filled) {
             undoObj.$filled           = true;
+            if (!undoObj.extra) undoObj.extra = {};
             undoObj.extra.parent      = xmlNode.parentNode;
             undoObj.extra.removedNode = xmlNode;
             undoObj.extra.beforeNode  = xmlNode.nextSibling;

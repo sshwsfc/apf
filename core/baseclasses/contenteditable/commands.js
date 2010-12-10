@@ -483,7 +483,7 @@ apf.ContentEditable.commands = (function(){
                 sel.removeNode();
             });
         }
-        
+        if (!pNode) debugger;
         var s = pNode.ownerDocument.getSelection();
         var activeEl = apf.document.activeElement && apf.document.activeElement.editable 
             ? apf.document.activeElement
@@ -495,7 +495,7 @@ apf.ContentEditable.commands = (function(){
         
 
         if (activeEl && apf.isChildOf(canvas, activeEl)) {
-            //s.$selectList([activeEl]);
+            s.$selectList([activeEl]);
         }
         else {
             apf.document.$getVisualSelect().hide();
@@ -523,6 +523,7 @@ apf.ContentEditable.commands = (function(){
         }
         
         um.undo(parseInt(value) || null);
+        apf.document.$getVisualSelect().hide();
     };
     
     commands["redo"] = function(sel, showUI, value, query){
