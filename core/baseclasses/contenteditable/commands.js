@@ -882,8 +882,7 @@ apf.ContentEditable.commands = (function(){
             beforeNode : sel[0],
             ignorePos : true,
             left : pos[0],
-            top : pos[1],
-            edge : 10
+            top : pos[1]
         };
         
         if (pNode.localName != "table") {

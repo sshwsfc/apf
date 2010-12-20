@@ -26,7 +26,6 @@ apf.visualSelect = function(selection){
 
     var _self = this;
     selection.addEventListener("update", function(){
-        if (apf.dbg) debugger;
         _self.updateSelection();
     });
     this.$selection = selection;

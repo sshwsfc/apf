@@ -78,8 +78,9 @@ apf.addEventListener("load", function(){
                 apf.document.execCommand("rename", true);
                 return false;
             case 16:
-                if (!this.dragMode && (apf.document.documentElement.editable 
-                  || self.app && self.app.editable)) { //@hack!
+                if (!this.dragMode) {// && (apf.document.documentElement.editable 
+                  //|| self.canvas && self.canvas.editable)) { //@hack!
+            
                     if (e.ctrlKey)
                         apf.document.execCommand("mode", null, "select");
                     else {
