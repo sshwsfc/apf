@@ -43,7 +43,7 @@ apf.visualConnect = function (sel){
     var prevSelection;
     
     // init draw api
-    var width = document.body.clientWidth;
+    var width = canvas.$ext.clientWidth;
     //@todo adjust height to browser window height?
     var height = 800;//document.body.clientHeight;
     var paintGroup = apf.vector.group({w:width,h:height,z:1000});
@@ -90,7 +90,7 @@ apf.visualConnect = function (sel){
                 var el1 = e.obj.fromEl.id, el2 = e.obj.toEl.id;
             else
                 var el1 = e.obj.toEl.id, el2 = e.obj.fromEl.id;
-                
+
             for (var maxBoxWidth = 0, maxLeftWidth = 0, i = 0, l = connections[el1][el2].length; i < l; i++) {
                 if ((c=connections[el1][el2][i].conn).getMaxLeftWidth() > maxLeftWidth)
                     maxLeftWidth = c.getMaxLeftWidth();
@@ -120,7 +120,8 @@ apf.visualConnect = function (sel){
         
         apf.plane.show();
         
-        div = document.body.appendChild(document.createElement("div"));
+        div = canvas.$ext.appendChild(document.createElement("div"));
+        div.id = "vc_container";
         div.style.display = "block";
         div.style.position = "absolute";
         div.style.left = "0px";
@@ -233,6 +234,8 @@ apf.visualConnect = function (sel){
                 apf.plane.show();
                 paintGroup.style({v:1});
                 paintGroup.repaint();
+                
+                lineMode = "connections";
             }
             else {
                 alert("no connections");
@@ -258,12 +261,12 @@ apf.visualConnect = function (sel){
             
             paintGroup.style({v:0});
             paintGroup.repaint();
-            
+
             var htmlNode = document.elementFromPoint(e.clientX, e.clientY);
             var amlNode = apf.findHost(htmlNode);
             // target amlNode found, create connection
 
-            if (amlNode && amlNode.editable && selection.indexOf(amlNode) == -1 && amlNode.tagName != "html") {
+            if (amlNode && amlNode.editable && selection.indexOf(amlNode) == -1 && amlNode.id != "html") {
                 toEl = amlNode;
 
                 // draw connection line
@@ -291,7 +294,6 @@ apf.visualConnect = function (sel){
                 });
                 paintGroup.repaint();
                 
-                
                 var x = e.clientX, y = e.clientY;
                 
                 if (!toEl.attributes.length) return;
@@ -307,6 +309,8 @@ apf.visualConnect = function (sel){
                   id         : "attMenu",
                   childNodes : attList
                 });
+
+                lineMode = null;
 
                 setTimeout(function(e){
                     attMenu.display(x, y, true);
@@ -335,6 +339,24 @@ apf.visualConnect = function (sel){
                     
                     //apf.cancelBubble((e || event), attMenu);
                 });
+            }
+            else {
+                var el = e.originalTarget, match = false;
+
+                while (el.id != "vc_container" && !match) {
+                    if (el.className == "atchart_box")
+                        match = true;
+                    else {
+                        if (!el.parentNode) {
+                            match = true;
+                            break;
+                        }
+                        el = el.parentNode;          
+                    }
+                }
+                
+                if (!match)
+                    _self.deactivate();
             }
             isDrawing = false;
 
@@ -462,7 +484,10 @@ apf.visualConnect = function (sel){
             } else {
                 if (attMenu.visible)
                     attMenu.setProperty("visible", false);
-                if (fromEl) {
+                if (fromEl && lineMode != "connections") {
+                    stopDraw(e);
+                }
+                else if (lineMode == "connections" && e.originalTarget.id == "vc_container") {
                     stopDraw(e);
                 }
             }
@@ -495,8 +520,9 @@ apf.visualConnect = function (sel){
             if (targetList.length == 1) {
                 var el2 = targetList[0].el;
                 var at2 = targetList[0].at;
+                var pos = [(hNode=el1.$ext).offsetLeft, hNode.offsetTop];
                 var from = {
-                    x : (x=(pos=apf.getAbsolutePosition((hNode=el1.$ext)))[0]),
+                    x : (x=pos[0]),
                     y : (y=pos[1]),
                     w : (w=hNode.offsetWidth),
                     h : (h=hNode.offsetHeight),
@@ -506,8 +532,9 @@ apf.visualConnect = function (sel){
                     r : [x+w, Math.round(y+h/2)],
                     c : [Math.round(x+w/2), Math.round(y+h/2)]  // center of element
                 }
+                var pos = [(hNode=el2.$ext).offsetLeft, hNode.offsetTop];
                 var to = {
-                    x : (x=(pos=apf.getAbsolutePosition((hNode=el2.$ext)))[0]),
+                    x : (x=pos[0]),
                     y : (y=pos[1]),
                     w : (w=hNode.offsetWidth),
                     h : (h=hNode.offsetHeight),
@@ -542,10 +569,10 @@ apf.visualConnect = function (sel){
                     conn.readonly = true;
                 }
                 
-                var fromId, toId
+                var fromId, toId;
                 if (!connections) connections = {};
                 if (!connections[(fromId=el1.id)]) connections[fromId] = {};
-                if (!connections[fromId][toId]) 
+                if (!connections[fromId][toId=el2.id]) 
                     connections[fromId][toId] = [conn];
                 else
                     connections[fromId][toId].push(conn);
@@ -560,8 +587,9 @@ apf.visualConnect = function (sel){
             connectionPath = [];
             
             // reset div
-            if (div) document.body.removeChild(div);
-            div = document.body.appendChild(document.createElement("div"));
+            if (div) canvas.$ext.removeChild(div);
+            div = canvas.$ext.appendChild(document.createElement("div"));
+            div.id = "vc_container";
             div.style.display = "block";
             div.style.position = "absolute";
             div.style.left = "0px";
@@ -619,6 +647,9 @@ apf.visualConnect = function (sel){
                         connEdit.$ext.style.top = centerPos[1] + "px";
                         connEdit.$ext.style.left = centerPos[0] + "px";
 
+                        pos1 = [pos1[0] + canvas.$ext.offsetLeft, pos1[1] + canvas.$ext.offsetTop];
+                        pos2 = [pos2[0] + canvas.$ext.offsetLeft, pos2[1] + canvas.$ext.offsetTop];
+                        
                         // draw line
                         connectionPath.push(
                             //paintGroup.circlePath(pos1[0],pos1[1],1,1),
@@ -642,6 +673,7 @@ apf.visualConnect = function (sel){
 
     this.deactivate = function(){
         if (!active) return;
+
         //if (lineMode) return;
         active = false;
 
@@ -663,7 +695,7 @@ apf.visualConnect = function (sel){
         paintGroup.style({v:0});
         paintGroup.repaint();
         if (div) div.style.display = "none";
-        if (div) document.body.removeChild(div);
+        if (div) canvas.$ext.removeChild(div);
     };
 };
 
@@ -693,7 +725,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         return txt;
     };
 
-    this.startEdit = function(el){
+    this.startEdit = function(el) {
         htmlNode  = this.$value;
         var value = this.value;
         
@@ -770,7 +802,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         
         this.$ext = document.createElement("div");
         this.$ext.setAttribute("class", "atchart_box");
-        this.$ext.setAttribute("style", "width:285px;color:#000000;font-family:Tahoma;font-size:12px;height:29px;min-width:30px;min-height:29px;max-height:29px;overflow:hidden;cursor:default;position:absolute;");
+        this.$ext.setAttribute("style", "width:300px;color:#000000;font-family:Tahoma;font-size:12px;height:29px;min-width:30px;min-height:29px;max-height:29px;overflow:hidden;cursor:default;position:absolute;");
         
         this.$ext.innerHTML = '<div class="left"> </div><div class="red_button"> </div><div class="right"> </div><div class="lbl"><div><span class="section1">Button.</span><span class="section2"><a href="#">caption</a></span></div><span class="section3">=</span><span class="section4">&quot;</span><label class="section5">{button2.value}</label><span class="section4">&quot;</span></div>';
         this.$ext.onmousedown = this.$ext.onmouseup = function(e) {
@@ -862,6 +894,13 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         }
         
         this.$lblVal        = this.$box.getElementsByTagName("label")[0];
+        this.$lblVal.onclick = function(e) {
+            _self.$inputVal.value = _self.value;
+            _self.$inputVal.style.width = this.offsetWidth + "px";
+            this.replaceNode(_self.$inputVal);
+            _self.$inputVal.focus();
+            (e||event).cancelBubble = true;
+        };
         this.setPropValue(this.value);
         
         if (this.type != "readonly")
@@ -880,6 +919,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
     }
     
     this.createInput = function() {
+        var _self = this;
         var inputVal = document.createElement("input");
         inputVal.setAttribute("type", "text");
         inputVal.setAttribute("class", "section5");
@@ -892,7 +932,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
             this.hasFocus = false;
             this.onkeydown = this.onkeypress = this.onkeyup = null;
             _self.$lblVal.setAttribute("value", this.value);
-            _self.$lblVal.getAttribute("el").setAttribute(lblVal.getAttribute("at"), this.value);
+            _self.$lblVal.getAttribute("el").setAttribute(_self.$lblVal.getAttribute("at"), this.value);
 
             if (createConnections(selection))
                 showConnections();
@@ -901,8 +941,8 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         }
         inputVal.onkeyup = function(e) {
             if ((e||event).keyCode == 13) {
-                _self.$lblVal.setAttribute("value", "x"+this.value);
-                _self.$lblVal.getAttribute("el").setAttribute(lblVal.getAttribute("at"), this.value);
+                _self.$lblVal.setAttribute("value", this.value);
+                _self.$lblVal.getAttribute("el").setAttribute(_self.$lblVal.getAttribute("at"), this.value);
                 //debugger;
                 if (createConnections(selection))
                     showConnections();
@@ -914,7 +954,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         }
         inputVal.onmouseout = function(e) {
             if (this.hasFocus) return;
-            $this.inputVal.replaceNode(lblVal, inputVal);
+            inputVal.replaceNode(_self.$lblVal, inputVal);
         }
         
         return inputVal;
