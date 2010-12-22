@@ -284,7 +284,6 @@ apf.Interactive = function(){
         document.onmousemove = dragMove;
         document.onmouseup   = function(e, cancel){
             document.onmousemove = document.onmouseup = null;
-
             //#ifdef __WITH_PLANE
             //apf.console.log("@todo check if this is correct? baseclasses/interactive.js line 285");
             /*
@@ -331,6 +330,10 @@ apf.Interactive = function(){
             if (_self.showdragging)
                 apf.setStyleClass(_self.$ext, "", ["dragging"]);
             
+            var outline = {
+                t : oOutline.offsetTop,
+                l : oOutline.offsetLeft,
+            }
             if (posAbs && dragOutline && !oOutline.self) //little dirty hack to detect outline set by visualselect
                 oOutline.style.display = "none";
             

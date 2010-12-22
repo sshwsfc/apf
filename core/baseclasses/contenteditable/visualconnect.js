@@ -37,15 +37,15 @@ apf.visualConnect = function (sel){
     var fromAtt, toAtt; // selected attribute of 'from' and 'to' element;
     var connections;    // connections that are drawn
     var attMenu;        // menu with attributes of element that appears when creating connection
-    var ignoreFromAtts = ["id"];    // attributes for from element to ignore in attMenu
-    var ignoreToAtts = ["for"];    // attributes for to elements to ignore in attMenu
+    var ignoreFromAtts = ["id", "a_id"];    // attributes for from element to ignore in attMenu
+    var ignoreToAtts = ["for", "a_id"];    // attributes for to elements to ignore in attMenu
     var _self = this;
     var prevSelection;
     
     // init draw api
     var width = canvas.$ext.clientWidth;
     //@todo adjust height to browser window height?
-    var height = 800;//document.body.clientHeight;
+    var height = canvas.$ext.clientHeight;//document.body.clientHeight;
     var paintGroup = apf.vector.group({w:width,h:height,z:1000});
     
     var paintRect = paintGroup.rect({
@@ -79,7 +79,7 @@ apf.visualConnect = function (sel){
             return;
 
         active = true
-        //document.getElementById("log").innerHTML += "activated<br>";
+
         var _self = this;
         var drawPath = [], connectionPath = [], hNode, pos, selection = sel.$getNodeList(), lines = [];
         var timer, lastTime;
@@ -91,11 +91,14 @@ apf.visualConnect = function (sel){
             else
                 var el1 = e.obj.toEl.id, el2 = e.obj.fromEl.id;
 
-            for (var maxBoxWidth = 0, maxLeftWidth = 0, i = 0, l = connections[el1][el2].length; i < l; i++) {
-                if ((c=connections[el1][el2][i].conn).getMaxLeftWidth() > maxLeftWidth)
+            for (var c, obj, maxBoxWidth = 0, maxLeftWidth = 0, i = 0, l = connections[el1][el2].length; i < l; i++) {
+                if ((c=(obj=connections[el1][el2][i]).conn).getMaxLeftWidth() > maxLeftWidth)
                     maxLeftWidth = c.getMaxLeftWidth();
                 if (c.getMaxBoxWidth() > maxBoxWidth)
                     maxBoxWidth = c.getMaxBoxWidth();
+                    
+                if (obj.from.at == e.prevAt)
+                    obj.from.at = e.obj.fromAt;
             }
 
             
@@ -107,10 +110,13 @@ apf.visualConnect = function (sel){
 
                 c.$ext.style.width = maxBoxWidth + 90 + "px";
             }
-                
         });
         apf.addEventListener("vcdelete", function(e) {
             e.el.style.display = "none";
+            
+            //sel.$selectList(selection);
+            createConnections(selection);
+            showConnections();
         });
         apf.addEventListener("vcmoveselection", function(e) {
             sel.$selectList(selection = [e.target]);
@@ -238,7 +244,7 @@ apf.visualConnect = function (sel){
                 lineMode = "connections";
             }
             else {
-                alert("no connections");
+                console.log("no connections");
 //                paintGroup.style({v:0});
 //                paintGroup.repaint();
                 
@@ -343,7 +349,7 @@ apf.visualConnect = function (sel){
             else {
                 var el = e.originalTarget, match = false;
 
-                while (el.id != "vc_container" && !match) {
+                while (el.id != "vc_container" && el.contentType != "text/html" && !match) {
                     if (el.className == "atchart_box")
                         match = true;
                     else {
@@ -354,12 +360,11 @@ apf.visualConnect = function (sel){
                         el = el.parentNode;          
                     }
                 }
-                
+                if (apf.dbg) debugger;
                 if (!match)
                     _self.deactivate();
             }
             isDrawing = false;
-
             //_self.deactivate();
         }
         
@@ -587,7 +592,7 @@ apf.visualConnect = function (sel){
             connectionPath = [];
             
             // reset div
-            if (div) canvas.$ext.removeChild(div);
+            if (div && apf.isChildOf(div, canvas.$ext)) canvas.$ext.removeChild(div);
             div = canvas.$ext.appendChild(document.createElement("div"));
             div.id = "vc_container";
             div.style.display = "block";
@@ -597,9 +602,11 @@ apf.visualConnect = function (sel){
             div.style.width = width + "px";
             div.style.height = height + "px";
             
-            //div.onmousedown = div.onmouseup = function(e) {
-                //(e||event).cancelBubble = true;
-            //}
+            /*
+            div.onmousedown = div.onmouseup = function(e) {
+                (e||event).cancelBubble = true;
+            }
+            */
 
             div.style.zIndex = 100000001;
             
@@ -673,7 +680,8 @@ apf.visualConnect = function (sel){
 
     this.deactivate = function(){
         if (!active) return;
-
+        if (apf.dbg) debugger;
+console.log("deactivate");
         //if (lineMode) return;
         active = false;
 
@@ -686,6 +694,7 @@ apf.visualConnect = function (sel){
         document.onmouseup = null;
         //document.onkeydown = null;
         
+        _self.setMode("element");
         apf.dragMode = false;
         
         apf.plane.hide();
@@ -714,7 +723,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
 };
 
 (function(){
-    this.ignoreFromAtts = ["id"];    // attributes for from element to ignore in attMenu
+    this.ignoreFromAtts = ["id", "a_id"];    // attributes for from element to ignore in attMenu
     this.ignoreToAtts = ["for"];    // attributes for to elements to ignore in attMenu
 
     this.$getInput = function(){
@@ -876,12 +885,15 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
                         _self.setPropName(newAt);
                         _self.fromEl.setAttribute(newAt, _self.value);
                         
+                        _self.prevAt = _self.fromAt;
+                        _self.fromAt = newAt;
+                        _self.$lblVal.setAttribute("at", newAt);
                         
                         (e||event).cancelBubble = true;
                         
                         _self.container.onmousedown = _self.container.onmouseup = function(e) {
                             _self.container.onmousedown = _self.container.onmouseup = null;
-                            apf.dispatchEvent("vcpropchange", {obj:_self});
+                            apf.dispatchEvent("vcpropchange", {obj:_self, prevAt: _self.prevAt});
                             (e || event).cancelBubble = true;
                         }
                         //document.onmouseup = null;
@@ -894,6 +906,9 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         }
         
         this.$lblVal        = this.$box.getElementsByTagName("label")[0];
+        this.$lblVal.setAttribute("el", this.fromEl.id);
+        this.$lblVal.setAttribute("at", this.fromAt);
+        
         this.$lblVal.onclick = function(e) {
             _self.$inputVal.value = _self.value;
             _self.$inputVal.style.width = this.offsetWidth + "px";
@@ -928,24 +943,24 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         inputVal.onkeydown = inputVal.onkeypress = inputVal.onmousedown = inputVal.onmouseup = function(e) {
             (e||event).cancelBubble = true;
         }
-        inputVal.onblur = function() {
+        inputVal.onblur = function(e) {
             this.hasFocus = false;
             this.onkeydown = this.onkeypress = this.onkeyup = null;
             _self.$lblVal.setAttribute("value", this.value);
-            _self.$lblVal.getAttribute("el").setAttribute(_self.$lblVal.getAttribute("at"), this.value);
+            _self.fromEl.setAttribute(_self.$lblVal.getAttribute("at"), this.value);
 
-            if (createConnections(selection))
-                showConnections();
+            //if (createConnections(selection))
+                //showConnections();
             
             (e||event).cancelBubble = true;
         }
         inputVal.onkeyup = function(e) {
             if ((e||event).keyCode == 13) {
                 _self.$lblVal.setAttribute("value", this.value);
-                _self.$lblVal.getAttribute("el").setAttribute(_self.$lblVal.getAttribute("at"), this.value);
+                _self.fromEl.setAttribute(_self.$lblVal.getAttribute("at"), this.value);
                 //debugger;
-                if (createConnections(selection))
-                    showConnections();
+                //if (createConnections(selection))
+                    //showConnections();
             }
             (e||event).cancelBubble = true;
         }

@@ -22,7 +22,7 @@ apf.__CONTENTEDITABLE__  = 1 << 24;
 // #ifdef __WITH_CONTENTEDITABLE
 
 apf.addEventListener("load", function(){
-    var lastShift;
+    var lastCtrl;
 
     apf.window.undoManager.addEventListener("afterchange", function(){
         apf.layout.processQueue();
@@ -77,7 +77,7 @@ apf.addEventListener("load", function(){
             case 113: //F2
                 apf.document.execCommand("rename", true);
                 return false;
-            case 16:
+            case 16: //Shift
                 if (!this.dragMode) {// && (apf.document.documentElement.editable 
                   //|| self.canvas && self.canvas.editable)) { //@hack!
             
@@ -92,9 +92,9 @@ apf.addEventListener("load", function(){
                     }
                 }
                 break;
-            case 17:
-                if (!lastShift || new Date() - lastShift > 500 || e.htmlEvent.repeat)
-                    lastShift = new Date().getTime();
+            case 17: //Ctrl
+                if (!lastCtrl || new Date() - lastCtrl > 200 || e.htmlEvent.repeat)
+                    lastCtrl = new Date().getTime();
                 else {
                     var isShowingConnections = (apf.document.queryCommandState("mode") || "").substr(0,8) == "connect-";
                     apf.document.execCommand("mode", null, {
@@ -102,7 +102,7 @@ apf.addEventListener("load", function(){
                         timeout : 1000,
                         event   : e.htmlEvent
                     });
-                    lastShift = null;
+                    lastCtrl = null;
                 }
                 break;
             /*case 36: //HOME
@@ -214,8 +214,8 @@ apf.addEventListener("load", function(){
     
     //Focus isn't set when the node already has the focus
     apf.addEventListener("mouseup", function(e){
-        if ((apf.document.queryCommandState("mode") || "").indexOf("connect-") > -1)
-            apf.document.execCommand("mode", null, "arrow");
+        //if ((apf.document.queryCommandState("mode") || "").indexOf("connect-") > -1)
+            //apf.document.execCommand("mode", null, "arrow");
 
 /*    
         if (Math.abs(lastPos[0] - e.htmlEvent.clientX) > 2 
@@ -229,9 +229,11 @@ apf.addEventListener("load", function(){
         var lastTop = o.style.top;
         o.style.top = "-10000px"
         var hOutline = document.getElementById("apf_outline");
-        if (hOutline) 
+        if (hOutline) {
+            hOutline.lastTop = hOutline.style.top.replace("px", "");
+            hOutline.lastLeft = hOutline.style.left.replace("px", "");
             hOutline.style.top = "-10000px";
-        
+        }
         var node = apf.findHost(
             document.elementFromPoint(e.htmlEvent.clientX, e.htmlEvent.clientY));
         if (!node || node == canvas) {

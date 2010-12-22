@@ -899,6 +899,7 @@
         else if (t[2] && (setOpp || isCoord(el.bottom)) 
           && !(s.bsticky || (isCoord(s.obpos) && !s.obEl.top))) {
             el.setAttribute("top", extra && extra.t || el.$ext.offsetTop);
+//top should be set to top of drag outline instead of top of el
             t[0] = true;
             el.removeAttribute("bottom");
             el.setAttribute("height", extra && extra.h || el.$ext.offsetHeight);
@@ -1136,7 +1137,16 @@
             
             if (el.$stick) {
                 if (selected.length == 1) {
-                    setStickyEdges(el);
+                    var hOutline = document.getElementById("apf_outline");
+                    if (hOutline) {
+                        setStickyEdges(el, {
+                            t: hOutline.lastTop || null,
+                            l: hOutline.lastLeft || null
+                        });
+                    }
+                    else {
+                        setStickyEdges(el);
+                    }
                     delete el.$stick;
                 }
             }

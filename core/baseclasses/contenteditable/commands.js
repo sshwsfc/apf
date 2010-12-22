@@ -405,13 +405,13 @@ apf.ContentEditable.commands = (function(){
     	}
     	else {
     	    mode = value.mode || value;
-            
             if (mode == "arrow")
                 apf.dragMode = false;   // hack
 
     	    this.$getSelectRect().deactivate();
             this.$getVisualConnect().deactivate();
     	}
+console.log("mode set to: " + mode);
     };
     
     commands["select"] = function(sel, showUI, options, query){
