@@ -32,7 +32,7 @@ apf.visualConnect = function (sel){
      */
     var lineMode = "draw";  // current lineMode of visualConnect
     
-    var active, div, cTemplate;    // visualconnect is active
+    var active, div;    // visualconnect is active
     var fromEl, toEl;   // selected 'from element' and 'to element' during draw mode
     var fromAtt, toAtt; // selected attribute of 'from' and 'to' element;
     var connections;    // connections that are drawn
@@ -46,7 +46,8 @@ apf.visualConnect = function (sel){
     var width = canvas.$ext.clientWidth;
     //@todo adjust height to browser window height?
     var height = canvas.$ext.clientHeight;//document.body.clientHeight;
-    var paintGroup = apf.vector.group({w:width,h:height,z:1000});
+    var paintGroup = apf.vector.group({w:width,h:height});
+    apf.window.zManager.set("print", paintGroup.$domnode);
     
     var paintRect = paintGroup.rect({
         sw: 1,
@@ -115,8 +116,14 @@ apf.visualConnect = function (sel){
             e.el.style.display = "none";
             
             //sel.$selectList(selection);
-            createConnections(selection);
-            showConnections();
+            paintGroup.style({v:0});
+            paintGroup.repaint();
+            
+            if (createConnections(selection))
+                showConnections();
+            else
+                apf.plane.get().hide();
+                //console.log("no connections left");
         });
         apf.addEventListener("vcmoveselection", function(e) {
             sel.$selectList(selection = [e.target]);
@@ -124,7 +131,7 @@ apf.visualConnect = function (sel){
             showConnections();
         });
         
-        apf.plane.show();
+        apf.plane.get().show();
         
         div = canvas.$ext.appendChild(document.createElement("div"));
         div.id = "vc_container";
@@ -132,7 +139,9 @@ apf.visualConnect = function (sel){
         div.style.position = "absolute";
         div.style.left = "0px";
         div.style.top = "0px";
-        div.style.zIndex = 100000001;
+        
+        apf.window.zManager.set("print", div);
+        //div.style.zIndex = 100000001;
         
         //@todo use apf.window.zManager.set("drag", this.panel);
 /*
@@ -178,21 +187,37 @@ apf.visualConnect = function (sel){
             if (elements.length){
                 // get all elements
                 var all = [];
-                for (var el, i = 0, l = apf.all.length; i < l; i++) {
-                    if ((el=apf.all[i]).$ext && el.prefix == "a") all.push(apf.all[i])
+                for (var el, i = 0, l = canvas.childNodes.length; i < l; i++) {
+                    if ((el=canvas.childNodes[i]).$ext && el.prefix == "a") all.push(el)
                 }
 
                 // element as source element
                 //@todo use .$funcHandlers hash table to find the connections .value = "{blah.value + bli.value}"
                 for (var al, attrs, el, i = 0, l = elements.length; i < l; i++) {
                     for (var fromAt in (attrs=(el=elements[i]).$funcHandlers)) {
-                        for (var at, targetList = [], ai = 0, al = attrs[fromAt].length; ai < al; ai++) {
+                        for (var readonly, fromEl, toEl, toAt, targetList = [], ai = 0, al = attrs[fromAt].length; ai < al; ai++) {
+                            if (attrs[fromAt][ai].prop  == fromAt) {
+                                readonly = true;
+                                toEl = el;
+                                fromEl = attrs[fromAt][ai].amlNode;
+                                if (!fromEl.getAttribute(fromAt) || !fromEl.getAttribute(fromAt).split || !fromEl.getAttribute(fromAt).split(".")[1]) 
+                                    continue;
+                                    //debugger;
+                                
+                                toAt = fromEl.getAttribute(fromAt).charAt(0) == "{" ? fromEl.getAttribute(fromAt).split(".")[1].replace("}", "") : fromAt;
+                            }
+                            else {
+                                readonly = false;
+                                fromEl = el
+                                toEl = attrs[fromAt][ai].amlNode;
+                                toAt = attrs[fromAt][ai].prop;
+                            }
                             targetList.push({
-                                el  : (at=attrs[fromAt][ai]).amlNode,
-                                at  : at.prop
+                                el  : toEl,
+                                at  : toAt
                             });
                         }
-                        createConnection(el, fromAt, targetList);
+                        createConnection(fromEl, fromAt, targetList, readonly);
                     }
                     /*
                     for (var val, targetEl, targetAttr, split, j = 0, jl = elements[i].attributes.length; j < jl; j++) {
@@ -221,7 +246,6 @@ apf.visualConnect = function (sel){
                     }
                     */
                 }
-                //debugger;
             }
             
             var found = false;
@@ -237,7 +261,7 @@ apf.visualConnect = function (sel){
                 drawConnections();
                 paintConnections.style({p: connectionPath.join(" ")});
 
-                apf.plane.show();
+                //apf.plane.show();
                 paintGroup.style({v:1});
                 paintGroup.repaint();
                 
@@ -292,7 +316,7 @@ apf.visualConnect = function (sel){
                     c : [Math.round(x+w/2), Math.round(y+h/2)]  // center of element
                 }
                 var pos1 = from.c, pos2 = to.c;
-                
+
                 paintGroup.style({v:1});
                 paintLine.style({p: [
                     "M",pos1[0],pos1[1],"L",pos2[0],pos2[1],
@@ -315,11 +339,12 @@ apf.visualConnect = function (sel){
                   id         : "attMenu",
                   childNodes : attList
                 });
-
+                
                 lineMode = null;
 
                 setTimeout(function(e){
                     attMenu.display(x, y, true);
+                    apf.window.zManager.set("print", attMenu.$ext);
                 });
                 
                 attMenu.addEventListener("mousedown", function(e) {
@@ -335,6 +360,7 @@ apf.visualConnect = function (sel){
                     apf.dragMode = true; //prevents selection
                     toAtt = e.value;
                     attMenu.setProperty("visible", false);
+
                     fromEl.setAttribute(fromAtt, "{" + toEl.id + "." + toAtt + "}");
                     //_self.setMode("element");
                     
@@ -400,7 +426,7 @@ apf.visualConnect = function (sel){
             }
             paintLine.style({p: drawPath.join(" ")});
 
-            apf.plane.show();
+            //apf.plane.show();
             paintGroup.style({v:1});
             paintGroup.repaint();
         }
@@ -430,7 +456,7 @@ apf.visualConnect = function (sel){
         document.onmousedown = function(e){
             if (!e) e = event;
             var amlNode;
-            
+
             //clearTimeout(showAllTimer);
             if (lineMode == "element") {
 /*
@@ -471,6 +497,7 @@ apf.visualConnect = function (sel){
                     
                     setTimeout(function(e){
                         attMenu.display(x, y, true);
+                        apf.window.zManager.set("print", attMenu.$ext);
                     });
                     
                     attMenu.addEventListener("itemclick", function(e) {
@@ -483,11 +510,11 @@ apf.visualConnect = function (sel){
                
                 _self.setMode("draw-started");
                 //debugger;
-                apf.plane.show();
+                //apf.plane.show();
                     
                    
             } else {
-                if (attMenu.visible)
+                if (attMenu && attMenu.visible)
                     attMenu.setProperty("visible", false);
                 if (fromEl && lineMode != "connections") {
                     stopDraw(e);
@@ -516,8 +543,8 @@ apf.visualConnect = function (sel){
         }*/
         
         // create new connection
-        function createConnection(el1, at1, targetList) {
-            if (!(el1.id && at1 && targetList.length)) return;
+        function createConnection(el1, at1, targetList, readonly) {
+            if (!el1.id || !at1 || !targetList.length) return;
             
             var pos, x, y, w, h;
             
@@ -525,10 +552,12 @@ apf.visualConnect = function (sel){
             if (targetList.length == 1) {
                 var el2 = targetList[0].el;
                 var at2 = targetList[0].at;
-                var pos = [(hNode=el1.$ext).offsetLeft, hNode.offsetTop];
+
+                //var pos = [(hNode=el1.$ext).offsetLeft, hNode.offsetTop];
+                var pos = apf.getAbsolutePosition(hNode=el1.$ext);
                 var from = {
-                    x : (x=pos[0]),
-                    y : (y=pos[1]),
+                    x : (x=pos[0]-canvas.$ext.offsetLeft),
+                    y : (y=pos[1]-canvas.$ext.offsetTop),
                     w : (w=hNode.offsetWidth),
                     h : (h=hNode.offsetHeight),
                     t : [Math.round(x+w/2), y],
@@ -537,10 +566,11 @@ apf.visualConnect = function (sel){
                     r : [x+w, Math.round(y+h/2)],
                     c : [Math.round(x+w/2), Math.round(y+h/2)]  // center of element
                 }
-                var pos = [(hNode=el2.$ext).offsetLeft, hNode.offsetTop];
+                //var pos = [(hNode=el2.$ext).offsetLeft, hNode.offsetTop];
+                var pos = apf.getAbsolutePosition(hNode=el2.$ext);
                 var to = {
-                    x : (x=pos[0]),
-                    y : (y=pos[1]),
+                    x : (x=pos[0]-canvas.$ext.offsetLeft),
+                    y : (y=pos[1]-canvas.$ext.offsetTop),
                     w : (w=hNode.offsetWidth),
                     h : (h=hNode.offsetHeight),
                     t : [Math.round(x+w/2), y],
@@ -549,7 +579,7 @@ apf.visualConnect = function (sel){
                     r : [x+w, Math.round(y+h/2)],
                     c : [Math.round(x+w/2), Math.round(y+h/2)]  // center of element
                 }
-                
+
                 // check
                 var conn = {
                     from : {
@@ -565,14 +595,18 @@ apf.visualConnect = function (sel){
                 }
                 
                 // set value
+                /*
                 var val;
                 if (val = el2.getAttribute(at2)) {
                     conn.val = val;
                 }
                 else {
+                */
                     conn.val = "{"+el2.id+"."+at2+"}";
-                    conn.readonly = true;
-                }
+                    //conn.readonly = true;
+                //}
+                
+                conn.readonly = readonly;
                 
                 var fromId, toId;
                 if (!connections) connections = {};
@@ -592,7 +626,7 @@ apf.visualConnect = function (sel){
             connectionPath = [];
             
             // reset div
-            if (div && apf.isChildOf(div, canvas.$ext)) canvas.$ext.removeChild(div);
+            if (div && apf.isChildOf(canvas.$ext, div)) canvas.$ext.removeChild(div);
             div = canvas.$ext.appendChild(document.createElement("div"));
             div.id = "vc_container";
             div.style.display = "block";
@@ -608,7 +642,8 @@ apf.visualConnect = function (sel){
             }
             */
 
-            div.style.zIndex = 100000001;
+            apf.window.zManager.set("print", div);
+            //div.style.zIndex = 100000001;
             
             for (var id in connections) {
                 for (var id2 in connections[id]) {
@@ -618,6 +653,7 @@ apf.visualConnect = function (sel){
                         // default positions for lines, start and end
                         pos1 = (c=curConnections[i]).from.pos;
                         pos2 = c.to.pos;
+
                         // calculate center of line
                         centerPos = [Math.round((pos1[0]+pos2[0])/2), Math.round((pos1[1]+pos2[1])/2)];
                         
@@ -681,7 +717,7 @@ apf.visualConnect = function (sel){
     this.deactivate = function(){
         if (!active) return;
         if (apf.dbg) debugger;
-console.log("deactivate");
+
         //if (lineMode) return;
         active = false;
 
@@ -694,7 +730,7 @@ console.log("deactivate");
         document.onmouseup = null;
         //document.onkeydown = null;
         
-        _self.setMode("element");
+        //_self.setMode("element");
         apf.dragMode = false;
         
         apf.plane.hide();
@@ -704,7 +740,7 @@ console.log("deactivate");
         paintGroup.style({v:0});
         paintGroup.repaint();
         if (div) div.style.display = "none";
-        if (div) canvas.$ext.removeChild(div);
+        if (div) canvas.$ext.removeChild(div);        
     };
 };
 
@@ -871,7 +907,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
                     
                     //attMenu.display(x-attMenu.$ext.offsetWidth, y);
                     attMenu.$ext.style.left = x;
-                    attMenu.$ext.style.zIndex = 100000002;
+                    apf.window.zManager.set("print", attMenu.$ext);
                    
                     // select attribute in menu
                     apf.popup.cache[apf.popup.last].content.onmousedown = function(e) {
@@ -914,6 +950,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
             _self.$inputVal.style.width = this.offsetWidth + "px";
             this.replaceNode(_self.$inputVal);
             _self.$inputVal.focus();
+            
             (e||event).cancelBubble = true;
         };
         this.setPropValue(this.value);
@@ -923,7 +960,7 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         
         if (this.type == "readonly") {
             this.$ext.onmousedown = function(e) {
-                apf.dispatchEvent("vcmoveselection", {target: _self.toEl});
+                apf.dispatchEvent("vcmoveselection", {target: _self.fromEl});
                 (e||event).cancelBubble = true;
             }
             this.$ext.onmouseup = function(e) {
@@ -957,7 +994,10 @@ function connectEdit(container, fromEl, toEl, fromAt, toAt, val, type){
         inputVal.onkeyup = function(e) {
             if ((e||event).keyCode == 13) {
                 _self.$lblVal.setAttribute("value", this.value);
+                _self.value = this.value;
+                _self.$lblVal.innerHTML = this.value;
                 _self.fromEl.setAttribute(_self.$lblVal.getAttribute("at"), this.value);
+                inputVal.replaceNode(_self.$lblVal, inputVal);
                 //debugger;
                 //if (createConnections(selection))
                     //showConnections();

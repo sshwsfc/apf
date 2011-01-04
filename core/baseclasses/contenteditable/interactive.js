@@ -265,12 +265,12 @@
             else {
                 if (lastAmlNode)
                     clearTimeout(lastAmlNode[4]);
-
+                
                 var plane = apf.plane.get();
                 if (el && amlNode != el && amlNode.$int 
                   && htmlNode.parentNode != amlNode.$int 
                   && (htmlNode.parentNode != plane.plane || amlNode.$int != document.body)
-                  && !apf.isChildOf(el.$ext, amlNode.$int, true)) {
+                  && el.parentNode != amlNode) { // !apf.isChildOf(amlNode.$int, el.$ext, true)
                     var ev = {clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey}
                     lastAmlNode = [amlNode, new Date().getTime(), e.clientX, e.clientY,
                         setTimeout(function(){
@@ -730,6 +730,7 @@
     
         //Elements
         var els = pEl.getElementsByTagName("*", true); //Fetch all siblings incl me
+        
         var xl  = d.xl = [], yl = d.yl = [], curel;
         var xm  = d.xm = [], ym = d.ym = [];
         var xr  = d.xr = [], yr = d.yr = [], dels = d.els = []; 
@@ -750,10 +751,11 @@
             var q = apf.getBorderOffset(container);
             var bLeft = q[0];
             var bTop  = q[1];
+            
             for (var l, t, h, w, i = 0, il = els.length; i < il; i++) {
                 if (selected.indexOf(curel = els[i]) > -1 || !curel.$ext || curel == el)
                     continue;
-    
+
                 l = curel.$ext.offsetLeft - bLeft;
                 xl.push(l);
                 xm.push(l + Math.round((w = curel.$ext.offsetWidth)/2));
@@ -766,6 +768,23 @@
                 
                 dels.push(curel);
             }
+            
+            if (el.childNodes.length) {// add childelements for snapping to them
+                for (var pos, i = 0, il = el.childNodes.length; i < il; i++) {
+                    curel = el.childNodes[i];
+                    pos = apf.getAbsolutePosition(curel.$ext);
+
+                    l = pos[0] - canvas.$ext.offsetLeft;
+                    xl.push(l-10);
+                    xr.push(l + curel.$ext.offsetWidth + 10)
+
+                    t = pos[1] - canvas.$ext.offsetTop;
+                    yl.push(t-10);
+                    yr.push(t + curel.$ext.offsetHeight + 10)
+
+                }
+            }
+
         }
     }
 
@@ -1185,14 +1204,15 @@
         control.stop();
 
         if (name == "vbox") {
-            var pack = this.align || this.parentNode.pack;
+            /*
+            var pack = this.parentNode.pack; //this.align || 
             if (pack != "middle") {
                 var xType = pack == "start" ? "n" : "s";
                 type = type.replace(xType, "");
                 type = type.replace("w", "");
                 if (!type) return;
             }
-
+            */
             this.realtime    = true;
             this.$showResize = function(l, t, w, h, e, c, we, no, ea, so) {
                 if (h && (no || so))
@@ -1203,6 +1223,7 @@
             }
         }
         else if (name == "hbox") {
+            /*
             var pack = this.align || this.parentNode.pack;
             if (pack != "middle") {
                 var xType = pack == "start" ? "w" : "e";
@@ -1210,7 +1231,7 @@
                 type = type.replace("n", "");
                 if (!type) return;
             }
-            
+            */
             this.realtime    = true;
             this.$showResize = function(l, t, w, h) {
                 this.setProperty("width", w);
@@ -1229,6 +1250,7 @@
         else {
             this.realtime = false;
         }
+        
         if ("hbox|vbox|table".indexOf(name) == -1
           && apf.getStyle(this.$ext, "position") != "absolute") { //ignoring fixed for now...
             this.$ext.style.width = (this.$ext.offsetWidth - apf.getWidthDiff(this.$ext)) + "px";
@@ -1238,7 +1260,9 @@
             this.$ext.style.position = "absolute";*/
         }
 
+        // commented out by Linh, sets maxwidth/height on element in hbox/vbox, is this neccessary?
         //@todo move everything below into vbox/table/anchoring
+        /*
         var m, edge;
         if (name == "vbox") {
             this.maxheight = Math.min(this.maxheight || 10000, 
@@ -1280,6 +1304,7 @@
         }
 
         e.setType(name == "table" ? "s" : type);
+        */
     };
     
     function afterresize(e){
@@ -1367,6 +1392,11 @@
                 (h = ext.offsetHeight) - d[1], d[0], d[1]);
         }
         n.ownerDocument.execCommand("commit"); //@todo Use a system here to combine these commits as well as possible
+        
+        if (selected.length == 1) {
+            apf.config.setProperty("x", apf.getHtmlLeft(ext).toString());
+            apf.config.setProperty("y", apf.getHtmlTop(ext).toString());
+        }
         
         apf.layout.processQueue();
         n.ownerDocument.$getVisualSelect().updateGeo();

@@ -42,8 +42,12 @@ apf.addEventListener("load", function(){
         var key = e.keyCode;
 
         if (!apf.document.activeElement
-          || !apf.document.activeElement.editable)
+          || !apf.document.activeElement.editable) {
+            if (key == 46 && apf.isChildOf(hboxTools, apf.activeElement)) 
+                apf.removeHotKey("del");
             return;
+        }
+            
 
         if (apf.document.queryCommandState("rename")) {
             if (apf.hasSingleResizeEvent)
@@ -199,6 +203,7 @@ apf.addEventListener("load", function(){
 
             //Add element to the selection
             sel.addRange(this.createRange()).selectNode(node);
+
             lastFocussed = node;
         }
 
@@ -214,8 +219,8 @@ apf.addEventListener("load", function(){
     
     //Focus isn't set when the node already has the focus
     apf.addEventListener("mouseup", function(e){
-        //if ((apf.document.queryCommandState("mode") || "").indexOf("connect-") > -1)
-            //apf.document.execCommand("mode", null, "arrow");
+        if ((apf.document.queryCommandState("mode") || "").indexOf("connect-") > -1)
+            apf.document.execCommand("mode", null, "arrow");
 
 /*    
         if (Math.abs(lastPos[0] - e.htmlEvent.clientX) > 2 
@@ -263,7 +268,7 @@ apf.addEventListener("load", function(){
                 var r = sel.getRangeAt(sel.rangeCount - 1);
                 recursion = true;
                 r.startContainer.childNodes[r.startOffset].focus();
-                recursion = false;
+                recursion = false;                
                 return;
             }
             else { //@todo this could be optimized by checking whether the object is already the only selected

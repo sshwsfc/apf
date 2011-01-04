@@ -98,10 +98,12 @@ apf.ContentEditable.commands = (function(){
                 amlNode.setAttribute("top", options.top);
             }
             
-            if (addType != "hbox" && options.width || options.width === 0)
-                amlNode.setAttribute("width", options.width);
-            if (addType != "vbox" && options.height || options.height === 0)
-                amlNode.setAttribute("height", options.height);
+            if (typeof addType == "string") {
+                if (addType != "hbox" && options.width || options.width === 0)
+                    amlNode.setAttribute("width", options.width);
+                if (addType != "vbox" && options.height || options.height === 0)
+                    amlNode.setAttribute("height", options.height);
+            }
         }
         
         commands["generateId"].call(this, amlNode);
@@ -480,7 +482,9 @@ console.log("mode set to: " + mode);
                 sel.removeNode();
             });
         }
-        if (!pNode) debugger;
+        else 
+            return
+        
         var s = pNode.ownerDocument.getSelection();
         var activeEl = apf.document.activeElement && apf.document.activeElement.editable 
             ? apf.document.activeElement
@@ -519,8 +523,53 @@ console.log("mode set to: " + mode);
             case INDET: return false;
         }
         
-        um.undo(parseInt(value) || null);
-        apf.document.$getVisualSelect().hide();
+        var st, sl;
+        var lastAction = (st=um.$undostack)[(sl=st.length-1)];
+        
+        var target = updateFields(lastAction, function() {
+            um.undo(parseInt(value) || null);
+        });
+
+        
+        
+        // check if target is still on canvas, is not remove visual selection
+        if (target && !apf.isChildOf(canvas, target))
+            apf.document.$getVisualSelect().hide();
+    };
+    
+    updateFields = function(action, call) {
+        var target = action.args[action.args.length-1].xmlNode;
+        
+        var updateFields = {}, targets = [];
+        for (var tg, at, o, i = 0, l = action.args.length; i < l; i++) {
+            if ((o=action.args[i]).action == "setAttribute") {
+                tg=o.args[0];
+
+                if ((at=o.args[1]) == "left" || at == "top" || at == "width" || at == "height" || at == "pack" || at == "align" || at == "edge" || at == "columns")
+                    updateFields[at] = true;
+            }
+            if (targets.indexOf(tg) == -1)
+                targets.push(tg);
+        }
+
+        if (!target && targets.length == 1)
+            target = targets[0];
+        
+        call();
+
+        // @todo for pack/edge/align etc.
+        for (var at in updateFields) {
+            if (at == "left")
+                apf.config.setProperty("x", apf.getHtmlLeft(tg.$ext).toString());
+            else if (at == "top")
+                apf.config.setProperty("y", apf.getHtmlTop(tg.$ext).toString());
+            else if (at == "width")
+                apf.config.setProperty("w", tg.$ext.offsetWidth);
+            else if (at == "height")
+                apf.config.setProperty("h", tg.$ext.offsetHeight);
+        }
+            
+        return target;
     };
     
     commands["redo"] = function(sel, showUI, value, query){
@@ -532,7 +581,12 @@ console.log("mode set to: " + mode);
             case INDET: return false;
         }
         
-        um.redo(parseInt(value) || null);
+        var st, sl;
+        var lastAction = (st=um.$redostack)[(sl=st.length-1)];
+    
+        var target = updateFields(lastAction, function() {
+            um.redo(parseInt(value) || null);;
+        });
     };
     
     commands["cut"] = function(sel, showUI, value, query){
@@ -736,7 +790,7 @@ console.log("mode set to: " + mode);
         }
         
         sel.each(function(sel) {
-            sel.setAttribute(options.name, options.value);
+            apf.xmldb.setAttribute(sel, options.name, options.value);
         });
         
         sel[0].ownerDocument.$getVisualSelect().updateGeo(); //Possibly not best place for this

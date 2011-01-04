@@ -376,8 +376,6 @@ apf.Interactive = function(){
               && oOutline.style.display != "block")
                 oOutline.style.display = "block";
 
-            // this line fixes bug where dragging new element to canvas while multiselection is active 
-            // but raises another bug which prevent reparenting (orange outline) to occur.
             // dragOutline && apf.document.$getVisualSelect().$getOutline().childNodes.length > 1 && 
             if (_self.dispatchEvent("beforedrag") === false && dragOutline && apf.document.$getVisualSelect().$getOutline().childNodes.length > 1) {
                 document.onmouseup();
@@ -732,7 +730,7 @@ apf.Interactive = function(){
         
         if (_self.realtime) {
             var change = _self.$stick = {};
-            
+
             //@todo calc l and t once at start of resize (subtract borders)
             _self.$showResize(l || apf.getHtmlLeft(oHtml), t || apf.getHtmlTop(oHtml), 
                 w && w + hordiff || oHtml.offsetWidth, 
